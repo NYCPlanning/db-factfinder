@@ -12355,7 +12355,7 @@
             "B01001_029"
         ],
         "domain": "demographics",
-        "base_variable": "mdage",
+        "base_variable": "",
         "rounding": 0,
         "source": "",
         "median": false,
@@ -12411,7 +12411,7 @@
             "B01001_046"
         ],
         "domain": "demographics",
-        "base_variable": "mdage",
+        "base_variable": "",
         "rounding": 0,
         "source": "",
         "median": false,

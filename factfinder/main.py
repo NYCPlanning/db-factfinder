@@ -3,35 +3,75 @@ import json
 import pandas as pd
 from pathlib import Path
 from .variable import Variable
-from .database import Database
 from .utils import get_c, get_p, get_z
+from .multi import Pool
+from .median import get_median, get_median_moe
+import logging
+from functools import partial
 
 class Pff:
-    def __init__(self, api_key, database, year=2018):
+    def __init__(self, api_key, year=2018):
         self.c = Census(api_key)
-        with open(f"{Path(__file__).parent}/data/metadata.json") as f:
-            self.metadata = json.load(f)
         self.year = year
         self.state = 36
         self.counties = ["005", "081", "085", "047", "061"]
-        self.database = Database(database)
+        with open(f"{Path(__file__).parent}/data/metadata.json") as f:
+            self.metadata = json.load(f)
+        with open(f"{Path(__file__).parent}/data/median.json") as f:
+            self.median = json.load(f)
 
     @property
-    def base_variables(self):
-        base_var = set([i["base_variable"] for i in self.metadata])
-        return [i for i in self.metadata if i["pff_variable"] in base_var]
+    def base_variables(self) -> list:
+        return list(set([i["base_variable"] for i in self.metadata]))
 
     @property
-    def median_variables(self):
-        return [i for i in self.metadata if i["median"]]
+    def median_variables(self) -> list:
+        return list(self.median.keys())
 
-    def create_variable(self, pff_variable):
-        meta = list(filter(lambda x: x["pff_variable"] == pff_variable, self.metadata))[
-            0
-        ]
+    def median_ranges(self, pff_variable) -> dict:
+        return self.median[pff_variable]['ranges']
+
+    def median_design_factor(self, pff_variable) -> float:
+        return self.median[pff_variable]['design_factor']
+
+    def calculate_median_variable(self, pff_variable, geotype):
+        # Initialize 
+        ranges = self.median_ranges(pff_variable)
+        design_factor = self.median_design_factor(pff_variable)
+        rounding = self.create_variable(pff_variable).rounding
+
+        # Calculate each variable that goes into median calculation
+        _calculate_variable=partial(self.calculate_variable, geotype=geotype) 
+        with Pool(5) as download_pool:
+            dfs = download_pool.map(_calculate_variable, list(ranges.keys()))
+        df = pd.concat(dfs)
+        del dfs
+
+        # Iterate over unique_geoids and calculate median for each geoid
+        df_pivoted = df.loc[:, ['acs_geoid', 'pff_variable', 'e', 'm']]\
+                .pivot(index='acs_geoid', columns='pff_variable', values=['e', 'm'])
+        
+        results = pd.DataFrame()
+        results['acs_geoid'] = df_pivoted.index
+        results['pff_variable'] = pff_variable
+        results['geotype'] = geotype
+        results['e'] = df_pivoted.e\
+                        .loc[df_pivoted.e.index == results.acs_geoid, list(ranges.keys())]\
+                        .apply(lambda row: get_median(ranges, row), axis=1).to_list()
+        m = df_pivoted.m
+        m['e'] = results.loc[m.index==results.acs_geoid, 'e'].to_list()
+        results['m'] = m.loc[m.index == results.acs_geoid, list(ranges.keys())+['e']]\
+                        .apply(lambda row: get_median_moe(ranges, row, design_factor), axis=1)\
+                        .to_list()
+
+        output = pd.concat([df, results])
+        return output
+
+    def create_variable(self, pff_variable) -> Variable:
+        meta = list(filter(lambda x: x["pff_variable"] == pff_variable, self.metadata))[0]
         return Variable(meta)
 
-    def calculate_variable(self, pff_variable, geotype="tract"):
+    def calculate_variable(self, pff_variable, geotype) -> pd.DataFrame:
         # 1. create variable
         v = self.create_variable(pff_variable)
 
@@ -44,15 +84,16 @@ class Pff:
 
         # 3. pulling data from census site
         df = self.aggregate_variable(source, v, geotype)
+        logging.warning(f'{pff_variable} is ready ...')
         return df
 
-    def aggregate_variable(self, source, v, geotype):
+    def aggregate_variable(self, source, v, geotype) -> pd.DataFrame:
         # Create Variables
         E_variables = [i + "E" for i in v.acs_variable]
         M_variables = [i + "M" for i in v.acs_variable]
         acs_variables = E_variables+M_variables
         geoqueries = self.get_geoquery(geotype)
-        df = self.download(source, acs_variables, geoqueries)
+        df = self.download_variable(source, acs_variables, geoqueries)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -71,15 +112,17 @@ class Pff:
             df['acs_geoid'] = df['state'] + df['county'] + df['tract'] + df['block group']
         return df[['acs_geoid', 'pff_variable', 'geotype', 'e', 'm']]
     
-    def download(self, source, variables, geoqueries) -> pd.DataFrame: 
-        dfs = []
-        for geoquery in geoqueries:
-            dfs.append(pd.DataFrame(
+    def download_variable(self, source, variables, geoqueries) -> pd.DataFrame: 
+        _download=partial(self.download, source=source, variables=variables) 
+        with Pool(5) as pool:
+            dfs = pool.map(_download, geoqueries)
+        return pd.concat(dfs)
+
+    def download(self, geoquery, source, variables) -> pd.DataFrame:
+        return pd.DataFrame(
                 source.get(
                 ('NAME', ','.join(variables)),
-                geoquery,year=self.year)
-            ))
-        return pd.concat(dfs)
+                geoquery, year=self.year))
 
     def get_geoquery(self, geotype) -> list:
         if geotype == 'tract':
