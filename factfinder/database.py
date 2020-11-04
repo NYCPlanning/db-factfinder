@@ -23,7 +23,7 @@ class Database:
         self.conn.commit()
 
     def init_tables(self):
-        query = f'''
+        query = f"""
         CREATE TABLE IF NOT EXISTS pff_{0} (
             geotype text,
             geogname text,
@@ -36,9 +36,9 @@ class Database:
             p double precision,
             z double precision
         );
-        '''
-        self.execute(query.format('social'))
-        self.execute(query.format('demographic'))       
-        self.execute(query.format('economic'))        
-        self.execute(query.format('housing'))
+        """
+        self.execute(query.format("social"))
+        self.execute(query.format("demographic"))
+        self.execute(query.format("economic"))
+        self.execute(query.format("housing"))
         self.commit()
