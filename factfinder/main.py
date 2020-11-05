@@ -94,7 +94,11 @@ class Pff:
         source = self.c.acs5
 
         # 3. pulling data from census site
-        df = self.aggregate_horizontal(source, v, 'tract')
+        if geotype == 'NTA': 
+            df = self.aggregate_horizontal(source, v, "tract")
+            df = self.aggregate_vertical(df, from_geotype='tract', to_geotype='NTA')
+        else:
+            df = self.aggregate_horizontal(source, v, "tract")
         return df
 
     def aggregate_horizontal(self, source, v, geotype) -> pd.DataFrame:
@@ -131,7 +135,7 @@ class Pff:
         this function will aggregate over geographies, 
         e.g. aggregate over tracts to get NTA level data
         """
-        if from_geotype == 'tract' and to_geotype == 'NTA':
+        if from_geotype == "tract" and to_geotype == "NTA":
             return aggregate_nta(df)
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
@@ -141,7 +145,7 @@ class Pff:
             dfs = pool.map(_download, geoqueries)
         df = pd.concat(dfs)
         if geotype in ["NTA"]:
-            return self.aggregate_geography(df, from_geotype='tract', to_geotype='NTA')
+            return self.aggregate_geography(df, from_geotype="tract", to_geotype="NTA")
         return df
 
     def download(self, geoquery, source, variables) -> pd.DataFrame:
@@ -150,7 +154,7 @@ class Pff:
         )
 
     def get_geoquery(self, geotype) -> list:
-        if geotype in ["tract", 'NTA']:
+        if geotype in ["tract", "NTA"]:
             return [
                 {"for": "tract:*", "in": f"state:{self.state} county:{county}",}
                 for county in self.counties
@@ -163,7 +167,7 @@ class Pff:
         elif geotype == "city":
             return [{"for": "place:51000", "in": f"state:{self.state}",}]
 
-        elif geotype in ["block group", 'flood plain']:
+        elif geotype in ["block group", "flood plain"]:
             return [
                 {"for": "block group:*", "in": f"state:{self.state} county:{county}",}
                 for county in self.counties
