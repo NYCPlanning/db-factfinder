@@ -6,7 +6,7 @@ from .variable import Variable
 from .utils import get_c, get_p, get_z
 from .multi import Pool
 from .median import get_median, get_median_moe
-from .aggregate_geography import aggregate_nta
+from .aggregate_geography import aggregate_nta, aggregate_fp500
 import logging
 from functools import partial
 
@@ -62,7 +62,7 @@ class Pff:
         Given median variable in the form of pff_variable and geotype
         calculate the median and median moe
         """
-        # 1. Initialize 
+        # 1. Initialize
         ranges = self.median_ranges(pff_variable)
         design_factor = self.median_design_factor(pff_variable)
         rounding = self.create_variable(pff_variable).rounding
@@ -74,14 +74,15 @@ class Pff:
         df = pd.concat(dfs)
         del dfs
 
-        # 3. create a pivot table with acs_geoid as the index, and pff_variable as column names. 
-        # df_pivoted.e -> the estimation dataframe 
+        # 3. create a pivot table with acs_geoid as the index, and pff_variable as column names.
+        # df_pivoted.e -> the estimation dataframe
         # df_pivoted.m -> the moe dataframe
-        df_pivoted = df.loc[:, ["acs_geoid", "pff_variable", "e", "m"]]\
-                        .pivot(index="acs_geoid", columns="pff_variable", values=["e", "m"])
+        df_pivoted = df.loc[:, ["acs_geoid", "pff_variable", "e", "m"]].pivot(
+            index="acs_geoid", columns="pff_variable", values=["e", "m"]
+        )
 
         # Empty dataframe to store the results
-        results = pd.DataFrame() 
+        results = pd.DataFrame()
         results["acs_geoid"] = df_pivoted.index
         results["pff_variable"] = pff_variable
         results["geotype"] = geotype
@@ -129,16 +130,20 @@ class Pff:
         # 2. identify source
         if v.source == "profile":
             source = self.c.acs5dp
-        if v.source == "subject":
+        elif v.source == "subject":
             source = self.c.acs5st
-        source = self.c.acs5
+        else:
+            source = self.c.acs5
 
         # 3. pulling data from census site
-        if geotype == 'NTA': 
-            # For geographies that needs two levels aggregation, we handle them 
+        if geotype == "NTA":
+            # For geographies that needs two levels aggregation, we handle them
             # seperately using both aggregate_horizontal and aggregate_vertical
             df = self.aggregate_horizontal(source, v, "tract")
-            df = self.aggregate_vertical(df, from_geotype='tract', to_geotype='NTA')
+            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
+        if geotype == 'cd_fp_500':
+            df = self.aggregate_horizontal(source, v, "block group")
+            df = self.aggregate_vertical(df, from_geotype="block group", to_geotype="cd_fp_500")
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
             df = self.aggregate_horizontal(source, v, "tract")
@@ -181,6 +186,8 @@ class Pff:
         """
         if from_geotype == "tract" and to_geotype == "NTA":
             return aggregate_nta(df)
+        elif from_geotype == 'block group' and to_geotype == "cd_fp_500":
+            return aggregate_fp500(df)
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
         """
