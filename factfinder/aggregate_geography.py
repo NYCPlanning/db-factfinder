@@ -19,4 +19,5 @@ def aggregate_nta(df):
         on = 'nta'
     ).reset_index().rename(columns={'nta':'acs_geoid'})
     output['pff_variable'] = df['pff_variable'].to_list()[0]
-    return output[['acs_geoid', 'pff_variable', 'e', 'm']]
+    output['geotype'] = 'NTA'
+    return output[['acs_geoid', 'pff_variable', 'geotype', 'e', 'm']]
