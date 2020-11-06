@@ -231,9 +231,9 @@ class Pff:
         elif from_geotype == "block group" and to_geotype == "cd_park_access":
             return block_group_to_cd_park_access(df)
         elif from_geotype == "block" and to_geotype == "cd_fp_500":
-            return block_group_to_cd_fp500(df)
+            return block_to_cd_fp500(df)
         elif from_geotype == "block" and to_geotype == "cd_fp_100":
-            return block_group_to_cd_fp100(df)
+            return block_to_cd_fp100(df)
         elif from_geotype == "block" and to_geotype == "cd_park_access":
             return block_to_cd_park_access(df)
 
