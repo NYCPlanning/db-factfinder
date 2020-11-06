@@ -84,6 +84,23 @@ def block_group_to_cd_fp100(df):
     output["geotype"] = "cd_fp_100"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
+def block_group_to_cd_park_access(df):
+    """
+    walk-to-park access zone aggregation for block group data (acs)
+    """
+    df = df.merge(
+        lookup_geo.loc[
+            ~lookup_geo.cd_park_access.isna(), ["geoid_block_group", "cd_park_access"]
+        ].drop_duplicates(),
+        how="right",
+        right_on="geoid_block_group",
+        left_on="census_geoid",
+    )
+    output = create_output(df, "cd_park_access")
+    output["pff_variable"] = df["pff_variable"].to_list()[0]
+    output["geotype"] = "cd_park_access"
+    return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
 def block_to_cd_fp500(df):
     """
     500 yr flood plain aggregation for block data (decennial)

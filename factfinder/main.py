@@ -154,6 +154,28 @@ class Pff:
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_fp_500"
                 )
+        if geotype == "cd_fp_100":
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block", to_geotype="cd_fp_100"
+                )
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block group", to_geotype="cd_fp_100"
+                )
+        if geotype == "cd_park_access":
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block", to_geotype="cd_park_access"
+                )
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block group", to_geotype="cd_park_access"
+                )
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
             df = self.aggregate_horizontal(source, v, "tract")
@@ -200,10 +222,20 @@ class Pff:
         """
         if from_geotype == "tract" and to_geotype == "NTA":
             return tract_to_nta(df)
-        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
-            return block_group_to_cd_fp500(df)
         elif from_geotype == "tract" and to_geotype == "cd":
             return tract_to_cd(df)
+        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
+            return block_group_to_cd_fp500(df)
+        elif from_geotype == "block group" and to_geotype == "cd_fp_100":
+            return block_group_to_cd_fp100(df)
+        elif from_geotype == "block group" and to_geotype == "cd_park_access":
+            return block_group_to_cd_park_access(df)
+        elif from_geotype == "block" and to_geotype == "cd_fp_500":
+            return block_group_to_cd_fp500(df)
+        elif from_geotype == "block" and to_geotype == "cd_fp_100":
+            return block_group_to_cd_fp100(df)
+        elif from_geotype == "block" and to_geotype == "cd_park_access":
+            return block_to_cd_park_access(df)
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
         """
