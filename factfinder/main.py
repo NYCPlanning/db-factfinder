@@ -174,7 +174,7 @@ class Pff:
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
         df["e"] = df[E_variables].sum(axis=1)
-        df["m"] = (df[M_variables] ** 2).sum(axis=1) ** 0.5
+        df["m"] = (df[M_variables] ** 2).sum(axis=1) ** 0.5 if if source != 'decennial' else np.nan
 
         # Create geoid
         if geotype == "tract":
