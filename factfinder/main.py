@@ -74,23 +74,23 @@ class Pff:
         df = pd.concat(dfs)
         del dfs
 
-        # 3. create a pivot table with acs_geoid as the index, and pff_variable as column names.
+        # 3. create a pivot table with census_geoid as the index, and pff_variable as column names.
         # df_pivoted.e -> the estimation dataframe
         # df_pivoted.m -> the moe dataframe
-        df_pivoted = df.loc[:, ["acs_geoid", "pff_variable", "e", "m"]].pivot(
-            index="acs_geoid", columns="pff_variable", values=["e", "m"]
+        df_pivoted = df.loc[:, ["census_geoid", "pff_variable", "e", "m"]].pivot(
+            index="census_geoid", columns="pff_variable", values=["e", "m"]
         )
 
         # Empty dataframe to store the results
         results = pd.DataFrame()
-        results["acs_geoid"] = df_pivoted.index
+        results["census_geoid"] = df_pivoted.index
         results["pff_variable"] = pff_variable
         results["geotype"] = geotype
 
         # 4. calculate median estimation using get_median
         results["e"] = (
             df_pivoted.e.loc[
-                df_pivoted.e.index == results.acs_geoid, list(ranges.keys())
+                df_pivoted.e.index == results.census_geoid, list(ranges.keys())
             ]
             .apply(lambda row: get_median(ranges, row), axis=1)
             .to_list()
@@ -100,9 +100,9 @@ class Pff:
         # Note that median moe calculation needs the median estimation
         # so we seperated df_pivoted.m out as a seperate dataframe
         m = df_pivoted.m
-        m["e"] = results.loc[m.index == results.acs_geoid, "e"].to_list()
+        m["e"] = results.loc[m.index == results.census_geoid, "e"].to_list()
         results["m"] = (
-            m.loc[m.index == results.acs_geoid, list(ranges.keys()) + ["e"]]
+            m.loc[m.index == results.census_geoid, list(ranges.keys()) + ["e"]]
             .apply(lambda row: get_median_moe(ranges, row, design_factor), axis=1)
             .to_list()
         )
@@ -166,7 +166,7 @@ class Pff:
         """
         # Create Variables
         E_variables = [i + "E" for i in v.census_variable]
-        M_variables = [i + "M" for i in v.census_variable]
+        M_variables = [i + "M" for i in v.census_variable] if source != 'decennial' else []
         census_variables = E_variables + M_variables
         df = self.download_variable(source, census_variables, geotype)
 
@@ -178,20 +178,20 @@ class Pff:
 
         # Create geoid
         if geotype == "tract":
-            df["acs_geoid"] = df["state"] + df["county"] + df["tract"]
+            df["census_geoid"] = df["state"] + df["county"] + df["tract"]
         elif geotype == "borough":
-            df["acs_geoid"] = df["state"] + df["county"]
+            df["census_geoid"] = df["state"] + df["county"]
         elif geotype == "city":
-            df["acs_geoid"] = df["state"] + df["place"]
+            df["census_geoid"] = df["state"] + df["place"]
         elif geotype == "block":
-            df["acs_geoid"] = (
+            df["census_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block"]
             )
         elif geotype == "block group":
-            df["acs_geoid"] = (
+            df["census_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block group"]
             )
-        return df[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     def aggregate_vertical(self, df, from_geotype, to_geotype):
         """
