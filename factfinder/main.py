@@ -6,7 +6,7 @@ from .variable import Variable
 from .utils import get_c, get_p, get_z
 from .multi import Pool
 from .median import get_median, get_median_moe
-from .aggregate_geography import tract_to_nta, tract_to_cd, block_group_to_cd_fp500
+from .aggregate_geography import *
 import logging
 from functools import partial
 
@@ -178,7 +178,7 @@ class Pff:
                 )
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
-            df = self.aggregate_horizontal(source, v, "tract")
+            df = self.aggregate_horizontal(source, v, geotype)
         return df
 
     def aggregate_horizontal(self, source, v, geotype) -> pd.DataFrame:
