@@ -139,11 +139,11 @@ class Pff:
 
         # 3. pulling data from census site
         if geotype == "NTA":
-            # For geographies that needs two levels aggregation, we handle them
-            # seperately using both aggregate_horizontal and aggregate_vertical
             df = self.aggregate_horizontal(client, v, "tract")
-            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
-        if geotype == "cd_fp_500":
+            df = self.aggregate_vertical(
+                df, from_geotype="tract", to_geotype="NTA"
+                )
+        elif geotype == "cd_fp_500":
             if v.source == "decennial":
                 df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
@@ -154,7 +154,7 @@ class Pff:
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_fp_500"
                 )
-        if geotype == "cd_fp_100":
+        elif geotype == "cd_fp_100":
             if v.source == "decennial":
                 df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
@@ -165,7 +165,7 @@ class Pff:
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_fp_100"
                 )
-        if geotype == "cd_park_access":
+        elif geotype == "cd_park_access":
             if v.source == "decennial":
                 df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
