@@ -13,6 +13,9 @@ lookup_geo["cd_fp_500"] = lookup_geo.apply(
 lookup_geo["cd_fp_100"] = lookup_geo.apply(
     lambda row: row["commntydst"] if int(row["fp_100"]) else np.nan, axis=1
 )
+lookup_geo["cd_park_access"] = lookup_geo.apply(
+    lambda row: row["commntydst"] if int(row["park_access"]) else np.nan, axis=1
+)
 
 
 def agg_moe(x):
@@ -49,7 +52,7 @@ def tract_to_nta(df):
 
 def block_group_to_cd_fp500(df):
     """
-    flood plain aggregation
+    flood plain aggregation for block group data (ACS)
     """
     df = df.merge(
         lookup_geo.loc[
@@ -64,6 +67,73 @@ def block_group_to_cd_fp500(df):
     output["geotype"] = "cd_fp_500"
     return output[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
 
+def block_group_to_cd_fp100(df):
+    """
+    flood plain aggregation for block group data (ACS)
+    """
+    df = df.merge(
+        lookup_geo.loc[
+            ~lookup_geo.cd_fp_100.isna(), ["geoid_block_group", "cd_fp_100"]
+        ].drop_duplicates(),
+        how="right",
+        right_on="geoid_block_group",
+        left_on="acs_geoid",
+    )
+    output = create_output(df, "cd_fp_100")
+    output["pff_variable"] = df["pff_variable"].to_list()[0]
+    output["geotype"] = "cd_fp_100"
+    return output[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
+
+def block_to_cd_fp500(df):
+    """
+    flood plain aggregation for block data (decennial)
+    """
+    df = df.merge(
+        lookup_geo.loc[
+            ~lookup_geo.cd_fp_500.isna(), ["geoid_block", "cd_fp_500"]
+        ].drop_duplicates(),
+        how="right",
+        right_on="geoid_block",
+        left_on="acs_geoid",
+    )
+    output = create_output(df, "cd_fp_500")
+    output["pff_variable"] = df["pff_variable"].to_list()[0]
+    output["geotype"] = "cd_fp_500"
+    return output[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
+
+def block_to_cd_fp100(df):
+    """
+    flood plain aggregation for block data (decennial)
+    """
+    df = df.merge(
+        lookup_geo.loc[
+            ~lookup_geo.cd_fp_100.isna(), ["geoid_block", "cd_fp_100"]
+        ].drop_duplicates(),
+        how="right",
+        right_on="geoid_block",
+        left_on="acs_geoid",
+    )
+    output = create_output(df, "cd_fp_100")
+    output["pff_variable"] = df["pff_variable"].to_list()[0]
+    output["geotype"] = "cd_fp_100"
+    return output[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
+
+def block_to_cd_park_access(df):
+    """
+    walk-to-park access zone aggregation for block data (decennial)
+    """
+    df = df.merge(
+        lookup_geo.loc[
+            ~lookup_geo.cd_park_access.isna(), ["geoid_block", "cd_park_access"]
+        ].drop_duplicates(),
+        how="right",
+        right_on="geoid_block",
+        left_on="acs_geoid",
+    )
+    output = create_output(df, "cd_park_access")
+    output["pff_variable"] = df["pff_variable"].to_list()[0]
+    output["geotype"] = "cd_park_access"
+    return output[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
 
 def tract_to_cd(df):
     """
