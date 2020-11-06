@@ -8,6 +8,14 @@ from factfinder.main import Pff
 
 pff = Pff(
     api_key='XXXXXXXXXXXXXXXXX', 
+    year = 2018
+)
+```
+> or for decennial calculations:
+```python 
+decennial = Pff(
+    api_key='XXXXXXXXXXXXXXXXX', 
+    year = 2010
 )
 ```
 2. Calculate
