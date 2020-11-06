@@ -187,9 +187,15 @@ class Pff:
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
         # Create Variables
-        E_variables = [i + "E" for i in v.census_variable] if source != 'decennial' else v.census_variable
+        E_variables = (
+            [i + "E" for i in v.census_variable]
+            if v.source != "decennial"
+            else v.census_variable
+        )
         M_variables = (
-            [i + "M" for i in v.census_variable] if source != "decennial" else []
+            [i + "M" for i in v.census_variable] 
+            if v.source != "decennial" 
+            else []
         )
         census_variables = E_variables + M_variables
         df = self.download_variable(source, census_variables, geotype)
