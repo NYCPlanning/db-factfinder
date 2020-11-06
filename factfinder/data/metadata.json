@@ -1,7 +1,20 @@
 [
     {
+        "pff_variable": "pop2010",
+        "census_variable": [
+            "P001001"
+        ],
+        "domain": "",
+        "base_variable": "",
+        "rounding": 0,
+        "median": false,
+        "source": "decennial",
+        "range": [],
+        "design_factor": 0
+    },
+    {
         "pff_variable": "f16pl",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0010"
         ],
         "domain": "economic",
@@ -14,7 +27,7 @@
     },
     {
         "pff_variable": "cvnipop2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0095"
         ],
         "domain": "economic",
@@ -27,7 +40,7 @@
     },
     {
         "pff_variable": "nlf1",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0007"
         ],
         "domain": "economic",
@@ -40,7 +53,7 @@
     },
     {
         "pff_variable": "mft2p5t5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_007"
         ],
         "domain": "economic",
@@ -56,7 +69,7 @@
     },
     {
         "pff_variable": "mdefftwrk",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0094"
         ],
         "domain": "economic",
@@ -69,7 +82,7 @@
     },
     {
         "pff_variable": "inc_cpba",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0072"
         ],
         "domain": "economic",
@@ -82,7 +95,7 @@
     },
     {
         "pff_variable": "wrkr16pl",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0018"
         ],
         "domain": "economic",
@@ -95,7 +108,7 @@
     },
     {
         "pff_variable": "prdtrnsmm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0031"
         ],
         "domain": "economic",
@@ -108,7 +121,7 @@
     },
     {
         "pff_variable": "mdemftwrk",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0093"
         ],
         "domain": "economic",
@@ -121,7 +134,7 @@
     },
     {
         "pff_variable": "mdhhi30t34",
-        "acs_variable": [
+        "census_variable": [
             "B19001_007"
         ],
         "domain": "economic",
@@ -137,7 +150,7 @@
     },
     {
         "pff_variable": "empbhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0107"
         ],
         "domain": "economic",
@@ -150,7 +163,7 @@
     },
     {
         "pff_variable": "mft7p5t10",
-        "acs_variable": [
+        "census_variable": [
             "B20005_009"
         ],
         "domain": "economic",
@@ -166,7 +179,7 @@
     },
     {
         "pff_variable": "fftu2pt5k",
-        "acs_variable": [
+        "census_variable": [
             "B20005_053"
         ],
         "domain": "economic",
@@ -182,7 +195,7 @@
     },
     {
         "pff_variable": "pv175t184",
-        "acs_variable": [
+        "census_variable": [
             "B17024_035",
             "B17024_022",
             "B17024_126",
@@ -204,7 +217,7 @@
     },
     {
         "pff_variable": "empvhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0106"
         ],
         "domain": "economic",
@@ -217,7 +230,7 @@
     },
     {
         "pff_variable": "mdhh",
-        "acs_variable": [
+        "census_variable": [
             "B19001_001"
         ],
         "domain": "economic",
@@ -230,7 +243,7 @@
     },
     {
         "pff_variable": "whlsale",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0036"
         ],
         "domain": "economic",
@@ -243,7 +256,7 @@
     },
     {
         "pff_variable": "hi150t199",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0060"
         ],
         "domain": "economic",
@@ -256,7 +269,7 @@
     },
     {
         "pff_variable": "mf17p5t20",
-        "acs_variable": [
+        "census_variable": [
             "B20005_013"
         ],
         "domain": "economic",
@@ -272,7 +285,7 @@
     },
     {
         "pff_variable": "mdhi150t199",
-        "acs_variable": [
+        "census_variable": [
             "B19001_016"
         ],
         "domain": "economic",
@@ -288,7 +301,7 @@
     },
     {
         "pff_variable": "nfmi45t49",
-        "acs_variable": [
+        "census_variable": [
             "B19201_010"
         ],
         "domain": "economic",
@@ -304,7 +317,7 @@
     },
     {
         "pff_variable": "mdfami50t59",
-        "acs_variable": [
+        "census_variable": [
             "B19101_011"
         ],
         "domain": "economic",
@@ -320,7 +333,7 @@
     },
     {
         "pff_variable": "slfemninc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0049"
         ],
         "domain": "economic",
@@ -333,7 +346,7 @@
     },
     {
         "pff_variable": "ff10t12p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_057"
         ],
         "domain": "economic",
@@ -349,7 +362,7 @@
     },
     {
         "pff_variable": "mft5t7p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_008"
         ],
         "domain": "economic",
@@ -365,7 +378,7 @@
     },
     {
         "pff_variable": "nfmi30t34",
-        "acs_variable": [
+        "census_variable": [
             "B19201_007"
         ],
         "domain": "economic",
@@ -381,7 +394,7 @@
     },
     {
         "pff_variable": "salesoff",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0029"
         ],
         "domain": "economic",
@@ -394,7 +407,7 @@
     },
     {
         "pff_variable": "agip15pl",
-        "acs_variable": [
+        "census_variable": [
             "B19313_001"
         ],
         "domain": "economic",
@@ -407,7 +420,7 @@
     },
     {
         "pff_variable": "mdnfinc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0090"
         ],
         "domain": "economic",
@@ -420,7 +433,7 @@
     },
     {
         "pff_variable": "mdfi150t199",
-        "acs_variable": [
+        "census_variable": [
             "B19101_016"
         ],
         "domain": "economic",
@@ -436,7 +449,7 @@
     },
     {
         "pff_variable": "emhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0105"
         ],
         "domain": "economic",
@@ -449,7 +462,7 @@
     },
     {
         "pff_variable": "hi100t149",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0059"
         ],
         "domain": "economic",
@@ -462,7 +475,7 @@
     },
     {
         "pff_variable": "fam2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0075"
         ],
         "domain": "economic",
@@ -475,7 +488,7 @@
     },
     {
         "pff_variable": "ern50t55",
-        "acs_variable": [
+        "census_variable": [
             "B20005_068",
             "B20005_091",
             "B20005_021",
@@ -494,7 +507,7 @@
     },
     {
         "pff_variable": "retail",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0037"
         ],
         "domain": "economic",
@@ -507,7 +520,7 @@
     },
     {
         "pff_variable": "pop_6",
-        "acs_variable": [
+        "census_variable": [
             "B01001_001"
         ],
         "domain": "economic",
@@ -520,7 +533,7 @@
     },
     {
         "pff_variable": "p65plbwpv",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C02_010"
         ],
         "domain": "economic",
@@ -533,7 +546,7 @@
     },
     {
         "pff_variable": "mntrvtm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0025"
         ],
         "domain": "economic",
@@ -546,7 +559,7 @@
     },
     {
         "pff_variable": "ern75t100",
-        "acs_variable": [
+        "census_variable": [
             "B20005_071",
             "B20005_024",
             "B20005_094",
@@ -565,7 +578,7 @@
     },
     {
         "pff_variable": "updfmwrkr",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0050"
         ],
         "domain": "economic",
@@ -578,7 +591,7 @@
     },
     {
         "pff_variable": "nlfnhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0118"
         ],
         "domain": "economic",
@@ -591,7 +604,7 @@
     },
     {
         "pff_variable": "hh5",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0051"
         ],
         "domain": "economic",
@@ -604,7 +617,7 @@
     },
     {
         "pff_variable": "nlf2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0114"
         ],
         "domain": "economic",
@@ -617,7 +630,7 @@
     },
     {
         "pff_variable": "fft40t45",
-        "acs_variable": [
+        "census_variable": [
             "B20005_066"
         ],
         "domain": "economic",
@@ -633,7 +646,7 @@
     },
     {
         "pff_variable": "pv200t299",
-        "acs_variable": [
+        "census_variable": [
             "B17024_011",
             "B17024_063",
             "B17024_102",
@@ -655,7 +668,7 @@
     },
     {
         "pff_variable": "fft30t35",
-        "acs_variable": [
+        "census_variable": [
             "B20005_064"
         ],
         "domain": "economic",
@@ -671,7 +684,7 @@
     },
     {
         "pff_variable": "pu18bwpv",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C02_002"
         ],
         "domain": "economic",
@@ -684,7 +697,7 @@
     },
     {
         "pff_variable": "cvlfuem2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0005"
         ],
         "domain": "economic",
@@ -697,7 +710,7 @@
     },
     {
         "pff_variable": "pv75t99",
-        "acs_variable": [
+        "census_variable": [
             "B17024_044",
             "B17024_018",
             "B17024_096",
@@ -719,7 +732,7 @@
     },
     {
         "pff_variable": "pv150t174",
-        "acs_variable": [
+        "census_variable": [
             "B17024_034",
             "B17024_112",
             "B17024_021",
@@ -741,7 +754,7 @@
     },
     {
         "pff_variable": "hhi25t34",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0055"
         ],
         "domain": "economic",
@@ -754,7 +767,7 @@
     },
     {
         "pff_variable": "hhi35t49",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0056"
         ],
         "domain": "economic",
@@ -767,7 +780,7 @@
     },
     {
         "pff_variable": "mdhi100t124",
-        "acs_variable": [
+        "census_variable": [
             "B19001_014"
         ],
         "domain": "economic",
@@ -783,7 +796,7 @@
     },
     {
         "pff_variable": "mnfctrng",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0035"
         ],
         "domain": "economic",
@@ -796,7 +809,7 @@
     },
     {
         "pff_variable": "hhiu10",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0052"
         ],
         "domain": "economic",
@@ -809,7 +822,7 @@
     },
     {
         "pff_variable": "pv185t199",
-        "acs_variable": [
+        "census_variable": [
             "B17024_075",
             "B17024_101",
             "B17024_114",
@@ -831,7 +844,7 @@
     },
     {
         "pff_variable": "ern25t30",
-        "acs_variable": [
+        "census_variable": [
             "B20005_063",
             "B20005_086",
             "B20005_016",
@@ -850,7 +863,7 @@
     },
     {
         "pff_variable": "cvlfuem1",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0005"
         ],
         "domain": "economic",
@@ -863,7 +876,7 @@
     },
     {
         "pff_variable": "fami50t74",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0081"
         ],
         "domain": "economic",
@@ -876,7 +889,7 @@
     },
     {
         "pff_variable": "pv500pl",
-        "acs_variable": [
+        "census_variable": [
             "B17024_027",
             "B17024_079",
             "B17024_053",
@@ -898,7 +911,7 @@
     },
     {
         "pff_variable": "fft55t65",
-        "acs_variable": [
+        "census_variable": [
             "B20005_069"
         ],
         "domain": "economic",
@@ -914,7 +927,7 @@
     },
     {
         "pff_variable": "cvlf2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0008"
         ],
         "domain": "economic",
@@ -927,7 +940,7 @@
     },
     {
         "pff_variable": "mwrkern",
-        "acs_variable": [
+        "census_variable": [
             "B20005_005"
         ],
         "domain": "economic",
@@ -940,7 +953,7 @@
     },
     {
         "pff_variable": "fami200pl",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0085"
         ],
         "domain": "economic",
@@ -953,7 +966,7 @@
     },
     {
         "pff_variable": "fami25t34",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0079"
         ],
         "domain": "economic",
@@ -966,7 +979,7 @@
     },
     {
         "pff_variable": "nfam2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0089"
         ],
         "domain": "economic",
@@ -979,7 +992,7 @@
     },
     {
         "pff_variable": "pop16pl",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0001"
         ],
         "domain": "economic",
@@ -992,7 +1005,7 @@
     },
     {
         "pff_variable": "pbwpv",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C02_001"
         ],
         "domain": "economic",
@@ -1005,7 +1018,7 @@
     },
     {
         "pff_variable": "fft5t7p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_055"
         ],
         "domain": "economic",
@@ -1021,7 +1034,7 @@
     },
     {
         "pff_variable": "mdhhi40t44",
-        "acs_variable": [
+        "census_variable": [
             "B19001_009"
         ],
         "domain": "economic",
@@ -1037,7 +1050,7 @@
     },
     {
         "pff_variable": "e22pt5t25",
-        "acs_variable": [
+        "census_variable": [
             "B20005_015",
             "B20005_085",
             "B20005_062",
@@ -1056,7 +1069,7 @@
     },
     {
         "pff_variable": "mgbsciart",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0027"
         ],
         "domain": "economic",
@@ -1069,7 +1082,7 @@
     },
     {
         "pff_variable": "fft7p5t10",
-        "acs_variable": [
+        "census_variable": [
             "B20005_056"
         ],
         "domain": "economic",
@@ -1085,7 +1098,7 @@
     },
     {
         "pff_variable": "cw_wlkd",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0022"
         ],
         "domain": "economic",
@@ -1098,7 +1111,7 @@
     },
     {
         "pff_variable": "mdfami25t29",
-        "acs_variable": [
+        "census_variable": [
             "B19101_006"
         ],
         "domain": "economic",
@@ -1114,7 +1127,7 @@
     },
     {
         "pff_variable": "othnotpa",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0044"
         ],
         "domain": "economic",
@@ -1127,7 +1140,7 @@
     },
     {
         "pff_variable": "mft40t45",
-        "acs_variable": [
+        "census_variable": [
             "B20005_019"
         ],
         "domain": "economic",
@@ -1143,7 +1156,7 @@
     },
     {
         "pff_variable": "pv125t149",
-        "acs_variable": [
+        "census_variable": [
             "B17024_033",
             "B17024_124",
             "B17024_111",
@@ -1165,7 +1178,7 @@
     },
     {
         "pff_variable": "mdfami40t44",
-        "acs_variable": [
+        "census_variable": [
             "B19101_009"
         ],
         "domain": "economic",
@@ -1181,7 +1194,7 @@
     },
     {
         "pff_variable": "aghhinc",
-        "acs_variable": [
+        "census_variable": [
             "B19025_001"
         ],
         "domain": "economic",
@@ -1194,7 +1207,7 @@
     },
     {
         "pff_variable": "nfmi35t39",
-        "acs_variable": [
+        "census_variable": [
             "B19201_008"
         ],
         "domain": "economic",
@@ -1210,7 +1223,7 @@
     },
     {
         "pff_variable": "fft50t55",
-        "acs_variable": [
+        "census_variable": [
             "B20005_068"
         ],
         "domain": "economic",
@@ -1226,7 +1239,7 @@
     },
     {
         "pff_variable": "mdhhinc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0062"
         ],
         "domain": "economic",
@@ -1239,7 +1252,7 @@
     },
     {
         "pff_variable": "nfmi20t24",
-        "acs_variable": [
+        "census_variable": [
             "B19201_005"
         ],
         "domain": "economic",
@@ -1255,7 +1268,7 @@
     },
     {
         "pff_variable": "wrkrnothm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0024",
             "DP03_0018"
         ],
@@ -1269,7 +1282,7 @@
     },
     {
         "pff_variable": "info",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0039"
         ],
         "domain": "economic",
@@ -1282,7 +1295,7 @@
     },
     {
         "pff_variable": "mft30t35",
-        "acs_variable": [
+        "census_variable": [
             "B20005_017"
         ],
         "domain": "economic",
@@ -1298,7 +1311,7 @@
     },
     {
         "pff_variable": "ff12p5t15",
-        "acs_variable": [
+        "census_variable": [
             "B20005_058"
         ],
         "domain": "economic",
@@ -1314,7 +1327,7 @@
     },
     {
         "pff_variable": "cvem16pl1",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0004"
         ],
         "domain": "economic",
@@ -1327,7 +1340,7 @@
     },
     {
         "pff_variable": "e10t12pt5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_033",
             "B20005_010",
             "B20005_080",
@@ -1346,7 +1359,7 @@
     },
     {
         "pff_variable": "agffhm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0033"
         ],
         "domain": "economic",
@@ -1359,7 +1372,7 @@
     },
     {
         "pff_variable": "mdfi125t149",
-        "acs_variable": [
+        "census_variable": [
             "B19101_015"
         ],
         "domain": "economic",
@@ -1375,7 +1388,7 @@
     },
     {
         "pff_variable": "mdfaminc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0086"
         ],
         "domain": "economic",
@@ -1388,7 +1401,7 @@
     },
     {
         "pff_variable": "mdhhi75t99",
-        "acs_variable": [
+        "census_variable": [
             "B19001_013"
         ],
         "domain": "economic",
@@ -1404,7 +1417,7 @@
     },
     {
         "pff_variable": "fft35t40",
-        "acs_variable": [
+        "census_variable": [
             "B20005_065"
         ],
         "domain": "economic",
@@ -1420,7 +1433,7 @@
     },
     {
         "pff_variable": "pvhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0097"
         ],
         "domain": "economic",
@@ -1433,7 +1446,7 @@
     },
     {
         "pff_variable": "fft75t100",
-        "acs_variable": [
+        "census_variable": [
             "B20005_071"
         ],
         "domain": "economic",
@@ -1449,7 +1462,7 @@
     },
     {
         "pff_variable": "mdhhi45t49",
-        "acs_variable": [
+        "census_variable": [
             "B19001_010"
         ],
         "domain": "economic",
@@ -1465,7 +1478,7 @@
     },
     {
         "pff_variable": "och6t17",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0016"
         ],
         "domain": "economic",
@@ -1478,7 +1491,7 @@
     },
     {
         "pff_variable": "fambwpv",
-        "acs_variable": [
+        "census_variable": [
             "B17010_002"
         ],
         "domain": "economic",
@@ -1491,7 +1504,7 @@
     },
     {
         "pff_variable": "pbhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0098"
         ],
         "domain": "economic",
@@ -1504,7 +1517,7 @@
     },
     {
         "pff_variable": "poppvu1",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C01_001"
         ],
         "domain": "economic",
@@ -1517,7 +1530,7 @@
     },
     {
         "pff_variable": "edhlthcsa",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0042"
         ],
         "domain": "economic",
@@ -1530,7 +1543,7 @@
     },
     {
         "pff_variable": "ern35t40",
-        "acs_variable": [
+        "census_variable": [
             "B20005_065",
             "B20005_018",
             "B20005_088",
@@ -1549,7 +1562,7 @@
     },
     {
         "pff_variable": "cvniu18_2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0100"
         ],
         "domain": "economic",
@@ -1562,7 +1575,7 @@
     },
     {
         "pff_variable": "pvu50",
-        "acs_variable": [
+        "census_variable": [
             "B17024_029",
             "B17024_094",
             "B17024_055",
@@ -1584,7 +1597,7 @@
     },
     {
         "pff_variable": "ern30t35",
-        "acs_variable": [
+        "census_variable": [
             "B20005_017",
             "B20005_040",
             "B20005_064",
@@ -1603,7 +1616,7 @@
     },
     {
         "pff_variable": "nfmi10t14",
-        "acs_variable": [
+        "census_variable": [
             "B19201_003"
         ],
         "domain": "economic",
@@ -1619,7 +1632,7 @@
     },
     {
         "pff_variable": "hhi50t74",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0057"
         ],
         "domain": "economic",
@@ -1632,7 +1645,7 @@
     },
     {
         "pff_variable": "ff20t22p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_061"
         ],
         "domain": "economic",
@@ -1648,7 +1661,7 @@
     },
     {
         "pff_variable": "hhi10t14",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0053"
         ],
         "domain": "economic",
@@ -1661,7 +1674,7 @@
     },
     {
         "pff_variable": "famiu10",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0076"
         ],
         "domain": "economic",
@@ -1674,7 +1687,7 @@
     },
     {
         "pff_variable": "cw_pbtrns",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0021"
         ],
         "domain": "economic",
@@ -1687,7 +1700,7 @@
     },
     {
         "pff_variable": "hins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0096"
         ],
         "domain": "economic",
@@ -1700,7 +1713,7 @@
     },
     {
         "pff_variable": "e20t22pt5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_037",
             "B20005_014",
             "B20005_061",
@@ -1719,7 +1732,7 @@
     },
     {
         "pff_variable": "ff15t17p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_059"
         ],
         "domain": "economic",
@@ -1735,7 +1748,7 @@
     },
     {
         "pff_variable": "mdhhi25t29",
-        "acs_variable": [
+        "census_variable": [
             "B19001_006"
         ],
         "domain": "economic",
@@ -1751,7 +1764,7 @@
     },
     {
         "pff_variable": "mdfami75t99",
-        "acs_variable": [
+        "census_variable": [
             "B19101_013"
         ],
         "domain": "economic",
@@ -1767,7 +1780,7 @@
     },
     {
         "pff_variable": "f16plcvlf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0012"
         ],
         "domain": "economic",
@@ -1780,7 +1793,7 @@
     },
     {
         "pff_variable": "ern45t50",
-        "acs_variable": [
+        "census_variable": [
             "B20005_020",
             "B20005_067",
             "B20005_043",
@@ -1799,7 +1812,7 @@
     },
     {
         "pff_variable": "cw_oth",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0023"
         ],
         "domain": "economic",
@@ -1812,7 +1825,7 @@
     },
     {
         "pff_variable": "mdhhiu10",
-        "acs_variable": [
+        "census_variable": [
             "B19001_002"
         ],
         "domain": "economic",
@@ -1828,7 +1841,7 @@
     },
     {
         "pff_variable": "mftu2pt5k",
-        "acs_variable": [
+        "census_variable": [
             "B20005_006"
         ],
         "domain": "economic",
@@ -1844,7 +1857,7 @@
     },
     {
         "pff_variable": "mdhi125t149",
-        "acs_variable": [
+        "census_variable": [
             "B19001_015"
         ],
         "domain": "economic",
@@ -1860,7 +1873,7 @@
     },
     {
         "pff_variable": "uem",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0109"
         ],
         "domain": "economic",
@@ -1873,7 +1886,7 @@
     },
     {
         "pff_variable": "emnhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0108"
         ],
         "domain": "economic",
@@ -1886,7 +1899,7 @@
     },
     {
         "pff_variable": "ern2pt5t5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_054",
             "B20005_007",
             "B20005_077",
@@ -1905,7 +1918,7 @@
     },
     {
         "pff_variable": "fft100pl",
-        "acs_variable": [
+        "census_variable": [
             "B20005_072"
         ],
         "domain": "economic",
@@ -1921,7 +1934,7 @@
     },
     {
         "pff_variable": "nfi200pl",
-        "acs_variable": [
+        "census_variable": [
             "B19201_017"
         ],
         "domain": "economic",
@@ -1937,7 +1950,7 @@
     },
     {
         "pff_variable": "nhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0099"
         ],
         "domain": "economic",
@@ -1950,7 +1963,7 @@
     },
     {
         "pff_variable": "oc6t17plf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0017"
         ],
         "domain": "economic",
@@ -1963,7 +1976,7 @@
     },
     {
         "pff_variable": "nlfhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0115"
         ],
         "domain": "economic",
@@ -1976,7 +1989,7 @@
     },
     {
         "pff_variable": "fft25t30",
-        "acs_variable": [
+        "census_variable": [
             "B20005_063"
         ],
         "domain": "economic",
@@ -1992,7 +2005,7 @@
     },
     {
         "pff_variable": "e12pt5t15",
-        "acs_variable": [
+        "census_variable": [
             "B20005_081",
             "B20005_011",
             "B20005_058",
@@ -2011,7 +2024,7 @@
     },
     {
         "pff_variable": "hhi15t24",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0054"
         ],
         "domain": "economic",
@@ -2024,7 +2037,7 @@
     },
     {
         "pff_variable": "f16pllf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0011"
         ],
         "domain": "economic",
@@ -2037,7 +2050,7 @@
     },
     {
         "pff_variable": "nf100t124",
-        "acs_variable": [
+        "census_variable": [
             "B19201_014"
         ],
         "domain": "economic",
@@ -2053,7 +2066,7 @@
     },
     {
         "pff_variable": "lf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0002"
         ],
         "domain": "economic",
@@ -2066,7 +2079,7 @@
     },
     {
         "pff_variable": "ern5t7pt5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_078",
             "B20005_055",
             "B20005_008",
@@ -2085,7 +2098,7 @@
     },
     {
         "pff_variable": "fami75t99",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0082"
         ],
         "domain": "economic",
@@ -2098,7 +2111,7 @@
     },
     {
         "pff_variable": "mdhhi50t59",
-        "acs_variable": [
+        "census_variable": [
             "B19001_011"
         ],
         "domain": "economic",
@@ -2114,7 +2127,7 @@
     },
     {
         "pff_variable": "gvtwrkr",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0048"
         ],
         "domain": "economic",
@@ -2127,7 +2140,7 @@
     },
     {
         "pff_variable": "mdhhi10t14",
-        "acs_variable": [
+        "census_variable": [
             "B19001_003"
         ],
         "domain": "economic",
@@ -2143,7 +2156,7 @@
     },
     {
         "pff_variable": "mdfi100t124",
-        "acs_variable": [
+        "census_variable": [
             "B19101_014"
         ],
         "domain": "economic",
@@ -2159,7 +2172,7 @@
     },
     {
         "pff_variable": "fi100t149",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0083"
         ],
         "domain": "economic",
@@ -2172,7 +2185,7 @@
     },
     {
         "pff_variable": "mft100pl",
-        "acs_variable": [
+        "census_variable": [
             "B20005_025"
         ],
         "domain": "economic",
@@ -2188,7 +2201,7 @@
     },
     {
         "pff_variable": "e15t17pt5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_035",
             "B20005_082",
             "B20005_012",
@@ -2207,7 +2220,7 @@
     },
     {
         "pff_variable": "uempbhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0112"
         ],
         "domain": "economic",
@@ -2220,7 +2233,7 @@
     },
     {
         "pff_variable": "cw_drvaln",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0019"
         ],
         "domain": "economic",
@@ -2233,7 +2246,7 @@
     },
     {
         "pff_variable": "lfarmdf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0006"
         ],
         "domain": "economic",
@@ -2246,7 +2259,7 @@
     },
     {
         "pff_variable": "nfmi60t74",
-        "acs_variable": [
+        "census_variable": [
             "B19201_012"
         ],
         "domain": "economic",
@@ -2262,7 +2275,7 @@
     },
     {
         "pff_variable": "ern100pl",
-        "acs_variable": [
+        "census_variable": [
             "B20005_095",
             "B20005_072",
             "B20005_048",
@@ -2281,7 +2294,7 @@
     },
     {
         "pff_variable": "ern65t75",
-        "acs_variable": [
+        "census_variable": [
             "B20005_093",
             "B20005_023",
             "B20005_070",
@@ -2300,7 +2313,7 @@
     },
     {
         "pff_variable": "inc_sosec",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0066"
         ],
         "domain": "economic",
@@ -2313,7 +2326,7 @@
     },
     {
         "pff_variable": "srvc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0028"
         ],
         "domain": "economic",
@@ -2326,7 +2339,7 @@
     },
     {
         "pff_variable": "prfsmgawm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0041"
         ],
         "domain": "economic",
@@ -2339,7 +2352,7 @@
     },
     {
         "pff_variable": "inc_snap",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0074"
         ],
         "domain": "economic",
@@ -2352,7 +2365,7 @@
     },
     {
         "pff_variable": "e17pt5t20",
-        "acs_variable": [
+        "census_variable": [
             "B20005_013",
             "B20005_036",
             "B20005_083",
@@ -2371,7 +2384,7 @@
     },
     {
         "pff_variable": "mnhhinc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0063"
         ],
         "domain": "economic",
@@ -2384,7 +2397,7 @@
     },
     {
         "pff_variable": "fft65t75",
-        "acs_variable": [
+        "census_variable": [
             "B20005_070"
         ],
         "domain": "economic",
@@ -2400,7 +2413,7 @@
     },
     {
         "pff_variable": "ernu2pt5k",
-        "acs_variable": [
+        "census_variable": [
             "B20005_053",
             "B20005_076",
             "B20005_006",
@@ -2419,7 +2432,7 @@
     },
     {
         "pff_variable": "nfam",
-        "acs_variable": [
+        "census_variable": [
             "B19201_001"
         ],
         "domain": "economic",
@@ -2432,7 +2445,7 @@
     },
     {
         "pff_variable": "fami15t24",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0078"
         ],
         "domain": "economic",
@@ -2445,7 +2458,7 @@
     },
     {
         "pff_variable": "uemnhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0113"
         ],
         "domain": "economic",
@@ -2458,7 +2471,7 @@
     },
     {
         "pff_variable": "mdfamiu10",
-        "acs_variable": [
+        "census_variable": [
             "B19101_002"
         ],
         "domain": "economic",
@@ -2474,7 +2487,7 @@
     },
     {
         "pff_variable": "p65plpvu",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C01_010"
         ],
         "domain": "economic",
@@ -2487,7 +2500,7 @@
     },
     {
         "pff_variable": "nf150t199",
-        "acs_variable": [
+        "census_variable": [
             "B19201_016"
         ],
         "domain": "economic",
@@ -2503,7 +2516,7 @@
     },
     {
         "pff_variable": "mf20t22p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_014"
         ],
         "domain": "economic",
@@ -2519,7 +2532,7 @@
     },
     {
         "pff_variable": "fwrkern",
-        "acs_variable": [
+        "census_variable": [
             "B20005_052"
         ],
         "domain": "economic",
@@ -2532,7 +2545,7 @@
     },
     {
         "pff_variable": "inc_spsec",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0070"
         ],
         "domain": "economic",
@@ -2545,7 +2558,7 @@
     },
     {
         "pff_variable": "mft45t50",
-        "acs_variable": [
+        "census_variable": [
             "B20005_020"
         ],
         "domain": "economic",
@@ -2561,7 +2574,7 @@
     },
     {
         "pff_variable": "pv100t124",
-        "acs_variable": [
+        "census_variable": [
             "B17024_071",
             "B17024_123",
             "B17024_045",
@@ -2583,7 +2596,7 @@
     },
     {
         "pff_variable": "mdhhi20t24",
-        "acs_variable": [
+        "census_variable": [
             "B19001_005"
         ],
         "domain": "economic",
@@ -2599,7 +2612,7 @@
     },
     {
         "pff_variable": "agttm",
-        "acs_variable": [
+        "census_variable": [
             "B08013_001"
         ],
         "domain": "economic",
@@ -2612,7 +2625,7 @@
     },
     {
         "pff_variable": "ochu6",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0014"
         ],
         "domain": "economic",
@@ -2625,7 +2638,7 @@
     },
     {
         "pff_variable": "ern40t45",
-        "acs_variable": [
+        "census_variable": [
             "B20005_042",
             "B20005_019",
             "B20005_066",
@@ -2644,7 +2657,7 @@
     },
     {
         "pff_variable": "pv400t499",
-        "acs_variable": [
+        "census_variable": [
             "B17024_078",
             "B17024_117",
             "B17024_130",
@@ -2666,7 +2679,7 @@
     },
     {
         "pff_variable": "prvwswrkr",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0047"
         ],
         "domain": "economic",
@@ -2679,7 +2692,7 @@
     },
     {
         "pff_variable": "mft75t100",
-        "acs_variable": [
+        "census_variable": [
             "B20005_024"
         ],
         "domain": "economic",
@@ -2695,7 +2708,7 @@
     },
     {
         "pff_variable": "fi150t199",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0084"
         ],
         "domain": "economic",
@@ -2708,7 +2721,7 @@
     },
     {
         "pff_variable": "cvem16pl4",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0046"
         ],
         "domain": "economic",
@@ -2721,7 +2734,7 @@
     },
     {
         "pff_variable": "hh2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0051"
         ],
         "domain": "economic",
@@ -2734,7 +2747,7 @@
     },
     {
         "pff_variable": "cw_crpld",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0020"
         ],
         "domain": "economic",
@@ -2747,7 +2760,7 @@
     },
     {
         "pff_variable": "mft55t65",
-        "acs_variable": [
+        "census_variable": [
             "B20005_022"
         ],
         "domain": "economic",
@@ -2763,7 +2776,7 @@
     },
     {
         "pff_variable": "u18nhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0101"
         ],
         "domain": "economic",
@@ -2776,7 +2789,7 @@
     },
     {
         "pff_variable": "fami10t14",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0077"
         ],
         "domain": "economic",
@@ -2789,7 +2802,7 @@
     },
     {
         "pff_variable": "nfmiu10",
-        "acs_variable": [
+        "census_variable": [
             "B19201_002"
         ],
         "domain": "economic",
@@ -2805,7 +2818,7 @@
     },
     {
         "pff_variable": "mdhhi15t19",
-        "acs_variable": [
+        "census_variable": [
             "B19001_004"
         ],
         "domain": "economic",
@@ -2821,7 +2834,7 @@
     },
     {
         "pff_variable": "fire",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0040"
         ],
         "domain": "economic",
@@ -2834,7 +2847,7 @@
     },
     {
         "pff_variable": "mdhhi60t74",
-        "acs_variable": [
+        "census_variable": [
             "B19001_012"
         ],
         "domain": "economic",
@@ -2850,7 +2863,7 @@
     },
     {
         "pff_variable": "mft65t75",
-        "acs_variable": [
+        "census_variable": [
             "B20005_023"
         ],
         "domain": "economic",
@@ -2866,7 +2879,7 @@
     },
     {
         "pff_variable": "percapinc",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0088"
         ],
         "domain": "economic",
@@ -2879,7 +2892,7 @@
     },
     {
         "pff_variable": "uempvhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0111"
         ],
         "domain": "economic",
@@ -2892,7 +2905,7 @@
     },
     {
         "pff_variable": "mft25t30",
-        "acs_variable": [
+        "census_variable": [
             "B20005_016"
         ],
         "domain": "economic",
@@ -2908,7 +2921,7 @@
     },
     {
         "pff_variable": "mdfami60t74",
-        "acs_variable": [
+        "census_variable": [
             "B19101_012"
         ],
         "domain": "economic",
@@ -2924,7 +2937,7 @@
     },
     {
         "pff_variable": "fami35t49",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0080"
         ],
         "domain": "economic",
@@ -2937,7 +2950,7 @@
     },
     {
         "pff_variable": "fampvu",
-        "acs_variable": [
+        "census_variable": [
             "B17010_001"
         ],
         "domain": "economic",
@@ -2950,7 +2963,7 @@
     },
     {
         "pff_variable": "f16plclfe",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0013"
         ],
         "domain": "economic",
@@ -2963,7 +2976,7 @@
     },
     {
         "pff_variable": "mdfami15t19",
-        "acs_variable": [
+        "census_variable": [
             "B19101_004"
         ],
         "domain": "economic",
@@ -2979,7 +2992,7 @@
     },
     {
         "pff_variable": "constctn",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0034"
         ],
         "domain": "economic",
@@ -2992,7 +3005,7 @@
     },
     {
         "pff_variable": "mdfami10t14",
-        "acs_variable": [
+        "census_variable": [
             "B19101_003"
         ],
         "domain": "economic",
@@ -3008,7 +3021,7 @@
     },
     {
         "pff_variable": "mft35t40",
-        "acs_variable": [
+        "census_variable": [
             "B20005_018"
         ],
         "domain": "economic",
@@ -3024,7 +3037,7 @@
     },
     {
         "pff_variable": "mdfami20t24",
-        "acs_variable": [
+        "census_variable": [
             "B19101_005"
         ],
         "domain": "economic",
@@ -3040,7 +3053,7 @@
     },
     {
         "pff_variable": "mdhhi200pl",
-        "acs_variable": [
+        "census_variable": [
             "B19001_017"
         ],
         "domain": "economic",
@@ -3056,7 +3069,7 @@
     },
     {
         "pff_variable": "poppvu2",
-        "acs_variable": [
+        "census_variable": [
             "B17024_001"
         ],
         "domain": "economic",
@@ -3069,7 +3082,7 @@
     },
     {
         "pff_variable": "cvem16pl3",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0032"
         ],
         "domain": "economic",
@@ -3082,7 +3095,7 @@
     },
     {
         "pff_variable": "mf12p5t15",
-        "acs_variable": [
+        "census_variable": [
             "B20005_011"
         ],
         "domain": "economic",
@@ -3098,7 +3111,7 @@
     },
     {
         "pff_variable": "nfmi15t19",
-        "acs_variable": [
+        "census_variable": [
             "B19201_004"
         ],
         "domain": "economic",
@@ -3114,7 +3127,7 @@
     },
     {
         "pff_variable": "pu18pvu",
-        "acs_variable": [
+        "census_variable": [
             "S1701_C01_002"
         ],
         "domain": "economic",
@@ -3127,7 +3140,7 @@
     },
     {
         "pff_variable": "nrcnstmnt",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0030"
         ],
         "domain": "economic",
@@ -3140,7 +3153,7 @@
     },
     {
         "pff_variable": "cvlfem",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0104"
         ],
         "domain": "economic",
@@ -3153,7 +3166,7 @@
     },
     {
         "pff_variable": "ff17p5t20",
-        "acs_variable": [
+        "census_variable": [
             "B20005_060"
         ],
         "domain": "economic",
@@ -3169,7 +3182,7 @@
     },
     {
         "pff_variable": "wrke16pl",
-        "acs_variable": [
+        "census_variable": [
             "B20005_005",
             "B20005_075",
             "B20005_028",
@@ -3185,7 +3198,7 @@
     },
     {
         "pff_variable": "artenrafs",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0043"
         ],
         "domain": "economic",
@@ -3198,7 +3211,7 @@
     },
     {
         "pff_variable": "mf15t17p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_012"
         ],
         "domain": "economic",
@@ -3214,7 +3227,7 @@
     },
     {
         "pff_variable": "fft2p5t5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_054"
         ],
         "domain": "economic",
@@ -3230,7 +3243,7 @@
     },
     {
         "pff_variable": "cw_wrkdhm",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0024"
         ],
         "domain": "economic",
@@ -3243,7 +3256,7 @@
     },
     {
         "pff_variable": "nlfpbhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0117"
         ],
         "domain": "economic",
@@ -3256,7 +3269,7 @@
     },
     {
         "pff_variable": "uemhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0110"
         ],
         "domain": "economic",
@@ -3269,7 +3282,7 @@
     },
     {
         "pff_variable": "trwhut",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0038"
         ],
         "domain": "economic",
@@ -3282,7 +3295,7 @@
     },
     {
         "pff_variable": "cni1864_2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0102"
         ],
         "domain": "economic",
@@ -3295,7 +3308,7 @@
     },
     {
         "pff_variable": "mdhhi35t39",
-        "acs_variable": [
+        "census_variable": [
             "B19001_008"
         ],
         "domain": "economic",
@@ -3311,7 +3324,7 @@
     },
     {
         "pff_variable": "mf22p5t25",
-        "acs_variable": [
+        "census_variable": [
             "B20005_015"
         ],
         "domain": "economic",
@@ -3327,7 +3340,7 @@
     },
     {
         "pff_variable": "nfmi50t59",
-        "acs_variable": [
+        "census_variable": [
             "B19201_011"
         ],
         "domain": "economic",
@@ -3343,7 +3356,7 @@
     },
     {
         "pff_variable": "nlfpvhins",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0116"
         ],
         "domain": "economic",
@@ -3356,7 +3369,7 @@
     },
     {
         "pff_variable": "hhi200pl",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0061"
         ],
         "domain": "economic",
@@ -3369,7 +3382,7 @@
     },
     {
         "pff_variable": "hhi75t99",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0058"
         ],
         "domain": "economic",
@@ -3382,7 +3395,7 @@
     },
     {
         "pff_variable": "mf10t12p5",
-        "acs_variable": [
+        "census_variable": [
             "B20005_010"
         ],
         "domain": "economic",
@@ -3398,7 +3411,7 @@
     },
     {
         "pff_variable": "cvem16pl2",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0026"
         ],
         "domain": "economic",
@@ -3411,7 +3424,7 @@
     },
     {
         "pff_variable": "pv300t399",
-        "acs_variable": [
+        "census_variable": [
             "B17024_077",
             "B17024_103",
             "B17024_025",
@@ -3433,7 +3446,7 @@
     },
     {
         "pff_variable": "fft45t50",
-        "acs_variable": [
+        "census_variable": [
             "B20005_067"
         ],
         "domain": "economic",
@@ -3449,7 +3462,7 @@
     },
     {
         "pff_variable": "nf125t149",
-        "acs_variable": [
+        "census_variable": [
             "B19201_015"
         ],
         "domain": "economic",
@@ -3465,7 +3478,7 @@
     },
     {
         "pff_variable": "ochu6plf",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0015"
         ],
         "domain": "economic",
@@ -3478,7 +3491,7 @@
     },
     {
         "pff_variable": "cvlf18t64",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0103"
         ],
         "domain": "economic",
@@ -3491,7 +3504,7 @@
     },
     {
         "pff_variable": "mft50t55",
-        "acs_variable": [
+        "census_variable": [
             "B20005_021"
         ],
         "domain": "economic",
@@ -3507,7 +3520,7 @@
     },
     {
         "pff_variable": "nfmi75t99",
-        "acs_variable": [
+        "census_variable": [
             "B19201_013"
         ],
         "domain": "economic",
@@ -3523,7 +3536,7 @@
     },
     {
         "pff_variable": "pv50t74",
-        "acs_variable": [
+        "census_variable": [
             "B17024_108",
             "B17024_004",
             "B17024_082",
@@ -3545,7 +3558,7 @@
     },
     {
         "pff_variable": "mdewrk",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0092"
         ],
         "domain": "economic",
@@ -3558,7 +3571,7 @@
     },
     {
         "pff_variable": "mdfam",
-        "acs_variable": [
+        "census_variable": [
             "B19101_001"
         ],
         "domain": "economic",
@@ -3571,7 +3584,7 @@
     },
     {
         "pff_variable": "mdfami30t34",
-        "acs_variable": [
+        "census_variable": [
             "B19101_007"
         ],
         "domain": "economic",
@@ -3587,7 +3600,7 @@
     },
     {
         "pff_variable": "nfmi40t44",
-        "acs_variable": [
+        "census_variable": [
             "B19201_009"
         ],
         "domain": "economic",
@@ -3603,7 +3616,7 @@
     },
     {
         "pff_variable": "ff22p5t25",
-        "acs_variable": [
+        "census_variable": [
             "B20005_062"
         ],
         "domain": "economic",
@@ -3619,7 +3632,7 @@
     },
     {
         "pff_variable": "inc_rtrmt",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0068"
         ],
         "domain": "economic",
@@ -3632,7 +3645,7 @@
     },
     {
         "pff_variable": "e7pt5t10",
-        "acs_variable": [
+        "census_variable": [
             "B20005_009",
             "B20005_079",
             "B20005_032",
@@ -3651,7 +3664,7 @@
     },
     {
         "pff_variable": "cvlf1",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0003"
         ],
         "domain": "economic",
@@ -3664,7 +3677,7 @@
     },
     {
         "pff_variable": "mdfami35t39",
-        "acs_variable": [
+        "census_variable": [
             "B19101_008"
         ],
         "domain": "economic",
@@ -3680,7 +3693,7 @@
     },
     {
         "pff_variable": "mdfami45t49",
-        "acs_variable": [
+        "census_variable": [
             "B19101_010"
         ],
         "domain": "economic",
@@ -3696,7 +3709,7 @@
     },
     {
         "pff_variable": "ern55t65",
-        "acs_variable": [
+        "census_variable": [
             "B20005_022",
             "B20005_092",
             "B20005_045",
@@ -3715,7 +3728,7 @@
     },
     {
         "pff_variable": "pubadmin",
-        "acs_variable": [
+        "census_variable": [
             "DP03_0045"
         ],
         "domain": "economic",
@@ -3728,7 +3741,7 @@
     },
     {
         "pff_variable": "nfmi25t29",
-        "acs_variable": [
+        "census_variable": [
             "B19201_006"
         ],
         "domain": "economic",
@@ -3744,7 +3757,7 @@
     },
     {
         "pff_variable": "mdfami200pl",
-        "acs_variable": [
+        "census_variable": [
             "B19101_017"
         ],
         "domain": "economic",
@@ -3760,7 +3773,7 @@
     },
     {
         "pff_variable": "vhcl1av",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0059"
         ],
         "domain": "housing",
@@ -3773,7 +3786,7 @@
     },
     {
         "pff_variable": "ochu4",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0057"
         ],
         "domain": "housing",
@@ -3786,7 +3799,7 @@
     },
     {
         "pff_variable": "hu3",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0016"
         ],
         "domain": "housing",
@@ -3799,7 +3812,7 @@
     },
     {
         "pff_variable": "blt50t59",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0024"
         ],
         "domain": "housing",
@@ -3812,7 +3825,7 @@
     },
     {
         "pff_variable": "ovl40t49",
-        "acs_variable": [
+        "census_variable": [
             "B25075_009"
         ],
         "domain": "housing",
@@ -3828,7 +3841,7 @@
     },
     {
         "pff_variable": "r400t449",
-        "acs_variable": [
+        "census_variable": [
             "B25063_010"
         ],
         "domain": "housing",
@@ -3844,7 +3857,7 @@
     },
     {
         "pff_variable": "popoochu",
-        "acs_variable": [
+        "census_variable": [
             "B25008_002"
         ],
         "domain": "housing",
@@ -3857,7 +3870,7 @@
     },
     {
         "pff_variable": "btrvvetc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0015"
         ],
         "domain": "housing",
@@ -3870,7 +3883,7 @@
     },
     {
         "pff_variable": "r600t649",
-        "acs_variable": [
+        "census_variable": [
             "B25063_014"
         ],
         "domain": "housing",
@@ -3886,7 +3899,7 @@
     },
     {
         "pff_variable": "r800t899",
-        "acs_variable": [
+        "census_variable": [
             "B25063_018"
         ],
         "domain": "housing",
@@ -3902,7 +3915,7 @@
     },
     {
         "pff_variable": "gr15kt19k",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0130"
         ],
         "domain": "housing",
@@ -3915,7 +3928,7 @@
     },
     {
         "pff_variable": "rochu2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0047"
         ],
         "domain": "housing",
@@ -3928,7 +3941,7 @@
     },
     {
         "pff_variable": "r1p5t1999",
-        "acs_variable": [
+        "census_variable": [
             "B25063_022"
         ],
         "domain": "housing",
@@ -3944,7 +3957,7 @@
     },
     {
         "pff_variable": "blt00t09",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0019"
         ],
         "domain": "housing",
@@ -3957,7 +3970,7 @@
     },
     {
         "pff_variable": "grpiu15",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0137"
         ],
         "domain": "housing",
@@ -3970,7 +3983,7 @@
     },
     {
         "pff_variable": "ov250t299",
-        "acs_variable": [
+        "census_variable": [
             "B25075_020"
         ],
         "domain": "housing",
@@ -3986,7 +3999,7 @@
     },
     {
         "pff_variable": "hu1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0001"
         ],
         "domain": "housing",
@@ -3999,7 +4012,7 @@
     },
     {
         "pff_variable": "ochu5",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0076"
         ],
         "domain": "housing",
@@ -4012,7 +4025,7 @@
     },
     {
         "pff_variable": "novhclav",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0058"
         ],
         "domain": "housing",
@@ -4025,7 +4038,7 @@
     },
     {
         "pff_variable": "hu5t9u",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0011"
         ],
         "domain": "housing",
@@ -4038,7 +4051,7 @@
     },
     {
         "pff_variable": "mdrms",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0037"
         ],
         "domain": "housing",
@@ -4051,7 +4064,7 @@
     },
     {
         "pff_variable": "grpi35pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0142"
         ],
         "domain": "housing",
@@ -4064,7 +4077,7 @@
     },
     {
         "pff_variable": "ovl30t34",
-        "acs_variable": [
+        "census_variable": [
             "B25075_007"
         ],
         "domain": "housing",
@@ -4080,7 +4093,7 @@
     },
     {
         "pff_variable": "blt10ltr",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0017",
             "DP04_0018"
         ],
@@ -4094,7 +4107,7 @@
     },
     {
         "pff_variable": "r750t799",
-        "acs_variable": [
+        "census_variable": [
             "B25063_017"
         ],
         "domain": "housing",
@@ -4110,7 +4123,7 @@
     },
     {
         "pff_variable": "ovl50t59",
-        "acs_variable": [
+        "census_variable": [
             "B25075_010"
         ],
         "domain": "housing",
@@ -4126,7 +4139,7 @@
     },
     {
         "pff_variable": "nmsmpntc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0125"
         ],
         "domain": "housing",
@@ -4139,7 +4152,7 @@
     },
     {
         "pff_variable": "vacsoldno",
-        "acs_variable": [
+        "census_variable": [
             "B25004_005"
         ],
         "domain": "housing",
@@ -4152,7 +4165,7 @@
     },
     {
         "pff_variable": "rms2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0029"
         ],
         "domain": "housing",
@@ -4168,7 +4181,7 @@
     },
     {
         "pff_variable": "blt60t69",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0023"
         ],
         "domain": "housing",
@@ -4181,7 +4194,7 @@
     },
     {
         "pff_variable": "r2kt2499",
-        "acs_variable": [
+        "census_variable": [
             "B25063_023"
         ],
         "domain": "housing",
@@ -4197,7 +4210,7 @@
     },
     {
         "pff_variable": "r700t749",
-        "acs_variable": [
+        "census_variable": [
             "B25063_016"
         ],
         "domain": "housing",
@@ -4213,7 +4226,7 @@
     },
     {
         "pff_variable": "ovl60t69",
-        "acs_variable": [
+        "census_variable": [
             "B25075_011"
         ],
         "domain": "housing",
@@ -4229,7 +4242,7 @@
     },
     {
         "pff_variable": "vachu",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0003"
         ],
         "domain": "housing",
@@ -4242,7 +4255,7 @@
     },
     {
         "pff_variable": "hunomrtg1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0092"
         ],
         "domain": "housing",
@@ -4255,7 +4268,7 @@
     },
     {
         "pff_variable": "hovacu",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0046",
             "B25004_005",
             "B25004_004"
@@ -4270,7 +4283,7 @@
     },
     {
         "pff_variable": "r500t549",
-        "acs_variable": [
+        "census_variable": [
             "B25063_012"
         ],
         "domain": "housing",
@@ -4286,7 +4299,7 @@
     },
     {
         "pff_variable": "ochu1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0002"
         ],
         "domain": "housing",
@@ -4299,7 +4312,7 @@
     },
     {
         "pff_variable": "hu1ud",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0007"
         ],
         "domain": "housing",
@@ -4312,7 +4325,7 @@
     },
     {
         "pff_variable": "nmsmpu10",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0118"
         ],
         "domain": "housing",
@@ -4325,7 +4338,7 @@
     },
     {
         "pff_variable": "grpi30t34",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0141"
         ],
         "domain": "housing",
@@ -4338,7 +4351,7 @@
     },
     {
         "pff_variable": "rntvacu",
-        "acs_variable": [
+        "census_variable": [
             "B25004_003",
             "DP04_0047",
             "B25004_002"
@@ -4353,7 +4366,7 @@
     },
     {
         "pff_variable": "mv10ltr",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0052",
             "DP04_0051",
             "DP04_0053"
@@ -4368,7 +4381,7 @@
     },
     {
         "pff_variable": "r250t299",
-        "acs_variable": [
+        "census_variable": [
             "B25063_007"
         ],
         "domain": "housing",
@@ -4384,7 +4397,7 @@
     },
     {
         "pff_variable": "huwmrtg",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0091"
         ],
         "domain": "housing",
@@ -4397,7 +4410,7 @@
     },
     {
         "pff_variable": "r900t999",
-        "acs_variable": [
+        "census_variable": [
             "B25063_019"
         ],
         "domain": "housing",
@@ -4413,7 +4426,7 @@
     },
     {
         "pff_variable": "ovl15t19",
-        "acs_variable": [
+        "census_variable": [
             "B25075_004"
         ],
         "domain": "housing",
@@ -4429,7 +4442,7 @@
     },
     {
         "pff_variable": "hu4",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0027"
         ],
         "domain": "housing",
@@ -4442,7 +4455,7 @@
     },
     {
         "pff_variable": "oochu2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0080"
         ],
         "domain": "housing",
@@ -4455,7 +4468,7 @@
     },
     {
         "pff_variable": "nmsmp2529",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0122"
         ],
         "domain": "housing",
@@ -4468,7 +4481,7 @@
     },
     {
         "pff_variable": "r350t399",
-        "acs_variable": [
+        "census_variable": [
             "B25063_009"
         ],
         "domain": "housing",
@@ -4484,7 +4497,7 @@
     },
     {
         "pff_variable": "nmsmp3034",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0123"
         ],
         "domain": "housing",
@@ -4497,7 +4510,7 @@
     },
     {
         "pff_variable": "rms3",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0030"
         ],
         "domain": "housing",
@@ -4513,7 +4526,7 @@
     },
     {
         "pff_variable": "r1250t1p5",
-        "acs_variable": [
+        "census_variable": [
             "B25063_021"
         ],
         "domain": "housing",
@@ -4529,7 +4542,7 @@
     },
     {
         "pff_variable": "r3500pl",
-        "acs_variable": [
+        "census_variable": [
             "B25063_026"
         ],
         "domain": "housing",
@@ -4545,7 +4558,7 @@
     },
     {
         "pff_variable": "ov2milpl",
-        "acs_variable": [
+        "census_variable": [
             "B25075_027"
         ],
         "domain": "housing",
@@ -4561,7 +4574,7 @@
     },
     {
         "pff_variable": "vacrnt",
-        "acs_variable": [
+        "census_variable": [
             "B25004_002"
         ],
         "domain": "housing",
@@ -4574,7 +4587,7 @@
     },
     {
         "pff_variable": "vl1milpl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0088"
         ],
         "domain": "housing",
@@ -4587,7 +4600,7 @@
     },
     {
         "pff_variable": "r200t249",
-        "acs_variable": [
+        "census_variable": [
             "B25063_006"
         ],
         "domain": "housing",
@@ -4603,7 +4616,7 @@
     },
     {
         "pff_variable": "r1kt1249",
-        "acs_variable": [
+        "census_variable": [
             "B25063_020"
         ],
         "domain": "housing",
@@ -4619,7 +4632,7 @@
     },
     {
         "pff_variable": "ovl90t99",
-        "acs_variable": [
+        "census_variable": [
             "B25075_014"
         ],
         "domain": "housing",
@@ -4635,7 +4648,7 @@
     },
     {
         "pff_variable": "mdgr",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0134"
         ],
         "domain": "housing",
@@ -4648,7 +4661,7 @@
     },
     {
         "pff_variable": "ov175t199",
-        "acs_variable": [
+        "census_variable": [
             "B25075_018"
         ],
         "domain": "housing",
@@ -4664,7 +4677,7 @@
     },
     {
         "pff_variable": "mvbf89",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0056"
         ],
         "domain": "housing",
@@ -4677,7 +4690,7 @@
     },
     {
         "pff_variable": "ov125t149",
-        "acs_variable": [
+        "census_variable": [
             "B25075_016"
         ],
         "domain": "housing",
@@ -4693,7 +4706,7 @@
     },
     {
         "pff_variable": "vl500t999",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0087"
         ],
         "domain": "housing",
@@ -4706,7 +4719,7 @@
     },
     {
         "pff_variable": "ovl25t29",
-        "acs_variable": [
+        "census_variable": [
             "B25075_006"
         ],
         "domain": "housing",
@@ -4722,7 +4735,7 @@
     },
     {
         "pff_variable": "hovacrt",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0004"
         ],
         "domain": "housing",
@@ -4735,7 +4748,7 @@
     },
     {
         "pff_variable": "rochu1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0047"
         ],
         "domain": "housing",
@@ -4748,7 +4761,7 @@
     },
     {
         "pff_variable": "ochu3",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0050"
         ],
         "domain": "housing",
@@ -4761,7 +4774,7 @@
     },
     {
         "pff_variable": "vl150t199",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0084"
         ],
         "domain": "housing",
@@ -4774,7 +4787,7 @@
     },
     {
         "pff_variable": "hu10t19u",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0012"
         ],
         "domain": "housing",
@@ -4787,7 +4800,7 @@
     },
     {
         "pff_variable": "vl50t99",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0082"
         ],
         "domain": "housing",
@@ -4800,7 +4813,7 @@
     },
     {
         "pff_variable": "nmsmp1014",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0119"
         ],
         "domain": "housing",
@@ -4813,7 +4826,7 @@
     },
     {
         "pff_variable": "ov400t499",
-        "acs_variable": [
+        "census_variable": [
             "B25075_022"
         ],
         "domain": "housing",
@@ -4829,7 +4842,7 @@
     },
     {
         "pff_variable": "vhcl3plav",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0061"
         ],
         "domain": "housing",
@@ -4842,7 +4855,7 @@
     },
     {
         "pff_variable": "huwmrtgex",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0110"
         ],
         "domain": "housing",
@@ -4855,7 +4868,7 @@
     },
     {
         "pff_variable": "ru100",
-        "acs_variable": [
+        "census_variable": [
             "B25063_003"
         ],
         "domain": "housing",
@@ -4871,7 +4884,7 @@
     },
     {
         "pff_variable": "blt80t89",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0021"
         ],
         "domain": "housing",
@@ -4884,7 +4897,7 @@
     },
     {
         "pff_variable": "ochuprnt1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0126"
         ],
         "domain": "housing",
@@ -4897,7 +4910,7 @@
     },
     {
         "pff_variable": "gr20kt24k",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0131"
         ],
         "domain": "housing",
@@ -4910,7 +4923,7 @@
     },
     {
         "pff_variable": "vacsale",
-        "acs_variable": [
+        "census_variable": [
             "B25004_004"
         ],
         "domain": "housing",
@@ -4923,7 +4936,7 @@
     },
     {
         "pff_variable": "gr25kt29k",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0132"
         ],
         "domain": "housing",
@@ -4936,7 +4949,7 @@
     },
     {
         "pff_variable": "r2p5t2999",
-        "acs_variable": [
+        "census_variable": [
             "B25063_024"
         ],
         "domain": "housing",
@@ -4952,7 +4965,7 @@
     },
     {
         "pff_variable": "hu2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0006"
         ],
         "domain": "housing",
@@ -4965,7 +4978,7 @@
     },
     {
         "pff_variable": "vl200t299",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0085"
         ],
         "domain": "housing",
@@ -4978,7 +4991,7 @@
     },
     {
         "pff_variable": "ovl80t89",
-        "acs_variable": [
+        "census_variable": [
             "B25075_013"
         ],
         "domain": "housing",
@@ -4994,7 +5007,7 @@
     },
     {
         "pff_variable": "ovlu10",
-        "acs_variable": [
+        "census_variable": [
             "B25075_002"
         ],
         "domain": "housing",
@@ -5010,7 +5023,7 @@
     },
     {
         "pff_variable": "vl100t149",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0083"
         ],
         "domain": "housing",
@@ -5023,7 +5036,7 @@
     },
     {
         "pff_variable": "ov750t999",
-        "acs_variable": [
+        "census_variable": [
             "B25075_024"
         ],
         "domain": "housing",
@@ -5039,7 +5052,7 @@
     },
     {
         "pff_variable": "vacrntno",
-        "acs_variable": [
+        "census_variable": [
             "B25004_003"
         ],
         "domain": "housing",
@@ -5052,7 +5065,7 @@
     },
     {
         "pff_variable": "r150t199",
-        "acs_variable": [
+        "census_variable": [
             "B25063_005"
         ],
         "domain": "housing",
@@ -5068,7 +5081,7 @@
     },
     {
         "pff_variable": "hu3t4u",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0010"
         ],
         "domain": "housing",
@@ -5081,7 +5094,7 @@
     },
     {
         "pff_variable": "smp25t29",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0113"
         ],
         "domain": "housing",
@@ -5094,7 +5107,7 @@
     },
     {
         "pff_variable": "hu20plu",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0013"
         ],
         "domain": "housing",
@@ -5107,7 +5120,7 @@
     },
     {
         "pff_variable": "vhcl2av",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0060"
         ],
         "domain": "housing",
@@ -5120,7 +5133,7 @@
     },
     {
         "pff_variable": "ov500t749",
-        "acs_variable": [
+        "census_variable": [
             "B25075_023"
         ],
         "domain": "housing",
@@ -5136,7 +5149,7 @@
     },
     {
         "pff_variable": "gr500t999",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0128"
         ],
         "domain": "housing",
@@ -5149,7 +5162,7 @@
     },
     {
         "pff_variable": "nmsmp35pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0124"
         ],
         "domain": "housing",
@@ -5162,7 +5175,7 @@
     },
     {
         "pff_variable": "r3kt3499",
-        "acs_variable": [
+        "census_variable": [
             "B25063_025"
         ],
         "domain": "housing",
@@ -5178,7 +5191,7 @@
     },
     {
         "pff_variable": "ov1t149m",
-        "acs_variable": [
+        "census_variable": [
             "B25075_025"
         ],
         "domain": "housing",
@@ -5194,7 +5207,7 @@
     },
     {
         "pff_variable": "grpi20t24",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0139"
         ],
         "domain": "housing",
@@ -5207,7 +5220,7 @@
     },
     {
         "pff_variable": "smpu20",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0111"
         ],
         "domain": "housing",
@@ -5220,7 +5233,7 @@
     },
     {
         "pff_variable": "rms6",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0033"
         ],
         "domain": "housing",
@@ -5236,7 +5249,7 @@
     },
     {
         "pff_variable": "ochuprnt2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0136"
         ],
         "domain": "housing",
@@ -5249,7 +5262,7 @@
     },
     {
         "pff_variable": "blt90t99",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0020"
         ],
         "domain": "housing",
@@ -5262,7 +5275,7 @@
     },
     {
         "pff_variable": "grpintc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0143"
         ],
         "domain": "housing",
@@ -5275,7 +5288,7 @@
     },
     {
         "pff_variable": "ochu2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0045"
         ],
         "domain": "housing",
@@ -5288,7 +5301,7 @@
     },
     {
         "pff_variable": "ov300t399",
-        "acs_variable": [
+        "census_variable": [
             "B25075_021"
         ],
         "domain": "housing",
@@ -5304,7 +5317,7 @@
     },
     {
         "pff_variable": "mobhm",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0014"
         ],
         "domain": "housing",
@@ -5317,7 +5330,7 @@
     },
     {
         "pff_variable": "oochu1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0046"
         ],
         "domain": "housing",
@@ -5330,7 +5343,7 @@
     },
     {
         "pff_variable": "mdvl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0089"
         ],
         "domain": "housing",
@@ -5343,7 +5356,7 @@
     },
     {
         "pff_variable": "r300t349",
-        "acs_variable": [
+        "census_variable": [
             "B25063_008"
         ],
         "domain": "housing",
@@ -5359,7 +5372,7 @@
     },
     {
         "pff_variable": "rms1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0028"
         ],
         "domain": "housing",
@@ -5375,7 +5388,7 @@
     },
     {
         "pff_variable": "rms4",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0031"
         ],
         "domain": "housing",
@@ -5391,7 +5404,7 @@
     },
     {
         "pff_variable": "smp35pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0115"
         ],
         "domain": "housing",
@@ -5404,7 +5417,7 @@
     },
     {
         "pff_variable": "grpi25t29",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0140"
         ],
         "domain": "housing",
@@ -5417,7 +5430,7 @@
     },
     {
         "pff_variable": "ovl20t24",
-        "acs_variable": [
+        "census_variable": [
             "B25075_005"
         ],
         "domain": "housing",
@@ -5433,7 +5446,7 @@
     },
     {
         "pff_variable": "grnorntpd",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0135"
         ],
         "domain": "housing",
@@ -5446,7 +5459,7 @@
     },
     {
         "pff_variable": "oochu3",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0090"
         ],
         "domain": "housing",
@@ -5459,7 +5472,7 @@
     },
     {
         "pff_variable": "smp30t34",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0114"
         ],
         "domain": "housing",
@@ -5472,7 +5485,7 @@
     },
     {
         "pff_variable": "oochu5",
-        "acs_variable": [
+        "census_variable": [
             "B25075_001"
         ],
         "domain": "housing",
@@ -5485,7 +5498,7 @@
     },
     {
         "pff_variable": "rms9pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0036"
         ],
         "domain": "housing",
@@ -5501,7 +5514,7 @@
     },
     {
         "pff_variable": "blt70t79",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0022"
         ],
         "domain": "housing",
@@ -5514,7 +5527,7 @@
     },
     {
         "pff_variable": "avghhsroc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0049"
         ],
         "domain": "housing",
@@ -5527,7 +5540,7 @@
     },
     {
         "pff_variable": "oochu4",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0046"
         ],
         "domain": "housing",
@@ -5540,7 +5553,7 @@
     },
     {
         "pff_variable": "ocpr1pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0078",
             "DP04_0079"
         ],
@@ -5554,7 +5567,7 @@
     },
     {
         "pff_variable": "nmsmp1519",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0120"
         ],
         "domain": "housing",
@@ -5567,7 +5580,7 @@
     },
     {
         "pff_variable": "r650t699",
-        "acs_variable": [
+        "census_variable": [
             "B25063_015"
         ],
         "domain": "housing",
@@ -5583,7 +5596,7 @@
     },
     {
         "pff_variable": "ocpr1p5pl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0079"
         ],
         "domain": "housing",
@@ -5596,7 +5609,7 @@
     },
     {
         "pff_variable": "smp20t24",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0112"
         ],
         "domain": "housing",
@@ -5609,7 +5622,7 @@
     },
     {
         "pff_variable": "ov150t174",
-        "acs_variable": [
+        "census_variable": [
             "B25075_017"
         ],
         "domain": "housing",
@@ -5625,7 +5638,7 @@
     },
     {
         "pff_variable": "bltbf39",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0026"
         ],
         "domain": "housing",
@@ -5638,7 +5651,7 @@
     },
     {
         "pff_variable": "rms5",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0032"
         ],
         "domain": "housing",
@@ -5654,7 +5667,7 @@
     },
     {
         "pff_variable": "gru500",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0127"
         ],
         "domain": "housing",
@@ -5667,7 +5680,7 @@
     },
     {
         "pff_variable": "gr1kt14k",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0129"
         ],
         "domain": "housing",
@@ -5680,7 +5693,7 @@
     },
     {
         "pff_variable": "nmsmp2024",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0121"
         ],
         "domain": "housing",
@@ -5693,7 +5706,7 @@
     },
     {
         "pff_variable": "ovl70t79",
-        "acs_variable": [
+        "census_variable": [
             "B25075_012"
         ],
         "domain": "housing",
@@ -5709,7 +5722,7 @@
     },
     {
         "pff_variable": "ov100t124",
-        "acs_variable": [
+        "census_variable": [
             "B25075_015"
         ],
         "domain": "housing",
@@ -5725,7 +5738,7 @@
     },
     {
         "pff_variable": "ovl10t14",
-        "acs_variable": [
+        "census_variable": [
             "B25075_003"
         ],
         "domain": "housing",
@@ -5741,7 +5754,7 @@
     },
     {
         "pff_variable": "hu2u",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0009"
         ],
         "domain": "housing",
@@ -5754,7 +5767,7 @@
     },
     {
         "pff_variable": "ovl35t39",
-        "acs_variable": [
+        "census_variable": [
             "B25075_008"
         ],
         "domain": "housing",
@@ -5770,7 +5783,7 @@
     },
     {
         "pff_variable": "rms7",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0034"
         ],
         "domain": "housing",
@@ -5786,7 +5799,7 @@
     },
     {
         "pff_variable": "r550t599",
-        "acs_variable": [
+        "census_variable": [
             "B25063_013"
         ],
         "domain": "housing",
@@ -5802,7 +5815,7 @@
     },
     {
         "pff_variable": "ov150t199m",
-        "acs_variable": [
+        "census_variable": [
             "B25075_026"
         ],
         "domain": "housing",
@@ -5818,7 +5831,7 @@
     },
     {
         "pff_variable": "grpi50pl",
-        "acs_variable": [
+        "census_variable": [
             "B25070_010"
         ],
         "domain": "housing",
@@ -5831,7 +5844,7 @@
     },
     {
         "pff_variable": "grpi15t19",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0138"
         ],
         "domain": "housing",
@@ -5844,7 +5857,7 @@
     },
     {
         "pff_variable": "r100t149",
-        "acs_variable": [
+        "census_variable": [
             "B25063_004"
         ],
         "domain": "housing",
@@ -5860,7 +5873,7 @@
     },
     {
         "pff_variable": "vl300t499",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0086"
         ],
         "domain": "housing",
@@ -5873,7 +5886,7 @@
     },
     {
         "pff_variable": "hunomrtg2",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0117"
         ],
         "domain": "housing",
@@ -5886,7 +5899,7 @@
     },
     {
         "pff_variable": "ocpr0t1",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0077"
         ],
         "domain": "housing",
@@ -5899,7 +5912,7 @@
     },
     {
         "pff_variable": "gr3kpl",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0133"
         ],
         "domain": "housing",
@@ -5912,7 +5925,7 @@
     },
     {
         "pff_variable": "avghhsooc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0048"
         ],
         "domain": "housing",
@@ -5925,7 +5938,7 @@
     },
     {
         "pff_variable": "mv90t99",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0055"
         ],
         "domain": "housing",
@@ -5938,7 +5951,7 @@
     },
     {
         "pff_variable": "vlu50",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0081"
         ],
         "domain": "housing",
@@ -5951,7 +5964,7 @@
     },
     {
         "pff_variable": "roccshrnt",
-        "acs_variable": [
+        "census_variable": [
             "B25063_002"
         ],
         "domain": "housing",
@@ -5964,7 +5977,7 @@
     },
     {
         "pff_variable": "poprtochu",
-        "acs_variable": [
+        "census_variable": [
             "B25008_003"
         ],
         "domain": "housing",
@@ -5977,7 +5990,7 @@
     },
     {
         "pff_variable": "mv00t09",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0054"
         ],
         "domain": "housing",
@@ -5990,7 +6003,7 @@
     },
     {
         "pff_variable": "hu1ua",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0008"
         ],
         "domain": "housing",
@@ -6003,7 +6016,7 @@
     },
     {
         "pff_variable": "blt40t49",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0025"
         ],
         "domain": "housing",
@@ -6016,7 +6029,7 @@
     },
     {
         "pff_variable": "r450t499",
-        "acs_variable": [
+        "census_variable": [
             "B25063_011"
         ],
         "domain": "housing",
@@ -6032,7 +6045,7 @@
     },
     {
         "pff_variable": "smpntc",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0116"
         ],
         "domain": "housing",
@@ -6045,7 +6058,7 @@
     },
     {
         "pff_variable": "rntvacrt",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0005"
         ],
         "domain": "housing",
@@ -6058,7 +6071,7 @@
     },
     {
         "pff_variable": "rms8",
-        "acs_variable": [
+        "census_variable": [
             "DP04_0035"
         ],
         "domain": "housing",
@@ -6074,7 +6087,7 @@
     },
     {
         "pff_variable": "ov200t249",
-        "acs_variable": [
+        "census_variable": [
             "B25075_019"
         ],
         "domain": "housing",
@@ -6090,7 +6103,7 @@
     },
     {
         "pff_variable": "cvnid_hrg",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_019"
         ],
         "domain": "social",
@@ -6103,7 +6116,7 @@
     },
     {
         "pff_variable": "ea_grdpfd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0065"
         ],
         "domain": "social",
@@ -6116,7 +6129,7 @@
     },
     {
         "pff_variable": "seasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_067"
         ],
         "domain": "social",
@@ -6129,7 +6142,7 @@
     },
     {
         "pff_variable": "c65pldvsn",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_036"
         ],
         "domain": "social",
@@ -6142,7 +6155,7 @@
     },
     {
         "pff_variable": "oweur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_020"
         ],
         "domain": "social",
@@ -6155,7 +6168,7 @@
     },
     {
         "pff_variable": "vietnam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_076"
         ],
         "domain": "social",
@@ -6168,7 +6181,7 @@
     },
     {
         "pff_variable": "ms_fnvmrd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0031"
         ],
         "domain": "social",
@@ -6181,7 +6194,7 @@
     },
     {
         "pff_variable": "nigeria",
-        "acs_variable": [
+        "census_variable": [
             "B05006_113"
         ],
         "domain": "social",
@@ -6194,7 +6207,7 @@
     },
     {
         "pff_variable": "neurpn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_058"
         ],
         "domain": "social",
@@ -6207,7 +6220,7 @@
     },
     {
         "pff_variable": "alsatn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_004"
         ],
         "domain": "social",
@@ -6220,7 +6233,7 @@
     },
     {
         "pff_variable": "oausnzsbr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_120"
         ],
         "domain": "social",
@@ -6233,7 +6246,7 @@
     },
     {
         "pff_variable": "ea_hscgrd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0061"
         ],
         "domain": "social",
@@ -6246,7 +6259,7 @@
     },
     {
         "pff_variable": "nthrlds",
-        "acs_variable": [
+        "census_variable": [
             "B05006_018"
         ],
         "domain": "social",
@@ -6259,7 +6272,7 @@
     },
     {
         "pff_variable": "oseasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_077"
         ],
         "domain": "social",
@@ -6272,7 +6285,7 @@
     },
     {
         "pff_variable": "fiji",
-        "acs_variable": [
+        "census_variable": [
             "B05006_121"
         ],
         "domain": "social",
@@ -6285,7 +6298,7 @@
     },
     {
         "pff_variable": "ghanaian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_076"
         ],
         "domain": "social",
@@ -6298,7 +6311,7 @@
     },
     {
         "pff_variable": "croatia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_032"
         ],
         "domain": "social",
@@ -6311,7 +6324,7 @@
     },
     {
         "pff_variable": "european",
-        "acs_variable": [
+        "census_variable": [
             "B04006_038"
         ],
         "domain": "social",
@@ -6324,7 +6337,7 @@
     },
     {
         "pff_variable": "malaysia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_071"
         ],
         "domain": "social",
@@ -6337,7 +6350,7 @@
     },
     {
         "pff_variable": "dhdfcntnyc",
-        "acs_variable": [
+        "census_variable": [
             "B07204_006"
         ],
         "domain": "social",
@@ -6350,7 +6363,7 @@
     },
     {
         "pff_variable": "lthian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_053"
         ],
         "domain": "social",
@@ -6363,7 +6376,7 @@
     },
     {
         "pff_variable": "lthuania",
-        "acs_variable": [
+        "census_variable": [
             "B05006_036"
         ],
         "domain": "social",
@@ -6376,7 +6389,7 @@
     },
     {
         "pff_variable": "fhnh",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0008"
         ],
         "domain": "social",
@@ -6389,7 +6402,7 @@
     },
     {
         "pff_variable": "india",
-        "acs_variable": [
+        "census_variable": [
             "B05006_059"
         ],
         "domain": "social",
@@ -6402,7 +6415,7 @@
     },
     {
         "pff_variable": "osthrnafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_108"
         ],
         "domain": "social",
@@ -6415,7 +6428,7 @@
     },
     {
         "pff_variable": "jrdnian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_009"
         ],
         "domain": "social",
@@ -6428,7 +6441,7 @@
     },
     {
         "pff_variable": "israeli",
-        "acs_variable": [
+        "census_variable": [
             "B04006_050"
         ],
         "domain": "social",
@@ -6441,7 +6454,7 @@
     },
     {
         "pff_variable": "egypt",
-        "acs_variable": [
+        "census_variable": [
             "B05006_102"
         ],
         "domain": "social",
@@ -6454,7 +6467,7 @@
     },
     {
         "pff_variable": "ms_fmrdsp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0032"
         ],
         "domain": "social",
@@ -6467,7 +6480,7 @@
     },
     {
         "pff_variable": "english",
-        "acs_variable": [
+        "census_variable": [
             "B04006_036"
         ],
         "domain": "social",
@@ -6480,7 +6493,7 @@
     },
     {
         "pff_variable": "cvnid_cog",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_039"
         ],
         "domain": "social",
@@ -6493,7 +6506,7 @@
     },
     {
         "pff_variable": "rshp_sp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0019"
         ],
         "domain": "social",
@@ -6506,7 +6519,7 @@
     },
     {
         "pff_variable": "ethpian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_075"
         ],
         "domain": "social",
@@ -6519,7 +6532,7 @@
     },
     {
         "pff_variable": "cu18dvsn",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_030"
         ],
         "domain": "social",
@@ -6532,7 +6545,7 @@
     },
     {
         "pff_variable": "cvvet18pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0069"
         ],
         "domain": "social",
@@ -6545,7 +6558,7 @@
     },
     {
         "pff_variable": "liberian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_078"
         ],
         "domain": "social",
@@ -6558,7 +6571,7 @@
     },
     {
         "pff_variable": "smhs",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0079"
         ],
         "domain": "social",
@@ -6571,7 +6584,7 @@
     },
     {
         "pff_variable": "german",
-        "acs_variable": [
+        "census_variable": [
             "B04006_042"
         ],
         "domain": "social",
@@ -6584,7 +6597,7 @@
     },
     {
         "pff_variable": "oeafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_097",
             "B05006_096"
         ],
@@ -6598,7 +6611,7 @@
     },
     {
         "pff_variable": "ms_fsp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0033"
         ],
         "domain": "social",
@@ -6611,7 +6624,7 @@
     },
     {
         "pff_variable": "oseur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_027"
         ],
         "domain": "social",
@@ -6624,7 +6637,7 @@
     },
     {
         "pff_variable": "zmbwean",
-        "acs_variable": [
+        "census_variable": [
             "B04006_086"
         ],
         "domain": "social",
@@ -6637,7 +6650,7 @@
     },
     {
         "pff_variable": "syria",
-        "acs_variable": [
+        "census_variable": [
             "B05006_085"
         ],
         "domain": "social",
@@ -6650,7 +6663,7 @@
     },
     {
         "pff_variable": "sudanese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_084"
         ],
         "domain": "social",
@@ -6663,7 +6676,7 @@
     },
     {
         "pff_variable": "somali",
-        "acs_variable": [
+        "census_variable": [
             "B04006_082"
         ],
         "domain": "social",
@@ -6676,7 +6689,7 @@
     },
     {
         "pff_variable": "morocco",
-        "acs_variable": [
+        "census_variable": [
             "B05006_103"
         ],
         "domain": "social",
@@ -6689,7 +6702,7 @@
     },
     {
         "pff_variable": "ntvus",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0088"
         ],
         "domain": "social",
@@ -6702,7 +6715,7 @@
     },
     {
         "pff_variable": "sierral",
-        "acs_variable": [
+        "census_variable": [
             "B05006_114"
         ],
         "domain": "social",
@@ -6715,7 +6728,7 @@
     },
     {
         "pff_variable": "osubsafr",
-        "acs_variable": [
+        "census_variable": [
             "B04006_088"
         ],
         "domain": "social",
@@ -6728,7 +6741,7 @@
     },
     {
         "pff_variable": "oneur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_012"
         ],
         "domain": "social",
@@ -6741,7 +6754,7 @@
     },
     {
         "pff_variable": "lam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_124"
         ],
         "domain": "social",
@@ -6754,7 +6767,7 @@
     },
     {
         "pff_variable": "onam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_162"
         ],
         "domain": "social",
@@ -6767,7 +6780,7 @@
     },
     {
         "pff_variable": "ms_mnvmrd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0025"
         ],
         "domain": "social",
@@ -6780,7 +6793,7 @@
     },
     {
         "pff_variable": "bulgaria",
-        "acs_variable": [
+        "census_variable": [
             "B05006_031"
         ],
         "domain": "social",
@@ -6793,7 +6806,7 @@
     },
     {
         "pff_variable": "colombia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_153"
         ],
         "domain": "social",
@@ -6806,7 +6819,7 @@
     },
     {
         "pff_variable": "austrlia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_119"
         ],
         "domain": "social",
@@ -6819,7 +6832,7 @@
     },
     {
         "pff_variable": "ukraine",
-        "acs_variable": [
+        "census_variable": [
             "B05006_042"
         ],
         "domain": "social",
@@ -6832,7 +6845,7 @@
     },
     {
         "pff_variable": "avgfmsz",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0016"
         ],
         "domain": "social",
@@ -6845,7 +6858,7 @@
     },
     {
         "pff_variable": "ms_msp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0027"
         ],
         "domain": "social",
@@ -6858,7 +6871,7 @@
     },
     {
         "pff_variable": "pop_4",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0086"
         ],
         "domain": "social",
@@ -6871,7 +6884,7 @@
     },
     {
         "pff_variable": "nzealnd",
-        "acs_variable": [
+        "census_variable": [
             "B04006_057"
         ],
         "domain": "social",
@@ -6884,7 +6897,7 @@
     },
     {
         "pff_variable": "czechslv",
-        "acs_variable": [
+        "census_variable": [
             "B04006_032"
         ],
         "domain": "social",
@@ -6897,7 +6910,7 @@
     },
     {
         "pff_variable": "burma",
-        "acs_variable": [
+        "census_variable": [
             "B05006_072"
         ],
         "domain": "social",
@@ -6910,7 +6923,7 @@
     },
     {
         "pff_variable": "thailand",
-        "acs_variable": [
+        "census_variable": [
             "B05006_075"
         ],
         "domain": "social",
@@ -6923,7 +6936,7 @@
     },
     {
         "pff_variable": "belizean",
-        "acs_variable": [
+        "census_variable": [
             "B04006_097"
         ],
         "domain": "social",
@@ -6936,7 +6949,7 @@
     },
     {
         "pff_variable": "unclsnr",
-        "acs_variable": [
+        "census_variable": [
             "B04006_109"
         ],
         "domain": "social",
@@ -6949,7 +6962,7 @@
     },
     {
         "pff_variable": "hhcomp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0151"
         ],
         "domain": "social",
@@ -6962,7 +6975,7 @@
     },
     {
         "pff_variable": "eritrea",
-        "acs_variable": [
+        "census_variable": [
             "B05006_093"
         ],
         "domain": "social",
@@ -6975,7 +6988,7 @@
     },
     {
         "pff_variable": "se_g1t8",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0055"
         ],
         "domain": "social",
@@ -6988,7 +7001,7 @@
     },
     {
         "pff_variable": "croatian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_029"
         ],
         "domain": "social",
@@ -7001,7 +7014,7 @@
     },
     {
         "pff_variable": "windsub",
-        "acs_variable": [
+        "census_variable": [
             "B04006_105"
         ],
         "domain": "social",
@@ -7014,7 +7027,7 @@
     },
     {
         "pff_variable": "afghan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_057"
         ],
         "domain": "social",
@@ -7027,7 +7040,7 @@
     },
     {
         "pff_variable": "greece",
-        "acs_variable": [
+        "census_variable": [
             "B05006_022"
         ],
         "domain": "social",
@@ -7040,7 +7053,7 @@
     },
     {
         "pff_variable": "c1864damb",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_049"
         ],
         "domain": "social",
@@ -7053,7 +7066,7 @@
     },
     {
         "pff_variable": "cam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_138"
         ],
         "domain": "social",
@@ -7066,7 +7079,7 @@
     },
     {
         "pff_variable": "cstarica",
-        "acs_variable": [
+        "census_variable": [
             "B05006_141"
         ],
         "domain": "social",
@@ -7079,7 +7092,7 @@
     },
     {
         "pff_variable": "rshp_ssup",
-        "acs_variable": [
+        "census_variable": [
             "B11009_003",
             "B11009_005"
         ],
@@ -7093,7 +7106,7 @@
     },
     {
         "pff_variable": "mhnw",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0006"
         ],
         "domain": "social",
@@ -7106,7 +7119,7 @@
     },
     {
         "pff_variable": "fbntlzd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0094"
         ],
         "domain": "social",
@@ -7119,7 +7132,7 @@
     },
     {
         "pff_variable": "ms_f15pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0030"
         ],
         "domain": "social",
@@ -7132,7 +7145,7 @@
     },
     {
         "pff_variable": "frcandian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_041"
         ],
         "domain": "social",
@@ -7145,7 +7158,7 @@
     },
     {
         "pff_variable": "c65pldhrg",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_026"
         ],
         "domain": "social",
@@ -7158,7 +7171,7 @@
     },
     {
         "pff_variable": "jordan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_081"
         ],
         "domain": "social",
@@ -7171,7 +7184,7 @@
     },
     {
         "pff_variable": "slovak",
-        "acs_variable": [
+        "census_variable": [
             "B04006_070"
         ],
         "domain": "social",
@@ -7184,7 +7197,7 @@
     },
     {
         "pff_variable": "jamaica",
-        "acs_variable": [
+        "census_variable": [
             "B05006_133"
         ],
         "domain": "social",
@@ -7197,7 +7210,7 @@
     },
     {
         "pff_variable": "oeeur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_045"
         ],
         "domain": "social",
@@ -7210,7 +7223,7 @@
     },
     {
         "pff_variable": "ea_ascd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0063"
         ],
         "domain": "social",
@@ -7223,7 +7236,7 @@
     },
     {
         "pff_variable": "portgese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_062"
         ],
         "domain": "social",
@@ -7236,7 +7249,7 @@
     },
     {
         "pff_variable": "dchwind",
-        "acs_variable": [
+        "census_variable": [
             "B04006_100"
         ],
         "domain": "social",
@@ -7249,7 +7262,7 @@
     },
     {
         "pff_variable": "seur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_021"
         ],
         "domain": "social",
@@ -7262,7 +7275,7 @@
     },
     {
         "pff_variable": "wafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_109"
         ],
         "domain": "social",
@@ -7275,7 +7288,7 @@
     },
     {
         "pff_variable": "ntv",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0087"
         ],
         "domain": "social",
@@ -7288,7 +7301,7 @@
     },
     {
         "pff_variable": "germany",
-        "acs_variable": [
+        "census_variable": [
             "B05006_017"
         ],
         "domain": "social",
@@ -7301,7 +7314,7 @@
     },
     {
         "pff_variable": "cu18dcog",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_040"
         ],
         "domain": "social",
@@ -7314,7 +7327,7 @@
     },
     {
         "pff_variable": "belarus",
-        "acs_variable": [
+        "census_variable": [
             "B05006_030"
         ],
         "domain": "social",
@@ -7327,7 +7340,7 @@
     },
     {
         "pff_variable": "austrln",
-        "acs_variable": [
+        "census_variable": [
             "B04006_018"
         ],
         "domain": "social",
@@ -7340,7 +7353,7 @@
     },
     {
         "pff_variable": "hh1pl65pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0014"
         ],
         "domain": "social",
@@ -7353,7 +7366,7 @@
     },
     {
         "pff_variable": "belgium",
-        "acs_variable": [
+        "census_variable": [
             "B05006_015"
         ],
         "domain": "social",
@@ -7366,7 +7379,7 @@
     },
     {
         "pff_variable": "asianec",
-        "acs_variable": [
+        "census_variable": [
             "B05006_090"
         ],
         "domain": "social",
@@ -7379,7 +7392,7 @@
     },
     {
         "pff_variable": "taiwan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_052"
         ],
         "domain": "social",
@@ -7392,7 +7405,7 @@
     },
     {
         "pff_variable": "uknoengsc",
-        "acs_variable": [
+        "census_variable": [
             "B05006_005"
         ],
         "domain": "social",
@@ -7405,7 +7418,7 @@
     },
     {
         "pff_variable": "mafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_098"
         ],
         "domain": "social",
@@ -7418,7 +7431,7 @@
     },
     {
         "pff_variable": "bahamas",
-        "acs_variable": [
+        "census_variable": [
             "B05006_126"
         ],
         "domain": "social",
@@ -7431,7 +7444,7 @@
     },
     {
         "pff_variable": "fam1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0002"
         ],
         "domain": "social",
@@ -7444,7 +7457,7 @@
     },
     {
         "pff_variable": "finnish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_039"
         ],
         "domain": "social",
@@ -7457,7 +7470,7 @@
     },
     {
         "pff_variable": "oscasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_066"
         ],
         "domain": "social",
@@ -7470,7 +7483,7 @@
     },
     {
         "pff_variable": "elslvdr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_142"
         ],
         "domain": "social",
@@ -7483,7 +7496,7 @@
     },
     {
         "pff_variable": "tandtob",
-        "acs_variable": [
+        "census_variable": [
             "B04006_103"
         ],
         "domain": "social",
@@ -7496,7 +7509,7 @@
     },
     {
         "pff_variable": "cvnipop1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0070"
         ],
         "domain": "social",
@@ -7509,7 +7522,7 @@
     },
     {
         "pff_variable": "untdkgdm",
-        "acs_variable": [
+        "census_variable": [
             "B05006_004"
         ],
         "domain": "social",
@@ -7522,7 +7535,7 @@
     },
     {
         "pff_variable": "belize",
-        "acs_variable": [
+        "census_variable": [
             "B05006_140"
         ],
         "domain": "social",
@@ -7535,7 +7548,7 @@
     },
     {
         "pff_variable": "mrdfam",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0004"
         ],
         "domain": "social",
@@ -7548,7 +7561,7 @@
     },
     {
         "pff_variable": "portugal",
-        "acs_variable": [
+        "census_variable": [
             "B05006_024"
         ],
         "domain": "social",
@@ -7561,7 +7574,7 @@
     },
     {
         "pff_variable": "sudan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_104"
         ],
         "domain": "social",
@@ -7574,7 +7587,7 @@
     },
     {
         "pff_variable": "serbian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_068"
         ],
         "domain": "social",
@@ -7587,7 +7600,7 @@
     },
     {
         "pff_variable": "fb1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0092"
         ],
         "domain": "social",
@@ -7600,7 +7613,7 @@
     },
     {
         "pff_variable": "avghhsz",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0015"
         ],
         "domain": "social",
@@ -7613,7 +7626,7 @@
     },
     {
         "pff_variable": "ntvprusab",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0091"
         ],
         "domain": "social",
@@ -7626,7 +7639,7 @@
     },
     {
         "pff_variable": "nfama",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0011"
         ],
         "domain": "social",
@@ -7639,7 +7652,7 @@
     },
     {
         "pff_variable": "cu18dscr",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_056"
         ],
         "domain": "social",
@@ -7652,7 +7665,7 @@
     },
     {
         "pff_variable": "cvrdean",
-        "acs_variable": [
+        "census_variable": [
             "B04006_074"
         ],
         "domain": "social",
@@ -7665,7 +7678,7 @@
     },
     {
         "pff_variable": "bulgrian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_024"
         ],
         "domain": "social",
@@ -7678,7 +7691,7 @@
     },
     {
         "pff_variable": "rshp_nrup",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0023"
         ],
         "domain": "social",
@@ -7691,7 +7704,7 @@
     },
     {
         "pff_variable": "owasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_089"
         ],
         "domain": "social",
@@ -7704,7 +7717,7 @@
     },
     {
         "pff_variable": "abroad",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0085"
         ],
         "domain": "social",
@@ -7717,7 +7730,7 @@
     },
     {
         "pff_variable": "ecuador",
-        "acs_variable": [
+        "census_variable": [
             "B05006_154"
         ],
         "domain": "social",
@@ -7730,7 +7743,7 @@
     },
     {
         "pff_variable": "luxmbgr",
-        "acs_variable": [
+        "census_variable": [
             "B04006_054"
         ],
         "domain": "social",
@@ -7743,7 +7756,7 @@
     },
     {
         "pff_variable": "usvrgis",
-        "acs_variable": [
+        "census_variable": [
             "B04006_104"
         ],
         "domain": "social",
@@ -7756,7 +7769,7 @@
     },
     {
         "pff_variable": "cypriot",
-        "acs_variable": [
+        "census_variable": [
             "B04006_030"
         ],
         "domain": "social",
@@ -7769,7 +7782,7 @@
     },
     {
         "pff_variable": "eng",
-        "acs_variable": [
+        "census_variable": [
             "B05006_006"
         ],
         "domain": "social",
@@ -7782,7 +7795,7 @@
     },
     {
         "pff_variable": "sctchirsh",
-        "acs_variable": [
+        "census_variable": [
             "B04006_066"
         ],
         "domain": "social",
@@ -7795,7 +7808,7 @@
     },
     {
         "pff_variable": "c1864dvsn",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_033"
         ],
         "domain": "social",
@@ -7808,7 +7821,7 @@
     },
     {
         "pff_variable": "c1864dscr",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_057"
         ],
         "domain": "social",
@@ -7821,7 +7834,7 @@
     },
     {
         "pff_variable": "sngapore",
-        "acs_variable": [
+        "census_variable": [
             "B05006_074"
         ],
         "domain": "social",
@@ -7834,7 +7847,7 @@
     },
     {
         "pff_variable": "svtunion",
-        "acs_variable": [
+        "census_variable": [
             "B04006_072"
         ],
         "domain": "social",
@@ -7847,7 +7860,7 @@
     },
     {
         "pff_variable": "asyrchlds",
-        "acs_variable": [
+        "census_variable": [
             "B04006_017"
         ],
         "domain": "social",
@@ -7860,7 +7873,7 @@
     },
     {
         "pff_variable": "grenada",
-        "acs_variable": [
+        "census_variable": [
             "B05006_131"
         ],
         "domain": "social",
@@ -7873,7 +7886,7 @@
     },
     {
         "pff_variable": "rshp_ch",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0020"
         ],
         "domain": "social",
@@ -7886,7 +7899,7 @@
     },
     {
         "pff_variable": "brzlian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_022"
         ],
         "domain": "social",
@@ -7899,7 +7912,7 @@
     },
     {
         "pff_variable": "armenia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_088"
         ],
         "domain": "social",
@@ -7912,7 +7925,7 @@
     },
     {
         "pff_variable": "egyptn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_007"
         ],
         "domain": "social",
@@ -7925,7 +7938,7 @@
     },
     {
         "pff_variable": "yugoslv",
-        "acs_variable": [
+        "census_variable": [
             "B04006_107"
         ],
         "domain": "social",
@@ -7938,7 +7951,7 @@
     },
     {
         "pff_variable": "irish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_049"
         ],
         "domain": "social",
@@ -7951,7 +7964,7 @@
     },
     {
         "pff_variable": "dfhsdfcnt",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0082"
         ],
         "domain": "social",
@@ -7964,7 +7977,7 @@
     },
     {
         "pff_variable": "czech",
-        "acs_variable": [
+        "census_variable": [
             "B04006_031"
         ],
         "domain": "social",
@@ -7977,7 +7990,7 @@
     },
     {
         "pff_variable": "ghana",
-        "acs_variable": [
+        "census_variable": [
             "B05006_111"
         ],
         "domain": "social",
@@ -7990,7 +8003,7 @@
     },
     {
         "pff_variable": "japan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_053"
         ],
         "domain": "social",
@@ -8003,7 +8016,7 @@
     },
     {
         "pff_variable": "eeur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_028"
         ],
         "domain": "social",
@@ -8016,7 +8029,7 @@
     },
     {
         "pff_variable": "brtwind",
-        "acs_variable": [
+        "census_variable": [
             "B04006_099"
         ],
         "domain": "social",
@@ -8029,7 +8042,7 @@
     },
     {
         "pff_variable": "ea_sclgnd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0062"
         ],
         "domain": "social",
@@ -8042,7 +8055,7 @@
     },
     {
         "pff_variable": "brbdian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_096"
         ],
         "domain": "social",
@@ -8055,7 +8068,7 @@
     },
     {
         "pff_variable": "oeasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_055"
         ],
         "domain": "social",
@@ -8068,7 +8081,7 @@
     },
     {
         "pff_variable": "laos",
-        "acs_variable": [
+        "census_variable": [
             "B05006_070"
         ],
         "domain": "social",
@@ -8081,7 +8094,7 @@
     },
     {
         "pff_variable": "nicargua",
-        "acs_variable": [
+        "census_variable": [
             "B05006_145"
         ],
         "domain": "social",
@@ -8094,7 +8107,7 @@
     },
     {
         "pff_variable": "cvnid_vsn",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_029"
         ],
         "domain": "social",
@@ -8107,7 +8120,7 @@
     },
     {
         "pff_variable": "dfhs2",
-        "acs_variable": [
+        "census_variable": [
             "B07204_016",
             "B07204_003"
         ],
@@ -8121,7 +8134,7 @@
     },
     {
         "pff_variable": "norway",
-        "acs_variable": [
+        "census_variable": [
             "B05006_010"
         ],
         "domain": "social",
@@ -8134,7 +8147,7 @@
     },
     {
         "pff_variable": "greek",
-        "acs_variable": [
+        "census_variable": [
             "B04006_044"
         ],
         "domain": "social",
@@ -8147,7 +8160,7 @@
     },
     {
         "pff_variable": "poland",
-        "acs_variable": [
+        "census_variable": [
             "B05006_039"
         ],
         "domain": "social",
@@ -8160,7 +8173,7 @@
     },
     {
         "pff_variable": "albania",
-        "acs_variable": [
+        "census_variable": [
             "B05006_029"
         ],
         "domain": "social",
@@ -8173,7 +8186,7 @@
     },
     {
         "pff_variable": "ocam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_147"
         ],
         "domain": "social",
@@ -8186,7 +8199,7 @@
     },
     {
         "pff_variable": "bngldsh",
-        "acs_variable": [
+        "census_variable": [
             "B05006_058"
         ],
         "domain": "social",
@@ -8199,7 +8212,7 @@
     },
     {
         "pff_variable": "ocnianec",
-        "acs_variable": [
+        "census_variable": [
             "B05006_122"
         ],
         "domain": "social",
@@ -8212,7 +8225,7 @@
     },
     {
         "pff_variable": "domrep",
-        "acs_variable": [
+        "census_variable": [
             "B05006_130"
         ],
         "domain": "social",
@@ -8225,7 +8238,7 @@
     },
     {
         "pff_variable": "ms_fwd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0034"
         ],
         "domain": "social",
@@ -8238,7 +8251,7 @@
     },
     {
         "pff_variable": "cvniu18d",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0073"
         ],
         "domain": "social",
@@ -8251,7 +8264,7 @@
     },
     {
         "pff_variable": "c1864dhrg",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_023"
         ],
         "domain": "social",
@@ -8264,7 +8277,7 @@
     },
     {
         "pff_variable": "onafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_105"
         ],
         "domain": "social",
@@ -8277,7 +8290,7 @@
     },
     {
         "pff_variable": "cvniu18_1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0072"
         ],
         "domain": "social",
@@ -8290,7 +8303,7 @@
     },
     {
         "pff_variable": "sleonean",
-        "acs_variable": [
+        "census_variable": [
             "B04006_081"
         ],
         "domain": "social",
@@ -8303,7 +8316,7 @@
     },
     {
         "pff_variable": "romanian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_063"
         ],
         "domain": "social",
@@ -8316,7 +8329,7 @@
     },
     {
         "pff_variable": "brazil",
-        "acs_variable": [
+        "census_variable": [
             "B05006_151"
         ],
         "domain": "social",
@@ -8329,7 +8342,7 @@
     },
     {
         "pff_variable": "nepal",
-        "acs_variable": [
+        "census_variable": [
             "B05006_062"
         ],
         "domain": "social",
@@ -8342,7 +8355,7 @@
     },
     {
         "pff_variable": "rshp_nr",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0022"
         ],
         "domain": "social",
@@ -8355,7 +8368,7 @@
     },
     {
         "pff_variable": "alb",
-        "acs_variable": [
+        "census_variable": [
             "B04006_003"
         ],
         "domain": "social",
@@ -8368,7 +8381,7 @@
     },
     {
         "pff_variable": "hh1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0001"
         ],
         "domain": "social",
@@ -8381,7 +8394,7 @@
     },
     {
         "pff_variable": "hungary",
-        "acs_variable": [
+        "census_variable": [
             "B05006_034"
         ],
         "domain": "social",
@@ -8394,7 +8407,7 @@
     },
     {
         "pff_variable": "amercn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_005"
         ],
         "domain": "social",
@@ -8407,7 +8420,7 @@
     },
     {
         "pff_variable": "caboverd",
-        "acs_variable": [
+        "census_variable": [
             "B05006_110"
         ],
         "domain": "social",
@@ -8420,7 +8433,7 @@
     },
     {
         "pff_variable": "honduras",
-        "acs_variable": [
+        "census_variable": [
             "B05006_144"
         ],
         "domain": "social",
@@ -8433,7 +8446,7 @@
     },
     {
         "pff_variable": "macdnian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_055"
         ],
         "domain": "social",
@@ -8446,7 +8459,7 @@
     },
     {
         "pff_variable": "oarab",
-        "acs_variable": [
+        "census_variable": [
             "B04006_015"
         ],
         "domain": "social",
@@ -8459,7 +8472,7 @@
     },
     {
         "pff_variable": "germrus",
-        "acs_variable": [
+        "census_variable": [
             "B04006_043"
         ],
         "domain": "social",
@@ -8472,7 +8485,7 @@
     },
     {
         "pff_variable": "ea_p25pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0058"
         ],
         "domain": "social",
@@ -8485,7 +8498,7 @@
     },
     {
         "pff_variable": "windies",
-        "acs_variable": [
+        "census_variable": [
             "B05006_136"
         ],
         "domain": "social",
@@ -8498,7 +8511,7 @@
     },
     {
         "pff_variable": "cni18t64d",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0075"
         ],
         "domain": "social",
@@ -8511,7 +8524,7 @@
     },
     {
         "pff_variable": "weur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_013"
         ],
         "domain": "social",
@@ -8524,7 +8537,7 @@
     },
     {
         "pff_variable": "gplgcu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0043"
         ],
         "domain": "social",
@@ -8537,7 +8550,7 @@
     },
     {
         "pff_variable": "owafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_115"
         ],
         "domain": "social",
@@ -8550,7 +8563,7 @@
     },
     {
         "pff_variable": "nfam1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0010"
         ],
         "domain": "social",
@@ -8563,7 +8576,7 @@
     },
     {
         "pff_variable": "polish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_061"
         ],
         "domain": "social",
@@ -8576,7 +8589,7 @@
     },
     {
         "pff_variable": "eeurpn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_035"
         ],
         "domain": "social",
@@ -8589,7 +8602,7 @@
     },
     {
         "pff_variable": "romania",
-        "acs_variable": [
+        "census_variable": [
             "B05006_040"
         ],
         "domain": "social",
@@ -8602,7 +8615,7 @@
     },
     {
         "pff_variable": "ea_bchdh",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0067"
         ],
         "domain": "social",
@@ -8615,7 +8628,7 @@
     },
     {
         "pff_variable": "c65pldild",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_067"
         ],
         "domain": "social",
@@ -8628,7 +8641,7 @@
     },
     {
         "pff_variable": "cameroon",
-        "acs_variable": [
+        "census_variable": [
             "B05006_099"
         ],
         "domain": "social",
@@ -8641,7 +8654,7 @@
     },
     {
         "pff_variable": "dfhs1",
-        "acs_variable": [
+        "census_variable": [
             "B07204_016",
             "B07204_003"
         ],
@@ -8655,7 +8668,7 @@
     },
     {
         "pff_variable": "belgian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_021"
         ],
         "domain": "social",
@@ -8668,7 +8681,7 @@
     },
     {
         "pff_variable": "fbnotczn",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0095"
         ],
         "domain": "social",
@@ -8681,7 +8694,7 @@
     },
     {
         "pff_variable": "arabsub",
-        "acs_variable": [
+        "census_variable": [
             "B04006_014"
         ],
         "domain": "social",
@@ -8694,7 +8707,7 @@
     },
     {
         "pff_variable": "iraq",
-        "acs_variable": [
+        "census_variable": [
             "B05006_079"
         ],
         "domain": "social",
@@ -8707,7 +8720,7 @@
     },
     {
         "pff_variable": "asia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_047"
         ],
         "domain": "social",
@@ -8720,7 +8733,7 @@
     },
     {
         "pff_variable": "pakistan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_063"
         ],
         "domain": "social",
@@ -8733,7 +8746,7 @@
     },
     {
         "pff_variable": "hhpop",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0017"
         ],
         "domain": "social",
@@ -8746,7 +8759,7 @@
     },
     {
         "pff_variable": "cvni65pld",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0077"
         ],
         "domain": "social",
@@ -8759,7 +8772,7 @@
     },
     {
         "pff_variable": "dfhsus",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0080"
         ],
         "domain": "social",
@@ -8772,7 +8785,7 @@
     },
     {
         "pff_variable": "russia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_041"
         ],
         "domain": "social",
@@ -8785,7 +8798,7 @@
     },
     {
         "pff_variable": "bosniah",
-        "acs_variable": [
+        "census_variable": [
             "B05006_043"
         ],
         "domain": "social",
@@ -8798,7 +8811,7 @@
     },
     {
         "pff_variable": "italy",
-        "acs_variable": [
+        "census_variable": [
             "B05006_023"
         ],
         "domain": "social",
@@ -8811,7 +8824,7 @@
     },
     {
         "pff_variable": "hongkong",
-        "acs_variable": [
+        "census_variable": [
             "B05006_051"
         ],
         "domain": "social",
@@ -8824,7 +8837,7 @@
     },
     {
         "pff_variable": "korea",
-        "acs_variable": [
+        "census_variable": [
             "B05006_054"
         ],
         "domain": "social",
@@ -8837,7 +8850,7 @@
     },
     {
         "pff_variable": "kzkhstan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_061"
         ],
         "domain": "social",
@@ -8850,7 +8863,7 @@
     },
     {
         "pff_variable": "denmark",
-        "acs_variable": [
+        "census_variable": [
             "B05006_009"
         ],
         "domain": "social",
@@ -8863,7 +8876,7 @@
     },
     {
         "pff_variable": "stvgren",
-        "acs_variable": [
+        "census_variable": [
             "B05006_134"
         ],
         "domain": "social",
@@ -8876,7 +8889,7 @@
     },
     {
         "pff_variable": "arab",
-        "acs_variable": [
+        "census_variable": [
             "B04006_006"
         ],
         "domain": "social",
@@ -8889,7 +8902,7 @@
     },
     {
         "pff_variable": "wasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_078"
         ],
         "domain": "social",
@@ -8902,7 +8915,7 @@
     },
     {
         "pff_variable": "neur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_003"
         ],
         "domain": "social",
@@ -8915,7 +8928,7 @@
     },
     {
         "pff_variable": "maltese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_056"
         ],
         "domain": "social",
@@ -8928,7 +8941,7 @@
     },
     {
         "pff_variable": "sam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_148"
         ],
         "domain": "social",
@@ -8941,7 +8954,7 @@
     },
     {
         "pff_variable": "swiss",
-        "acs_variable": [
+        "census_variable": [
             "B04006_090"
         ],
         "domain": "social",
@@ -8954,7 +8967,7 @@
     },
     {
         "pff_variable": "ugandan",
-        "acs_variable": [
+        "census_variable": [
             "B04006_085"
         ],
         "domain": "social",
@@ -8967,7 +8980,7 @@
     },
     {
         "pff_variable": "dfhssmcnt",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0081"
         ],
         "domain": "social",
@@ -8980,7 +8993,7 @@
     },
     {
         "pff_variable": "srilanka",
-        "acs_variable": [
+        "census_variable": [
             "B05006_064"
         ],
         "domain": "social",
@@ -8993,7 +9006,7 @@
     },
     {
         "pff_variable": "ireland",
-        "acs_variable": [
+        "census_variable": [
             "B05006_008"
         ],
         "domain": "social",
@@ -9006,7 +9019,7 @@
     },
     {
         "pff_variable": "nafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_101"
         ],
         "domain": "social",
@@ -9019,7 +9032,7 @@
     },
     {
         "pff_variable": "mrdchu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0005"
         ],
         "domain": "social",
@@ -9032,7 +9045,7 @@
     },
     {
         "pff_variable": "kenyan",
-        "acs_variable": [
+        "census_variable": [
             "B04006_077"
         ],
         "domain": "social",
@@ -9045,7 +9058,7 @@
     },
     {
         "pff_variable": "moroccan",
-        "acs_variable": [
+        "census_variable": [
             "B04006_011"
         ],
         "domain": "social",
@@ -9058,7 +9071,7 @@
     },
     {
         "pff_variable": "haiti",
-        "acs_variable": [
+        "census_variable": [
             "B05006_132"
         ],
         "domain": "social",
@@ -9071,7 +9084,7 @@
     },
     {
         "pff_variable": "iraqi",
-        "acs_variable": [
+        "census_variable": [
             "B04006_008"
         ],
         "domain": "social",
@@ -9084,7 +9097,7 @@
     },
     {
         "pff_variable": "uzbkstan",
-        "acs_variable": [
+        "census_variable": [
             "B05006_065"
         ],
         "domain": "social",
@@ -9097,7 +9110,7 @@
     },
     {
         "pff_variable": "ea_bchd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0064"
         ],
         "domain": "social",
@@ -9110,7 +9123,7 @@
     },
     {
         "pff_variable": "cni1864_1",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0074"
         ],
         "domain": "social",
@@ -9123,7 +9136,7 @@
     },
     {
         "pff_variable": "czchslv",
-        "acs_variable": [
+        "census_variable": [
             "B05006_033"
         ],
         "domain": "social",
@@ -9136,7 +9149,7 @@
     },
     {
         "pff_variable": "guyanese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_045"
         ],
         "domain": "social",
@@ -9149,7 +9162,7 @@
     },
     {
         "pff_variable": "ea_9t12nd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0060"
         ],
         "domain": "social",
@@ -9162,7 +9175,7 @@
     },
     {
         "pff_variable": "scot",
-        "acs_variable": [
+        "census_variable": [
             "B05006_007"
         ],
         "domain": "social",
@@ -9175,7 +9188,7 @@
     },
     {
         "pff_variable": "kenya",
-        "acs_variable": [
+        "census_variable": [
             "B05006_095"
         ],
         "domain": "social",
@@ -9188,7 +9201,7 @@
     },
     {
         "pff_variable": "cvni65pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0076"
         ],
         "domain": "social",
@@ -9201,7 +9214,7 @@
     },
     {
         "pff_variable": "cvnid_amb",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_047"
         ],
         "domain": "social",
@@ -9214,7 +9227,7 @@
     },
     {
         "pff_variable": "mcdonia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_037"
         ],
         "domain": "social",
@@ -9227,7 +9240,7 @@
     },
     {
         "pff_variable": "se_g9t12",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0056"
         ],
         "domain": "social",
@@ -9240,7 +9253,7 @@
     },
     {
         "pff_variable": "frnotbsq",
-        "acs_variable": [
+        "census_variable": [
             "B04006_040"
         ],
         "domain": "social",
@@ -9253,7 +9266,7 @@
     },
     {
         "pff_variable": "syrian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_013"
         ],
         "domain": "social",
@@ -9266,7 +9279,7 @@
     },
     {
         "pff_variable": "cvpop18pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0068"
         ],
         "domain": "social",
@@ -9279,7 +9292,7 @@
     },
     {
         "pff_variable": "jamaican",
-        "acs_variable": [
+        "census_variable": [
             "B04006_102"
         ],
         "domain": "social",
@@ -9292,7 +9305,7 @@
     },
     {
         "pff_variable": "c1864dild",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_064"
         ],
         "domain": "social",
@@ -9305,7 +9318,7 @@
     },
     {
         "pff_variable": "fb3",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0093"
         ],
         "domain": "social",
@@ -9318,7 +9331,7 @@
     },
     {
         "pff_variable": "se_clggsc",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0057"
         ],
         "domain": "social",
@@ -9331,7 +9344,7 @@
     },
     {
         "pff_variable": "osam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_159"
         ],
         "domain": "social",
@@ -9344,7 +9357,7 @@
     },
     {
         "pff_variable": "cvnid",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0071"
         ],
         "domain": "social",
@@ -9357,7 +9370,7 @@
     },
     {
         "pff_variable": "carprusn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_027"
         ],
         "domain": "social",
@@ -9370,7 +9383,7 @@
     },
     {
         "pff_variable": "switzrld",
-        "acs_variable": [
+        "census_variable": [
             "B05006_019"
         ],
         "domain": "social",
@@ -9383,7 +9396,7 @@
     },
     {
         "pff_variable": "afg",
-        "acs_variable": [
+        "census_variable": [
             "B04006_002"
         ],
         "domain": "social",
@@ -9396,7 +9409,7 @@
     },
     {
         "pff_variable": "carib",
-        "acs_variable": [
+        "census_variable": [
             "B05006_125"
         ],
         "domain": "social",
@@ -9409,7 +9422,7 @@
     },
     {
         "pff_variable": "cu18damb",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_048"
         ],
         "domain": "social",
@@ -9422,7 +9435,7 @@
     },
     {
         "pff_variable": "hh1plu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0013"
         ],
         "domain": "social",
@@ -9435,7 +9448,7 @@
     },
     {
         "pff_variable": "china",
-        "acs_variable": [
+        "census_variable": [
             "B05006_049"
         ],
         "domain": "social",
@@ -9448,7 +9461,7 @@
     },
     {
         "pff_variable": "british",
-        "acs_variable": [
+        "census_variable": [
             "B04006_023"
         ],
         "domain": "social",
@@ -9461,7 +9474,7 @@
     },
     {
         "pff_variable": "ms_mwd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0028"
         ],
         "domain": "social",
@@ -9474,7 +9487,7 @@
     },
     {
         "pff_variable": "snglese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_080"
         ],
         "domain": "social",
@@ -9487,7 +9500,7 @@
     },
     {
         "pff_variable": "oceania",
-        "acs_variable": [
+        "census_variable": [
             "B05006_117"
         ],
         "domain": "social",
@@ -9500,7 +9513,7 @@
     },
     {
         "pff_variable": "russian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_064"
         ],
         "domain": "social",
@@ -9513,7 +9526,7 @@
     },
     {
         "pff_variable": "gprgcu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0044"
         ],
         "domain": "social",
@@ -9526,7 +9539,7 @@
     },
     {
         "pff_variable": "ocarib",
-        "acs_variable": [
+        "census_variable": [
             "B05006_137"
         ],
         "domain": "social",
@@ -9539,7 +9552,7 @@
     },
     {
         "pff_variable": "norwgian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_059"
         ],
         "domain": "social",
@@ -9552,7 +9565,7 @@
     },
     {
         "pff_variable": "sweden",
-        "acs_variable": [
+        "census_variable": [
             "B05006_011"
         ],
         "domain": "social",
@@ -9565,7 +9578,7 @@
     },
     {
         "pff_variable": "trandtob",
-        "acs_variable": [
+        "census_variable": [
             "B05006_135"
         ],
         "domain": "social",
@@ -9578,7 +9591,7 @@
     },
     {
         "pff_variable": "kuwait",
-        "acs_variable": [
+        "census_variable": [
             "B05006_082"
         ],
         "domain": "social",
@@ -9591,7 +9604,7 @@
     },
     {
         "pff_variable": "cvnid_scr",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_055"
         ],
         "domain": "social",
@@ -9604,7 +9617,7 @@
     },
     {
         "pff_variable": "palstnian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_012"
         ],
         "domain": "social",
@@ -9617,7 +9630,7 @@
     },
     {
         "pff_variable": "easia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_048"
         ],
         "domain": "social",
@@ -9630,7 +9643,7 @@
     },
     {
         "pff_variable": "c65pldamb",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_052"
         ],
         "domain": "social",
@@ -9643,7 +9656,7 @@
     },
     {
         "pff_variable": "celtic",
-        "acs_variable": [
+        "census_variable": [
             "B04006_028"
         ],
         "domain": "social",
@@ -9656,7 +9669,7 @@
     },
     {
         "pff_variable": "subsaf",
-        "acs_variable": [
+        "census_variable": [
             "B04006_073"
         ],
         "domain": "social",
@@ -9669,7 +9682,7 @@
     },
     {
         "pff_variable": "scandnvn",
-        "acs_variable": [
+        "census_variable": [
             "B04006_065"
         ],
         "domain": "social",
@@ -9682,7 +9695,7 @@
     },
     {
         "pff_variable": "ms_m15pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0024"
         ],
         "domain": "social",
@@ -9695,7 +9708,7 @@
     },
     {
         "pff_variable": "chnohktwn",
-        "acs_variable": [
+        "census_variable": [
             "B05006_050"
         ],
         "domain": "social",
@@ -9708,7 +9721,7 @@
     },
     {
         "pff_variable": "ms_mmrdsp",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0026"
         ],
         "domain": "social",
@@ -9721,7 +9734,7 @@
     },
     {
         "pff_variable": "othr",
-        "acs_variable": [
+        "census_variable": [
             "B04006_108"
         ],
         "domain": "social",
@@ -9734,7 +9747,7 @@
     },
     {
         "pff_variable": "israel",
-        "acs_variable": [
+        "census_variable": [
             "B05006_080"
         ],
         "domain": "social",
@@ -9747,7 +9760,7 @@
     },
     {
         "pff_variable": "canadian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_026"
         ],
         "domain": "social",
@@ -9760,7 +9773,7 @@
     },
     {
         "pff_variable": "dhnonyc",
-        "acs_variable": [
+        "census_variable": [
             "B07204_009"
         ],
         "domain": "social",
@@ -9773,7 +9786,7 @@
     },
     {
         "pff_variable": "liberia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_112"
         ],
         "domain": "social",
@@ -9786,7 +9799,7 @@
     },
     {
         "pff_variable": "popinfms",
-        "acs_variable": [
+        "census_variable": [
             "B11002_007",
             "B11002_010",
             "B11002_004"
@@ -9801,7 +9814,7 @@
     },
     {
         "pff_variable": "sthrnafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_106"
         ],
         "domain": "social",
@@ -9814,7 +9827,7 @@
     },
     {
         "pff_variable": "panama",
-        "acs_variable": [
+        "census_variable": [
             "B05006_146"
         ],
         "domain": "social",
@@ -9827,7 +9840,7 @@
     },
     {
         "pff_variable": "cambodia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_068"
         ],
         "domain": "social",
@@ -9840,7 +9853,7 @@
     },
     {
         "pff_variable": "c65pldscr",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_060"
         ],
         "domain": "social",
@@ -9853,7 +9866,7 @@
     },
     {
         "pff_variable": "moldova",
-        "acs_variable": [
+        "census_variable": [
             "B05006_038"
         ],
         "domain": "social",
@@ -9866,7 +9879,7 @@
     },
     {
         "pff_variable": "c65pldcog",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_044"
         ],
         "domain": "social",
@@ -9879,7 +9892,7 @@
     },
     {
         "pff_variable": "fb2",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0092"
         ],
         "domain": "social",
@@ -9892,7 +9905,7 @@
     },
     {
         "pff_variable": "haitian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_101"
         ],
         "domain": "social",
@@ -9905,7 +9918,7 @@
     },
     {
         "pff_variable": "pop_5",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0122"
         ],
         "domain": "social",
@@ -9918,7 +9931,7 @@
     },
     {
         "pff_variable": "c1864dcog",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_041"
         ],
         "domain": "social",
@@ -9931,7 +9944,7 @@
     },
     {
         "pff_variable": "latvian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_052"
         ],
         "domain": "social",
@@ -9944,7 +9957,7 @@
     },
     {
         "pff_variable": "ukrnian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_092"
         ],
         "domain": "social",
@@ -9957,7 +9970,7 @@
     },
     {
         "pff_variable": "latvia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_035"
         ],
         "domain": "social",
@@ -9970,7 +9983,7 @@
     },
     {
         "pff_variable": "ea_lt9g",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0059"
         ],
         "domain": "social",
@@ -9983,7 +9996,7 @@
     },
     {
         "pff_variable": "nigerian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_079"
         ],
         "domain": "social",
@@ -9996,7 +10009,7 @@
     },
     {
         "pff_variable": "turkey",
-        "acs_variable": [
+        "census_variable": [
             "B05006_087"
         ],
         "domain": "social",
@@ -10009,7 +10022,7 @@
     },
     {
         "pff_variable": "windnhsp",
-        "acs_variable": [
+        "census_variable": [
             "B04006_094"
         ],
         "domain": "social",
@@ -10022,7 +10035,7 @@
     },
     {
         "pff_variable": "dominica",
-        "acs_variable": [
+        "census_variable": [
             "B05006_129"
         ],
         "domain": "social",
@@ -10035,7 +10048,7 @@
     },
     {
         "pff_variable": "cu18dhrg",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_020"
         ],
         "domain": "social",
@@ -10048,7 +10061,7 @@
     },
     {
         "pff_variable": "ntvnys",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0089"
         ],
         "domain": "social",
@@ -10061,7 +10074,7 @@
     },
     {
         "pff_variable": "ntvnotnys",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0090"
         ],
         "domain": "social",
@@ -10074,7 +10087,7 @@
     },
     {
         "pff_variable": "afr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_091"
         ],
         "domain": "social",
@@ -10087,7 +10100,7 @@
     },
     {
         "pff_variable": "indnsia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_069"
         ],
         "domain": "social",
@@ -10100,7 +10113,7 @@
     },
     {
         "pff_variable": "danish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_033"
         ],
         "domain": "social",
@@ -10113,7 +10126,7 @@
     },
     {
         "pff_variable": "ethiopia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_094"
         ],
         "domain": "social",
@@ -10126,7 +10139,7 @@
     },
     {
         "pff_variable": "penngerm",
-        "acs_variable": [
+        "census_variable": [
             "B04006_060"
         ],
         "domain": "social",
@@ -10139,7 +10152,7 @@
     },
     {
         "pff_variable": "argntina",
-        "acs_variable": [
+        "census_variable": [
             "B05006_149"
         ],
         "domain": "social",
@@ -10152,7 +10165,7 @@
     },
     {
         "pff_variable": "peru",
-        "acs_variable": [
+        "census_variable": [
             "B05006_156"
         ],
         "domain": "social",
@@ -10165,7 +10178,7 @@
     },
     {
         "pff_variable": "scottish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_067"
         ],
         "domain": "social",
@@ -10178,7 +10191,7 @@
     },
     {
         "pff_variable": "icelndr",
-        "acs_variable": [
+        "census_variable": [
             "B04006_047"
         ],
         "domain": "social",
@@ -10191,7 +10204,7 @@
     },
     {
         "pff_variable": "barbados",
-        "acs_variable": [
+        "census_variable": [
             "B05006_127"
         ],
         "domain": "social",
@@ -10204,7 +10217,7 @@
     },
     {
         "pff_variable": "swedish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_089"
         ],
         "domain": "social",
@@ -10217,7 +10230,7 @@
     },
     {
         "pff_variable": "cajun",
-        "acs_variable": [
+        "census_variable": [
             "B04006_025"
         ],
         "domain": "social",
@@ -10230,7 +10243,7 @@
     },
     {
         "pff_variable": "fb2000ltr",
-        "acs_variable": [
+        "census_variable": [
             "B05005_004",
             "B05005_009"
         ],
@@ -10244,7 +10257,7 @@
     },
     {
         "pff_variable": "scasia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_056"
         ],
         "domain": "social",
@@ -10257,7 +10270,7 @@
     },
     {
         "pff_variable": "pop3plen",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0052"
         ],
         "domain": "social",
@@ -10270,7 +10283,7 @@
     },
     {
         "pff_variable": "guyana",
-        "acs_variable": [
+        "census_variable": [
             "B05006_155"
         ],
         "domain": "social",
@@ -10283,7 +10296,7 @@
     },
     {
         "pff_variable": "vnzuela",
-        "acs_variable": [
+        "census_variable": [
             "B05006_158"
         ],
         "domain": "social",
@@ -10296,7 +10309,7 @@
     },
     {
         "pff_variable": "mhnwchu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0007"
         ],
         "domain": "social",
@@ -10309,7 +10322,7 @@
     },
     {
         "pff_variable": "dutch",
-        "acs_variable": [
+        "census_variable": [
             "B04006_034"
         ],
         "domain": "social",
@@ -10322,7 +10335,7 @@
     },
     {
         "pff_variable": "african",
-        "acs_variable": [
+        "census_variable": [
             "B04006_087"
         ],
         "domain": "social",
@@ -10335,7 +10348,7 @@
     },
     {
         "pff_variable": "bolivia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_150"
         ],
         "domain": "social",
@@ -10348,7 +10361,7 @@
     },
     {
         "pff_variable": "slavic",
-        "acs_variable": [
+        "census_variable": [
             "B04006_069"
         ],
         "domain": "social",
@@ -10361,7 +10374,7 @@
     },
     {
         "pff_variable": "owind",
-        "acs_variable": [
+        "census_variable": [
             "B04006_106"
         ],
         "domain": "social",
@@ -10374,7 +10387,7 @@
     },
     {
         "pff_variable": "omafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_100"
         ],
         "domain": "social",
@@ -10387,7 +10400,7 @@
     },
     {
         "pff_variable": "hh3",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0150"
         ],
         "domain": "social",
@@ -10400,7 +10413,7 @@
     },
     {
         "pff_variable": "chile",
-        "acs_variable": [
+        "census_variable": [
             "B05006_152"
         ],
         "domain": "social",
@@ -10413,7 +10426,7 @@
     },
     {
         "pff_variable": "se_nscpsc",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0053"
         ],
         "domain": "social",
@@ -10426,7 +10439,7 @@
     },
     {
         "pff_variable": "bahamian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_095"
         ],
         "domain": "social",
@@ -10439,7 +10452,7 @@
     },
     {
         "pff_variable": "eafr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_092"
         ],
         "domain": "social",
@@ -10452,7 +10465,7 @@
     },
     {
         "pff_variable": "fb4",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0100"
         ],
         "domain": "social",
@@ -10465,7 +10478,7 @@
     },
     {
         "pff_variable": "fhnhchu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0009"
         ],
         "domain": "social",
@@ -10478,7 +10491,7 @@
     },
     {
         "pff_variable": "hhint",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0152"
         ],
         "domain": "social",
@@ -10491,7 +10504,7 @@
     },
     {
         "pff_variable": "armenian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_016"
         ],
         "domain": "social",
@@ -10504,7 +10517,7 @@
     },
     {
         "pff_variable": "iranian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_048"
         ],
         "domain": "social",
@@ -10517,7 +10530,7 @@
     },
     {
         "pff_variable": "basque",
-        "acs_variable": [
+        "census_variable": [
             "B04006_020"
         ],
         "domain": "social",
@@ -10530,7 +10543,7 @@
     },
     {
         "pff_variable": "welsh",
-        "acs_variable": [
+        "census_variable": [
             "B04006_093"
         ],
         "domain": "social",
@@ -10543,7 +10556,7 @@
     },
     {
         "pff_variable": "uruguay",
-        "acs_variable": [
+        "census_variable": [
             "B05006_157"
         ],
         "domain": "social",
@@ -10556,7 +10569,7 @@
     },
     {
         "pff_variable": "nfama65pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0012"
         ],
         "domain": "social",
@@ -10569,7 +10582,7 @@
     },
     {
         "pff_variable": "iran",
-        "acs_variable": [
+        "census_variable": [
             "B05006_060"
         ],
         "domain": "social",
@@ -10582,7 +10595,7 @@
     },
     {
         "pff_variable": "famchu18",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0003"
         ],
         "domain": "social",
@@ -10595,7 +10608,7 @@
     },
     {
         "pff_variable": "mexico",
-        "acs_variable": [
+        "census_variable": [
             "B05006_139"
         ],
         "domain": "social",
@@ -10608,7 +10621,7 @@
     },
     {
         "pff_variable": "italian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_051"
         ],
         "domain": "social",
@@ -10621,7 +10634,7 @@
     },
     {
         "pff_variable": "ausnzsbr",
-        "acs_variable": [
+        "census_variable": [
             "B05006_118"
         ],
         "domain": "social",
@@ -10634,7 +10647,7 @@
     },
     {
         "pff_variable": "ea_lthsgr",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0059",
             "DP02_0060"
         ],
@@ -10648,7 +10661,7 @@
     },
     {
         "pff_variable": "eurnec",
-        "acs_variable": [
+        "census_variable": [
             "B05006_046"
         ],
         "domain": "social",
@@ -10661,7 +10674,7 @@
     },
     {
         "pff_variable": "france",
-        "acs_variable": [
+        "census_variable": [
             "B05006_016"
         ],
         "domain": "social",
@@ -10674,7 +10687,7 @@
     },
     {
         "pff_variable": "cvnid_ild",
-        "acs_variable": [
+        "census_variable": [
             "S1810_C02_063"
         ],
         "domain": "social",
@@ -10687,7 +10700,7 @@
     },
     {
         "pff_variable": "spain",
-        "acs_variable": [
+        "census_variable": [
             "B05006_026"
         ],
         "domain": "social",
@@ -10700,7 +10713,7 @@
     },
     {
         "pff_variable": "hhpop1",
-        "acs_variable": [
+        "census_variable": [
             "B11002_001"
         ],
         "domain": "social",
@@ -10713,7 +10726,7 @@
     },
     {
         "pff_variable": "rshphhldr",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0018"
         ],
         "domain": "social",
@@ -10726,7 +10739,7 @@
     },
     {
         "pff_variable": "lebanese",
-        "acs_variable": [
+        "census_variable": [
             "B04006_010"
         ],
         "domain": "social",
@@ -10739,7 +10752,7 @@
     },
     {
         "pff_variable": "turkish",
-        "acs_variable": [
+        "census_variable": [
             "B04006_091"
         ],
         "domain": "social",
@@ -10752,7 +10765,7 @@
     },
     {
         "pff_variable": "amricas",
-        "acs_variable": [
+        "census_variable": [
             "B05006_123"
         ],
         "domain": "social",
@@ -10765,7 +10778,7 @@
     },
     {
         "pff_variable": "estonian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_037"
         ],
         "domain": "social",
@@ -10778,7 +10791,7 @@
     },
     {
         "pff_variable": "afrnec",
-        "acs_variable": [
+        "census_variable": [
             "B05006_116"
         ],
         "domain": "social",
@@ -10791,7 +10804,7 @@
     },
     {
         "pff_variable": "rshp_othr",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0021"
         ],
         "domain": "social",
@@ -10804,7 +10817,7 @@
     },
     {
         "pff_variable": "austria",
-        "acs_variable": [
+        "census_variable": [
             "B05006_014"
         ],
         "domain": "social",
@@ -10817,7 +10830,7 @@
     },
     {
         "pff_variable": "canada",
-        "acs_variable": [
+        "census_variable": [
             "B05006_161"
         ],
         "domain": "social",
@@ -10830,7 +10843,7 @@
     },
     {
         "pff_variable": "ms_mdvcd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0029"
         ],
         "domain": "social",
@@ -10843,7 +10856,7 @@
     },
     {
         "pff_variable": "ms_fdvcd",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0035"
         ],
         "domain": "social",
@@ -10856,7 +10869,7 @@
     },
     {
         "pff_variable": "cuba",
-        "acs_variable": [
+        "census_variable": [
             "B05006_128"
         ],
         "domain": "social",
@@ -10869,7 +10882,7 @@
     },
     {
         "pff_variable": "yemen",
-        "acs_variable": [
+        "census_variable": [
             "B05006_086"
         ],
         "domain": "social",
@@ -10882,7 +10895,7 @@
     },
     {
         "pff_variable": "eur",
-        "acs_variable": [
+        "census_variable": [
             "B05006_002"
         ],
         "domain": "social",
@@ -10895,7 +10908,7 @@
     },
     {
         "pff_variable": "se_kndgtn",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0054"
         ],
         "domain": "social",
@@ -10908,7 +10921,7 @@
     },
     {
         "pff_variable": "fam3",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0002"
         ],
         "domain": "social",
@@ -10921,7 +10934,7 @@
     },
     {
         "pff_variable": "guatmala",
-        "acs_variable": [
+        "census_variable": [
             "B05006_143"
         ],
         "domain": "social",
@@ -10934,7 +10947,7 @@
     },
     {
         "pff_variable": "pop1pl",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0078"
         ],
         "domain": "social",
@@ -10947,7 +10960,7 @@
     },
     {
         "pff_variable": "hh4",
-        "acs_variable": [
+        "census_variable": [
             "DP02_0001"
         ],
         "domain": "social",
@@ -10960,7 +10973,7 @@
     },
     {
         "pff_variable": "philipns",
-        "acs_variable": [
+        "census_variable": [
             "B05006_073"
         ],
         "domain": "social",
@@ -10973,7 +10986,7 @@
     },
     {
         "pff_variable": "safrican",
-        "acs_variable": [
+        "census_variable": [
             "B04006_083"
         ],
         "domain": "social",
@@ -10986,7 +10999,7 @@
     },
     {
         "pff_variable": "hgrian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_046"
         ],
         "domain": "social",
@@ -10999,7 +11012,7 @@
     },
     {
         "pff_variable": "austrian",
-        "acs_variable": [
+        "census_variable": [
             "B04006_019"
         ],
         "domain": "social",
@@ -11012,7 +11025,7 @@
     },
     {
         "pff_variable": "sthafrca",
-        "acs_variable": [
+        "census_variable": [
             "B05006_107"
         ],
         "domain": "social",
@@ -11025,7 +11038,7 @@
     },
     {
         "pff_variable": "saudiar",
-        "acs_variable": [
+        "census_variable": [
             "B05006_084"
         ],
         "domain": "social",
@@ -11038,7 +11051,7 @@
     },
     {
         "pff_variable": "nam",
-        "acs_variable": [
+        "census_variable": [
             "B05006_160"
         ],
         "domain": "social",
@@ -11051,7 +11064,7 @@
     },
     {
         "pff_variable": "slovene",
-        "acs_variable": [
+        "census_variable": [
             "B04006_071"
         ],
         "domain": "social",
@@ -11064,7 +11077,7 @@
     },
     {
         "pff_variable": "lebanon",
-        "acs_variable": [
+        "census_variable": [
             "B05006_083"
         ],
         "domain": "social",
@@ -11077,7 +11090,7 @@
     },
     {
         "pff_variable": "bermudan",
-        "acs_variable": [
+        "census_variable": [
             "B04006_098"
         ],
         "domain": "social",
@@ -11090,7 +11103,7 @@
     },
     {
         "pff_variable": "serbia",
-        "acs_variable": [
+        "census_variable": [
             "B05006_044"
         ],
         "domain": "social",
@@ -11103,7 +11116,7 @@
     },
     {
         "pff_variable": "pop",
-        "acs_variable": [
+        "census_variable": [
             "B01001_001"
         ],
         "domain": "demographics",
@@ -11116,7 +11129,7 @@
     },
     {
         "pff_variable": "pop25t29",
-        "acs_variable": [
+        "census_variable": [
             "B01001_035",
             "B01001_011"
         ],
@@ -11130,7 +11143,7 @@
     },
     {
         "pff_variable": "pop40t44",
-        "acs_variable": [
+        "census_variable": [
             "B01001_014",
             "B01001_038"
         ],
@@ -11144,7 +11157,7 @@
     },
     {
         "pff_variable": "fpop0t5",
-        "acs_variable": [
+        "census_variable": [
             "B01001_027"
         ],
         "domain": "demographics",
@@ -11157,7 +11170,7 @@
     },
     {
         "pff_variable": "fem",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0003"
         ],
         "domain": "demographics",
@@ -11170,7 +11183,7 @@
     },
     {
         "pff_variable": "asnvtn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_022"
         ],
         "domain": "demographics",
@@ -11183,7 +11196,7 @@
     },
     {
         "pff_variable": "mdpop50t54",
-        "acs_variable": [
+        "census_variable": [
             "B01001_016",
             "B01001_040"
         ],
@@ -11200,7 +11213,7 @@
     },
     {
         "pff_variable": "hspsam",
-        "acs_variable": [
+        "census_variable": [
             "B03001_016"
         ],
         "domain": "demographics",
@@ -11213,7 +11226,7 @@
     },
     {
         "pff_variable": "mpop35t39",
-        "acs_variable": [
+        "census_variable": [
             "B01001_013"
         ],
         "domain": "demographics",
@@ -11226,7 +11239,7 @@
     },
     {
         "pff_variable": "hspspnsh",
-        "acs_variable": [
+        "census_variable": [
             "B03001_029"
         ],
         "domain": "demographics",
@@ -11239,7 +11252,7 @@
     },
     {
         "pff_variable": "asnbhutn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_004"
         ],
         "domain": "demographics",
@@ -11252,7 +11265,7 @@
     },
     {
         "pff_variable": "pop85pl",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0017"
         ],
         "domain": "demographics",
@@ -11265,7 +11278,7 @@
     },
     {
         "pff_variable": "pop55t59",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0013"
         ],
         "domain": "demographics",
@@ -11278,7 +11291,7 @@
     },
     {
         "pff_variable": "mdpop35t39",
-        "acs_variable": [
+        "census_variable": [
             "B01001_013",
             "B01001_037"
         ],
@@ -11295,7 +11308,7 @@
     },
     {
         "pff_variable": "mdpop67t69",
-        "acs_variable": [
+        "census_variable": [
             "B01001_045",
             "B01001_021"
         ],
@@ -11312,7 +11325,7 @@
     },
     {
         "pff_variable": "mdpop18t19",
-        "acs_variable": [
+        "census_variable": [
             "B01001_031",
             "B01001_007"
         ],
@@ -11329,7 +11342,7 @@
     },
     {
         "pff_variable": "asnkor",
-        "acs_variable": [
+        "census_variable": [
             "B02015_012"
         ],
         "domain": "demographics",
@@ -11342,7 +11355,7 @@
     },
     {
         "pff_variable": "mpop5t9",
-        "acs_variable": [
+        "census_variable": [
             "B01001_004"
         ],
         "domain": "demographics",
@@ -11355,7 +11368,7 @@
     },
     {
         "pff_variable": "asnhmng",
-        "acs_variable": [
+        "census_variable": [
             "B02015_009"
         ],
         "domain": "demographics",
@@ -11368,7 +11381,7 @@
     },
     {
         "pff_variable": "mdpop20",
-        "acs_variable": [
+        "census_variable": [
             "B01001_032",
             "B01001_008"
         ],
@@ -11385,7 +11398,7 @@
     },
     {
         "pff_variable": "asneast",
-        "acs_variable": [
+        "census_variable": [
             "B02015_015",
             "B02015_017",
             "B02015_011",
@@ -11403,7 +11416,7 @@
     },
     {
         "pff_variable": "pop_1",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0001"
         ],
         "domain": "demographics",
@@ -11416,7 +11429,7 @@
     },
     {
         "pff_variable": "mpop15t19",
-        "acs_variable": [
+        "census_variable": [
             "B01001_006",
             "B01001_007"
         ],
@@ -11430,7 +11443,7 @@
     },
     {
         "pff_variable": "pop65pl2",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0029"
         ],
         "domain": "demographics",
@@ -11443,7 +11456,7 @@
     },
     {
         "pff_variable": "fpop80t84",
-        "acs_variable": [
+        "census_variable": [
             "B01001_048"
         ],
         "domain": "demographics",
@@ -11456,7 +11469,7 @@
     },
     {
         "pff_variable": "pop20t24",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0009"
         ],
         "domain": "demographics",
@@ -11469,7 +11482,7 @@
     },
     {
         "pff_variable": "pop70t74",
-        "acs_variable": [
+        "census_variable": [
             "B01001_022",
             "B01001_046"
         ],
@@ -11483,7 +11496,7 @@
     },
     {
         "pff_variable": "fpop70t74",
-        "acs_variable": [
+        "census_variable": [
             "B01001_046"
         ],
         "domain": "demographics",
@@ -11496,7 +11509,7 @@
     },
     {
         "pff_variable": "hsp2",
-        "acs_variable": [
+        "census_variable": [
             "B03001_003"
         ],
         "domain": "demographics",
@@ -11509,7 +11522,7 @@
     },
     {
         "pff_variable": "mpop75t79",
-        "acs_variable": [
+        "census_variable": [
             "B01001_023"
         ],
         "domain": "demographics",
@@ -11522,7 +11535,7 @@
     },
     {
         "pff_variable": "mdage",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0018"
         ],
         "domain": "demographics",
@@ -11535,7 +11548,7 @@
     },
     {
         "pff_variable": "mdpop65t66",
-        "acs_variable": [
+        "census_variable": [
             "B01001_044",
             "B01001_020"
         ],
@@ -11552,7 +11565,7 @@
     },
     {
         "pff_variable": "pop65plf",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0031"
         ],
         "domain": "demographics",
@@ -11565,7 +11578,7 @@
     },
     {
         "pff_variable": "popu5",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0005"
         ],
         "domain": "demographics",
@@ -11578,7 +11591,7 @@
     },
     {
         "pff_variable": "nhsp",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0076"
         ],
         "domain": "demographics",
@@ -11591,7 +11604,7 @@
     },
     {
         "pff_variable": "fpop20t24",
-        "acs_variable": [
+        "census_variable": [
             "B01001_032",
             "B01001_034",
             "B01001_033"
@@ -11606,7 +11619,7 @@
     },
     {
         "pff_variable": "asnoasn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_023",
             "B02015_024"
         ],
@@ -11620,7 +11633,7 @@
     },
     {
         "pff_variable": "hspperu",
-        "acs_variable": [
+        "census_variable": [
             "B03001_023"
         ],
         "domain": "demographics",
@@ -11633,7 +11646,7 @@
     },
     {
         "pff_variable": "hsppr",
-        "acs_variable": [
+        "census_variable": [
             "B03001_005"
         ],
         "domain": "demographics",
@@ -11646,7 +11659,7 @@
     },
     {
         "pff_variable": "mpop55t59",
-        "acs_variable": [
+        "census_variable": [
             "B01001_017"
         ],
         "domain": "demographics",
@@ -11659,7 +11672,7 @@
     },
     {
         "pff_variable": "mdpop21",
-        "acs_variable": [
+        "census_variable": [
             "B01001_009",
             "B01001_033"
         ],
@@ -11676,7 +11689,7 @@
     },
     {
         "pff_variable": "fpop60t64",
-        "acs_variable": [
+        "census_variable": [
             "B01001_042",
             "B01001_043"
         ],
@@ -11690,7 +11703,7 @@
     },
     {
         "pff_variable": "asnind",
-        "acs_variable": [
+        "census_variable": [
             "B02015_002"
         ],
         "domain": "demographics",
@@ -11703,7 +11716,7 @@
     },
     {
         "pff_variable": "hspcol",
-        "acs_variable": [
+        "census_variable": [
             "B03001_020"
         ],
         "domain": "demographics",
@@ -11716,7 +11729,7 @@
     },
     {
         "pff_variable": "mpop85pl",
-        "acs_variable": [
+        "census_variable": [
             "B01001_025"
         ],
         "domain": "demographics",
@@ -11729,7 +11742,7 @@
     },
     {
         "pff_variable": "mdpop30t34",
-        "acs_variable": [
+        "census_variable": [
             "B01001_036",
             "B01001_012"
         ],
@@ -11746,7 +11759,7 @@
     },
     {
         "pff_variable": "asnsouth",
-        "acs_variable": [
+        "census_variable": [
             "B02015_018",
             "B02015_019",
             "B02015_002",
@@ -11764,7 +11777,7 @@
     },
     {
         "pff_variable": "mpop25t29",
-        "acs_variable": [
+        "census_variable": [
             "B01001_011"
         ],
         "domain": "demographics",
@@ -11777,7 +11790,7 @@
     },
     {
         "pff_variable": "hspvnz",
-        "acs_variable": [
+        "census_variable": [
             "B03001_025"
         ],
         "domain": "demographics",
@@ -11790,7 +11803,7 @@
     },
     {
         "pff_variable": "mdpop_3",
-        "acs_variable": [
+        "census_variable": [
             "B01001_001"
         ],
         "domain": "demographics",
@@ -11803,7 +11816,7 @@
     },
     {
         "pff_variable": "popu18f",
-        "acs_variable": [
+        "census_variable": [
             "B05003_014"
         ],
         "domain": "demographics",
@@ -11816,7 +11829,7 @@
     },
     {
         "pff_variable": "hspec",
-        "acs_variable": [
+        "census_variable": [
             "B03001_021"
         ],
         "domain": "demographics",
@@ -11829,7 +11842,7 @@
     },
     {
         "pff_variable": "fpop25t29",
-        "acs_variable": [
+        "census_variable": [
             "B01001_035"
         ],
         "domain": "demographics",
@@ -11842,7 +11855,7 @@
     },
     {
         "pff_variable": "asnmgol",
-        "acs_variable": [
+        "census_variable": [
             "B02015_015"
         ],
         "domain": "demographics",
@@ -11855,7 +11868,7 @@
     },
     {
         "pff_variable": "mpop70t74",
-        "acs_variable": [
+        "census_variable": [
             "B01001_022"
         ],
         "domain": "demographics",
@@ -11868,7 +11881,7 @@
     },
     {
         "pff_variable": "fpop35t39",
-        "acs_variable": [
+        "census_variable": [
             "B01001_037"
         ],
         "domain": "demographics",
@@ -11881,7 +11894,7 @@
     },
     {
         "pff_variable": "fpop85pl",
-        "acs_variable": [
+        "census_variable": [
             "B01001_049"
         ],
         "domain": "demographics",
@@ -11894,7 +11907,7 @@
     },
     {
         "pff_variable": "nhpinh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0081"
         ],
         "domain": "demographics",
@@ -11907,7 +11920,7 @@
     },
     {
         "pff_variable": "hsposam",
-        "acs_variable": [
+        "census_variable": [
             "B03001_026"
         ],
         "domain": "demographics",
@@ -11920,7 +11933,7 @@
     },
     {
         "pff_variable": "mpop80t84",
-        "acs_variable": [
+        "census_variable": [
             "B01001_024"
         ],
         "domain": "demographics",
@@ -11933,7 +11946,7 @@
     },
     {
         "pff_variable": "mdpop62t64",
-        "acs_variable": [
+        "census_variable": [
             "B01001_019",
             "B01001_043"
         ],
@@ -11950,7 +11963,7 @@
     },
     {
         "pff_variable": "mpop0t5",
-        "acs_variable": [
+        "census_variable": [
             "B01001_003"
         ],
         "domain": "demographics",
@@ -11963,7 +11976,7 @@
     },
     {
         "pff_variable": "asnsril",
-        "acs_variable": [
+        "census_variable": [
             "B02015_019"
         ],
         "domain": "demographics",
@@ -11976,7 +11989,7 @@
     },
     {
         "pff_variable": "pop60t64",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0014"
         ],
         "domain": "demographics",
@@ -11989,7 +12002,7 @@
     },
     {
         "pff_variable": "pop50t54",
-        "acs_variable": [
+        "census_variable": [
             "B01001_016",
             "B01001_040"
         ],
@@ -12003,7 +12016,7 @@
     },
     {
         "pff_variable": "fpop55t59",
-        "acs_variable": [
+        "census_variable": [
             "B01001_041"
         ],
         "domain": "demographics",
@@ -12016,7 +12029,7 @@
     },
     {
         "pff_variable": "pop80t84",
-        "acs_variable": [
+        "census_variable": [
             "B01001_048",
             "B01001_024"
         ],
@@ -12030,7 +12043,7 @@
     },
     {
         "pff_variable": "hspdom",
-        "acs_variable": [
+        "census_variable": [
             "B03001_007"
         ],
         "domain": "demographics",
@@ -12043,7 +12056,7 @@
     },
     {
         "pff_variable": "pop15t19",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0008"
         ],
         "domain": "demographics",
@@ -12056,7 +12069,7 @@
     },
     {
         "pff_variable": "pop65pl1",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0024"
         ],
         "domain": "demographics",
@@ -12069,7 +12082,7 @@
     },
     {
         "pff_variable": "mdpop85pl",
-        "acs_variable": [
+        "census_variable": [
             "B01001_049",
             "B01001_025"
         ],
@@ -12086,7 +12099,7 @@
     },
     {
         "pff_variable": "hspurg",
-        "acs_variable": [
+        "census_variable": [
             "B03001_024"
         ],
         "domain": "demographics",
@@ -12099,7 +12112,7 @@
     },
     {
         "pff_variable": "popu18m",
-        "acs_variable": [
+        "census_variable": [
             "B05003_003"
         ],
         "domain": "demographics",
@@ -12112,7 +12125,7 @@
     },
     {
         "pff_variable": "pop35t39",
-        "acs_variable": [
+        "census_variable": [
             "B01001_013",
             "B01001_037"
         ],
@@ -12126,7 +12139,7 @@
     },
     {
         "pff_variable": "pop75t79",
-        "acs_variable": [
+        "census_variable": [
             "B01001_047",
             "B01001_023"
         ],
@@ -12140,7 +12153,7 @@
     },
     {
         "pff_variable": "asnnepal",
-        "acs_variable": [
+        "census_variable": [
             "B02015_016"
         ],
         "domain": "demographics",
@@ -12153,7 +12166,7 @@
     },
     {
         "pff_variable": "hspchl",
-        "acs_variable": [
+        "census_variable": [
             "B03001_019"
         ],
         "domain": "demographics",
@@ -12166,7 +12179,7 @@
     },
     {
         "pff_variable": "hspme",
-        "acs_variable": [
+        "census_variable": [
             "B03001_004"
         ],
         "domain": "demographics",
@@ -12179,7 +12192,7 @@
     },
     {
         "pff_variable": "mpop20t24",
-        "acs_variable": [
+        "census_variable": [
             "B01001_009",
             "B01001_008",
             "B01001_010"
@@ -12194,7 +12207,7 @@
     },
     {
         "pff_variable": "asnseast",
-        "acs_variable": [
+        "census_variable": [
             "B02015_014",
             "B02015_021",
             "B02015_013",
@@ -12215,7 +12228,7 @@
     },
     {
         "pff_variable": "mdpop75t79",
-        "acs_variable": [
+        "census_variable": [
             "B01001_047",
             "B01001_023"
         ],
@@ -12232,7 +12245,7 @@
     },
     {
         "pff_variable": "othnh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0082"
         ],
         "domain": "demographics",
@@ -12245,7 +12258,7 @@
     },
     {
         "pff_variable": "hspcr",
-        "acs_variable": [
+        "census_variable": [
             "B03001_009"
         ],
         "domain": "demographics",
@@ -12258,7 +12271,7 @@
     },
     {
         "pff_variable": "asncmb",
-        "acs_variable": [
+        "census_variable": [
             "B02015_006"
         ],
         "domain": "demographics",
@@ -12271,7 +12284,7 @@
     },
     {
         "pff_variable": "hspalloth",
-        "acs_variable": [
+        "census_variable": [
             "B03001_031"
         ],
         "domain": "demographics",
@@ -12284,7 +12297,7 @@
     },
     {
         "pff_variable": "fpop40t44",
-        "acs_variable": [
+        "census_variable": [
             "B01001_038"
         ],
         "domain": "demographics",
@@ -12297,7 +12310,7 @@
     },
     {
         "pff_variable": "hsppan",
-        "acs_variable": [
+        "census_variable": [
             "B03001_013"
         ],
         "domain": "demographics",
@@ -12310,7 +12323,7 @@
     },
     {
         "pff_variable": "pop10t14",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0007"
         ],
         "domain": "demographics",
@@ -12323,7 +12336,7 @@
     },
     {
         "pff_variable": "asnpak",
-        "acs_variable": [
+        "census_variable": [
             "B02015_018"
         ],
         "domain": "demographics",
@@ -12336,7 +12349,7 @@
     },
     {
         "pff_variable": "fpop65t69",
-        "acs_variable": [
+        "census_variable": [
             "B01001_044",
             "B01001_045"
         ],
@@ -12350,7 +12363,7 @@
     },
     {
         "pff_variable": "mdpop10t14",
-        "acs_variable": [
+        "census_variable": [
             "B01001_005",
             "B01001_029"
         ],
@@ -12367,7 +12380,7 @@
     },
     {
         "pff_variable": "wtnh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0077"
         ],
         "domain": "demographics",
@@ -12380,7 +12393,7 @@
     },
     {
         "pff_variable": "asnburm",
-        "acs_variable": [
+        "census_variable": [
             "B02015_005"
         ],
         "domain": "demographics",
@@ -12393,7 +12406,7 @@
     },
     {
         "pff_variable": "asnflp",
-        "acs_variable": [
+        "census_variable": [
             "B02015_008"
         ],
         "domain": "demographics",
@@ -12406,7 +12419,7 @@
     },
     {
         "pff_variable": "mdpop70t74",
-        "acs_variable": [
+        "census_variable": [
             "B01001_022",
             "B01001_046"
         ],
@@ -12423,7 +12436,7 @@
     },
     {
         "pff_variable": "mdpop40t44",
-        "acs_variable": [
+        "census_variable": [
             "B01001_014",
             "B01001_038"
         ],
@@ -12440,7 +12453,7 @@
     },
     {
         "pff_variable": "hsp1",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0071"
         ],
         "domain": "demographics",
@@ -12453,7 +12466,7 @@
     },
     {
         "pff_variable": "hsphnd",
-        "acs_variable": [
+        "census_variable": [
             "B03001_011"
         ],
         "domain": "demographics",
@@ -12466,7 +12479,7 @@
     },
     {
         "pff_variable": "pop65t69",
-        "acs_variable": [
+        "census_variable": [
             "B01001_044",
             "B01001_045",
             "B01001_021",
@@ -12482,7 +12495,7 @@
     },
     {
         "pff_variable": "asnindnsn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_010"
         ],
         "domain": "demographics",
@@ -12495,7 +12508,7 @@
     },
     {
         "pff_variable": "fpop30t34",
-        "acs_variable": [
+        "census_variable": [
             "B01001_036"
         ],
         "domain": "demographics",
@@ -12508,7 +12521,7 @@
     },
     {
         "pff_variable": "fpop75t79",
-        "acs_variable": [
+        "census_variable": [
             "B01001_047"
         ],
         "domain": "demographics",
@@ -12521,7 +12534,7 @@
     },
     {
         "pff_variable": "popu18_2",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0019"
         ],
         "domain": "demographics",
@@ -12534,7 +12547,7 @@
     },
     {
         "pff_variable": "mdpop80t84",
-        "acs_variable": [
+        "census_variable": [
             "B01001_048",
             "B01001_024"
         ],
@@ -12551,7 +12564,7 @@
     },
     {
         "pff_variable": "fpop50t54",
-        "acs_variable": [
+        "census_variable": [
             "B01001_040"
         ],
         "domain": "demographics",
@@ -12564,7 +12577,7 @@
     },
     {
         "pff_variable": "mdpop55t59",
-        "acs_variable": [
+        "census_variable": [
             "B01001_041",
             "B01001_017"
         ],
@@ -12581,7 +12594,7 @@
     },
     {
         "pff_variable": "hspguatm",
-        "acs_variable": [
+        "census_variable": [
             "B03001_010"
         ],
         "domain": "demographics",
@@ -12594,7 +12607,7 @@
     },
     {
         "pff_variable": "fpop45t49",
-        "acs_variable": [
+        "census_variable": [
             "B01001_039"
         ],
         "domain": "demographics",
@@ -12607,7 +12620,7 @@
     },
     {
         "pff_variable": "hspcub",
-        "acs_variable": [
+        "census_variable": [
             "B03001_006"
         ],
         "domain": "demographics",
@@ -12620,7 +12633,7 @@
     },
     {
         "pff_variable": "hspcam",
-        "acs_variable": [
+        "census_variable": [
             "B03001_008"
         ],
         "domain": "demographics",
@@ -12633,7 +12646,7 @@
     },
     {
         "pff_variable": "hspspnrd",
-        "acs_variable": [
+        "census_variable": [
             "B03001_028"
         ],
         "domain": "demographics",
@@ -12646,7 +12659,7 @@
     },
     {
         "pff_variable": "hspsalv",
-        "acs_variable": [
+        "census_variable": [
             "B03001_014"
         ],
         "domain": "demographics",
@@ -12659,7 +12672,7 @@
     },
     {
         "pff_variable": "mpop50t54",
-        "acs_variable": [
+        "census_variable": [
             "B01001_016"
         ],
         "domain": "demographics",
@@ -12672,7 +12685,7 @@
     },
     {
         "pff_variable": "asnjpn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_011"
         ],
         "domain": "demographics",
@@ -12685,7 +12698,7 @@
     },
     {
         "pff_variable": "asnthai",
-        "acs_variable": [
+        "census_variable": [
             "B02015_021"
         ],
         "domain": "demographics",
@@ -12698,7 +12711,7 @@
     },
     {
         "pff_variable": "asn2pl",
-        "acs_variable": [
+        "census_variable": [
             "B02015_025"
         ],
         "domain": "demographics",
@@ -12711,7 +12724,7 @@
     },
     {
         "pff_variable": "asntwn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_020"
         ],
         "domain": "demographics",
@@ -12724,7 +12737,7 @@
     },
     {
         "pff_variable": "asnbng",
-        "acs_variable": [
+        "census_variable": [
             "B02015_003"
         ],
         "domain": "demographics",
@@ -12737,7 +12750,7 @@
     },
     {
         "pff_variable": "fpop15t19",
-        "acs_variable": [
+        "census_variable": [
             "B01001_031",
             "B01001_030"
         ],
@@ -12751,7 +12764,7 @@
     },
     {
         "pff_variable": "hspspam",
-        "acs_variable": [
+        "census_variable": [
             "B03001_030"
         ],
         "domain": "demographics",
@@ -12764,7 +12777,7 @@
     },
     {
         "pff_variable": "asnlao",
-        "acs_variable": [
+        "census_variable": [
             "B02015_013"
         ],
         "domain": "demographics",
@@ -12777,7 +12790,7 @@
     },
     {
         "pff_variable": "aiannh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0079"
         ],
         "domain": "demographics",
@@ -12790,7 +12803,7 @@
     },
     {
         "pff_variable": "hspprg",
-        "acs_variable": [
+        "census_variable": [
             "B03001_022"
         ],
         "domain": "demographics",
@@ -12803,7 +12816,7 @@
     },
     {
         "pff_variable": "mdpop0t4",
-        "acs_variable": [
+        "census_variable": [
             "B01001_027",
             "B01001_003"
         ],
@@ -12820,7 +12833,7 @@
     },
     {
         "pff_variable": "popu181",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0019"
         ],
         "domain": "demographics",
@@ -12833,7 +12846,7 @@
     },
     {
         "pff_variable": "hspocam",
-        "acs_variable": [
+        "census_variable": [
             "B03001_015"
         ],
         "domain": "demographics",
@@ -12846,7 +12859,7 @@
     },
     {
         "pff_variable": "mpop10t14",
-        "acs_variable": [
+        "census_variable": [
             "B01001_005"
         ],
         "domain": "demographics",
@@ -12859,7 +12872,7 @@
     },
     {
         "pff_variable": "mpop45t49",
-        "acs_variable": [
+        "census_variable": [
             "B01001_015"
         ],
         "domain": "demographics",
@@ -12872,7 +12885,7 @@
     },
     {
         "pff_variable": "asnmalsn",
-        "acs_variable": [
+        "census_variable": [
             "B02015_014"
         ],
         "domain": "demographics",
@@ -12885,7 +12898,7 @@
     },
     {
         "pff_variable": "pop_2",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0070"
         ],
         "domain": "demographics",
@@ -12898,7 +12911,7 @@
     },
     {
         "pff_variable": "mpop30t34",
-        "acs_variable": [
+        "census_variable": [
             "B01001_012"
         ],
         "domain": "demographics",
@@ -12911,7 +12924,7 @@
     },
     {
         "pff_variable": "mpop60t64",
-        "acs_variable": [
+        "census_variable": [
             "B01001_019",
             "B01001_018"
         ],
@@ -12925,7 +12938,7 @@
     },
     {
         "pff_variable": "pop30t34",
-        "acs_variable": [
+        "census_variable": [
             "B01001_036",
             "B01001_012"
         ],
@@ -12939,7 +12952,7 @@
     },
     {
         "pff_variable": "mdpop5t9",
-        "acs_variable": [
+        "census_variable": [
             "B01001_028",
             "B01001_004"
         ],
@@ -12956,7 +12969,7 @@
     },
     {
         "pff_variable": "mdpop60t61",
-        "acs_variable": [
+        "census_variable": [
             "B01001_042",
             "B01001_018"
         ],
@@ -12973,7 +12986,7 @@
     },
     {
         "pff_variable": "asnchinot",
-        "acs_variable": [
+        "census_variable": [
             "B02015_007"
         ],
         "domain": "demographics",
@@ -12986,7 +12999,7 @@
     },
     {
         "pff_variable": "mpop40t44",
-        "acs_variable": [
+        "census_variable": [
             "B01001_014"
         ],
         "domain": "demographics",
@@ -12999,7 +13012,7 @@
     },
     {
         "pff_variable": "mdpop22t24",
-        "acs_variable": [
+        "census_variable": [
             "B01001_010",
             "B01001_034"
         ],
@@ -13016,7 +13029,7 @@
     },
     {
         "pff_variable": "blnh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0078"
         ],
         "domain": "demographics",
@@ -13029,7 +13042,7 @@
     },
     {
         "pff_variable": "asnnh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0080"
         ],
         "domain": "demographics",
@@ -13042,7 +13055,7 @@
     },
     {
         "pff_variable": "mdpop15t17",
-        "acs_variable": [
+        "census_variable": [
             "B01001_006",
             "B01001_030"
         ],
@@ -13059,7 +13072,7 @@
     },
     {
         "pff_variable": "hspbol",
-        "acs_variable": [
+        "census_variable": [
             "B03001_018"
         ],
         "domain": "demographics",
@@ -13072,7 +13085,7 @@
     },
     {
         "pff_variable": "rc2plnh",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0083"
         ],
         "domain": "demographics",
@@ -13085,7 +13098,7 @@
     },
     {
         "pff_variable": "pop45t49",
-        "acs_variable": [
+        "census_variable": [
             "B01001_015",
             "B01001_039"
         ],
@@ -13099,7 +13112,7 @@
     },
     {
         "pff_variable": "pop65plm",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0030"
         ],
         "domain": "demographics",
@@ -13112,7 +13125,7 @@
     },
     {
         "pff_variable": "pop5t9",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0006"
         ],
         "domain": "demographics",
@@ -13125,7 +13138,7 @@
     },
     {
         "pff_variable": "hspnic",
-        "acs_variable": [
+        "census_variable": [
             "B03001_012"
         ],
         "domain": "demographics",
@@ -13138,7 +13151,7 @@
     },
     {
         "pff_variable": "hsparg",
-        "acs_variable": [
+        "census_variable": [
             "B03001_017"
         ],
         "domain": "demographics",
@@ -13151,7 +13164,7 @@
     },
     {
         "pff_variable": "hspoth",
-        "acs_variable": [
+        "census_variable": [
             "B03001_027"
         ],
         "domain": "demographics",
@@ -13164,7 +13177,7 @@
     },
     {
         "pff_variable": "male",
-        "acs_variable": [
+        "census_variable": [
             "DP05_0002"
         ],
         "domain": "demographics",
@@ -13177,7 +13190,7 @@
     },
     {
         "pff_variable": "fpop10t14",
-        "acs_variable": [
+        "census_variable": [
             "B01001_029"
         ],
         "domain": "demographics",
@@ -13190,7 +13203,7 @@
     },
     {
         "pff_variable": "mpop65t69",
-        "acs_variable": [
+        "census_variable": [
             "B01001_021",
             "B01001_020"
         ],
@@ -13204,7 +13217,7 @@
     },
     {
         "pff_variable": "mdpop25t29",
-        "acs_variable": [
+        "census_variable": [
             "B01001_035",
             "B01001_011"
         ],
@@ -13221,7 +13234,7 @@
     },
     {
         "pff_variable": "mdpop45t49",
-        "acs_variable": [
+        "census_variable": [
             "B01001_015",
             "B01001_039"
         ],
@@ -13238,7 +13251,7 @@
     },
     {
         "pff_variable": "fpop5t9",
-        "acs_variable": [
+        "census_variable": [
             "B01001_028"
         ],
         "domain": "demographics",
@@ -13251,7 +13264,7 @@
     },
     {
         "pff_variable": "asnokinw",
-        "acs_variable": [
+        "census_variable": [
             "B02015_017"
         ],
         "domain": "demographics",
@@ -13264,7 +13277,7 @@
     },
     {
         "pff_variable": "asn1rc",
-        "acs_variable": [
+        "census_variable": [
             "B02015_001"
         ],
         "domain": "demographics",

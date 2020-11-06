@@ -132,6 +132,8 @@ class Pff:
             source = self.c.acs5dp
         elif v.source == "subject":
             source = self.c.acs5st
+        elif v.source == "decennial":
+            source = self.c.sf1
         else:
             source = self.c.acs5
 
@@ -142,8 +144,12 @@ class Pff:
             df = self.aggregate_horizontal(source, v, "tract")
             df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
         if geotype == 'cd_fp_500':
-            df = self.aggregate_horizontal(source, v, "block group")
-            df = self.aggregate_vertical(df, from_geotype="block group", to_geotype="cd_fp_500")
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(df, from_geotype="block", to_geotype="cd_fp_500")
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(df, from_geotype="block group", to_geotype="cd_fp_500")
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
             df = self.aggregate_horizontal(source, v, "tract")
@@ -151,14 +157,14 @@ class Pff:
 
     def aggregate_horizontal(self, source, v, geotype) -> pd.DataFrame:
         """
-        this function will aggregate multiple acs_variables into 1 pff_variable
+        this function will aggregate multiple census_variables into 1 pff_variable
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
         # Create Variables
-        E_variables = [i + "E" for i in v.acs_variable]
-        M_variables = [i + "M" for i in v.acs_variable]
-        acs_variables = E_variables + M_variables
-        df = self.download_variable(source, acs_variables, geotype)
+        E_variables = [i + "E" for i in v.census_variable]
+        M_variables = [i + "M" for i in v.census_variable]
+        census_variables = E_variables + M_variables
+        df = self.download_variable(source, census_variables, geotype)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -173,6 +179,10 @@ class Pff:
             df["acs_geoid"] = df["state"] + df["county"]
         elif geotype == "city":
             df["acs_geoid"] = df["state"] + df["place"]
+        elif geotype == "block":
+            df["acs_geoid"] = (
+                df["state"] + df["county"] + df["tract"] + df["block"]
+            )
         elif geotype == "block group":
             df["acs_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block group"]
@@ -191,7 +201,7 @@ class Pff:
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
         """
-        Given a list of acs_variables, and geotype, download data from acs api
+        Given a list of census_variables, and geotype, download data from acs api
         """
         geoqueries = self.get_geoquery(geotype)
         _download = partial(self.download, source=source, variables=variables)
@@ -226,6 +236,12 @@ class Pff:
             ]
         elif geotype == "city":
             return [{"for": "place:51000", "in": f"state:{self.state}",}]
+
+        elif geotype == "block":
+            return [
+                {"for": "block:*", "in": f"state:{self.state} county:{county}",}
+                for county in self.counties
+            ]
 
         elif geotype in "block group":
             return [
