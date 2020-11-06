@@ -52,7 +52,7 @@ def tract_to_nta(df):
 
 def block_group_to_cd_fp500(df):
     """
-    flood plain aggregation for block group data (ACS)
+    500 yr flood plain aggregation for block group data (ACS)
     """
     df = df.merge(
         lookup_geo.loc[
@@ -69,7 +69,7 @@ def block_group_to_cd_fp500(df):
 
 def block_group_to_cd_fp100(df):
     """
-    flood plain aggregation for block group data (ACS)
+    100 yr flood plain aggregation for block group data (ACS)
     """
     df = df.merge(
         lookup_geo.loc[
@@ -86,7 +86,7 @@ def block_group_to_cd_fp100(df):
 
 def block_to_cd_fp500(df):
     """
-    flood plain aggregation for block data (decennial)
+    500 yr flood plain aggregation for block data (decennial)
     """
     df = df.merge(
         lookup_geo.loc[
@@ -103,7 +103,7 @@ def block_to_cd_fp500(df):
 
 def block_to_cd_fp100(df):
     """
-    flood plain aggregation for block data (decennial)
+    100 yr flood plain aggregation for block data (decennial)
     """
     df = df.merge(
         lookup_geo.loc[
