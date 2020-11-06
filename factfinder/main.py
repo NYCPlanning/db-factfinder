@@ -74,23 +74,23 @@ class Pff:
         df = pd.concat(dfs)
         del dfs
 
-        # 3. create a pivot table with acs_geoid as the index, and pff_variable as column names.
+        # 3. create a pivot table with census_geoid as the index, and pff_variable as column names.
         # df_pivoted.e -> the estimation dataframe
         # df_pivoted.m -> the moe dataframe
-        df_pivoted = df.loc[:, ["acs_geoid", "pff_variable", "e", "m"]].pivot(
-            index="acs_geoid", columns="pff_variable", values=["e", "m"]
+        df_pivoted = df.loc[:, ["census_geoid", "pff_variable", "e", "m"]].pivot(
+            index="census_geoid", columns="pff_variable", values=["e", "m"]
         )
 
         # Empty dataframe to store the results
         results = pd.DataFrame()
-        results["acs_geoid"] = df_pivoted.index
+        results["census_geoid"] = df_pivoted.index
         results["pff_variable"] = pff_variable
         results["geotype"] = geotype
 
         # 4. calculate median estimation using get_median
         results["e"] = (
             df_pivoted.e.loc[
-                df_pivoted.e.index == results.acs_geoid, list(ranges.keys())
+                df_pivoted.e.index == results.census_geoid, list(ranges.keys())
             ]
             .apply(lambda row: get_median(ranges, row), axis=1)
             .to_list()
@@ -100,9 +100,9 @@ class Pff:
         # Note that median moe calculation needs the median estimation
         # so we seperated df_pivoted.m out as a seperate dataframe
         m = df_pivoted.m
-        m["e"] = results.loc[m.index == results.acs_geoid, "e"].to_list()
+        m["e"] = results.loc[m.index == results.census_geoid, "e"].to_list()
         results["m"] = (
-            m.loc[m.index == results.acs_geoid, list(ranges.keys()) + ["e"]]
+            m.loc[m.index == results.census_geoid, list(ranges.keys()) + ["e"]]
             .apply(lambda row: get_median_moe(ranges, row, design_factor), axis=1)
             .to_list()
         )
@@ -132,6 +132,8 @@ class Pff:
             source = self.c.acs5dp
         elif v.source == "subject":
             source = self.c.acs5st
+        elif v.source == "decennial":
+            source = self.c.sf1
         else:
             source = self.c.acs5
 
@@ -142,10 +144,38 @@ class Pff:
             df = self.aggregate_horizontal(source, v, "tract")
             df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
         if geotype == "cd_fp_500":
-            df = self.aggregate_horizontal(source, v, "block group")
-            df = self.aggregate_vertical(
-                df, from_geotype="block group", to_geotype="cd_fp_500"
-            )
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block", to_geotype="cd_fp_500"
+                )
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block group", to_geotype="cd_fp_500"
+                )
+        if geotype == "cd_fp_100":
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block", to_geotype="cd_fp_100"
+                )
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block group", to_geotype="cd_fp_100"
+                )
+        if geotype == "cd_park_access":
+            if source == "decennial":
+                df = self.aggregate_horizontal(source, v, "block")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block", to_geotype="cd_park_access"
+                )
+            else:
+                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_vertical(
+                    df, from_geotype="block group", to_geotype="cd_park_access"
+                )
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
             df = self.aggregate_horizontal(source, v, "tract")
@@ -153,33 +183,37 @@ class Pff:
 
     def aggregate_horizontal(self, source, v, geotype) -> pd.DataFrame:
         """
-        this function will aggregate multiple acs_variables into 1 pff_variable
+        this function will aggregate multiple census_variables into 1 pff_variable
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
         # Create Variables
-        E_variables = [i + "E" for i in v.acs_variable]
-        M_variables = [i + "M" for i in v.acs_variable]
-        acs_variables = E_variables + M_variables
-        df = self.download_variable(source, acs_variables, geotype)
+        E_variables = [i + "E" for i in v.census_variable]
+        M_variables = [i + "M" for i in v.census_variable] if source != 'decennial' else []
+        census_variables = E_variables + M_variables
+        df = self.download_variable(source, census_variables, geotype)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
         df["e"] = df[E_variables].sum(axis=1)
-        df["m"] = (df[M_variables] ** 2).sum(axis=1) ** 0.5
+        df["m"] = (df[M_variables] ** 2).sum(axis=1) ** 0.5 if source != 'decennial' else np.nan
 
         # Create geoid
         if geotype == "tract":
-            df["acs_geoid"] = df["state"] + df["county"] + df["tract"]
+            df["census_geoid"] = df["state"] + df["county"] + df["tract"]
         elif geotype == "borough":
-            df["acs_geoid"] = df["state"] + df["county"]
+            df["census_geoid"] = df["state"] + df["county"]
         elif geotype == "city":
-            df["acs_geoid"] = df["state"] + df["place"]
+            df["census_geoid"] = df["state"] + df["place"]
+        elif geotype == "block":
+            df["census_geoid"] = (
+                df["state"] + df["county"] + df["tract"] + df["block"]
+            )
         elif geotype == "block group":
-            df["acs_geoid"] = (
+            df["census_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block group"]
             )
-        return df[["acs_geoid", "pff_variable", "geotype", "e", "m"]]
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     def aggregate_vertical(self, df, from_geotype, to_geotype):
         """
@@ -188,14 +222,24 @@ class Pff:
         """
         if from_geotype == "tract" and to_geotype == "NTA":
             return tract_to_nta(df)
-        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
-            return block_group_to_cd_fp500(df)
         elif from_geotype == "tract" and to_geotype == "cd":
             return tract_to_cd(df)
+        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
+            return block_group_to_cd_fp500(df)
+        elif from_geotype == "block group" and to_geotype == "cd_fp_100":
+            return block_group_to_cd_fp100(df)
+        elif from_geotype == "block group" and to_geotype == "cd_park_access":
+            return block_group_to_cd_park_access(df)
+        elif from_geotype == "block" and to_geotype == "cd_fp_500":
+            return block_to_cd_fp500(df)
+        elif from_geotype == "block" and to_geotype == "cd_fp_100":
+            return block_to_cd_fp100(df)
+        elif from_geotype == "block" and to_geotype == "cd_park_access":
+            return block_to_cd_park_access(df)
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
         """
-        Given a list of acs_variables, and geotype, download data from acs api
+        Given a list of census_variables, and geotype, download data from acs api
         """
         geoqueries = self.get_geoquery(geotype)
         _download = partial(self.download, source=source, variables=variables)
@@ -230,6 +274,12 @@ class Pff:
             ]
         elif geotype == "city":
             return [{"for": "place:51000", "in": f"state:{self.state}",}]
+
+        elif geotype == "block":
+            return [
+                {"for": "block:*", "in": f"state:{self.state} county:{county}",}
+                for county in self.counties
+            ]
 
         elif geotype in "block group":
             return [
