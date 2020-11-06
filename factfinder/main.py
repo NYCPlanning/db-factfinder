@@ -188,7 +188,9 @@ class Pff:
         """
         # Create Variables
         E_variables = [i + "E" for i in v.census_variable] if source != 'decennial' else v.census_variable
-        M_variables = [i + "M" for i in v.census_variable] if source != 'decennial' else []
+        M_variables = (
+            [i + "M" for i in v.census_variable] if source != "decennial" else []
+        )
         census_variables = E_variables + M_variables
         df = self.download_variable(source, census_variables, geotype)
 
@@ -196,7 +198,11 @@ class Pff:
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
         df["e"] = df[E_variables].sum(axis=1)
-        df["m"] = (df[M_variables] ** 2).sum(axis=1) ** 0.5 if source != 'decennial' else np.nan
+        df["m"] = (
+            (df[M_variables] ** 2).sum(axis=1) ** 0.5
+            if source != "decennial"
+            else np.nan
+        )
 
         # Create geoid
         if geotype == "tract":
@@ -206,9 +212,7 @@ class Pff:
         elif geotype == "city":
             df["census_geoid"] = df["state"] + df["place"]
         elif geotype == "block":
-            df["census_geoid"] = (
-                df["state"] + df["county"] + df["tract"] + df["block"]
-            )
+            df["census_geoid"] = df["state"] + df["county"] + df["tract"] + df["block"]
         elif geotype == "block group":
             df["census_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block group"]

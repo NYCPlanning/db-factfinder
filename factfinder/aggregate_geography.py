@@ -67,6 +67,7 @@ def block_group_to_cd_fp500(df):
     output["geotype"] = "cd_fp_500"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
+
 def block_group_to_cd_fp100(df):
     """
     100 yr flood plain aggregation for block group data (ACS)
@@ -83,6 +84,7 @@ def block_group_to_cd_fp100(df):
     output["pff_variable"] = df["pff_variable"].to_list()[0]
     output["geotype"] = "cd_fp_100"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
 
 def block_group_to_cd_park_access(df):
     """
@@ -101,6 +103,7 @@ def block_group_to_cd_park_access(df):
     output["geotype"] = "cd_park_access"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
+
 def block_to_cd_fp500(df):
     """
     500 yr flood plain aggregation for block data (decennial)
@@ -117,6 +120,7 @@ def block_to_cd_fp500(df):
     output["pff_variable"] = df["pff_variable"].to_list()[0]
     output["geotype"] = "cd_fp_500"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
 
 def block_to_cd_fp100(df):
     """
@@ -135,6 +139,7 @@ def block_to_cd_fp100(df):
     output["geotype"] = "cd_fp_100"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
+
 def block_to_cd_park_access(df):
     """
     walk-to-park access zone aggregation for block data (decennial)
@@ -151,6 +156,7 @@ def block_to_cd_park_access(df):
     output["pff_variable"] = df["pff_variable"].to_list()[0]
     output["geotype"] = "cd_park_access"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
 
 def tract_to_cd(df):
     """
