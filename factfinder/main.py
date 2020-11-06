@@ -6,7 +6,7 @@ from .variable import Variable
 from .utils import get_c, get_p, get_z
 from .multi import Pool
 from .median import get_median, get_median_moe
-from .aggregate_geography import aggregate_nta, aggregate_fp500
+from .aggregate_geography import tract_to_nta, tract_to_cd, block_group_to_cd_fp500
 import logging
 from functools import partial
 
@@ -141,9 +141,11 @@ class Pff:
             # seperately using both aggregate_horizontal and aggregate_vertical
             df = self.aggregate_horizontal(source, v, "tract")
             df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
-        if geotype == 'cd_fp_500':
+        if geotype == "cd_fp_500":
             df = self.aggregate_horizontal(source, v, "block group")
-            df = self.aggregate_vertical(df, from_geotype="block group", to_geotype="cd_fp_500")
+            df = self.aggregate_vertical(
+                df, from_geotype="block group", to_geotype="cd_fp_500"
+            )
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
             df = self.aggregate_horizontal(source, v, "tract")
@@ -185,9 +187,11 @@ class Pff:
         e.g. aggregate over tracts to get NTA level data
         """
         if from_geotype == "tract" and to_geotype == "NTA":
-            return aggregate_nta(df)
-        elif from_geotype == 'block group' and to_geotype == "cd_fp_500":
-            return aggregate_fp500(df)
+            return tract_to_nta(df)
+        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
+            return block_group_to_cd_fp500(df)
+        elif from_geotype == "tract" and to_geotype == "cd":
+            return tract_to_cd(df)
 
     def download_variable(self, source, variables, geotype) -> pd.DataFrame:
         """
