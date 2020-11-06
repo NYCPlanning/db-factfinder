@@ -129,59 +129,59 @@ class Pff:
 
         # 2. identify source
         if v.source == "profile":
-            source = self.c.acs5dp
+            client = self.c.acs5dp
         elif v.source == "subject":
-            source = self.c.acs5st
+            client = self.c.acs5st
         elif v.source == "decennial":
-            source = self.c.sf1
+            client = self.c.sf1
         else:
-            source = self.c.acs5
+            client = self.c.acs5
 
         # 3. pulling data from census site
         if geotype == "NTA":
             # For geographies that needs two levels aggregation, we handle them
             # seperately using both aggregate_horizontal and aggregate_vertical
-            df = self.aggregate_horizontal(source, v, "tract")
+            df = self.aggregate_horizontal(client, v, "tract")
             df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
         if geotype == "cd_fp_500":
-            if source == "decennial":
-                df = self.aggregate_horizontal(source, v, "block")
+            if v.source == "decennial":
+                df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
                     df, from_geotype="block", to_geotype="cd_fp_500"
                 )
             else:
-                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_horizontal(client, v, "block group")
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_fp_500"
                 )
         if geotype == "cd_fp_100":
-            if source == "decennial":
-                df = self.aggregate_horizontal(source, v, "block")
+            if v.source == "decennial":
+                df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
                     df, from_geotype="block", to_geotype="cd_fp_100"
                 )
             else:
-                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_horizontal(client, v, "block group")
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_fp_100"
                 )
         if geotype == "cd_park_access":
-            if source == "decennial":
-                df = self.aggregate_horizontal(source, v, "block")
+            if v.source == "decennial":
+                df = self.aggregate_horizontal(client, v, "block")
                 df = self.aggregate_vertical(
                     df, from_geotype="block", to_geotype="cd_park_access"
                 )
             else:
-                df = self.aggregate_horizontal(source, v, "block group")
+                df = self.aggregate_horizontal(client, v, "block group")
                 df = self.aggregate_vertical(
                     df, from_geotype="block group", to_geotype="cd_park_access"
                 )
         else:
             # If not spatial aggregation needed, just aggregate_horizontal
-            df = self.aggregate_horizontal(source, v, geotype)
+            df = self.aggregate_horizontal(client, v, geotype)
         return df
 
-    def aggregate_horizontal(self, source, v, geotype) -> pd.DataFrame:
+    def aggregate_horizontal(self, client, v, geotype) -> pd.DataFrame:
         """
         this function will aggregate multiple census_variables into 1 pff_variable
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
@@ -198,7 +198,7 @@ class Pff:
             else []
         )
         census_variables = E_variables + M_variables
-        df = self.download_variable(source, census_variables, geotype)
+        df = self.download_variable(client, census_variables, geotype)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -206,7 +206,7 @@ class Pff:
         df["e"] = df[E_variables].sum(axis=1)
         df["m"] = (
             (df[M_variables] ** 2).sum(axis=1) ** 0.5
-            if source != "decennial"
+            if v.source != "decennial"
             else np.nan
         )
 
@@ -247,24 +247,24 @@ class Pff:
         elif from_geotype == "block" and to_geotype == "cd_park_access":
             return block_to_cd_park_access(df)
 
-    def download_variable(self, source, variables, geotype) -> pd.DataFrame:
+    def download_variable(self, client, variables, geotype) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs api
         """
         geoqueries = self.get_geoquery(geotype)
-        _download = partial(self.download, source=source, variables=variables)
+        _download = partial(self.download, client=client, variables=variables)
         with Pool(5) as pool:
             dfs = pool.map(_download, geoqueries)
         df = pd.concat(dfs)
         return df
 
-    def download(self, geoquery, source, variables) -> pd.DataFrame:
+    def download(self, geoquery, client, variables) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
         and is only created to facilitate multiprocessing
         """
         return pd.DataFrame(
-            source.get(("NAME", ",".join(variables)), geoquery, year=self.year)
+            client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
         )
 
     def get_geoquery(self, geotype) -> list:
