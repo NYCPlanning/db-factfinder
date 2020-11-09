@@ -165,8 +165,8 @@ def tract_to_cd(df):
     df = df.merge(
         lookup_geo[["geoid_tract", "cd"]].drop_duplicates(),
         how="left",
-        right_on="census_geoid",
-        left_on="geoid_tract",
+        right_on="geoid_tract",
+        left_on="census_geoid",
     )
     output = create_output(df, "cd")
     output["pff_variable"] = df["pff_variable"].to_list()[0]
