@@ -57,7 +57,7 @@ class Pff:
         """
         return self.median[pff_variable]["design_factor"]
 
-    def calculate_median_variable(self, pff_variable, geotype):
+    def calculate_median_variable(self, pff_variable, geotype) -> pd.DataFrame:
         """
         Given median variable in the form of pff_variable and geotype
         calculate the median and median moe
@@ -108,8 +108,7 @@ class Pff:
         )
 
         # 6. return the output, containing the median, and all the variables used
-        output = pd.concat([df, results])
-        return output
+        return results
 
     def create_variable(self, pff_variable) -> Variable:
         """
@@ -235,22 +234,23 @@ class Pff:
         this function will aggregate over geographies, 
         e.g. aggregate over tracts to get NTA level data
         """
-        if from_geotype == "tract" and to_geotype == "NTA":
-            return tract_to_nta(df)
-        elif from_geotype == "tract" and to_geotype == "cd":
-            return tract_to_cd(df)
-        elif from_geotype == "block group" and to_geotype == "cd_fp_500":
-            return block_group_to_cd_fp500(df)
-        elif from_geotype == "block group" and to_geotype == "cd_fp_100":
-            return block_group_to_cd_fp100(df)
-        elif from_geotype == "block group" and to_geotype == "cd_park_access":
-            return block_group_to_cd_park_access(df)
-        elif from_geotype == "block" and to_geotype == "cd_fp_500":
-            return block_to_cd_fp500(df)
-        elif from_geotype == "block" and to_geotype == "cd_fp_100":
-            return block_to_cd_fp100(df)
-        elif from_geotype == "block" and to_geotype == "cd_park_access":
-            return block_to_cd_park_access(df)
+        options = {
+            "tract": {
+                "NTA": tract_to_nta,
+                "cd" : tract_to_cd
+            },
+            "block group": {
+                "cd_fp_500": block_group_to_cd_fp500,
+                "cd_fp_100": block_group_to_cd_fp100,
+                "cd_park_access": block_group_to_cd_park_access
+            }, 
+            "block": {
+                "cd_fp_500": block_to_cd_fp500,
+                "cd_fp_100": block_to_cd_fp100,
+                "cd_park_access": block_to_cd_park_access
+            }
+        }
+        return options[from_geotype][to_geotype](df)
 
     def download_variable(self, client, variables, geotype) -> pd.DataFrame:
         """
