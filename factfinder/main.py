@@ -143,6 +143,11 @@ class Pff:
             df = self.aggregate_vertical(
                 df, from_geotype="tract", to_geotype="NTA"
                 )
+        elif geotype == "cd":
+            df = self.aggregate_horizontal(client, v, "tract")
+            df = self.aggregate_vertical(
+                df, from_geotype="tract", to_geotype="cd"
+                )
         elif geotype == "cd_fp_500":
             if v.source == "decennial":
                 df = self.aggregate_horizontal(client, v, "block")
