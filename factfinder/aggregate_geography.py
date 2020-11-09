@@ -163,7 +163,7 @@ def tract_to_cd(df):
     tract to cd
     """
     df = df.merge(
-        lookup_geo[["geoid_tract", "commntydst"]].drop_duplicates(),
+        lookup_geo[["geoid_tract", "cd"]].drop_duplicates(),
         how="left",
         right_on="census_geoid",
         left_on="geoid_tract",
