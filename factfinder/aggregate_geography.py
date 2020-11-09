@@ -8,13 +8,13 @@ lookup_geo["geoid_block"] = lookup_geo.county_fips + lookup_geo.ctcb2010
 lookup_geo["geoid_block_group"] = lookup_geo.geoid_block.apply(lambda x: x[0:12])
 lookup_geo["geoid_tract"] = lookup_geo.county_fips + lookup_geo.ct2010
 lookup_geo["cd_fp_500"] = lookup_geo.apply(
-    lambda row: row["commntydst"] if int(row["fp_500"]) else np.nan, axis=1
+    lambda row: row["cd"] if int(row["fp_500"]) else np.nan, axis=1
 )
 lookup_geo["cd_fp_100"] = lookup_geo.apply(
-    lambda row: row["commntydst"] if int(row["fp_100"]) else np.nan, axis=1
+    lambda row: row["cd"] if int(row["fp_100"]) else np.nan, axis=1
 )
 lookup_geo["cd_park_access"] = lookup_geo.apply(
-    lambda row: row["commntydst"] if int(row["park_access"]) else np.nan, axis=1
+    lambda row: row["cd"] if int(row["park_access"]) else np.nan, axis=1
 )
 
 
