@@ -4,12 +4,13 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from .variable import Variable
-from .utils import get_c, get_p, get_z
+from .utils import get_c, get_p, get_z, outliers
 from .multi import Pool
 from .median import get_median, get_median_moe
 from .aggregate_geography import *
 import logging
 from functools import partial
+import itertools
 
 
 class Pff:
@@ -22,6 +23,25 @@ class Pff:
             self.metadata = json.load(f)
         with open(f"{Path(__file__).parent}/data/median.json") as f:
             self.median = json.load(f)
+
+        self.client_options = {
+            "profile": self.c.acs5dp,
+            "subject": self.c.acs5st,
+            "decennial": self.c.sf1,
+        }
+
+        self.aggregate_vertical_options = aggregate_vertical_options
+
+        self.outliers = outliers
+
+    @property
+    def aggregated_geography(self) -> list:
+        list3d = [
+            [list(k.keys()) for k in i.values()]
+            for i in self.aggregate_vertical_options.values()
+        ]
+        list2d = itertools.chain.from_iterable(list3d)
+        return list(set(itertools.chain.from_iterable(list2d)))
 
     @property
     def base_variables(self) -> list:
@@ -120,6 +140,24 @@ class Pff:
         ]
         return Variable(meta)
 
+    def get_aggregate_vertical(self, source, geotype):
+        """
+        this function will aggregate over geographies, 
+        e.g. aggregate over tracts to get NTA level data
+        """
+        source = "acs" if source != "decennial" else source
+        to_geotype = geotype
+        if geotype not in self.aggregated_geography:
+            aggregate_vertical = lambda df: df
+            from_geotype = geotype
+        else:
+            options = self.aggregate_vertical_options.get(source)
+            for k, v in options.items():
+                if geotype in v.keys():
+                    from_geotype = k
+                    aggregate_vertical = options[k][geotype]
+        return from_geotype, aggregate_vertical
+
     def calculate_variable(self, pff_variable, geotype) -> pd.DataFrame:
         """
         Given pff_variable and geotype, download and calculate the variable
@@ -128,61 +166,17 @@ class Pff:
         v = self.create_variable(pff_variable)
 
         # 2. identify source
-        if v.source == "profile":
-            client = self.c.acs5dp
-        elif v.source == "subject":
-            client = self.c.acs5st
-        elif v.source == "decennial":
-            client = self.c.sf1
-        else:
-            client = self.c.acs5
+        client = self.client_options.get(v.source, self.c.acs5)
 
         # 3. pulling data from census site
-        if geotype == "NTA":
-            df = self.aggregate_horizontal(client, v, "tract")
-            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
-        elif geotype == "cd":
-            df = self.aggregate_horizontal(client, v, "tract")
-            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="cd")
-        elif geotype == "cd_fp_500":
-            if v.source == "decennial":
-                df = self.aggregate_horizontal(client, v, "block")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block", to_geotype="cd_fp_500"
-                )
-            else:
-                df = self.aggregate_horizontal(client, v, "block group")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block group", to_geotype="cd_fp_500"
-                )
-        elif geotype == "cd_fp_100":
-            if v.source == "decennial":
-                df = self.aggregate_horizontal(client, v, "block")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block", to_geotype="cd_fp_100"
-                )
-            else:
-                df = self.aggregate_horizontal(client, v, "block group")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block group", to_geotype="cd_fp_100"
-                )
-        elif geotype == "cd_park_access":
-            if v.source == "decennial":
-                df = self.aggregate_horizontal(client, v, "block")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block", to_geotype="cd_park_access"
-                )
-            else:
-                df = self.aggregate_horizontal(client, v, "block group")
-                df = self.aggregate_vertical(
-                    df, from_geotype="block group", to_geotype="cd_park_access"
-                )
-        else:
-            # If not spatial aggregation needed, just aggregate_horizontal
-            df = self.aggregate_horizontal(client, v, geotype)
+        from_geotype, aggregate_vertical = self.get_aggregate_vertical(
+            v.source, geotype
+        )
+        df = self.aggregate_horizontal(client, v, from_geotype)
+        df = aggregate_vertical(df)
         return df
 
-    def create_census_variables(self, v:Variable):
+    def create_census_variables(self, v: Variable):
         """
         Based on the census variables, spit out the 
         M variables and E variables
@@ -194,8 +188,7 @@ class Pff:
             else v.census_variable
         )
         M_variables = (
-            [i + "M" for i in v.census_variable] 
-            if v.source != "decennial" else []
+            [i + "M" for i in v.census_variable] if v.source != "decennial" else []
         )
         return E_variables, M_variables
 
@@ -218,6 +211,12 @@ class Pff:
         )
 
         # Create geoid
+        df = self.create_census_geoid(df, geotype)
+
+        # Output
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
+    def create_census_geoid(self, df, geotype):
         if geotype == "tract":
             df["census_geoid"] = df["state"] + df["county"] + df["tract"]
         elif geotype == "borough":
@@ -230,29 +229,9 @@ class Pff:
             df["census_geoid"] = (
                 df["state"] + df["county"] + df["tract"] + df["block group"]
             )
-        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+        return df
 
-    def aggregate_vertical(self, df, from_geotype, to_geotype):
-        """
-        this function will aggregate over geographies, 
-        e.g. aggregate over tracts to get NTA level data
-        """
-        options = {
-            "tract": {"NTA": tract_to_nta, "cd": tract_to_cd},
-            "block group": {
-                "cd_fp_500": block_group_to_cd_fp500,
-                "cd_fp_100": block_group_to_cd_fp100,
-                "cd_park_access": block_group_to_cd_park_access,
-            },
-            "block": {
-                "cd_fp_500": block_to_cd_fp500,
-                "cd_fp_100": block_to_cd_fp100,
-                "cd_park_access": block_to_cd_park_access,
-            },
-        }
-        return options[from_geotype][to_geotype](df)
-
-    def download_variable(self, client, v:Variable, geotype:str) -> pd.DataFrame:
+    def download_variable(self, client, v: Variable, geotype: str) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs api
         """
@@ -263,31 +242,26 @@ class Pff:
         df = pd.concat(dfs)
         return df
 
-    def download(self, geoquery:list, client, v:Variable) -> pd.DataFrame:
+    def download(self, geoquery: list, client, v: Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
         and is only created to facilitate multiprocessing
         """
-         # Create Variables
+        # Create Variables
         E_variables, M_variables = self.create_census_variables(v)
 
         df = pd.DataFrame(
-            client.get(("NAME", ",".join(E_variables + M_variables)), 
-            geoquery, year=self.year)
+            client.get(
+                ("NAME", ",".join(E_variables + M_variables)), geoquery, year=self.year
+            )
         )
-        
-        # replace outliers with np.nan
-        outliers = [
-            999999999,333333333,222222222,666666666,888888888,555555555,
-            -999999999,-333333333,-222222222,-666666666,-888888888,-555555555
-        ]
-        
+
         # If E is an outlier, then set M as Nan
         for i in v.census_variable:
-            df.loc[df[f'{i}E'].isin(outliers), f'{i}M'] = np.nan
+            df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
 
         # Replace all outliers as Nan
-        df = df.replace(outliers,np.nan)
+        df = df.replace(self.outliers, np.nan)
         return df
 
     def get_geoquery(self, geotype) -> list:
