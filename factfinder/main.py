@@ -182,27 +182,26 @@ class Pff:
             df = self.aggregate_horizontal(client, v, geotype)
         return df
 
-    def aggregate_horizontal(self, client, v, geotype) -> pd.DataFrame:
-        """
-        this function will aggregate multiple census_variables into 1 pff_variable
-        e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
-        """
-        # Create Variables
+    def create_census_variables(self, v:Variable):
         E_variables = (
             [i + "E" for i in v.census_variable]
             if v.source != "decennial"
             else v.census_variable
         )
         M_variables = (
-            [i + "M" for i in v.census_variable] if v.source != "decennial" else []
+            [i + "M" for i in v.census_variable] 
+            if v.source != "decennial" else []
         )
-        census_variables = E_variables + M_variables
-        df = self.download_variable(client, census_variables, geotype)
+        return E_variables, M_variables
 
-        for i in M_variables:
-            est = i.replace('M', 'E')
-            df.loc[df[est].isnull(), i] = np.nan
-            
+    def aggregate_horizontal(self, client, v, geotype) -> pd.DataFrame:
+        """
+        this function will aggregate multiple census_variables into 1 pff_variable
+        e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
+        """
+        E_variables, M_variables = self.create_census_variables(v)
+        df = self.download_variable(client, v, geotype)
+
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
@@ -248,41 +247,43 @@ class Pff:
         }
         return options[from_geotype][to_geotype](df)
 
-    def download_variable(self, client, variables, geotype) -> pd.DataFrame:
+    def download_variable(self, client, v:Variable, geotype:str) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs api
         """
         geoqueries = self.get_geoquery(geotype)
-        _download = partial(self.download, client=client, variables=variables)
+        _download = partial(self.download, client=client, v=v)
         with Pool(5) as pool:
             dfs = pool.map(_download, geoqueries)
         df = pd.concat(dfs)
         return df
 
-    def download(self, geoquery, client, variables) -> pd.DataFrame:
+    def download(self, geoquery:list, client, v:Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
         and is only created to facilitate multiprocessing
         """
-        return pd.DataFrame(
-            client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
-        ).replace(
-            [
-                999999999,
-                333333333,
-                222222222,
-                666666666,
-                888888888,
-                555555555,
-                -999999999,
-                -333333333,
-                -222222222,
-                -666666666,
-                -888888888,
-                -555555555,
-            ],
-            np.nan,
+         # Create Variables
+        E_variables, M_variables = self.create_census_variables(v)
+
+        df = pd.DataFrame(
+            client.get(("NAME", ",".join(E_variables + M_variables)), 
+            geoquery, year=self.year)
         )
+        
+        # replace outliers with np.nan
+        outliers = [
+            999999999,333333333,222222222,666666666,888888888,555555555,
+            -999999999,-333333333,-222222222,-666666666,-888888888,-555555555
+        ]
+        
+        # If E is an outlier, then set M as Nan
+        for i in v.census_variable:
+            df.loc[df[f'{i}E'].isin(outliers), f'{i}M'] = np.nan
+
+        # Replace all outliers as Nan
+        df = df.replace(outliers,np.nan)
+        return df
 
     def get_geoquery(self, geotype) -> list:
         """
