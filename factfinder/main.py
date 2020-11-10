@@ -1,6 +1,7 @@
 from census import Census
 import json
 import pandas as pd
+import numpy as np
 from pathlib import Path
 from .variable import Variable
 from .utils import get_c, get_p, get_z
@@ -139,14 +140,10 @@ class Pff:
         # 3. pulling data from census site
         if geotype == "NTA":
             df = self.aggregate_horizontal(client, v, "tract")
-            df = self.aggregate_vertical(
-                df, from_geotype="tract", to_geotype="NTA"
-                )
+            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="NTA")
         elif geotype == "cd":
             df = self.aggregate_horizontal(client, v, "tract")
-            df = self.aggregate_vertical(
-                df, from_geotype="tract", to_geotype="cd"
-                )
+            df = self.aggregate_vertical(df, from_geotype="tract", to_geotype="cd")
         elif geotype == "cd_fp_500":
             if v.source == "decennial":
                 df = self.aggregate_horizontal(client, v, "block")
@@ -197,9 +194,7 @@ class Pff:
             else v.census_variable
         )
         M_variables = (
-            [i + "M" for i in v.census_variable] 
-            if v.source != "decennial" 
-            else []
+            [i + "M" for i in v.census_variable] if v.source != "decennial" else []
         )
         census_variables = E_variables + M_variables
         df = self.download_variable(client, census_variables, geotype)
@@ -235,20 +230,17 @@ class Pff:
         e.g. aggregate over tracts to get NTA level data
         """
         options = {
-            "tract": {
-                "NTA": tract_to_nta,
-                "cd" : tract_to_cd
-            },
+            "tract": {"NTA": tract_to_nta, "cd": tract_to_cd},
             "block group": {
                 "cd_fp_500": block_group_to_cd_fp500,
                 "cd_fp_100": block_group_to_cd_fp100,
-                "cd_park_access": block_group_to_cd_park_access
-            }, 
+                "cd_park_access": block_group_to_cd_park_access,
+            },
             "block": {
                 "cd_fp_500": block_to_cd_fp500,
                 "cd_fp_100": block_to_cd_fp100,
-                "cd_park_access": block_to_cd_park_access
-            }
+                "cd_park_access": block_to_cd_park_access,
+            },
         }
         return options[from_geotype][to_geotype](df)
 
@@ -270,6 +262,22 @@ class Pff:
         """
         return pd.DataFrame(
             client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
+        ).replace(
+            [
+                999999999,
+                333333333,
+                222222222,
+                666666666,
+                888888888,
+                555555555,
+                -999999999,
+                -333333333,
+                -222222222,
+                -666666666,
+                -888888888,
+                -555555555,
+            ],
+            np.nan,
         )
 
     def get_geoquery(self, geotype) -> list:
