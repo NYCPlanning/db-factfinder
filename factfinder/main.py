@@ -97,7 +97,6 @@ class Pff:
 
         # 3. create a pivot table with census_geoid as the index, and pff_variable as column names.
         # df_pivoted.e -> the estimation dataframe
-        # df_pivoted.m -> the moe dataframe
         df_pivoted = df.loc[:, ["census_geoid", "pff_variable", "e", "m"]].pivot(
             index="census_geoid", columns="pff_variable", values=["e", "m"]
         )
@@ -120,10 +119,10 @@ class Pff:
         # 5. Calculate median moe using get_median_moe
         # Note that median moe calculation needs the median estimation
         # so we seperated df_pivoted.m out as a seperate dataframe
-        m = df_pivoted.m
-        m["e"] = results.loc[m.index == results.census_geoid, "e"].to_list()
+        e = df_pivoted.e
+        e["e"] = results.loc[e.index == results.census_geoid, "e"].to_list()
         results["m"] = (
-            m.loc[m.index == results.census_geoid, list(ranges.keys()) + ["e"]]
+            e.loc[e.index == results.census_geoid, list(ranges.keys()) + ["e"]]
             .apply(lambda row: get_median_moe(ranges, row, design_factor), axis=1)
             .to_list()
         )
