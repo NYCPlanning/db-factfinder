@@ -199,6 +199,10 @@ class Pff:
         census_variables = E_variables + M_variables
         df = self.download_variable(client, census_variables, geotype)
 
+        for i in M_variables:
+            est = i.replace('M', 'E')
+            df.loc[df[est].isnull(), i] = np.nan
+            
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
