@@ -183,6 +183,11 @@ class Pff:
         return df
 
     def create_census_variables(self, v:Variable):
+        """
+        Based on the census variables, spit out the 
+        M variables and E variables
+        e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
+        """
         E_variables = (
             [i + "E" for i in v.census_variable]
             if v.source != "decennial"
