@@ -320,7 +320,7 @@ class Pff:
                 if geotype in self.aggregated_geography
                 else self.calculate_e_m(v.pff_variable, geotype)
             )
-            df["p"] = np.nan
+            df["p"] = 100 if geotype in ["city", "borough"] else np.nan
             df["z"] = np.nan
         else:
             df = self.calculate_e_m(v.pff_variable, geotype)
