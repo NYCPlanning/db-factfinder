@@ -69,8 +69,8 @@ class Pff:
     def get_special_base_variables(self, pff_variable) -> list:
         special = list(
             filter(lambda x: x["pff_variable"] == pff_variable, self.special)
-        )[0]
-        return special["base_variables"]
+        )
+        return special[0]["base_variables"]
 
     def median_ranges(self, pff_variable) -> dict:
         """
@@ -315,7 +315,7 @@ class Pff:
             df = (
                 self.calculate_e_m(v.pff_variable, geotype)
                 if not (
-                    v.base_variable in self.special_variables
+                    v.pff_variable in self.special_variables
                     and geotype in self.aggregated_geography
                 )
                 else self.calculate_special_e_m(v.pff_variable, geotype)
