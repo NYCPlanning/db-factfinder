@@ -1,0 +1,9 @@
+[
+    {
+        "pff_variable" : "percapinc",
+        "base_variables": [
+            "agip15pl",
+            "pop_6"
+        ]
+    }
+]

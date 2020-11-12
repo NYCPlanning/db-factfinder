@@ -7,11 +7,12 @@ from .variable import Variable
 from .utils import get_c, get_p, get_z, outliers
 from .multi import Pool
 from .median import get_median, get_median_moe
+from .special import special_variable_options
 from .aggregate_geography import *
 import logging
 from functools import partial
 import itertools
-from collections.abc import Callable
+from cached_property import cached_property
 
 
 class Pff:
@@ -24,6 +25,8 @@ class Pff:
             self.metadata = json.load(f)
         with open(f"{Path(__file__).parent}/data/median.json") as f:
             self.median = json.load(f)
+        with open(f"{Path(__file__).parent}/data/special.json") as f:
+            self.special = json.load(f)
 
         self.client_options = {
             "profile": self.c.acs5dp,
@@ -32,10 +35,10 @@ class Pff:
         }
 
         self.aggregate_vertical_options = aggregate_vertical_options
-
+        self.special_variable_options = special_variable_options
         self.outliers = outliers
 
-    @property
+    @cached_property
     def aggregated_geography(self) -> list:
         list3d = [
             [list(k.keys()) for k in i.values()]
@@ -44,19 +47,27 @@ class Pff:
         list2d = itertools.chain.from_iterable(list3d)
         return list(set(itertools.chain.from_iterable(list2d)))
 
-    @property
+    @cached_property
     def base_variables(self) -> list:
         """
         returns a list of base variables in the format of pff_variable
         """
         return list(set([i["base_variable"] for i in self.metadata]))
 
-    @property
+    @cached_property
     def median_variables(self) -> list:
         """
         returns a list of median variables in the format of pff_variable
         """
         return list(self.median.keys())
+
+    @cached_property
+    def special_variables(self) -> list:
+        return [i['pff_variable'] for i in self.special]
+
+    def get_special_base_variables(self, pff_variable) -> list:
+        special = list(filter(lambda x: x['pff_variable'] == pff_variable, self.special))[0]
+        return special['base_variables']
 
     def median_ranges(self, pff_variable) -> dict:
         """
@@ -163,6 +174,26 @@ class Pff:
 
         return df
 
+    def calculate_multiple_e_m(self, pff_variables:list, geotype:str) -> pd.DataFrame:
+        """
+        given a list of pff_variables, and geotype, calculate multiple 
+        variables e, m at the same time using multiprocessing
+        """
+        _calculate_e_m = partial(self.calculate_e_m, geotype=geotype)
+        with Pool(5) as download_pool:
+            dfs = download_pool.map(_calculate_e_m, pff_variables)
+        df = pd.concat(dfs)
+        del dfs
+        return df
+
+    def calculate_special_e_m(self, pff_variable:str, geotype:str) -> pd.DataFrame:
+        base_variables = self.get_special_base_variables(pff_variable)
+        df = self.calculate_multiple_e_m(base_variables, geotype)
+        df = self.special_variable_options[pff_variable](df, base_variables)
+        df['pff_variable'] = pff_variable
+        df['geotype'] = geotype
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+        
     def calculate_median_e_m(self, pff_variable, geotype) -> pd.DataFrame:
         """
         Given median variable in the form of pff_variable and geotype
@@ -174,14 +205,10 @@ class Pff:
         rounding = self.create_variable(pff_variable).rounding
 
         # 2. Calculate each variable that goes into median calculation
-        _calculate_e_m = partial(self.calculate_e_m, geotype=geotype)
-        with Pool(5) as download_pool:
-            dfs = download_pool.map(_calculate_e_m, list(ranges.keys()))
-        df = pd.concat(dfs)
-        del dfs
+        df = self.calculate_multiple_e_m(list(ranges.keys()), geotype)
 
-        # 3. create a pivot table with census_geoid as the index, and pff_variable as column names.
-        # df_pivoted.e -> the estimation dataframe
+        # 3. create a pivot table with census_geoid as the index, and 
+        # pff_variable as column names. df_pivoted.e -> the estimation dataframe
         df_pivoted = df.loc[:, ["census_geoid", "pff_variable", "e"]].pivot(
             index="census_geoid", columns="pff_variable", values=["e"]
         )
@@ -286,6 +313,14 @@ class Pff:
                 else self.calculate_e_m(v.pff_variable, geotype)
             )
             df["p"] = 100 if geotype in ["city", "borough"] else np.nan
+            df["z"] = np.nan
+        elif v.pff_variable in self.special_variables:
+            df = (
+                self.calculate_special_e_m(v.pff_variable, geotype)
+                if geotype in self.aggregated_geography
+                else self.calculate_e_m(v.pff_variable, geotype)
+            )
+            df["p"] = np.nan
             df["z"] = np.nan
         else:
             df = self.calculate_e_m(v.pff_variable, geotype)
