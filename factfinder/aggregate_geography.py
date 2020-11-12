@@ -172,3 +172,23 @@ def tract_to_cd(df):
     output["pff_variable"] = df["pff_variable"].to_list()[0]
     output["geotype"] = "cd"
     return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
+
+aggregate_vertical_options = {
+    "decennial": {
+        "tract": {"NTA": tract_to_nta, "cd": tract_to_cd},
+        "block": {
+            "cd_fp_500": block_to_cd_fp500,
+            "cd_fp_100": block_to_cd_fp100,
+            "cd_park_access": block_to_cd_park_access,
+        },
+    },
+    "acs": {
+        "tract": {"NTA": tract_to_nta, "cd": tract_to_cd},
+        "block group": {
+            "cd_fp_500": block_group_to_cd_fp500,
+            "cd_fp_100": block_group_to_cd_fp100,
+            "cd_park_access": block_group_to_cd_park_access,
+        },
+    },
+}
