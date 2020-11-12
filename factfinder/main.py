@@ -29,9 +29,10 @@ class Pff:
             self.special = json.load(f)
 
         self.client_options = {
-            "profile": self.c.acs5dp,
-            "subject": self.c.acs5st,
-            "decennial": self.c.sf1,
+            "D": self.c.acs5dp,
+            "S": self.c.acs5st,
+            "P": self.c.sf1,
+            "B": self.c.acs5,
         }
 
         self.aggregate_vertical_options = aggregate_vertical_options
@@ -275,14 +276,11 @@ class Pff:
         # 1. create variable
         v = self.create_variable(pff_variable)
 
-        # 2. identify source
-        client = self.client_options.get(v.source, self.c.acs5)
-
-        # 3. pulling data from census site
+        # 2. pulling data from census site
         from_geotype, aggregate_vertical = self.get_aggregate_vertical(
             v.source, geotype
         )
-        df = self.aggregate_horizontal(client, v, from_geotype)
+        df = self.aggregate_horizontal(v, from_geotype)
         df = aggregate_vertical(df)
         return df
 
@@ -332,7 +330,7 @@ class Pff:
                         v.base_variable in self.special_variables
                         and geotype in self.aggregated_geography
                     )
-                    else self.calculate_special_e_m(v.pff_variable, geotype)
+                    else self.calculate_special_e_m(v.base_variable, geotype)
                 )
                 df = df.merge(
                     df_base[["census_geoid", "e", "m"]].rename(
@@ -359,29 +357,25 @@ class Pff:
         df["c"] = df.apply(lambda row: get_c(row["e"], row["m"]), axis=1)
         return df[output_fields]
 
-    def create_census_variables(self, v: Variable) -> (list, list):
+    def create_census_variables(self, census_variable: list) -> (list, list):
         """
         Based on the census variables, spit out the 
         M variables and E variables
         e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
         """
-        E_variables = (
-            [i + "E" for i in v.census_variable]
-            if v.source != "decennial"
-            else v.census_variable
-        )
-        M_variables = (
-            [i + "M" for i in v.census_variable] if v.source != "decennial" else []
-        )
+        E_variables = [i + "E" for i in census_variable if i[0] != "P"]
+        if len(E_variables) == 0:  # only decennial
+            E_variables = census_variable
+        M_variables = [i + "M" for i in census_variable if i[0] != "P"]
         return E_variables, M_variables
 
-    def aggregate_horizontal(self, client, v: Variable, geotype: str) -> pd.DataFrame:
+    def aggregate_horizontal(self, v: Variable, geotype: str) -> pd.DataFrame:
         """
         this function will aggregate multiple census_variables into 1 pff_variable
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
-        E_variables, M_variables = self.create_census_variables(v)
-        df = self.download_variable(client, v, geotype)
+        E_variables, M_variables = self.create_census_variables(v.census_variable)
+        df = self.download_variable(v, geotype)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -414,31 +408,48 @@ class Pff:
             )
         return df
 
-    def download_variable(self, client, v: Variable, geotype: str) -> pd.DataFrame:
+    def download_variable(self, v: Variable, geotype: str) -> pd.DataFrame:
         """
-        Given a list of census_variables, and geotype, download data from acs api
+        Given a list of census_variables, and geotype, download data from acs/decennial api
         """
         geoqueries = self.get_geoquery(geotype)
-        _download = partial(self.download, client=client, v=v)
+        _download = partial(self.download, v=v)
         with Pool(5) as pool:
             dfs = pool.map(_download, geoqueries)
         df = pd.concat(dfs)
         return df
 
-    def download(self, geoquery: list, client, v: Variable) -> pd.DataFrame:
+    def download(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
         and is only created to facilitate multiprocessing
         """
-        # Create Variables
-        E_variables, M_variables = self.create_census_variables(v)
-
-        df = pd.DataFrame(
-            client.get(
-                ("NAME", ",".join(E_variables + M_variables)), geoquery, year=self.year
+        # Get unique sources
+        sources = set([i[0] for i in v.census_variable])
+        frames = []
+        for source in sources:
+            # Create Variables
+            variables = [i for i in v.census_variable if i[0] == source]
+            client = self.client_options.get(source, self.c.acs5)
+            E_variables, M_variables = self.create_census_variables(variables)
+            frames.append(
+                pd.DataFrame(
+                    client.get(
+                        ("NAME", ",".join(E_variables + M_variables)),
+                        geoquery,
+                        year=self.year,
+                    )
+                )
             )
-        )
-
+        df = frames[0]
+        for i in frames[1:]:
+            df = pd.merge(
+                df,
+                i[i.columns.difference(["state", "county", "tract", "place"])],
+                left_on="NAME",
+                right_on="NAME",
+            )
+        del frames
         # If E is an outlier, then set M as Nan
         for i in v.census_variable:
             df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
