@@ -1,7 +1,7 @@
 [
     {
         "pff_variable": "pop2010",
-        "base_variable": "",
+        "base_variable": "pop2010",
         "census_variable": [
             "P001001"
         ],
