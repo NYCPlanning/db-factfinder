@@ -64,9 +64,17 @@ class Pff:
 
     @cached_property
     def special_variables(self) -> list:
+        """
+        returns a list of special calculation variables in the format 
+        of pff_variable
+        """
         return [i["pff_variable"] for i in self.special]
 
     def get_special_base_variables(self, pff_variable) -> list:
+        """
+        returns a list of special calculation base variables in the format 
+        of pff_variable
+        """
         special = list(
             filter(lambda x: x["pff_variable"] == pff_variable, self.special)
         )
@@ -187,6 +195,10 @@ class Pff:
         return df
 
     def calculate_special_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:
+        """
+        Given pff_variable and geotype, download and calculate the variable.
+        Used for variables requiring special horizontal aggregation techniques.
+        """
         base_variables = self.get_special_base_variables(pff_variable)
         df = self.calculate_multiple_e_m(base_variables, geotype)
         df = self.special_variable_options[pff_variable](df, base_variables)
@@ -276,7 +288,7 @@ class Pff:
         # 1. create variable
         v = self.create_variable(pff_variable)
 
-        # 2. pulling data from census site
+        # 2. pulling data from census site and aggregating
         from_geotype, aggregate_vertical = self.get_aggregate_vertical(
             v.source, geotype
         )
@@ -364,7 +376,7 @@ class Pff:
         e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
         """
         E_variables = [i + "E" for i in census_variable if i[0] != "P"]
-        if len(E_variables) == 0:  # only decennial
+        if len(E_variables) == 0:  # Only decennial, pass raw variable name
             E_variables = census_variable
         M_variables = [i + "M" for i in census_variable if i[0] != "P"]
         return E_variables, M_variables
@@ -428,7 +440,7 @@ class Pff:
         sources = set([i[0] for i in v.census_variable])
         frames = []
         for source in sources:
-            # Create Variables
+            # Create Variables for given source and set client
             variables = [i for i in v.census_variable if i[0] == source]
             client = self.client_options.get(source, self.c.acs5)
             E_variables, M_variables = self.create_census_variables(variables)
@@ -441,6 +453,7 @@ class Pff:
                     )
                 )
             )
+        # Combine results from each source by joining on geo name
         df = frames[0]
         for i in frames[1:]:
             df = pd.merge(
