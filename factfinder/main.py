@@ -49,6 +49,13 @@ class Pff:
         return list(set(itertools.chain.from_iterable(list2d)))
 
     @cached_property
+    def profile_only_variables(self) -> list: 
+        return [
+            i['pff_variable'] for i in self.metadata 
+            if (i['census_variable'][0][0:2] == 'DP' and len(i['census_variable']) == 1)
+        ]
+
+    @cached_property
     def base_variables(self) -> list:
         """
         returns a list of base variables in the format of pff_variable
