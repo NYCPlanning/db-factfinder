@@ -475,13 +475,15 @@ class Pff:
     def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         This function is for downloading non-aggregated-geotype and data profile only
-        variables. it will return e, m, p, z variables
+        variables. It will return e, m, p, z variables for a single pff variable. 
         """
         # single source (data profile) only, so safe to set a default
         client = self.c.acs5dp
-        E_variables, M_variables = self.create_census_variables(v.census_variable)
-        PE_variables = [i+'PE' for i in v.census_variable]
-        PM_variables = [i+'PM' for i in v.census_variable]
+        census_variable = v.census_variable[0]
+        E_variables = census_variable+'E'
+        M_variables =  census_variable+'M'
+        PE_variables =  census_variable+'PE'
+        PM_variables =  census_variable+'PM'
         variables = E_variables + M_variables + PE_variables + PM_variables
         df = pd.DataFrame(client.get(
                 ("NAME", ",".join(variables)),
