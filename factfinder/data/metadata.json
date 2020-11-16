@@ -9153,7 +9153,7 @@
     },
     {
         "pff_variable": "mdpop10t14",
-        "base_variable": "",
+        "base_variable": "mdage",
         "census_variable": [
             "B01001_005",
             "B01001_029"
@@ -9194,7 +9194,7 @@
     },
     {
         "pff_variable": "mdpop70t74",
-        "base_variable": "",
+        "base_variable": "mdage",
         "census_variable": [
             "B01001_022",
             "B01001_046"

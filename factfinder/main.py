@@ -10,7 +10,7 @@ from .median import get_median, get_median_moe
 from .special import special_variable_options
 from .aggregate_geography import *
 import logging
-from functools import partial
+from functools import partial, lru_cache
 import itertools
 from cached_property import cached_property
 
@@ -270,6 +270,7 @@ class Pff:
         ]
         return Variable(meta)
 
+    @lru_cache(maxsize=128)
     def get_aggregate_vertical(self, source: str, geotype: str):
         """
         this function will aggregate over geographies, 
@@ -288,6 +289,7 @@ class Pff:
                     aggregate_vertical = options[k][geotype]
         return from_geotype, aggregate_vertical
 
+    @lru_cache(maxsize=128)
     def calculate_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """
         Given pff_variable and geotype, download and calculate the variable
