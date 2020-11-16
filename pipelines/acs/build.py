@@ -14,7 +14,7 @@ geography = ['city', 'tract', 'NTA', 'cd']
 dfs = []
 
 for domain in ['demographic','economic','housing','social']:
-    variables = [i['pff_variable'] for i in pff.metadata if i['domain'] == domain][0:5]
+    variables = [i['pff_variable'] for i in pff.metadata if i['domain'] == domain]
     for var, geo in itertools.product(variables, geography):
         try:
             dfs.append(pff.calculate(var, geo).assign(domain=domain))
