@@ -5,7 +5,7 @@
         "census_variable": [
             "P001001"
         ],
-        "domain": "",
+        "domain": "decennial",
         "rounding": 0,
         "source": "decennial"
     },

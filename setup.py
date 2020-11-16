@@ -14,6 +14,8 @@ setuptools.setup(
     install_requires=[
         "pandas", 
         "census", 
-        "cached-property"
+        "cached-property",
+        "python-dotenv",
+        "typer"
     ]
 )
