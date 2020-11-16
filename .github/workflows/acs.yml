@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install locally
-        run: pip3 install -e .
+        run: |
+          sudo apt-get install -y python3-setuptools
+          pip3 install -e .
       
       - name: run pipelines/acs
         run: python3 pipelines/acs/build.py
