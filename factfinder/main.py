@@ -49,6 +49,13 @@ class Pff:
         return list(set(itertools.chain.from_iterable(list2d)))
 
     @cached_property
+    def profile_only_variables(self) -> list: 
+        return [
+            i['pff_variable'] for i in self.metadata 
+            if (i['census_variable'][0][0:2] == 'DP' and len(i['census_variable']) == 1)
+        ]
+
+    @cached_property
     def base_variables(self) -> list:
         """
         returns a list of base variables in the format of pff_variable
@@ -296,6 +303,31 @@ class Pff:
         df = aggregate_vertical(df)
         return df
 
+    def calculate_e_m_p_z(self, pff_variable:str, geotype:str) -> pd.DataFrame:
+        """
+        This function is used for calculating profile variables only with 
+        non-aggregated-geography geotype
+        """
+         # 1. create variable
+        v = self.create_variable(pff_variable)
+        # hard coding because by definition profile-only
+        #  variables only has 1 census variable
+        census_variable = v.census_variable[0]
+        # 2. pulling data from census site and aggregating
+        df = self.download_variable(self.download_e_m_p_z, v, geotype)
+        df['pff_variable'] = pff_variable
+        df['geotype'] = geotype
+        # 3. Change field names
+        columns = {
+            census_variable+'E':'e',
+            census_variable+'M':'m',
+            census_variable+'PE':'p',
+            census_variable+'PM':'z',
+        }
+        df = self.create_census_geoid(df, geotype)
+        df = df.rename(columns=columns)
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m", "p", "z"]]
+
     def calculate_c_e_m_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
         """
         this function will calculate e, m first, then based on if the 
@@ -315,7 +347,13 @@ class Pff:
         # If pff_variable is a median variable, then we would need
         # to calculate using calculate_median_e_m for aggregated geography
         # there's no need to calculate p, z for median variables
-        if v.pff_variable in self.median_variables:
+        if (
+            v.pff_variable in self.profile_only_variables 
+            and geotype not in self.aggregated_geography
+        ):
+            df = self.calculate_e_m_p_z(v.pff_variable, geotype)
+
+        elif v.pff_variable in self.median_variables:
             df = (
                 self.calculate_median_e_m(v.pff_variable, geotype)
                 if geotype in self.aggregated_geography
@@ -387,7 +425,7 @@ class Pff:
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
         E_variables, M_variables = self.create_census_variables(v.census_variable)
-        df = self.download_variable(v, geotype)
+        df = self.download_variable(self.download_e_m, v, geotype)
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -420,21 +458,51 @@ class Pff:
             )
         return df
 
-    def download_variable(self, v: Variable, geotype: str) -> pd.DataFrame:
+    def download_variable(self, download_function, v: Variable, geotype: str) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs/decennial api
+        Note that depends on if we are taking PE/PM variables directly from census API,
+        we will pass in self.download_e_m_p_z (data_profile_only) or self.download_e_m (generic)
+        as download_func
         """
         geoqueries = self.get_geoquery(geotype)
-        _download = partial(self.download, v=v)
+        _download = partial(download_function, v=v)
         with Pool(5) as pool:
             dfs = pool.map(_download, geoqueries)
         df = pd.concat(dfs)
         return df
 
-    def download(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+    def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+        """
+        This function is for downloading non-aggregated-geotype and data profile only
+        variables. It will return e, m, p, z variables for a single pff variable. 
+        """
+        # single source (data profile) only, so safe to set a default
+        client = self.c.acs5dp
+        census_variable = v.census_variable[0]
+        E_variables = census_variable+'E'
+        M_variables =  census_variable+'M'
+        PE_variables =  census_variable+'PE'
+        PM_variables =  census_variable+'PM'
+        variables = E_variables + M_variables + PE_variables + PM_variables
+        df = pd.DataFrame(client.get(
+                ("NAME", ",".join(variables)),
+                geoquery, year=self.year
+            )
+        )
+         # If E is an outlier, then set M as Nan
+        for i in v.census_variable:
+            df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
+
+        # Replace all outliers as Nan
+        df = df.replace(self.outliers, np.nan)
+        return df
+
+    def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
-        and is only created to facilitate multiprocessing
+        and is only created to facilitate multiprocessing, this function 
+        if for generic variable calculation, returns e, m
         """
         # Get unique sources
         sources = set([i[0] for i in v.census_variable])
