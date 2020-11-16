@@ -484,15 +484,14 @@ class Pff:
         M_variables =  census_variable+'M'
         PE_variables =  census_variable+'PE'
         PM_variables =  census_variable+'PM'
-        variables = E_variables + M_variables + PE_variables + PM_variables
+        variables = [E_variables, M_variables, PE_variables, PM_variables]
         df = pd.DataFrame(client.get(
                 ("NAME", ",".join(variables)),
                 geoquery, year=self.year
             )
         )
-         # If E is an outlier, then set M as Nan
-        for i in v.census_variable:
-            df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
+        # If E is an outlier, then set M as Nan
+        df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
 
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)

@@ -8213,7 +8213,7 @@
         "census_variable": [
             "B01001_001"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8224,7 +8224,7 @@
             "B01001_035",
             "B01001_011"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8235,7 +8235,7 @@
             "B01001_014",
             "B01001_038"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8245,7 +8245,7 @@
         "census_variable": [
             "B01001_027"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8255,7 +8255,7 @@
         "census_variable": [
             "DP05_0003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8265,7 +8265,7 @@
         "census_variable": [
             "B02015_022"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8276,7 +8276,7 @@
             "B01001_016",
             "B01001_040"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8286,7 +8286,7 @@
         "census_variable": [
             "B03001_016"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8296,7 +8296,7 @@
         "census_variable": [
             "B01001_013"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8306,7 +8306,7 @@
         "census_variable": [
             "B03001_029"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8316,7 +8316,7 @@
         "census_variable": [
             "B02015_004"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8326,7 +8326,7 @@
         "census_variable": [
             "DP05_0017"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8336,7 +8336,7 @@
         "census_variable": [
             "DP05_0013"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8347,7 +8347,7 @@
             "B01001_013",
             "B01001_037"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8358,7 +8358,7 @@
             "B01001_045",
             "B01001_021"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8369,7 +8369,7 @@
             "B01001_031",
             "B01001_007"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8379,7 +8379,7 @@
         "census_variable": [
             "B02015_012"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8389,7 +8389,7 @@
         "census_variable": [
             "B01001_004"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8399,7 +8399,7 @@
         "census_variable": [
             "B02015_009"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8410,7 +8410,7 @@
             "B01001_032",
             "B01001_008"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8425,7 +8425,7 @@
             "B02015_012",
             "B02015_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8435,7 +8435,7 @@
         "census_variable": [
             "DP05_0001"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8446,7 +8446,7 @@
             "B01001_006",
             "B01001_007"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8456,7 +8456,7 @@
         "census_variable": [
             "DP05_0029"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8466,7 +8466,7 @@
         "census_variable": [
             "B01001_048"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8476,7 +8476,7 @@
         "census_variable": [
             "DP05_0009"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8487,7 +8487,7 @@
             "B01001_022",
             "B01001_046"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8497,7 +8497,7 @@
         "census_variable": [
             "B01001_046"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8507,7 +8507,7 @@
         "census_variable": [
             "B03001_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8517,7 +8517,7 @@
         "census_variable": [
             "B01001_023"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8527,7 +8527,7 @@
         "census_variable": [
             "DP05_0018"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 1,
         "source": "profile"
     },
@@ -8538,7 +8538,7 @@
             "B01001_044",
             "B01001_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8548,7 +8548,7 @@
         "census_variable": [
             "DP05_0031"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8558,7 +8558,7 @@
         "census_variable": [
             "DP05_0005"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8568,7 +8568,7 @@
         "census_variable": [
             "DP05_0076"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8580,7 +8580,7 @@
             "B01001_034",
             "B01001_033"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8591,7 +8591,7 @@
             "B02015_023",
             "B02015_024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8601,7 +8601,7 @@
         "census_variable": [
             "B03001_023"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8611,7 +8611,7 @@
         "census_variable": [
             "B03001_005"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8621,7 +8621,7 @@
         "census_variable": [
             "B01001_017"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8632,7 +8632,7 @@
             "B01001_009",
             "B01001_033"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8643,7 +8643,7 @@
             "B01001_042",
             "B01001_043"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8653,7 +8653,7 @@
         "census_variable": [
             "B02015_002"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8663,7 +8663,7 @@
         "census_variable": [
             "B03001_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8673,7 +8673,7 @@
         "census_variable": [
             "B01001_025"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8684,7 +8684,7 @@
             "B01001_036",
             "B01001_012"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8699,7 +8699,7 @@
             "B02015_016",
             "B02015_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8709,7 +8709,7 @@
         "census_variable": [
             "B01001_011"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8719,7 +8719,7 @@
         "census_variable": [
             "B03001_025"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8729,7 +8729,7 @@
         "census_variable": [
             "B01001_001"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8739,7 +8739,7 @@
         "census_variable": [
             "B05003_014"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8749,7 +8749,7 @@
         "census_variable": [
             "B03001_021"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8759,7 +8759,7 @@
         "census_variable": [
             "B01001_035"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8769,7 +8769,7 @@
         "census_variable": [
             "B02015_015"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8779,7 +8779,7 @@
         "census_variable": [
             "B01001_022"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8789,7 +8789,7 @@
         "census_variable": [
             "B01001_037"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8799,7 +8799,7 @@
         "census_variable": [
             "B01001_049"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8809,7 +8809,7 @@
         "census_variable": [
             "DP05_0081"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8819,7 +8819,7 @@
         "census_variable": [
             "B03001_026"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8829,7 +8829,7 @@
         "census_variable": [
             "B01001_024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8840,7 +8840,7 @@
             "B01001_019",
             "B01001_043"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8850,7 +8850,7 @@
         "census_variable": [
             "B01001_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8860,7 +8860,7 @@
         "census_variable": [
             "B02015_019"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8870,7 +8870,7 @@
         "census_variable": [
             "DP05_0014"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8881,7 +8881,7 @@
             "B01001_016",
             "B01001_040"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8891,7 +8891,7 @@
         "census_variable": [
             "B01001_041"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8902,7 +8902,7 @@
             "B01001_048",
             "B01001_024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8912,7 +8912,7 @@
         "census_variable": [
             "B03001_007"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8922,7 +8922,7 @@
         "census_variable": [
             "DP05_0008"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8932,7 +8932,7 @@
         "census_variable": [
             "DP05_0024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -8943,7 +8943,7 @@
             "B01001_049",
             "B01001_025"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8953,7 +8953,7 @@
         "census_variable": [
             "B03001_024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8963,7 +8963,7 @@
         "census_variable": [
             "B05003_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8974,7 +8974,7 @@
             "B01001_013",
             "B01001_037"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8985,7 +8985,7 @@
             "B01001_047",
             "B01001_023"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -8995,7 +8995,7 @@
         "census_variable": [
             "B02015_016"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9005,7 +9005,7 @@
         "census_variable": [
             "B03001_019"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9015,7 +9015,7 @@
         "census_variable": [
             "B03001_004"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9027,7 +9027,7 @@
             "B01001_008",
             "B01001_010"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9045,7 +9045,7 @@
             "B02015_008",
             "B02015_006"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9056,7 +9056,7 @@
             "B01001_047",
             "B01001_023"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9066,7 +9066,7 @@
         "census_variable": [
             "DP05_0082"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9076,7 +9076,7 @@
         "census_variable": [
             "B03001_009"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9086,7 +9086,7 @@
         "census_variable": [
             "B02015_006"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9096,7 +9096,7 @@
         "census_variable": [
             "B03001_031"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9106,7 +9106,7 @@
         "census_variable": [
             "B01001_038"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9116,7 +9116,7 @@
         "census_variable": [
             "B03001_013"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9126,7 +9126,7 @@
         "census_variable": [
             "DP05_0007"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9136,7 +9136,7 @@
         "census_variable": [
             "B02015_018"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9147,7 +9147,7 @@
             "B01001_044",
             "B01001_045"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9158,7 +9158,7 @@
             "B01001_005",
             "B01001_029"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9168,7 +9168,7 @@
         "census_variable": [
             "DP05_0077"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9178,7 +9178,7 @@
         "census_variable": [
             "B02015_005"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9188,7 +9188,7 @@
         "census_variable": [
             "B02015_008"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9199,7 +9199,7 @@
             "B01001_022",
             "B01001_046"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9210,7 +9210,7 @@
             "B01001_014",
             "B01001_038"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9220,7 +9220,7 @@
         "census_variable": [
             "DP05_0071"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9230,7 +9230,7 @@
         "census_variable": [
             "B03001_011"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9243,7 +9243,7 @@
             "B01001_021",
             "B01001_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9253,7 +9253,7 @@
         "census_variable": [
             "B02015_010"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9263,7 +9263,7 @@
         "census_variable": [
             "B01001_036"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9273,7 +9273,7 @@
         "census_variable": [
             "B01001_047"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9283,7 +9283,7 @@
         "census_variable": [
             "DP05_0019"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9294,7 +9294,7 @@
             "B01001_048",
             "B01001_024"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9304,7 +9304,7 @@
         "census_variable": [
             "B01001_040"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9315,7 +9315,7 @@
             "B01001_041",
             "B01001_017"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9325,7 +9325,7 @@
         "census_variable": [
             "B03001_010"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9335,7 +9335,7 @@
         "census_variable": [
             "B01001_039"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9345,7 +9345,7 @@
         "census_variable": [
             "B03001_006"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9355,7 +9355,7 @@
         "census_variable": [
             "B03001_008"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9365,7 +9365,7 @@
         "census_variable": [
             "B03001_028"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9375,7 +9375,7 @@
         "census_variable": [
             "B03001_014"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9385,7 +9385,7 @@
         "census_variable": [
             "B01001_016"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9395,7 +9395,7 @@
         "census_variable": [
             "B02015_011"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9405,7 +9405,7 @@
         "census_variable": [
             "B02015_021"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9415,7 +9415,7 @@
         "census_variable": [
             "B02015_025"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9425,7 +9425,7 @@
         "census_variable": [
             "B02015_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9435,7 +9435,7 @@
         "census_variable": [
             "B02015_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9446,7 +9446,7 @@
             "B01001_031",
             "B01001_030"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9456,7 +9456,7 @@
         "census_variable": [
             "B03001_030"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9466,7 +9466,7 @@
         "census_variable": [
             "B02015_013"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9476,7 +9476,7 @@
         "census_variable": [
             "DP05_0079"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9486,7 +9486,7 @@
         "census_variable": [
             "B03001_022"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9497,7 +9497,7 @@
             "B01001_027",
             "B01001_003"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9507,7 +9507,7 @@
         "census_variable": [
             "DP05_0019"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9517,7 +9517,7 @@
         "census_variable": [
             "B03001_015"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9527,7 +9527,7 @@
         "census_variable": [
             "B01001_005"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9537,7 +9537,7 @@
         "census_variable": [
             "B01001_015"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9547,7 +9547,7 @@
         "census_variable": [
             "B02015_014"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9557,7 +9557,7 @@
         "census_variable": [
             "DP05_0070"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9567,7 +9567,7 @@
         "census_variable": [
             "B01001_012"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9578,7 +9578,7 @@
             "B01001_019",
             "B01001_018"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9589,7 +9589,7 @@
             "B01001_036",
             "B01001_012"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9600,7 +9600,7 @@
             "B01001_028",
             "B01001_004"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9611,7 +9611,7 @@
             "B01001_042",
             "B01001_018"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9621,7 +9621,7 @@
         "census_variable": [
             "B02015_007"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9631,7 +9631,7 @@
         "census_variable": [
             "B01001_014"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9642,7 +9642,7 @@
             "B01001_010",
             "B01001_034"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9652,7 +9652,7 @@
         "census_variable": [
             "DP05_0078"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9662,7 +9662,7 @@
         "census_variable": [
             "DP05_0080"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9673,7 +9673,7 @@
             "B01001_006",
             "B01001_030"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9683,7 +9683,7 @@
         "census_variable": [
             "B03001_018"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9693,7 +9693,7 @@
         "census_variable": [
             "DP05_0083"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9704,7 +9704,7 @@
             "B01001_015",
             "B01001_039"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9714,7 +9714,7 @@
         "census_variable": [
             "DP05_0030"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9724,7 +9724,7 @@
         "census_variable": [
             "DP05_0006"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9734,7 +9734,7 @@
         "census_variable": [
             "B03001_012"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9744,7 +9744,7 @@
         "census_variable": [
             "B03001_017"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9754,7 +9754,7 @@
         "census_variable": [
             "B03001_027"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9764,7 +9764,7 @@
         "census_variable": [
             "DP05_0002"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": "profile"
     },
@@ -9774,7 +9774,7 @@
         "census_variable": [
             "B01001_029"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9785,7 +9785,7 @@
             "B01001_021",
             "B01001_020"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9796,7 +9796,7 @@
             "B01001_035",
             "B01001_011"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9807,7 +9807,7 @@
             "B01001_015",
             "B01001_039"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9817,7 +9817,7 @@
         "census_variable": [
             "B01001_028"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9827,7 +9827,7 @@
         "census_variable": [
             "B02015_017"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     },
@@ -9837,7 +9837,7 @@
         "census_variable": [
             "B02015_001"
         ],
-        "domain": "demographics",
+        "domain": "demographic",
         "rounding": 0,
         "source": ""
     }
