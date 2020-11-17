@@ -24,7 +24,10 @@ variables = [(i['pff_variable'], i['domain']) for i in pff.metadata if i['domain
 # Function wrapper calculate for multiprocessing
 def calculate(*args):
     (var, domain), geo = args[0]
-    return pff.calculate(var, geo).assign(domain=domain)
+    try:
+        return pff.calculate(var, geo).assign(domain=domain)
+    except:
+        print(var, geo, domain)
 
 # Initialize Pool for multiprocessing and collect dataframes in dfs
 with Pool(5) as pool:
