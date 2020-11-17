@@ -18,7 +18,8 @@ pff = Pff(api_key=os.environ['API_KEY'], year = 2018)
 
 # Declare geography and variables involved in this caculation
 geography = ['city', 'tract', 'NTA', 'cd']
-variables = [(i['pff_variable'], i['domain']) for i in pff.metadata[:10] if i['domain'] != 'decennial']
+domains = ['demographic','economic','housing','social']
+variables = [(i['pff_variable'], i['domain']) for i in pff.metadata[:10] if i['domain'] in domains]
 
 # Function wrapper calculate for multiprocessing
 def calculate(*args):
