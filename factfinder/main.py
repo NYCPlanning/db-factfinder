@@ -250,7 +250,7 @@ class Pff:
         # 5. Calculate median moe using get_median_moe
         # Note that median moe calculation needs the median estimation
         # so we seperated df_pivoted.m out as a seperate dataframe
-        e = df_pivoted.e
+        e = df_pivoted.e.copy()
         e["e"] = results.loc[e.index == results.census_geoid, "e"].to_list()
         results["m"] = (
             e.loc[e.index == results.census_geoid, list(ranges.keys()) + ["e"]]
@@ -493,6 +493,8 @@ class Pff:
             )
         )
         # If E is an outlier, then set M as Nan
+        for var in variables: # Enforce type safety
+            df[var] = df[var].astype('float64')
         df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
 
         # Replace all outliers as Nan
@@ -533,7 +535,9 @@ class Pff:
             )
         del frames
         # If E is an outlier, then set M as Nan
-        for i in v.census_variable:
+        for i in v.census_variable: # Enforce type safety
+            df[f"{i}E"] = df[f"{i}E"].astype('float64')
+            df[f"{i}E"] = df[f"{i}M"].astype('float64')
             df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
 
         # Replace all outliers as Nan
