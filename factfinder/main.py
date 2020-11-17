@@ -376,29 +376,35 @@ class Pff:
             # are calculated against the base variable e(agg_e), m(agg_m)
             if v.pff_variable not in self.base_variables:
                 df = self.calculate_e_m(v.pff_variable, geotype)
-                df_base = (
-                    self.calculate_e_m(v.base_variable, geotype)
-                    if not (
-                        v.base_variable in self.special_variables
-                        and geotype in self.aggregated_geography
+                if v.base_variable != 'nan':
+                    df_base = (
+                        self.calculate_e_m(v.base_variable, geotype)
+                        if not (
+                            v.base_variable in self.special_variables
+                            and geotype in self.aggregated_geography
+                        )
+                        else self.calculate_special_e_m(v.base_variable, geotype)
                     )
-                    else self.calculate_special_e_m(v.base_variable, geotype)
-                )
-                df = df.merge(
-                    df_base[["census_geoid", "e", "m"]].rename(
-                        columns={"e": "agg_e", "m": "agg_m"}
-                    ),
-                    how="left",
-                    on="census_geoid",
-                )
-                del df_base
-                df["p"] = df.apply(lambda row: get_p(row["e"], row["agg_e"]), axis=1)
-                df["z"] = df.apply(
-                    lambda row: get_z(
-                        row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
-                    ),
-                    axis=1,
-                )
+                    df = df.merge(
+                        df_base[["census_geoid", "e", "m"]].rename(
+                            columns={"e": "agg_e", "m": "agg_m"}
+                        ),
+                        how="left",
+                        on="census_geoid",
+                    )
+                    del df_base
+                    df["p"] = df.apply(lambda row: get_p(row["e"], row["agg_e"]), axis=1)
+                    df["z"] = df.apply(
+                        lambda row: get_z(
+                            row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
+                        ),
+                        axis=1,
+                    )
+                else: 
+                    # special case for grnorntpd, smpntc, 
+                    # grpintc, nmsmpntc, cni1864_2, cvlf18t64
+                    df["p"] = np.nan
+                    df["z"] = np.nan
             # If pff_variable is a base variable, then
             # p = 100 for city and borough level, np.nan otherwise
             # z = np.nan for all levels of geography
