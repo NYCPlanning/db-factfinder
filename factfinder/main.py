@@ -250,7 +250,7 @@ class Pff:
         # 5. Calculate median moe using get_median_moe
         # Note that median moe calculation needs the median estimation
         # so we seperated df_pivoted.m out as a seperate dataframe
-        e = df_pivoted.e
+        e = df_pivoted.e.copy()
         e["e"] = results.loc[e.index == results.census_geoid, "e"].to_list()
         results["m"] = (
             e.loc[e.index == results.census_geoid, list(ranges.keys()) + ["e"]]
