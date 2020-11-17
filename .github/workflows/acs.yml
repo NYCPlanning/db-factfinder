@@ -21,3 +21,9 @@ jobs:
       - name: run pipelines/acs
         run: python3 pipelines/acs/build.py
       
+      - name: upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: pff_acs.csv
+          retention-days: 2
