@@ -502,7 +502,7 @@ class Pff:
         for var in variables: # Enforce type safety
             df[var] = df[var].astype('float64')
         df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
-        df.loc[df.E_variables==0, M_variables]=0
+        df.loc[df[E_variables]==0, M_variables]=0
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)
         return df

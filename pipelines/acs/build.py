@@ -30,7 +30,7 @@ def calculate(*args):
         print(var, geo, domain)
 
 # Initialize Pool for multiprocessing and collect dataframes in dfs
-with Pool(5) as pool:
+with Pool(10) as pool:
     dfs=pool.map(calculate, itertools.product(variables, geography))
 
 # Concatenate dataframes and export to 1 large csv
