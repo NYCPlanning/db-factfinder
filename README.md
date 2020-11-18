@@ -19,15 +19,17 @@ decennial = Pff(
 )
 ```
 2. Calculate
-> for none median variables: 
+> Calling `calculate` 
+>    1. Downloads necessary census variables,
+>    2. Aggregates using appropriate technique (both vertically and horizontally)
+>    3. Calculates c, e, m, p, z fields
+>    4. Rounds calculated values based on standards in the metadata
+>    5. Cleans edge-cases of 0 and null values
 ```python
-df = pff.calculate_variable('pop', 'tract')
-df = pff.calculate_variable('pop', 'borough')
-df = pff.calculate_variable('pop', 'city')
-df = pff.calculate_variable('pop', 'NTA')
+df = pff.calculate('pop', 'tract')
+df = pff.calculate('pop', 'borough')
+df = pff.calculate('pop', 'city')
+df = pff.calculate('pop', 'NTA')
+df = pff.calculate('mdage', 'NTA')
+```
 
-```
-> for median variables: 
-```python
-df = pff.calculate_median_variable('mdage', 'NTA')
-```
