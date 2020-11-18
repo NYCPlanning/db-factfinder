@@ -502,7 +502,7 @@ class Pff:
         for var in variables: # Enforce type safety
             df[var] = df[var].astype('float64')
         df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
-
+        df.loc[df.E_variables==0, M_variables]=0
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)
         return df
@@ -544,6 +544,7 @@ class Pff:
         for i in v.census_variable: # Enforce type safety
             df[f"{i}E"] = df[f"{i}E"].astype('float64')
             df[f"{i}M"] = df[f"{i}M"].astype('float64')
+            df.loc[df[f"{i}E"]==0, f"{i}M"] = 0
             df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
 
         # Replace all outliers as Nan
