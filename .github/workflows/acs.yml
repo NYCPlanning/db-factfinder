@@ -9,6 +9,7 @@ jobs:
   build:
     env:
       API_KEY: ${{ secrets.API_KEY }}
+      EDM_DATA: ${{ secrets.EDM_DATA }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,3 +28,22 @@ jobs:
           name: my-artifact
           path: pff_acs.csv
           retention-days: 2
+      - name: send to database
+        run: |
+          psql $EDM_DATA -c "
+          DROP TABLE IF EXISTS pff_acs.\"2018-test\";
+          CREATE TABLE pff_acs."2018-test" (
+              census_geoid text,
+              pff_variable text,
+              geotype text,
+              c double precision,
+              e double precision,
+              m double precision,
+              p double precision,
+              z double precision,
+              domain text
+          );
+          "
+          cat pff_acs.csv | psql $EDM_DATA -c "
+            COPY pff_acs.\"2018-test\" FROM STDIN DELIMITER ',' CSV HEADER;
+          "
