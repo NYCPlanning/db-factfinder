@@ -32,7 +32,7 @@ jobs:
         run: |
           psql $EDM_DATA -c "
           DROP TABLE IF EXISTS pff_acs.\"2018-test\";
-          CREATE TABLE pff_acs."2018-test" (
+          CREATE TABLE pff_acs.\"2018-test\" (
               census_geoid text,
               pff_variable text,
               geotype text,
