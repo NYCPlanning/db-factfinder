@@ -5,7 +5,7 @@
         "census_variable": [
             "B25003_002"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -15,7 +15,7 @@
         "census_variable": [
             "B25002_001"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -25,7 +25,7 @@
         "census_variable": [
             "B25091_001"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -35,7 +35,7 @@
         "census_variable": [
             "B25091_002"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -52,7 +52,7 @@
             "B25091_010",
             "B25091_011"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -62,7 +62,7 @@
         "census_variable": [
             "B25070_001"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
@@ -75,7 +75,7 @@
             "B25070_009",
             "B25070_010"
         ],
-        "domain": "",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": ""
     },
