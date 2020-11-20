@@ -1,5 +1,85 @@
 [
     {
+        "pff_variable":"ownerocc",
+        "base_variable":"occbaseunits",
+        "census_variable": [
+            "B25003_002"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"occbaseunits",
+        "base_variable":"occbaseunits",
+        "census_variable": [
+            "B25002_001"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"owneroccbase",
+        "base_variable":"owneroccbase",
+        "census_variable": [
+            "B25091_001"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"mortg",
+        "base_variable":"owneroccbase",
+        "census_variable": [
+            "B25091_002"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"costburden",
+        "base_variable":"owneroccbase",
+        "census_variable": [
+            "B25091_019",
+            "B25091_020",
+            "B25091_021",
+            "B25091_022",
+            "B25091_008",
+            "B25091_009",
+            "B25091_010",
+            "B25091_011"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"renteroccbase",
+        "base_variable":"renteroccbase",
+        "census_variable": [
+            "B25070_001"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"rentburden",
+        "base_variable":"renteroccbase",
+        "census_variable": [
+            "B25070_007",
+            "B25070_008",
+            "B25070_009",
+            "B25070_010"
+        ],
+        "domain": "",
+        "rounding": 0,
+        "source": ""
+    },
+    {
         "pff_variable": "pop2010",
         "base_variable": "pop2010",
         "census_variable": [
