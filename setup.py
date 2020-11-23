@@ -10,8 +10,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/NYCPlanning/db-factfinder",
     packages=find_packages(),
-    package_data={'factfinder': ['*.csv', '*.json']},
-    include_package_data=True,
+    package_data={'factfinder': ['data/*.csv', 'data/*.json']},
     python_requires='>=3.6',
     install_requires=[
         "pandas", 
