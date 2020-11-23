@@ -540,13 +540,17 @@ class Pff:
                 right_on="NAME",
             )
         del frames
-        # If E is an outlier, then set M as Nan
-        for i in v.census_variable: # Enforce type safety
-            df[f"{i}E"] = df[f"{i}E"].astype('float64')
-            df[f"{i}M"] = df[f"{i}M"].astype('float64')
-            df.loc[df[f"{i}E"]==0, f"{i}M"] = 0
-            df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
-
+        # Enforce type safety
+        for i in v.census_variable: 
+            if i[0] != "P":
+                df[f"{i}E"] = df[f"{i}E"].astype('float64')
+                df[f"{i}M"] = df[f"{i}M"].astype('float64')
+                # If E is zero, then set M as zero
+                df.loc[df[f"{i}E"]==0, f"{i}M"] = 0
+                # If E is an outlier, then set M as Nan
+                df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
+            else:
+                df[i] = df[i].astype('float64')
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)
         return df
