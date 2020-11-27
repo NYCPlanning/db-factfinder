@@ -176,14 +176,12 @@ class Pff:
         ] = 0
 
         df.loc[
-            df.geotype.isin(["borough", "city"])
-            & df.pff_variable.isin(self.base_variables),
+            df.pff_variable.isin(self.base_variables),
             "p",
         ] = 100
 
         df.loc[
-            df.geotype.isin(["borough", "city"])
-            & df.pff_variable.isin(self.base_variables),
+            df.pff_variable.isin(self.base_variables),
             "z",
         ] = np.nan
 
