@@ -3,3 +3,4 @@ census
 cached-property
 python-dotenv
 typer
+setuptools
