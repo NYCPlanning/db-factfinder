@@ -1,5 +1,36 @@
 [
     {
+        "pff_variable":"lgoenlep1",
+        "base_variable":"lgbase",
+        "census_variable": [
+            "C16001_005",
+            "C16001_008",
+            "C16001_011",
+            "C16001_014",
+            "C16001_017",
+            "C16001_020",
+            "C16001_023",
+            "C16001_026",
+            "C16001_029",
+            "C16001_032",
+            "C16001_035",
+            "C16001_038"
+        ],
+        "domain": "community_profiles",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable":"lgbase",
+        "base_variable":"lgbase",
+        "census_variable": [
+            "C16001_001"
+        ],
+        "domain": "community_profiles",
+        "rounding": 0,
+        "source": ""
+    },
+    {
         "pff_variable":"ownerocc",
         "base_variable":"occbaseunits",
         "census_variable": [
