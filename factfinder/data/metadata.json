@@ -111,8 +111,8 @@
         "source": ""
     },
     {
-        "pff_variable": "popdec",
-        "base_variable": "popdec",
+        "pff_variable": "decennial_pop",
+        "base_variable": "decennial_pop",
         "census_variable": [
             "P001001"
         ],
