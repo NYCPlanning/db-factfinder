@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="pff-factfinder",
-    version="0.0.0",
+    version="0.0.1",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/NYCPlanning/db-factfinder",

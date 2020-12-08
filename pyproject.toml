@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pff-factfinder"
+version = "0.0.1"
+description = ""
+authors = ["Baiyue Cao <caobaiyue@live.com>"]
+packages = [
+    { include = "factfinder/*" },
+    { include = "factfinder/**/*" },
+]
+
+[tool.poetry.dependencies]
+python = "3.*"
+pandas = "1.1.4"
+census = "0.8.15"
+cached-property = "1.5.2"
+python-dotenv = "0.15.0"
+typer = "0.3.2"
