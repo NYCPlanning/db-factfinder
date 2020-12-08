@@ -1,4 +1,6 @@
-# db-factfinder
+# db-factfinder 
+[![PyPI version](https://badge.fury.io/py/pff-factfinder.svg)](https://badge.fury.io/py/pff-factfinder)
+
 data ETL for population fact finder (decennial + acs)
 
 # Instructions
