@@ -54,8 +54,8 @@ class Pff:
             i['pff_variable'] for i in self.metadata 
             if (i['census_variable'][0][0:2] == 'DP' 
                 and len(i['census_variable']) == 1 
-                and i['base_variable'] != i['pff_variable'] 
-                and i['base_variable'] != np.nan)
+                and i['base_variable'] != i['pff_variable']
+                and i['base_variable'] != "nan")
         ]
 
     @cached_property
