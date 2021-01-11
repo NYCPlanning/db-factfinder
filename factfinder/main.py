@@ -49,10 +49,11 @@ class Pff:
         return list(set(itertools.chain.from_iterable(list2d)))
 
     @cached_property
-    def profile_only_variables(self) -> list: 
+    def profile_only_variables(self) -> list:
         return [
-            i['pff_variable'] for i in self.metadata 
-            if (i['census_variable'][0][0:2] == 'DP' and len(i['census_variable']) == 1)
+            i["pff_variable"]
+            for i in self.metadata
+            if (i["census_variable"][0][0:2] == "DP" and len(i["census_variable"]) == 1)
         ]
 
     @cached_property
@@ -72,14 +73,14 @@ class Pff:
     @cached_property
     def special_variables(self) -> list:
         """
-        returns a list of special calculation variables in the format 
+        returns a list of special calculation variables in the format
         of pff_variable
         """
         return [i["pff_variable"] for i in self.special]
 
     def get_special_base_variables(self, pff_variable) -> list:
         """
-        returns a list of special calculation base variables in the format 
+        returns a list of special calculation base variables in the format
         of pff_variable
         """
         special = list(
@@ -90,8 +91,8 @@ class Pff:
     def median_ranges(self, pff_variable) -> dict:
         """
         given median variable in the format of pff_variable
-        returns the ranges object for the median variable. 
-        e.g. 
+        returns the ranges object for the median variable.
+        e.g.
         {
             'mdpop0t4': [0, 4.9999],
             'mdpop5t9': [5, 9.9999],
@@ -103,7 +104,7 @@ class Pff:
     def median_design_factor(self, pff_variable) -> float:
         """
         given median variable in the form of pff_variable
-        returns the design_factor needed to calculate the 
+        returns the design_factor needed to calculate the
         median moe
         """
         return self.median[pff_variable]["design_factor"]
@@ -189,7 +190,7 @@ class Pff:
 
     def calculate_multiple_e_m(self, pff_variables: list, geotype: str) -> pd.DataFrame:
         """
-        given a list of pff_variables, and geotype, calculate multiple 
+        given a list of pff_variables, and geotype, calculate multiple
         variables e, m at the same time using multiprocessing
         """
         _calculate_e_m = partial(self.calculate_e_m, geotype=geotype)
@@ -271,7 +272,7 @@ class Pff:
     @lru_cache(maxsize=128)
     def get_aggregate_vertical(self, source: str, geotype: str):
         """
-        this function will aggregate over geographies, 
+        this function will aggregate over geographies,
         e.g. aggregate over tracts to get NTA level data
         """
         source = "acs" if source != "decennial" else source
@@ -303,26 +304,26 @@ class Pff:
         df = aggregate_vertical(df)
         return df
 
-    def calculate_e_m_p_z(self, pff_variable:str, geotype:str) -> pd.DataFrame:
+    def calculate_e_m_p_z(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """
-        This function is used for calculating profile variables only with 
+        This function is used for calculating profile variables only with
         non-aggregated-geography geotype
         """
-         # 1. create variable
+        # 1. create variable
         v = self.create_variable(pff_variable)
         # hard coding because by definition profile-only
         #  variables only has 1 census variable
         census_variable = v.census_variable[0]
         # 2. pulling data from census site and aggregating
         df = self.download_variable(self.download_e_m_p_z, v, geotype)
-        df['pff_variable'] = pff_variable
-        df['geotype'] = geotype
+        df["pff_variable"] = pff_variable
+        df["geotype"] = geotype
         # 3. Change field names
         columns = {
-            census_variable+'E':'e',
-            census_variable+'M':'m',
-            census_variable+'PE':'p',
-            census_variable+'PM':'z',
+            census_variable + "E": "e",
+            census_variable + "M": "m",
+            census_variable + "PE": "p",
+            census_variable + "PM": "z",
         }
         df = self.create_census_geoid(df, geotype)
         df = df.rename(columns=columns)
@@ -330,7 +331,7 @@ class Pff:
 
     def calculate_c_e_m_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
         """
-        this function will calculate e, m first, then based on if the 
+        this function will calculate e, m first, then based on if the
         variable is a median variable or base variable, it would calculate
         p and z accordingly. Note that c calculation is the same for all variables
         """
@@ -348,7 +349,7 @@ class Pff:
         # to calculate using calculate_median_e_m for aggregated geography
         # there's no need to calculate p, z for median variables
         if (
-            v.pff_variable in self.profile_only_variables 
+            v.pff_variable in self.profile_only_variables
             and geotype not in self.aggregated_geography
         ):
             df = self.calculate_e_m_p_z(v.pff_variable, geotype)
@@ -374,7 +375,7 @@ class Pff:
             # are calculated against the base variable e(agg_e), m(agg_m)
             if v.pff_variable not in self.base_variables:
                 df = self.calculate_e_m(v.pff_variable, geotype)
-                if v.base_variable != 'nan':
+                if v.base_variable != "nan":
                     df_base = (
                         self.calculate_e_m(v.base_variable, geotype)
                         if not (
@@ -391,15 +392,17 @@ class Pff:
                         on="census_geoid",
                     )
                     del df_base
-                    df["p"] = df.apply(lambda row: get_p(row["e"], row["agg_e"]), axis=1)
+                    df["p"] = df.apply(
+                        lambda row: get_p(row["e"], row["agg_e"]), axis=1
+                    )
                     df["z"] = df.apply(
                         lambda row: get_z(
                             row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
                         ),
                         axis=1,
                     )
-                else: 
-                    # special case for grnorntpd, smpntc, 
+                else:
+                    # special case for grnorntpd, smpntc,
                     # grpintc, nmsmpntc, cni1864_2, cvlf18t64
                     df["p"] = np.nan
                     df["z"] = np.nan
@@ -415,7 +418,7 @@ class Pff:
 
     def create_census_variables(self, census_variable: list) -> (list, list):
         """
-        Based on the census variables, spit out the 
+        Based on the census variables, spit out the
         M variables and E variables
         e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
         """
@@ -436,9 +439,17 @@ class Pff:
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
         df["geotype"] = geotype
-        df["e"] = df[E_variables].sum(axis=1)
+
+        df["e"] = (
+            df[E_variables].sum(axis=1)
+            # Special Case for WrkrNotHm = DP03_0018E - DP03_0024E
+            if v.pff_variable != "wrkrnothm"
+            else df.DP03_0018E - df.DP03_0024E
+        )
+
         df["m"] = (
             (df[M_variables] ** 2).sum(axis=1) ** 0.5
+            # We do not calculate moe for decennial variables
             if v.source != "decennial"
             else np.nan
         )
@@ -464,7 +475,9 @@ class Pff:
             )
         return df
 
-    def download_variable(self, download_function, v: Variable, geotype: str) -> pd.DataFrame:
+    def download_variable(
+        self, download_function, v: Variable, geotype: str
+    ) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs/decennial api
         Note that depends on if we are taking PE/PM variables directly from census API,
@@ -481,34 +494,32 @@ class Pff:
     def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         This function is for downloading non-aggregated-geotype and data profile only
-        variables. It will return e, m, p, z variables for a single pff variable. 
+        variables. It will return e, m, p, z variables for a single pff variable.
         """
         # single source (data profile) only, so safe to set a default
         client = self.c.acs5dp
         census_variable = v.census_variable[0]
-        E_variables = census_variable+'E'
-        M_variables =  census_variable+'M'
-        PE_variables =  census_variable+'PE'
-        PM_variables =  census_variable+'PM'
+        E_variables = census_variable + "E"
+        M_variables = census_variable + "M"
+        PE_variables = census_variable + "PE"
+        PM_variables = census_variable + "PM"
         variables = [E_variables, M_variables, PE_variables, PM_variables]
-        df = pd.DataFrame(client.get(
-                ("NAME", ",".join(variables)),
-                geoquery, year=self.year
-            )
+        df = pd.DataFrame(
+            client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
         )
         # If E is an outlier, then set M as Nan
-        for var in variables: # Enforce type safety
-            df[var] = df[var].astype('float64')
+        for var in variables:  # Enforce type safety
+            df[var] = df[var].astype("float64")
         df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
-        df.loc[df[E_variables]==0, M_variables]=0
+        df.loc[df[E_variables] == 0, M_variables] = 0
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)
         return df
 
     def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
-        this function works in conjunction with download_variable, 
-        and is only created to facilitate multiprocessing, this function 
+        this function works in conjunction with download_variable,
+        and is only created to facilitate multiprocessing, this function
         if for generic variable calculation, returns e, m
         """
         # Get unique sources
@@ -539,16 +550,16 @@ class Pff:
             )
         del frames
         # Enforce type safety
-        for i in v.census_variable: 
+        for i in v.census_variable:
             if i[0] != "P":
-                df[f"{i}E"] = df[f"{i}E"].astype('float64')
-                df[f"{i}M"] = df[f"{i}M"].astype('float64')
+                df[f"{i}E"] = df[f"{i}E"].astype("float64")
+                df[f"{i}M"] = df[f"{i}M"].astype("float64")
                 # If E is zero, then set M as zero
-                df.loc[df[f"{i}E"]==0, f"{i}M"] = 0
+                df.loc[df[f"{i}E"] == 0, f"{i}M"] = 0
                 # If E is an outlier, then set M as Nan
                 df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
             else:
-                df[i] = df[i].astype('float64')
+                df[i] = df[i].astype("float64")
         # Replace all outliers as Nan
         df = df.replace(self.outliers, np.nan)
         return df
@@ -556,29 +567,46 @@ class Pff:
     def get_geoquery(self, geotype: str) -> list:
         """
         given geotype, this function will create a list of geographic queries
-        we would need to pull NYC level data. 
+        we would need to pull NYC level data.
         """
         if geotype == "tract":
             return [
-                {"for": "tract:*", "in": f"state:{self.state} county:{county}",}
+                {
+                    "for": "tract:*",
+                    "in": f"state:{self.state} county:{county}",
+                }
                 for county in self.counties
             ]
         elif geotype == "borough":
             return [
-                {"for": f"county:{county}", "in": f"state:{self.state}",}
+                {
+                    "for": f"county:{county}",
+                    "in": f"state:{self.state}",
+                }
                 for county in self.counties
             ]
         elif geotype == "city":
-            return [{"for": "place:51000", "in": f"state:{self.state}",}]
+            return [
+                {
+                    "for": "place:51000",
+                    "in": f"state:{self.state}",
+                }
+            ]
 
         elif geotype == "block":
             return [
-                {"for": "block:*", "in": f"state:{self.state} county:{county}",}
+                {
+                    "for": "block:*",
+                    "in": f"state:{self.state} county:{county}",
+                }
                 for county in self.counties
             ]
 
         elif geotype in "block group":
             return [
-                {"for": "block group:*", "in": f"state:{self.state} county:{county}",}
+                {
+                    "for": "block group:*",
+                    "in": f"state:{self.state} county:{county}",
+                }
                 for county in self.counties
             ]
