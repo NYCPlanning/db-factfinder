@@ -134,7 +134,7 @@ def rntvacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
 def wrkrnothm(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
     df = pivot(df, base_variables)
     df["e"] = df["wrkr16ple"] - df["cw_wrkdhme"]
-    df["m"] = (df["wrkr16plm"]**2 + df["cw_wrkdhm"]**2)**0.5
+    df["m"] = (df["wrkr16plm"]**2 + df["cw_wrkdhmm"]**2)**0.5
     return df
 
 special_variable_options = {
