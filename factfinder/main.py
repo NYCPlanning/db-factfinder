@@ -376,7 +376,6 @@ class Pff:
             # If pff_variable is not base_variable, then p,z
             # are calculated against the base variable e(agg_e), m(agg_m)
             if v.pff_variable not in self.base_variables:
-                df = self.calculate_e_m(v.pff_variable, geotype)
                 if v.base_variable != 'nan':
                     df_base = (
                         self.calculate_e_m(v.base_variable, geotype)
