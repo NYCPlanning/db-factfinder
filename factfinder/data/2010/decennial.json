@@ -1,0 +1,12 @@
+[
+    {
+        "pff_variable": "decennial_pop",
+        "base_variable": "decennial_pop",
+        "census_variable": [
+            "P001001"
+        ],
+        "domain": "decennial",
+        "rounding": 0,
+        "source": "decennial"
+    },
+]
