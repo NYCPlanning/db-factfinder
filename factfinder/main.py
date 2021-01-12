@@ -16,16 +16,16 @@ from cached_property import cached_property
 
 
 class Pff:
-    def __init__(self, api_key, year=2018):
+    def __init__(self, api_key, source='acs', year=2018):
         self.c = Census(api_key)
         self.year = year
         self.state = 36
         self.counties = ["005", "081", "085", "047", "061"]
-        with open(f"{Path(__file__).parent}/data/metadata.json") as f:
+        with open(f"{Path(__file__).parent}/data/{year}/{source}.json") as f:
             self.metadata = json.load(f)
-        with open(f"{Path(__file__).parent}/data/median.json") as f:
+        with open(f"{Path(__file__).parent}/data/{year}/median.json") as f:
             self.median = json.load(f)
-        with open(f"{Path(__file__).parent}/data/special.json") as f:
+        with open(f"{Path(__file__).parent}/data/{year}/special.json") as f:
             self.special = json.load(f)
 
         self.client_options = {
@@ -33,6 +33,7 @@ class Pff:
             "S": self.c.acs5st,
             "P": self.c.sf1,
             "B": self.c.acs5,
+            "C": self.c.acs5,
         }
 
         self.aggregate_vertical_options = aggregate_vertical_options
