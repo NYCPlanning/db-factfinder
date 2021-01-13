@@ -16,17 +16,12 @@ from cached_property import cached_property
 
 
 class Pff:
-    def __init__(self, api_key, year=2018):
+    def __init__(self, api_key, year=2018, source='acs'):
         self.c = Census(api_key)
         self.year = year
+        self.source = source
         self.state = 36
         self.counties = ["005", "081", "085", "047", "061"]
-        with open(f"{Path(__file__).parent}/data/metadata.json") as f:
-            self.metadata = json.load(f)
-        with open(f"{Path(__file__).parent}/data/median.json") as f:
-            self.median = json.load(f)
-        with open(f"{Path(__file__).parent}/data/special.json") as f:
-            self.special = json.load(f)
 
         self.client_options = {
             "D": self.c.acs5dp,
@@ -39,6 +34,21 @@ class Pff:
         self.special_variable_options = special_variable_options
         self.outliers = outliers
 
+    @cached_property
+    def metadata(self) -> list: 
+        with open(f"{Path(__file__).parent}/data/{self.source}/{self.year}/metadata.json") as f:
+            return json.load(f)
+    
+    @cached_property
+    def median(self) -> list: 
+        with open(f"{Path(__file__).parent}/data/{self.source}/{self.year}/median.json") as f:
+            return json.load(f)
+    
+    @cached_property
+    def special(self) -> list: 
+        with open(f"{Path(__file__).parent}/data/{self.source}/{self.year}/special.json") as f:
+            return json.load(f)
+    
     @cached_property
     def aggregated_geography(self) -> list:
         list3d = [
