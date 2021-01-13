@@ -33,6 +33,8 @@ class Pff:
         self.aggregate_vertical_options = aggregate_vertical_options
         self.special_variable_options = special_variable_options
         self.outliers = outliers
+        
+        # Contains variables where the numerator comes from a DP dataset, but pff uses a different base than the census
         self.profile_only_exceptions = [
             "abroad",
             "cvlfuem2",
