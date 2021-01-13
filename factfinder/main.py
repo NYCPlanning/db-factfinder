@@ -406,14 +406,16 @@ class Pff:
             # are calculated against the base variable e(agg_e), m(agg_m)
             if v.pff_variable not in self.base_variables:
                 if v.base_variable != 'nan':
-                    df_base = (
-                        self.calculate_e_m(v.base_variable, geotype)
-                        if not (
-                            v.base_variable in self.special_variables
-                            and geotype in self.aggregated_geography
-                        )
-                        else self.calculate_special_e_m(v.base_variable, geotype)
-                    )
+
+                    if (v.base_variable in self.special_variables 
+                        and geotype in self.aggregated_geography):
+                        df_base = self.calculate_special_e_m(v.base_variable, geotype)
+                    if (v.base_variable in self.median_variables 
+                        and geotype in self.aggregated_geography):
+                        df_base = self.calculate_median_e_m(v.base_variable, geotype)
+                    else:
+                        df_base = self.calculate_e_m(v.base_variable, geotype)
+                        
                     df = df.merge(
                         df_base[["census_geoid", "e", "m"]].rename(
                             columns={"e": "agg_e", "m": "agg_m"}
