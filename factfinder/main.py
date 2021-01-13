@@ -33,6 +33,19 @@ class Pff:
         self.aggregate_vertical_options = aggregate_vertical_options
         self.special_variable_options = special_variable_options
         self.outliers = outliers
+        self.profile_only_exceptions = [
+            "abroad",
+            "cvlfuem2",
+            "dfhsdfcnt",
+            "dfhssmcnt",
+            "dfhsus",
+            "hh5",
+            "oochu4",
+            "p65plbwpv",
+            "pbwpv",
+            "pu18bwpv",
+        ]
+
 
     @cached_property
     def metadata(self) -> list: 
@@ -62,10 +75,11 @@ class Pff:
     def profile_only_variables(self) -> list: 
         return [
             i['pff_variable'] for i in self.metadata 
-            if (i['census_variable'][0][0:2] == 'DP' 
-                and len(i['census_variable']) == 1 
-                and i['base_variable'] == i['pff_variable']
-                and i['base_variable'] != "nan")
+            if (
+                i['census_variable'][0][0:2] == 'DP' 
+                and len(i['census_variable']) == 1
+                and i['pff_variable'] not in self.profile_only_exceptions
+            )
         ]
 
     @cached_property
@@ -281,7 +295,7 @@ class Pff:
         ]
         return Variable(meta)
 
-    @lru_cache(maxsize=128)
+    @lru_cache(maxsize=1048)
     def get_aggregate_vertical(self, source: str, geotype: str):
         """
         this function will aggregate over geographies, 
@@ -300,7 +314,7 @@ class Pff:
                     aggregate_vertical = options[k][geotype]
         return from_geotype, aggregate_vertical
 
-    @lru_cache(maxsize=128)
+    @lru_cache(maxsize=1048)
     def calculate_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """
         Given pff_variable and geotype, download and calculate the variable
