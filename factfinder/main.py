@@ -364,7 +364,7 @@ class Pff:
         calculates the E and M for the associated percent variable, then renames as
         P and Z to join with the count variable.
         """
-        pct_df = calculate(f"{v.pff_variable}_pct", geotype=geotype)
+        pct_df = self.calculate_e_m(f"{v.pff_variable}_pct", geotype=geotype)
         pz = pct_df[["census_geoid","geotype","e","m"]].rename(columns={"e":"p","m":"z"}, inplace=True)
         return pz
 
