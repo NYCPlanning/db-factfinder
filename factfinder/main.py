@@ -394,9 +394,12 @@ class Pff:
             df = (
                 self.calculate_e_m(v.pff_variable, geotype)
                 if not (
-                    v.pff_variable in self.special_variables
-                    and geotype in self.aggregated_geography
+                    (v.pff_variable in self.special_variables
+                    and geotype in self.aggregated_geography)
+                    or (v.pff_variable == 'wrkrnothm')
                 )
+                # We only calculate special variables for aggregated geographies,
+                # with the exception of 'wrkrnothm' (calculate for both aggregated and non-aggregated geographies)
                 else self.calculate_special_e_m(v.pff_variable, geotype)
             )
             # If pff_variable is not base_variable, then p,z
