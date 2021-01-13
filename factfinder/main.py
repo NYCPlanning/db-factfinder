@@ -357,6 +357,17 @@ class Pff:
         df = df.rename(columns=columns)
         return df[["census_geoid", "pff_variable", "geotype", "e", "m", "p", "z"]]
 
+    def calculate_poverty_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
+        """
+        For below poverty vars, the percent and percent MOE are taken from the ACS,
+        but they come from E and M fields, not PE and PM fields. This function
+        calculates the E and M for the associated percent variable, then renames as
+        P and Z to join with the count variable.
+        """
+        pct_df = calculate(f"{v.pff_variable}_pct", geotype=geotype)
+        pz = pct_df[["census_geoid","geotype","e","m"]].rename(columns={"e":"p","m":"z"}, inplace=True)
+        return pz
+
     def calculate_c_e_m_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
         """
         this function will calculate e, m first, then based on if the 
@@ -430,10 +441,15 @@ class Pff:
                         axis=1,
                     )
                 else: 
-                    # special case for grnorntpd, smpntc, 
-                    # grpintc, nmsmpntc, cni1864_2, cvlf18t64
-                    df["p"] = np.nan
-                    df["z"] = np.nan
+                    if v.pff_variable in ["pbwpv","pu18bwpv","p65plbwpv"]:
+                        # special case for poverty variables
+                        df_pz = self.calculate_poverty_p_z(v, geotype)
+                        df = df.merge(df_pz, on=["census_geoid", "geotype"])
+                    else:
+                        # special case for grnorntpd, smpntc, 
+                        # grpintc, nmsmpntc, cni1864_2, cvlf18t64
+                        df["p"] = np.nan
+                        df["z"] = np.nan
             # If pff_variable is a base variable, then
             # p = 100 for city and borough level, np.nan otherwise
             # z = np.nan for all levels of geography

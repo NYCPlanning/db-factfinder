@@ -503,6 +503,16 @@
         "source": "subject"
     },
     {
+        "pff_variable": "p65plbwpv_pct",
+        "base_variable": "nan",
+        "census_variable": [
+            "S1701_C03_010"
+        ],
+        "domain": "economic",
+        "rounding": 0,
+        "source": "subject"
+    },
+    {
         "pff_variable": "mntrvtm",
         "base_variable": "mean",
         "census_variable": [
@@ -609,6 +619,16 @@
         "base_variable": "pu18pvu",
         "census_variable": [
             "S1701_C02_002"
+        ],
+        "domain": "economic",
+        "rounding": 0,
+        "source": "subject"
+    },
+    {
+        "pff_variable": "pu18bwpv_pct",
+        "base_variable": "nan",
+        "census_variable": [
+            "S1701_C03_002"
         ],
         "domain": "economic",
         "rounding": 0,
@@ -858,6 +878,16 @@
         "base_variable": "poppvu1",
         "census_variable": [
             "S1701_C02_001"
+        ],
+        "domain": "economic",
+        "rounding": 0,
+        "source": "subject"
+    },
+    {
+        "pff_variable": "pbwpv_pct",
+        "base_variable": "nan",
+        "census_variable": [
+            "S1701_C03_001"
         ],
         "domain": "economic",
         "rounding": 0,
