@@ -8,7 +8,7 @@ from .utils import get_c, get_p, get_z, outliers
 from .multi import Pool
 from .median import get_median, get_median_moe
 from .special import special_variable_options
-from .aggregate_geography import *
+from .aggregated_geography import AggregatedGeography
 import logging
 from functools import partial, lru_cache
 import itertools
@@ -30,7 +30,8 @@ class Pff:
             "B": self.c.acs5,
         }
 
-        self.aggregate_vertical_options = aggregate_vertical_options
+        self.agg_geo = AggregatedGeography(year)
+        self.aggregate_vertical_options = self.agg_geo.aggregate_vertical_options
         self.special_variable_options = special_variable_options
         self.outliers = outliers
         
