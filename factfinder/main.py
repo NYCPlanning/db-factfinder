@@ -44,9 +44,6 @@ class Pff:
             "dfhsus",
             "hh5",
             "oochu4",
-            "p65plbwpv",
-            "pbwpv",
-            "pu18bwpv",
         ]
 
 
