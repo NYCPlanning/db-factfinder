@@ -417,8 +417,11 @@ class Pff:
             # If pff_variable is not base_variable, then p,z
             # are calculated against the base variable e(agg_e), m(agg_m)
             if v.pff_variable not in self.base_variables:
-                if v.base_variable != 'nan':
-
+                if v.pff_variable in ["pbwpv","pu18bwpv","p65plbwpv"]:
+                    # special case for poverty variables
+                    df_pz = self.calculate_poverty_p_z(v, geotype)
+                    df = df.merge(df_pz, on=["census_geoid", "geotype"])
+                elif v.base_variable != 'nan':
                     if (v.base_variable in self.special_variables 
                         and geotype in self.aggregated_geography):
                         df_base = self.calculate_special_e_m(v.base_variable, geotype)
@@ -444,15 +447,10 @@ class Pff:
                         axis=1,
                     )
                 else: 
-                    if v.pff_variable in ["pbwpv","pu18bwpv","p65plbwpv"]:
-                        # special case for poverty variables
-                        df_pz = self.calculate_poverty_p_z(v, geotype)
-                        df = df.merge(df_pz, on=["census_geoid", "geotype"])
-                    else:
-                        # special case for grnorntpd, smpntc, 
-                        # grpintc, nmsmpntc, cni1864_2, cvlf18t64
-                        df["p"] = np.nan
-                        df["z"] = np.nan
+                    # special case for grnorntpd, smpntc, 
+                    # grpintc, nmsmpntc, cni1864_2, cvlf18t64
+                    df["p"] = np.nan
+                    df["z"] = np.nan
             # If pff_variable is a base variable, then
             # p = 100 for city and borough level, np.nan otherwise
             # z = np.nan for all levels of geography
