@@ -17,6 +17,7 @@ setup(
         "census", 
         "cached-property",
         "python-dotenv",
-        "typer"
+        "typer",
+        "tqdm"
     ]
 )
