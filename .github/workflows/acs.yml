@@ -11,6 +11,7 @@ jobs:
       API_KEY: ${{ secrets.API_KEY }}
       EDM_DATA: ${{ secrets.EDM_DATA }}
     runs-on: ubuntu-latest
+    timeout-minutes: 600
     steps:
       - uses: actions/checkout@v2
 
