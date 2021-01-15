@@ -41,7 +41,7 @@ max_requests = len(list(inputs))
 with Pool(10) as pool:
     dfs = list(tqdm(pool.imap(calculate, inputs), total=max_requests))
 '''
-
+dfs=[]
 # Loop version
 for args in tqdm(list(itertools.product(variables, geography))):    
     dfs.append(calculate(args))
