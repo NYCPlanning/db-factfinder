@@ -19,15 +19,32 @@ jobs:
           sudo apt-get install -y python3-setuptools
           pip3 install -e .
       
-      - name: run pipelines/acs
-        run: python3 pipelines/acs/build.py
+      - name: run economic
+        run: python3 pipelines/acs/build.py economic
+
+      - name: run demographic
+        run: python3 pipelines/acs/build.py demographic
+
+      - name: run housing
+        run: python3 pipelines/acs/build.py housing
+
+      - name: run social
+        run: python3 pipelines/acs/build.py social
       
+      - name: combine domains
+        run: |
+            cat pff_acs_economic.csv > pff_acs.csv
+            tail -n +2 pff_acs_demographic.csv >> pff_acs.csv
+            tail -n +2 pff_acs_housing.csv >> pff_acs.csv
+            tail -n +2 pff_acs_social.csv >> pff_acs.csv
+
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
           path: pff_acs.csv
           retention-days: 2
+          
       - name: send to database
         run: |
           psql $EDM_DATA -c "
