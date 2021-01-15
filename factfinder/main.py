@@ -366,7 +366,7 @@ class Pff:
         P and Z to join with the count variable.
         """
         pct_df = self.calculate_e_m(f"{v.pff_variable}_pct", geotype=geotype)
-        pz = pct_df[["census_geoid","geotype","e","m"]].rename(columns={"e":"p","m":"z"}, inplace=True)
+        pz = pct_df[["census_geoid","geotype","e","m"]].rename(columns={"e":"p","m":"z"})
         return pz
 
     def calculate_c_e_m_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
