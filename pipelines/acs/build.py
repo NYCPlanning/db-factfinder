@@ -5,6 +5,7 @@ import pandas as pd
 import itertools
 from pathlib import Path
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 # Load .env environmental variables for local runs
 try:
@@ -29,9 +30,21 @@ def calculate(*args):
     except:
         print(var, geo, domain)
 
+'''
 # Initialize Pool for multiprocessing and collect dataframes in dfs
 with Pool(10) as pool:
     dfs=pool.map(calculate, itertools.product(variables, geography))
+
+# imap version
+inputs = itertools.product(variables, geography)
+max_requests = len(list(inputs))
+with Pool(10) as pool:
+    dfs = list(tqdm(pool.imap(calculate, inputs), total=max_requests))
+'''
+
+# Loop version
+for args in tqdm(list(itertools.product(variables, geography))):    
+    dfs.append(calculate(args))
 
 # Concatenate dataframes and export to 1 large csv
 df = pd.concat(dfs)
