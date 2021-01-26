@@ -16,6 +16,8 @@ def collapse_var_types(df:pd.DataFrame, year:str) -> pd.DataFrame:
     Takes lookup of variable IDs and their associated names
     and removes distinction between estimate and percent vars
     to match the variable format in factfinder metadata.
+
+    Also sets name to all lowercase and removes colons for matching.
     """
     df[f"census_variable_{year}"] = df[f"census_variable_{year}"].str.replace("PE|E", "", regex=True)
     df[f"raw_label_{year}"] = df[f"variable_name"]
