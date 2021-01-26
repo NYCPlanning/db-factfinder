@@ -18,7 +18,8 @@ def collapse_var_types(df:pd.DataFrame, year:str) -> pd.DataFrame:
     to match the variable format in factfinder metadata.
     """
     df[f"census_variable_{year}"] = df[f"census_variable_{year}"].str.replace("PE|E", "", regex=True)
-    df["variable_name"] = df["variable_name"].str.replace("Estimate|Percent", "", regex=True)
+    df["variable_name"] = df["variable_name"].str.replace("Estimate!!|Percent!!|Percent Estimate!!", "", regex=True)
+    df["variable_name"] = df["variable_name"].str.replace(":", "", regex=True)
     df[f"table_{year}"] = df[f"census_variable_{year}"].str.split("_").str[0]
     return df.drop_duplicates()
 
@@ -87,11 +88,10 @@ def acs_variable_change(year:str, change_only:bool=True) -> pd.DataFrame:
                         how="inner",
                         left_on="census_variable", 
                         right_on=f"census_variable_{last_year}")
-
-    df_changed = df.loc[(df[f"census_variable_{year}"] != df[f"census_variable_{last_year}"]) &
+    if change_only:
+        df_changed = df.loc[(df[f"census_variable_{year}"] != df[f"census_variable_{last_year}"]) &
                     (df[f"table_{year}"] == df[f"table_{last_year}"]) |
                     (df[f"table_{year}"].isna())]
-    if change_only:
         return df_changed
     else:
         return df
