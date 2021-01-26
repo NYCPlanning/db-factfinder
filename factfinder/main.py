@@ -9,7 +9,6 @@ from .multi import Pool
 from .median import get_median, get_median_moe
 from .special import special_variable_options
 from .aggregated_geography import AggregatedGeography
-from .updates import acs_variable_change
 import logging
 from functools import partial, lru_cache
 import itertools
@@ -85,21 +84,6 @@ class Pff:
                 and i['pff_variable'] not in self.profile_only_exceptions
             )
         ]
-
-    def changed_variables(self) -> list:
-        df = acs_variable_change(self.year)
-        changed_pff_vars = [
-            {
-                'pff_variable': i['pff_variable'],
-                'census_variable': i['census_variable']
-            }
-            for i in self.metadata 
-            if (
-                i['census_variable'] in df[f'census_variable_{self.year}'].to_list()
-            )
-        ]
-        return changed_pff_vars
-        
 
     @cached_property
     def base_variables(self) -> list:
