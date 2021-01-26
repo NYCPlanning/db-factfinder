@@ -18,10 +18,11 @@ def collapse_var_types(df:pd.DataFrame, year:str) -> pd.DataFrame:
     to match the variable format in factfinder metadata.
     """
     df[f"census_variable_{year}"] = df[f"census_variable_{year}"].str.replace("PE|E", "", regex=True)
+    df[f"raw_label_{year}"] = df[f"variable_name"]
     df["variable_name"] = df["variable_name"].str.replace("Estimate!!|Percent!!|Percent Estimate!!", "", regex=True)
-    df["variable_name"] = df["variable_name"].str.replace(":", "", regex=True)
+    df["variable_name"] = df["variable_name"].str.replace(":", "", regex=True).str.lower()
     df[f"table_{year}"] = df[f"census_variable_{year}"].str.split("_").str[0]
-    return df.drop_duplicates()
+    return df.drop_duplicates(subset=[f"census_variable_{year}","variable_name",f"table_{year}"])
 
 def get_api_vars(year:str, prefix:str) -> pd.DataFrame:
     """
@@ -88,6 +89,18 @@ def acs_variable_change(year:str, change_only:bool=True) -> pd.DataFrame:
                         how="inner",
                         left_on="census_variable", 
                         right_on=f"census_variable_{last_year}")
+    # Re-order columns for easier use
+    df = df[["pff_variable",
+             "base_variable",
+             f"census_variable_{last_year}",
+             f"census_variable_{year}",
+             "domain",
+             "rounding",
+             "source",
+             f"table_{last_year}",
+             f"table_{year}",
+             f"raw_label_{last_year}",
+             f"raw_label_{year}"]]
     if change_only:
         df_changed = df.loc[(df[f"census_variable_{year}"] != df[f"census_variable_{last_year}"]) &
                     (df[f"table_{year}"] == df[f"table_{last_year}"]) |
