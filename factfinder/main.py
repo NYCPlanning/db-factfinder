@@ -5,7 +5,7 @@ import numpy as np
 from pathlib import Path
 from .variable import Variable
 from .utils import get_c, get_p, get_z, outliers
-from .multi import Pool
+from . import Pool
 from .median import get_median, get_median_moe
 from .special import special_variable_options
 from .aggregated_geography import AggregatedGeography

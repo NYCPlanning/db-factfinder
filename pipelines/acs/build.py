@@ -1,5 +1,5 @@
 from factfinder.main import Pff
-from factfinder.multi import Pool
+from factfinder import Pool
 import os
 import pandas as pd
 import itertools
