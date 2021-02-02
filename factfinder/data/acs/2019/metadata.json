@@ -111,16 +111,6 @@
         "source": ""
     },
     {
-        "pff_variable": "decennial_pop",
-        "base_variable": "decennial_pop",
-        "census_variable": [
-            "P001001"
-        ],
-        "domain": "decennial",
-        "rounding": 0,
-        "source": "decennial"
-    },
-    {
         "pff_variable": "f16pl",
         "base_variable": "f16pl",
         "census_variable": [
