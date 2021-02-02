@@ -5,7 +5,7 @@
         "census_variable": [
             "P001001"
         ],
-        "domain": "decennial",
+        "domain": "community_profiles",
         "rounding": 0,
         "source": "decennial"
     }
