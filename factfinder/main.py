@@ -5,7 +5,7 @@ import numpy as np
 from pathlib import Path
 from .variable import Variable
 from .utils import get_c, get_p, get_z, outliers
-from . import Pool
+from multiprocessing import Pool
 from .median import get_median, get_median_moe
 from .special import special_variable_options
 from .aggregated_geography import AggregatedGeography
@@ -13,7 +13,7 @@ import logging
 from functools import partial, lru_cache
 import itertools
 from cached_property import cached_property
-
+import asyncio
 
 class Pff:
     def __init__(self, api_key, year=2018, source='acs'):
@@ -344,7 +344,7 @@ class Pff:
         #  variables only has 1 census variable
         census_variable = v.census_variable[0]
         # 2. pulling data from census site and aggregating
-        df = self.download_variable(self.download_e_m_p_z, v, geotype)
+        df = asyncio.run(self.download_variable(self.download_e_m_p_z, v, geotype))
         df['pff_variable'] = pff_variable
         df['geotype'] = geotype
         # 3. Change field names
@@ -479,7 +479,7 @@ class Pff:
         e.g. ["B01001_044","B01001_020"] -> "mdpop65t66"
         """
         E_variables, M_variables = self.create_census_variables(v.census_variable)
-        df = self.download_variable(self.download_e_m, v, geotype)
+        df = asyncio.run(self.download_variable(self.download_e_m, v, geotype))
 
         # Aggregate variables horizontally
         df["pff_variable"] = v.pff_variable
@@ -512,7 +512,7 @@ class Pff:
             )
         return df
 
-    def download_variable(self, download_function, v: Variable, geotype: str) -> pd.DataFrame:
+    async def download_variable(self, download_function, v: Variable, geotype: str) -> pd.DataFrame:
         """
         Given a list of census_variables, and geotype, download data from acs/decennial api
         Note that depends on if we are taking PE/PM variables directly from census API,
@@ -520,13 +520,13 @@ class Pff:
         as download_func
         """
         geoqueries = self.get_geoquery(geotype)
-        _download = partial(download_function, v=v)
-        with Pool(5) as pool:
-            dfs = pool.map(_download, geoqueries)
-        df = pd.concat(dfs)
-        return df
+        tasks=[]
+        for gq in geoqueries:
+            tasks.append(asyncio.create_task(download_function(gq, v)))
+        dfs = await asyncio.gather(*tasks)
+        return pd.concat(dfs)
 
-    def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+    async def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         This function is for downloading non-aggregated-geotype and data profile only
         variables. It will return e, m, p, z variables for a single pff variable. 
@@ -553,7 +553,7 @@ class Pff:
         df = df.replace(self.outliers, np.nan)
         return df
 
-    def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+    async def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable, 
         and is only created to facilitate multiprocessing, this function 
