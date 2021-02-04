@@ -2,8 +2,8 @@ name: Update Docs
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - '**.md'
+    paths:
+      - '**.py'
 
 jobs:
   build:
@@ -11,15 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
       - name: Install locally
         run: |
-          sudo apt-get install -y python3-setuptools
-          python3 -m pip install --upgrade pip
-          python3 -m pip install .
-          python3 -m pip install pdoc3
+          python3.9 -m pip install --upgrade pip
+          python3.9 -m pip install .
+          python3.9 -m pip install pdoc3
 
       - name: Generate Docs
-        run: pdoc -f -o docs --html factfinder
+        run: python3.9 -m pdoc -f -o docs --html factfinder
 
       - name: Commit files
         continue-on-error: true

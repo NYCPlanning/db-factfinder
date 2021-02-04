@@ -2,9 +2,8 @@ name: CI - ACS
 on:
   push:
     branches: [ main ]
-    paths-ignore: 
-      - '**.md'
-      - '**.html'
+    paths:
+      - '**.py'
 
 jobs:
   build:
@@ -15,15 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
       - name: Install locally
         run: |
-          sudo apt-get install -y python3-setuptools
-          python3 -m pip install --upgrade pip
-          python3 -m pip install .
-      
+          python3.9 -m pip install --upgrade pip
+          python3.9 -m pip install .
+
       - name: run pipelines/acs
-        run: python3 pipelines/acs/build.py
-      
+        run: python3.9 pipelines/acs/build.py
+
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
