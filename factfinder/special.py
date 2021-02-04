@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 import math
+
+import numpy as np
+import pandas as pd
 
 
 def pivot(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
@@ -131,11 +132,13 @@ def rntvacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
     )
     return df
 
+
 def wrkrnothm(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
     df = pivot(df, base_variables)
     df["e"] = df["wrkr16ple"] - df["cw_wrkdhme"]
-    df["m"] = (df["wrkr16plm"]**2 + df["cw_wrkdhmm"]**2)**0.5
+    df["m"] = (df["wrkr16plm"] ** 2 + df["cw_wrkdhmm"] ** 2) ** 0.5
     return df
+
 
 special_variable_options = {
     "percapinc": percapinc,
@@ -147,5 +150,5 @@ special_variable_options = {
     "avgfmsz": avgfmsz,
     "hovacrt": hovacrt,
     "rntvacrt": rntvacrt,
-    "wrkrnothm": wrkrnothm
+    "wrkrnothm": wrkrnothm,
 }

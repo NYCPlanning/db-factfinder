@@ -1,7 +1,8 @@
-import pandas as pd
-from pathlib import Path
-import numpy as np
 import math
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
 
 outliers = [
     999999999,
@@ -47,13 +48,7 @@ def get_z(e, m, p, agg_e, agg_m):
 
 
 def format_geoid(geoid):
-    fips_lookup = {
-        "05": "2",
-        "47": "3",
-        "61": "1",
-        "81": "4",
-        "85": "5",
-    }
+    fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
     # NTA
     if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
         return geoid
