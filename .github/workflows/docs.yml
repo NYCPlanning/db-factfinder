@@ -19,7 +19,7 @@ jobs:
           python3 -m pip install pdoc3
 
       - name: Generate Docs
-        run: poetry run pdoc -f -o docs --html factfinder
+        run: pdoc -f -o docs --html factfinder
 
       - name: Commit files
         continue-on-error: true
