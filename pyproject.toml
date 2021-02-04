@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pff-factfinder"
-version = "0.0.4"
+version = "0.0.5"
 description = ""
 authors = ["Baiyue Cao <caobaiyue@live.com>", "Molly Graber <email@email.com>"]
 packages = [
