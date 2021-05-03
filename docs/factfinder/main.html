@@ -30,6 +30,7 @@
 import itertools
 import json
 import logging
+import os
 from functools import lru_cache, partial
 from multiprocessing import Pool
 from pathlib import Path
@@ -353,16 +354,27 @@ class Pff:
         &#34;&#34;&#34;
         Given pff_variable and geotype, download and calculate the variable
         &#34;&#34;&#34;
-        # 1. create variable
-        v = self.create_variable(pff_variable)
+        cache_path = f&#34;.cache/{geotype}/{pff_variable}.pkl&#34;
+        if os.path.isfile(cache_path):
+            df = pd.read_pickle(cache_path)
+        else:
+            # 1. create variable
+            v = self.create_variable(pff_variable)
 
-        # 2. pulling data from census site and aggregating
-        from_geotype, aggregate_vertical = self.get_aggregate_vertical(
-            v.source, geotype
-        )
-        df = self.aggregate_horizontal(v, from_geotype)
-        df = aggregate_vertical(df)
+            # 2. pulling data from census site and aggregating
+            from_geotype, aggregate_vertical = self.get_aggregate_vertical(
+                v.source, geotype
+            )
+            df = self.aggregate_horizontal(v, from_geotype)
+            df = aggregate_vertical(df)
+            os.makedirs(f&#34;.cache/{geotype}&#34;, exist_ok=True)
+            self.write_to_cache(df, cache_path)
         return df
+
+    def write_to_cache(self, df: pd.DataFrame, path: str):
+        if not os.path.isfile(path):
+            df.to_pickle(path)
+        return None
 
     def calculate_e_m_p_z(self, pff_variable: str, geotype: str) -&gt; pd.DataFrame:
         &#34;&#34;&#34;
@@ -999,16 +1011,27 @@ class Pff:
         &#34;&#34;&#34;
         Given pff_variable and geotype, download and calculate the variable
         &#34;&#34;&#34;
-        # 1. create variable
-        v = self.create_variable(pff_variable)
+        cache_path = f&#34;.cache/{geotype}/{pff_variable}.pkl&#34;
+        if os.path.isfile(cache_path):
+            df = pd.read_pickle(cache_path)
+        else:
+            # 1. create variable
+            v = self.create_variable(pff_variable)
 
-        # 2. pulling data from census site and aggregating
-        from_geotype, aggregate_vertical = self.get_aggregate_vertical(
-            v.source, geotype
-        )
-        df = self.aggregate_horizontal(v, from_geotype)
-        df = aggregate_vertical(df)
+            # 2. pulling data from census site and aggregating
+            from_geotype, aggregate_vertical = self.get_aggregate_vertical(
+                v.source, geotype
+            )
+            df = self.aggregate_horizontal(v, from_geotype)
+            df = aggregate_vertical(df)
+            os.makedirs(f&#34;.cache/{geotype}&#34;, exist_ok=True)
+            self.write_to_cache(df, cache_path)
         return df
+
+    def write_to_cache(self, df: pd.DataFrame, path: str):
+        if not os.path.isfile(path):
+            df.to_pickle(path)
+        return None
 
     def calculate_e_m_p_z(self, pff_variable: str, geotype: str) -&gt; pd.DataFrame:
         &#34;&#34;&#34;
@@ -1659,15 +1682,21 @@ def calculate_e_m(self, pff_variable: str, geotype: str) -&gt; pd.DataFrame:
     &#34;&#34;&#34;
     Given pff_variable and geotype, download and calculate the variable
     &#34;&#34;&#34;
-    # 1. create variable
-    v = self.create_variable(pff_variable)
+    cache_path = f&#34;.cache/{geotype}/{pff_variable}.pkl&#34;
+    if os.path.isfile(cache_path):
+        df = pd.read_pickle(cache_path)
+    else:
+        # 1. create variable
+        v = self.create_variable(pff_variable)
 
-    # 2. pulling data from census site and aggregating
-    from_geotype, aggregate_vertical = self.get_aggregate_vertical(
-        v.source, geotype
-    )
-    df = self.aggregate_horizontal(v, from_geotype)
-    df = aggregate_vertical(df)
+        # 2. pulling data from census site and aggregating
+        from_geotype, aggregate_vertical = self.get_aggregate_vertical(
+            v.source, geotype
+        )
+        df = self.aggregate_horizontal(v, from_geotype)
+        df = aggregate_vertical(df)
+        os.makedirs(f&#34;.cache/{geotype}&#34;, exist_ok=True)
+        self.write_to_cache(df, cache_path)
     return df</code></pre>
 </details>
 </dd>
@@ -2249,6 +2278,21 @@ e.g.
     return df</code></pre>
 </details>
 </dd>
+<dt id="factfinder.main.Pff.write_to_cache"><code class="name flex">
+<span>def <span class="ident">write_to_cache</span></span>(<span>self, df: pandas.core.frame.DataFrame, path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_to_cache(self, df: pd.DataFrame, path: str):
+    if not os.path.isfile(path):
+        df.to_pickle(path)
+    return None</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -2300,6 +2344,7 @@ e.g.
 <li><code><a title="factfinder.main.Pff.rounding" href="#factfinder.main.Pff.rounding">rounding</a></code></li>
 <li><code><a title="factfinder.main.Pff.special" href="#factfinder.main.Pff.special">special</a></code></li>
 <li><code><a title="factfinder.main.Pff.special_variables" href="#factfinder.main.Pff.special_variables">special_variables</a></code></li>
+<li><code><a title="factfinder.main.Pff.write_to_cache" href="#factfinder.main.Pff.write_to_cache">write_to_cache</a></code></li>
 </ul>
 </li>
 </ul>

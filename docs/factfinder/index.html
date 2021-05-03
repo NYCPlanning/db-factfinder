@@ -22,6 +22,25 @@
 <h1 class="title">Package <code>factfinder</code></h1>
 </header>
 <section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Create a local .library directory to store temporary files
+base_path = &#34;.cache&#34;
+
+if not os.path.isdir(base_path):
+    os.makedirs(base_path, exist_ok=True)
+    # create .gitignore so that files in this directory aren&#39;t tracked
+    with open(f&#34;{base_path}/.gitignore&#34;, &#34;w&#34;) as f:
+        f.write(&#34;*&#34;)</code></pre>
+</details>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
