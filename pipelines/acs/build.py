@@ -6,7 +6,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from factfinder import Pool
+from multiprocessing import Pool
 from factfinder.main import Pff
 
 # Load .env environmental variables for local runs
