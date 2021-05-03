@@ -14,8 +14,6 @@ variables = [i["pff_variable"] for i in pff.metadata if i["domain"] == "demograp
 ]
 dfs = []
 for var, geo in itertools.product(variables, geography):
-    try:
-        dfs.append(pff.calculate(var, geo))
-    except:
-        print(var, geo)
+    dfs.append(pff.calculate(var, geo))
+
 df = pd.concat(dfs)

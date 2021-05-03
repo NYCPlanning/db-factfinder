@@ -2,6 +2,7 @@ import asyncio
 import itertools
 import json
 import logging
+import os
 from functools import lru_cache, partial
 from multiprocessing import Pool
 from pathlib import Path
@@ -325,16 +326,27 @@ class Pff:
         """
         Given pff_variable and geotype, download and calculate the variable
         """
-        # 1. create variable
-        v = self.create_variable(pff_variable)
+        cache_path = f".cache/{geotype}/{pff_variable}.pkl"
+        if os.path.isfile(cache_path):
+            df = pd.read_pickle(cache_path)
+        else:
+            # 1. create variable
+            v = self.create_variable(pff_variable)
 
-        # 2. pulling data from census site and aggregating
-        from_geotype, aggregate_vertical = self.get_aggregate_vertical(
-            v.source, geotype
-        )
-        df = self.aggregate_horizontal(v, from_geotype)
-        df = aggregate_vertical(df)
+            # 2. pulling data from census site and aggregating
+            from_geotype, aggregate_vertical = self.get_aggregate_vertical(
+                v.source, geotype
+            )
+            df = self.aggregate_horizontal(v, from_geotype)
+            df = aggregate_vertical(df)
+            os.makedirs(f".cache/{geotype}", exist_ok=True)
+            self.write_to_cache(df, cache_path)
         return df
+
+    def write_to_cache(self, df: pd.DataFrame, path: str):
+        if not os.path.isfile(path):
+            df.to_pickle(path)
+        return None
 
     def calculate_e_m_p_z(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """

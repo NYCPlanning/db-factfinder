@@ -29,10 +29,8 @@ variables = [
 # Function wrapper calculate for multiprocessing
 def calculate(*args):
     (var, domain), geo = args[0]
-    try:
-        return pff.calculate(var, geo).assign(domain=domain)
-    except:
-        print(var, geo, domain)
+
+    return pff.calculate(var, geo).assign(domain=domain)
 
 
 # Loop through calculations and collect dataframes in dfs
