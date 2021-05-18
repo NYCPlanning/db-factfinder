@@ -53,7 +53,7 @@ class Download:
         geoqueries = self.geoqueries.get(geotype)
         func = partial(download_function, v=v)
         with Pool(cpu_count()) as p:
-            dfs = p.map(download_function, geoqueries)
+            dfs = p.map(func, geoqueries)
         return pd.concat(dfs)
 
     def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
@@ -63,11 +63,8 @@ class Download:
         """
         # single source (data profile) only, so safe to set a default
         client = self.c.acs5dp
-        census_variable = v.census_variable[0]
-        E_variables = census_variable + "E"
-        M_variables = census_variable + "M"
-        PE_variables = census_variable + "PE"
-        PM_variables = census_variable + "PM"
+        E, M, PE, PM = v.census_variables
+        E_variables, M_variables, PE_variables, PM_variables = E[0], M[0], PE[0], PM[0]
         variables = [E_variables, M_variables, PE_variables, PM_variables]
         df = pd.DataFrame(
             client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
@@ -75,10 +72,10 @@ class Download:
         # If E is an outlier, then set M as Nan
         for var in variables:  # Enforce type safety
             df[var] = df[var].astype("float64")
-        df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
+        df.loc[df[E_variables].isin(outliers), M_variables] = np.nan
         df.loc[df[E_variables] == 0, M_variables] = 0
         # Replace all outliers as Nan
-        df = df.replace(self.outliers, np.nan)
+        df = df.replace(outliers, np.nan)
         return df
 
     def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
@@ -94,7 +91,8 @@ class Download:
             # Create Variables for given source and set client
             variables = [i for i in v.census_variable if i[0] == source]
             client = self.client_options.get(source, self.c.acs5)
-            E_variables, M_variables = self.create_census_variables(variables)
+            # create_census_variables Will be deprecated eventually
+            E_variables, M_variables = v.create_census_variables(variables)
             frames.append(
                 pd.DataFrame(
                     client.get(
@@ -130,10 +128,10 @@ class Download:
         return df
 
     def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
-        meta = Metadata(year=2019, source="acs")
+        meta = Metadata(year=self.year, source=self.source)
         AggregatedGeography = importlib.import_module(
-            f"geography.{self.year}.AggregatedGeography"
-        )
+            "factfinder.geography.2010"
+        ).AggregatedGeography
         geography = AggregatedGeography()
         v = meta.create_variable(pff_variable)
         if (

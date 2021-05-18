@@ -13,6 +13,33 @@ class Variable:
         self.source = kwargs.get("source")
         self.meta = kwargs
 
+    @cached_property
+    def census_variables(self):
+        """
+        Based on the census variables, spit out the
+        M variables and E variables
+        e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
+        """
+        E = [i + "E" for i in self.census_variable if i[0] != "P"]
+        if len(E) == 0:  # Only decennial, pass raw variable name
+            E = self.census_variable
+        M = [i + "M" for i in self.census_variable if i[0] != "P"]
+        PE = [i + "PE" for i in self.census_variable if i[0] != "P"]
+        PM = [i + "PM" for i in self.census_variable if i[0] != "P"]
+        return E, M, PE, PM
+
+    def create_census_variables(self, census_variable: list):
+        """
+        Based on the census variables, spit out the
+        M variables and E variables
+        e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
+        """
+        E_variables = [i + "E" for i in census_variable if i[0] != "P"]
+        if len(E_variables) == 0:  # Only decennial, pass raw variable name
+            E_variables = census_variable
+        M_variables = [i + "M" for i in census_variable if i[0] != "P"]
+        return E_variables, M_variables
+
 
 class Metadata:
     def __init__(self, year=2019, source="acs"):
@@ -104,15 +131,3 @@ class Metadata:
         """
         meta = next(filter(lambda x: x["pff_variable"] == pff_variable, self.metadata))
         return Variable(meta)
-
-    def create_census_variables(self, census_variable: list):
-        """
-        Based on the census variables, spit out the
-        M variables and E variables
-        e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
-        """
-        E_variables = [i + "E" for i in census_variable if i[0] != "P"]
-        if len(E_variables) == 0:  # Only decennial, pass raw variable name
-            E_variables = census_variable
-        M_variables = [i + "M" for i in census_variable if i[0] != "P"]
-        return E_variables, M_variables
