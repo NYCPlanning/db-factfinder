@@ -130,7 +130,7 @@ class Download:
     def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
         meta = Metadata(year=self.year, source=self.source)
         AggregatedGeography = importlib.import_module(
-            "factfinder.geography.2010"
+            f"factfinder.geography.{self.geography}"
         ).AggregatedGeography
         geography = AggregatedGeography()
         v = meta.create_variable(pff_variable)
