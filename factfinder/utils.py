@@ -151,3 +151,15 @@ def get_median_moe(ranges, row, DF=1.1):
                         ) + A1_u
 
                     return (upperbound - lowerbound) * 1.645 / 2
+
+
+def rounding(df: pd.DataFrame, digits: int) -> pd.DataFrame:
+    """
+    Round c, e, m, p, z fields based on rounding digits from metadata
+    """
+    df["c"] = df["c"].round(1)
+    df["e"] = df["e"].round(digits)
+    df["m"] = df["m"].round(digits)
+    df["p"] = df["p"].round(1)
+    df["z"] = df["z"].round(1)
+    return df

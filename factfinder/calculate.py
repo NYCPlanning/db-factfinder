@@ -10,7 +10,7 @@ import pandas as pd
 from .download import Download
 from .metadata import Metadata, Variable
 from .special import *
-from .utils import get_median, get_median_moe
+from .utils import get_c, get_median, get_median_moe, get_p, get_z, rounding
 
 
 def write_to_cache(df: pd.DataFrame, path: str):
@@ -177,18 +177,18 @@ class Calculate:
         # 6. return the output, containing the median, and all the variables used
         return results
 
-        # def calculate_poverty_p_z(self, v: Variable, geotype: str) -> pd.DataFrame:
-        #     """
-        #     For below poverty vars, the percent and percent MOE are taken from the ACS,
-        #     but they come from E and M fields, not PE and PM fields. This function
-        #     calculates the E and M for the associated percent variable, then renames as
-        #     P and Z to join with the count variable.
-        #     """
-        #     pct_df = self.calculate_e_m(f"{v.pff_variable}_pct", geotype=geotype)
-        #     pz = pct_df[["census_geoid", "geotype", "e", "m"]].rename(
-        #         columns={"e": "p", "m": "z"}
-        #     )
-        #     return pz
+    def calculate_poverty_p_z(self, pff_variable: str, geotype: str) -> pd.DataFrame:
+        """
+        For below poverty vars, the percent and percent MOE are taken from the ACS,
+        but they come from E and M fields, not PE and PM fields. This function
+        calculates the E and M for the associated percent variable, then renames as
+        P and Z to join with the count variable.
+        """
+        pct_df = self.calculate_e_m(f"{pff_variable}_pct", geotype=geotype)
+        pz = pct_df[["census_geoid", "geotype", "e", "m"]].rename(
+            columns={"e": "p", "m": "z"}
+        )
+        return pz
 
     def calculate_e_m_special(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """
@@ -204,4 +204,152 @@ class Calculate:
         df["geotype"] = geotype
         return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
-    # def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
+    def calculate_c_e_m_p_z(self, pff_variable: str, geotype: str) -> pd.DataFrame:
+        """
+        this function will calculate e, m first, then based on if the
+        variable is a median variable or base variable, it would calculate
+        p and z accordingly. Note that c calculation is the same for all variables
+        """
+        # If pff_variable is a median variable, then we would need
+        # to calculate using calculate_median_e_m for aggregated geography
+        # there's no need to calculate p, z for median variables
+        v = self.meta.create_variable(pff_variable)
+        if (
+            pff_variable in self.meta.profile_only_variables
+            and geotype not in self.geo.aggregated_geography
+        ):
+            df = self.calculate_e_m_p_z(pff_variable, geotype)
+
+        elif pff_variable in self.meta.median_variables:
+            df = (
+                self.calculate_e_m_median(pff_variable, geotype)
+                if geotype in self.geo.aggregated_geography
+                else self.calculate_e_m(pff_variable, geotype)
+            )
+            df["p"] = 100 if geotype in ["city", "borough"] else np.nan
+            df["z"] = np.nan
+        else:
+            df = (
+                self.calculate_e_m(pff_variable, geotype)
+                if not (
+                    (
+                        pff_variable in self.meta.special_variables
+                        and geotype in self.geo.aggregated_geography
+                    )
+                    or (pff_variable == "wrkrnothm")
+                )
+                # We only calculate special variables for aggregated geographies,
+                # with the exception of 'wrkrnothm' (calculate for both aggregated and non-aggregated geographies)
+                else self.calculate_e_m_special(pff_variable, geotype)
+            )
+            # If pff_variable is not base_variable, then p,z
+            # are calculated against the base variable e(agg_e), m(agg_m)
+            if pff_variable not in self.meta.base_variables:
+                if pff_variable in ["pbwpv", "pu18bwpv", "p65plbwpv"]:
+                    # special case for poverty variables
+                    df_pz = self.calculate_poverty_p_z(pff_variable, geotype)
+                    df = df.merge(df_pz, on=["census_geoid", "geotype"])
+                elif v.base_variable != "nan":
+                    if (
+                        v.base_variable in self.meta.special_variables
+                        and geotype in self.geo.aggregated_geography
+                    ):
+                        df_base = self.calculate_e_m_special(v.base_variable, geotype)
+                    if (
+                        v.base_variable in self.meta.median_variables
+                        and geotype in self.geo.aggregated_geography
+                    ):
+                        df_base = self.calculate_e_m_median(v.base_variable, geotype)
+                    else:
+                        df_base = self.calculate_e_m(v.base_variable, geotype)
+
+                    df = df.merge(
+                        df_base[["census_geoid", "e", "m"]].rename(
+                            columns={"e": "agg_e", "m": "agg_m"}
+                        ),
+                        how="left",
+                        on="census_geoid",
+                    )
+                    del df_base
+                    df["p"] = df.apply(
+                        lambda row: get_p(row["e"], row["agg_e"]), axis=1
+                    )
+                    df["z"] = df.apply(
+                        lambda row: get_z(
+                            row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
+                        ),
+                        axis=1,
+                    )
+                else:
+                    # special case for grnorntpd, smpntc,
+                    # grpintc, nmsmpntc, cni1864_2, cvlf18t64
+                    df["p"] = np.nan
+                    df["z"] = np.nan
+            # If pff_variable is a base variable, then
+            # p = 100 for city and borough level, np.nan otherwise
+            # z = np.nan for all levels of geography
+            else:
+                df["p"] = 100 if geotype in ["city", "borough"] else np.nan
+                df["z"] = np.nan
+
+        df["c"] = df.apply(lambda row: get_c(row["e"], row["m"]), axis=1)
+        return df[["census_geoid", "pff_variable", "geotype", "c", "e", "m", "p", "z"]]
+
+    def cleaning(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        last step data cleaning based on rules below:
+        """
+        # negative values are invalid
+        df.loc[df.c < 0, "c"] = np.nan
+        df.loc[df.e < 0, "e"] = np.nan
+        df.loc[df.m < 0, "m"] = np.nan
+        df.loc[df.p < 0, "p"] = np.nan
+        df.loc[df.z < 0, "z"] = np.nan
+
+        # p has to be less or equal to 100
+        df.loc[df.p > 100, "p"] = np.nan
+
+        # If p = np.nan/, then z = np.nan
+        df.loc[(df.p.isna()) | (df.p == 100), "z"] = np.nan
+
+        df.loc[df.e == 0, "c"] = np.nan
+        df.loc[
+            df.e == 0 & ~df.pff_variable.isin(self.meta.base_variables), "m"
+        ] = np.nan
+        df.loc[
+            df.e == 0 & df.pff_variable.isin(self.meta.base_variables) & df.m.isna(),
+            "m",
+        ] = 0
+        df.loc[df.e == 0, "p"] = np.nan
+        df.loc[df.e == 0, "z"] = np.nan
+
+        df.loc[
+            df.geotype.isin(["borough", "city"])
+            & df.pff_variable.isin(self.meta.base_variables)
+            & df.c.isna(),
+            "c",
+        ] = 0
+
+        df.loc[
+            df.geotype.isin(["borough", "city"])
+            & df.pff_variable.isin(self.meta.base_variables)
+            & df.m.isna(),
+            "m",
+        ] = 0
+
+        df.loc[df.pff_variable.isin(self.meta.base_variables), "p"] = 100
+
+        df.loc[df.pff_variable.isin(self.meta.base_variables), "z"] = np.nan
+
+        return df
+
+    def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
+        # 0. Initialize Variable class instance
+        v = self.meta.create_variable(pff_variable)
+        # 1. get calculated values (c,e,m,p,z)
+        df = self.calculate_c_e_m_p_z(pff_variable, geotype)
+        # 2. rounding
+        df = rounding(df, v.rounding)
+        # 3. last round of data cleaning
+        df = self.cleaning(df)
+        return df

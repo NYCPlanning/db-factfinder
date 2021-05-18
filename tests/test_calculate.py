@@ -45,3 +45,36 @@ def test_calculate_e_m_special():
     print("\n")
     print(df.head())
     assert True
+
+
+def test_calculate_c_e_m_p_z():
+    df = calculate.calculate_c_e_m_p_z("mdage", "NTA")
+    print("\n")
+    print(df.head())
+    df = calculate.calculate_c_e_m_p_z("pop_1", "city")
+    print("\n")
+    print(df.head())
+    df = calculate.calculate_c_e_m_p_z("mnhhinc", "city")
+    print("\n")
+    print(df.head())
+    df = calculate.calculate_c_e_m_p_z("mnhhinc", "NTA")
+    print("\n")
+    print(df.head())
+
+
+def test_calculate():
+    df = calculate("mdage", "NTA")
+    print("\n")
+    print(df.head())
+    df = calculate("pop_1", "city")
+    print("\n")
+    print(df.head())
+    df = calculate("mnhhinc", "city")
+    print("\n")
+    print(df.head())
+    df = calculate("mnhhinc", "NTA")
+    print("\n")
+    print(df.head())
+    df = calculate("asn1rc", "tract")
+    print("\n")
+    print(df.head())
