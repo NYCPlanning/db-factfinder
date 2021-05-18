@@ -189,7 +189,7 @@ class AggregatedGeography:
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     @cached_property
-    def aggregate_vertical_options(self):
+    def options(self):
         return {
             "decennial": {
                 "tract": {"NTA": self.tract_to_nta, "cd": self.tract_to_cd},
@@ -211,10 +211,7 @@ class AggregatedGeography:
 
     @cached_property
     def aggregated_geography(self) -> list:
-        list3d = [
-            [list(k.keys()) for k in i.values()]
-            for i in self.aggregate_vertical_options.values()
-        ]
+        list3d = [[list(k.keys()) for k in i.values()] for i in self.options.values()]
         list2d = itertools.chain.from_iterable(list3d)
         return list(set(itertools.chain.from_iterable(list2d)))
 

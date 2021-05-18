@@ -1,6 +1,5 @@
 import importlib
-from functools import cached_property, partial
-from multiprocessing import Pool, cpu_count
+from functools import cached_property
 
 import numpy as np
 import pandas as pd
@@ -17,7 +16,7 @@ class Download:
         self.source = source
         self.state = 36
         self.counties = ["005", "081", "085", "047", "061"]
-
+        self.geography = geography
         self.client_options = {
             "D": self.c.acs5dp,
             "S": self.c.acs5st,
@@ -51,9 +50,9 @@ class Download:
         self, download_function: callable, geotype: dict, v: Variable
     ) -> pd.DataFrame:
         geoqueries = self.geoqueries.get(geotype)
-        func = partial(download_function, v=v)
-        with Pool(cpu_count()) as p:
-            dfs = p.map(func, geoqueries)
+        dfs = []
+        for geoquery in geoqueries:
+            dfs.append(download_function(geoquery, v))
         return pd.concat(dfs)
 
     def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
@@ -127,6 +126,21 @@ class Download:
         df = df.replace(outliers, np.nan)
         return df
 
+    def create_census_geoid(self, df: pd.DataFrame, geotype: str) -> pd.DataFrame:
+        if geotype == "tract":
+            df["census_geoid"] = df["state"] + df["county"] + df["tract"]
+        elif geotype == "borough":
+            df["census_geoid"] = df["state"] + df["county"]
+        elif geotype == "city":
+            df["census_geoid"] = df["state"] + df["place"]
+        elif geotype == "block":
+            df["census_geoid"] = df["state"] + df["county"] + df["tract"] + df["block"]
+        elif geotype == "block group":
+            df["census_geoid"] = (
+                df["state"] + df["county"] + df["tract"] + df["block group"]
+            )
+        return df
+
     def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
         meta = Metadata(year=self.year, source=self.source)
         AggregatedGeography = importlib.import_module(
@@ -139,5 +153,10 @@ class Download:
             and geotype not in geography.aggregated_geography
         ):
             # For profile only variables we will get e, m, p, z
-            return self.download_variable(self.download_e_m_p_z, geotype, v)
-        return self.download_variable(self.download_e_m, geotype, v)
+            df = self.download_variable(self.download_e_m_p_z, geotype, v)
+        else:
+            df = self.download_variable(self.download_e_m, geotype, v)
+        df = self.create_census_geoid(df, geotype)
+        df["geotype"] = geotype
+        df["pff_variable"] = pff_variable
+        return df
