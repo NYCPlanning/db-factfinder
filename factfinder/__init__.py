@@ -12,3 +12,5 @@ if not os.path.isdir(base_path):
     # create .gitignore so that files in this directory aren't tracked
     with open(f"{base_path}/.gitignore", "w") as f:
         f.write("*")
+
+api_key = os.environ.get("API_KEY")

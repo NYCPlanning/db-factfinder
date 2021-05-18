@@ -1,3 +1,4 @@
+import itertools
 import math
 from pathlib import Path
 
@@ -7,16 +8,15 @@ from cached_property import cached_property
 
 
 class AggregatedGeography:
-    def __init__(self, year=2018):
-        self.year = year
+    def __init__(self):
+        self.year = 2010
 
     @cached_property
     def lookup_geo(self):
-        year = (
-            self.year // 10 * 10
-        )  # find the current decennial year based on given year
+        # find the current decennial year based on given year
         lookup_geo = pd.read_csv(
-            f"{Path(__file__).parent}/data/lookup_geo/{year}/lookup_geo.csv",
+            Path(__file__).parent.parent
+            / f"data/lookup_geo/{self.year}/lookup_geo.csv",
             dtype="str",
         )
         lookup_geo["geoid_block"] = lookup_geo.county_fips + lookup_geo.ctcb2010
@@ -189,7 +189,7 @@ class AggregatedGeography:
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     @cached_property
-    def aggregate_vertical_options(self):
+    def options(self):
         return {
             "decennial": {
                 "tract": {"NTA": self.tract_to_nta, "cd": self.tract_to_cd},
@@ -208,3 +208,26 @@ class AggregatedGeography:
                 },
             },
         }
+
+    @cached_property
+    def aggregated_geography(self) -> list:
+        list3d = [[list(k.keys()) for k in i.values()] for i in self.options.values()]
+        list2d = itertools.chain.from_iterable(list3d)
+        return list(set(itertools.chain.from_iterable(list2d)))
+
+    def assign_geotype(self, geoid):
+        # NTA
+        if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
+            return "NTA2010"
+        # Community District (PUMA)
+        elif geoid[:2] == "79":
+            return "PUMA2010"
+        # Census tract (CT2010)
+        elif geoid[:2] == "14":
+            return "CT2010"
+        # Boro
+        elif geoid[:2] == "05":
+            return "Boro2010"
+        # City
+        elif geoid[:2] == "16":
+            return "City2010"
