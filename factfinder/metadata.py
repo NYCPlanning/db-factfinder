@@ -117,6 +117,27 @@ class Metadata:
         """
         return list(self.median.keys())
 
+    def median_ranges(self, pff_variable) -> dict:
+        """
+        given median variable in the format of pff_variable
+        returns the ranges object for the median variable.
+        e.g.
+        {
+            'mdpop0t4': [0, 4.9999],
+            'mdpop5t9': [5, 9.9999],
+            ...
+        }
+        """
+        return self.median[pff_variable]["ranges"]
+
+    def median_design_factor(self, pff_variable) -> float:
+        """
+        given median variable in the form of pff_variable
+        returns the design_factor needed to calculate the
+        median moe
+        """
+        return self.median[pff_variable]["design_factor"]
+
     @cached_property
     def special_variables(self) -> list:
         """

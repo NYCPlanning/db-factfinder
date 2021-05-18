@@ -29,3 +29,10 @@ def test_calculate_e_m_multiprocessing():
     pff_variables = ["pop_1", "f16pl", "mdpop10t14"]
     df = calculate.calculate_e_m_multiprocessing(pff_variables, geotype="borough")
     assert df.shape[0] == 15
+
+
+def test_calculate_e_m_median():
+    pff_variable = "mdage"
+    df = calculate.calculate_e_m_median(pff_variable, geotype="NTA")
+    print(df.head())
+    assert True
