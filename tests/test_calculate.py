@@ -34,5 +34,14 @@ def test_calculate_e_m_multiprocessing():
 def test_calculate_e_m_median():
     pff_variable = "mdage"
     df = calculate.calculate_e_m_median(pff_variable, geotype="NTA")
+    print("\n")
+    print(df.head())
+    assert True
+
+
+def test_calculate_e_m_special():
+    pff_variable = "mnhhinc"
+    df = calculate.calculate_e_m_special(pff_variable, geotype="NTA")
+    print("\n")
     print(df.head())
     assert True

@@ -9,6 +9,7 @@ import pandas as pd
 
 from .download import Download
 from .metadata import Metadata, Variable
+from .special import *
 from .utils import get_median, get_median_moe
 
 
@@ -188,5 +189,19 @@ class Calculate:
         #         columns={"e": "p", "m": "z"}
         #     )
         #     return pz
+
+    def calculate_e_m_special(self, pff_variable: str, geotype: str) -> pd.DataFrame:
+        """
+        Given pff_variable and geotype, download and calculate the variable.
+        Used for variables requiring special horizontal aggregation techniques.
+        """
+        assert pff_variable in self.meta.special_variables
+        base_variables = self.meta.get_special_base_variables(pff_variable)
+        df = self.calculate_e_m_multiprocessing(base_variables, geotype)
+        func = globals()[pff_variable]
+        df = func(df, base_variables)
+        df["pff_variable"] = pff_variable
+        df["geotype"] = geotype
+        return df[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     # def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
