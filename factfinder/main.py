@@ -54,27 +54,6 @@ class Pff:
         ]
 
     @cached_property
-    def metadata(self) -> list:
-        with open(
-            f"{Path(__file__).parent}/data/{self.source}/{self.year}/metadata.json"
-        ) as f:
-            return json.load(f)
-
-    @cached_property
-    def median(self) -> list:
-        with open(
-            f"{Path(__file__).parent}/data/{self.source}/{self.year}/median.json"
-        ) as f:
-            return json.load(f)
-
-    @cached_property
-    def special(self) -> list:
-        with open(
-            f"{Path(__file__).parent}/data/{self.source}/{self.year}/special.json"
-        ) as f:
-            return json.load(f)
-
-    @cached_property
     def aggregated_geography(self) -> list:
         list3d = [
             [list(k.keys()) for k in i.values()]
@@ -82,25 +61,6 @@ class Pff:
         ]
         list2d = itertools.chain.from_iterable(list3d)
         return list(set(itertools.chain.from_iterable(list2d)))
-
-    @cached_property
-    def profile_only_variables(self) -> list:
-        return [
-            i["pff_variable"]
-            for i in self.metadata
-            if (
-                i["census_variable"][0][0:2] == "DP"
-                and len(i["census_variable"]) == 1
-                and i["pff_variable"] not in self.profile_only_exceptions
-            )
-        ]
-
-    @cached_property
-    def base_variables(self) -> list:
-        """
-        returns a list of base variables in the format of pff_variable
-        """
-        return list(set([i["base_variable"] for i in self.metadata]))
 
     @cached_property
     def median_variables(self) -> list:
@@ -311,7 +271,10 @@ class Pff:
         source = "acs" if source != "decennial" else source
         to_geotype = geotype
         if geotype not in self.aggregated_geography:
-            aggregate_vertical = lambda df: df
+
+            def aggregate_vertical(df):
+                return df
+
             from_geotype = geotype
         else:
             options = self.aggregate_vertical_options.get(source)
@@ -536,122 +499,3 @@ class Pff:
                 df["state"] + df["county"] + df["tract"] + df["block group"]
             )
         return df
-
-    async def download_variable(
-        self, download_function, v: Variable, geotype: str
-    ) -> pd.DataFrame:
-        """
-        Given a list of census_variables, and geotype, download data from acs/decennial api
-        Note that depends on if we are taking PE/PM variables directly from census API,
-        we will pass in self.download_e_m_p_z (data_profile_only) or self.download_e_m (generic)
-        as download_func
-        """
-        geoqueries = self.get_geoquery(geotype)
-        tasks = []
-        for gq in geoqueries:
-            tasks.append(asyncio.create_task(download_function(gq, v)))
-        dfs = await asyncio.gather(*tasks)
-        return pd.concat(dfs)
-
-    async def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
-        """
-        This function is for downloading non-aggregated-geotype and data profile only
-        variables. It will return e, m, p, z variables for a single pff variable.
-        """
-        # single source (data profile) only, so safe to set a default
-        client = self.c.acs5dp
-        census_variable = v.census_variable[0]
-        E_variables = census_variable + "E"
-        M_variables = census_variable + "M"
-        PE_variables = census_variable + "PE"
-        PM_variables = census_variable + "PM"
-        variables = [E_variables, M_variables, PE_variables, PM_variables]
-        df = pd.DataFrame(
-            client.get(("NAME", ",".join(variables)), geoquery, year=self.year)
-        )
-        # If E is an outlier, then set M as Nan
-        for var in variables:  # Enforce type safety
-            df[var] = df[var].astype("float64")
-        df.loc[df[E_variables].isin(self.outliers), M_variables] = np.nan
-        df.loc[df[E_variables] == 0, M_variables] = 0
-        # Replace all outliers as Nan
-        df = df.replace(self.outliers, np.nan)
-        return df
-
-    async def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
-        """
-        this function works in conjunction with download_variable,
-        and is only created to facilitate multiprocessing, this function
-        if for generic variable calculation, returns e, m
-        """
-        # Get unique sources
-        sources = set([i[0] for i in v.census_variable])
-        frames = []
-        for source in sources:
-            # Create Variables for given source and set client
-            variables = [i for i in v.census_variable if i[0] == source]
-            client = self.client_options.get(source, self.c.acs5)
-            E_variables, M_variables = self.create_census_variables(variables)
-            frames.append(
-                pd.DataFrame(
-                    client.get(
-                        ("NAME", ",".join(E_variables + M_variables)),
-                        geoquery,
-                        year=self.year,
-                    )
-                )
-            )
-        # Combine results from each source by joining on geo name
-        df = frames[0]
-        for i in frames[1:]:
-            df = pd.merge(
-                df,
-                i[i.columns.difference(["state", "county", "tract", "place"])],
-                left_on="NAME",
-                right_on="NAME",
-            )
-        del frames
-        # Enforce type safety
-        for i in v.census_variable:
-            if i[0] != "P":
-                df[f"{i}E"] = df[f"{i}E"].astype("float64")
-                df[f"{i}M"] = df[f"{i}M"].astype("float64")
-                # If E is zero, then set M as zero
-                df.loc[df[f"{i}E"] == 0, f"{i}M"] = 0
-                # If E is an outlier, then set M as Nan
-                df.loc[df[f"{i}E"].isin(self.outliers), f"{i}M"] = np.nan
-            else:
-                df[i] = df[i].astype("float64")
-        # Replace all outliers as Nan
-        df = df.replace(self.outliers, np.nan)
-        return df
-
-    def get_geoquery(self, geotype: str) -> list:
-        """
-        given geotype, this function will create a list of geographic queries
-        we would need to pull NYC level data.
-        """
-        if geotype == "tract":
-            return [
-                {"for": "tract:*", "in": f"state:{self.state} county:{county}"}
-                for county in self.counties
-            ]
-        elif geotype == "borough":
-            return [
-                {"for": f"county:{county}", "in": f"state:{self.state}"}
-                for county in self.counties
-            ]
-        elif geotype == "city":
-            return [{"for": "place:51000", "in": f"state:{self.state}"}]
-
-        elif geotype == "block":
-            return [
-                {"for": "block:*", "in": f"state:{self.state} county:{county}"}
-                for county in self.counties
-            ]
-
-        elif geotype in "block group":
-            return [
-                {"for": "block group:*", "in": f"state:{self.state} county:{county}"}
-                for county in self.counties
-            ]
