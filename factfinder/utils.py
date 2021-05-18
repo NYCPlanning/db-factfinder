@@ -67,24 +67,6 @@ def format_geoid(geoid):
         return 0
 
 
-def assign_geotype(geoid):
-    # NTA
-    if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
-        return "NTA2010"
-    # Community District (PUMA)
-    elif geoid[:2] == "79":
-        return "PUMA2010"
-    # Census tract (CT2010)
-    elif geoid[:2] == "14":
-        return "CT2010"
-    # Boro
-    elif geoid[:2] == "05":
-        return "Boro2010"
-    # City
-    elif geoid[:2] == "16":
-        return "City2010"
-
-
 def get_median(ranges, row):
     ordered = list(ranges.keys())
     N = row[ordered].sum()
