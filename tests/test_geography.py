@@ -17,7 +17,7 @@ def test_2010_to_2020_aggregated_geography():
     geography = AggregatedGeography()
     print(geography.ratio.head())
     print(geography.lookup_geo.head())
-    for geo in ["CDTA", "NTA"]:
+    for geo in ["CDTA", "NTA", "CT20"]:
         assert geo in geography.aggregated_geography
 
 
