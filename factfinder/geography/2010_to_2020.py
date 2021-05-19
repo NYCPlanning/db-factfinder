@@ -20,9 +20,9 @@ class AggregatedGeography:
             dtype="str",
         )
         # Create geoid_tract
-        lookup_geo["county_fips"] = lookup_geo.GEOID20.apply(lambda x: x[:5])
+        lookup_geo["county_fips"] = lookup_geo.geoid20.apply(lambda x: x[:5])
         lookup_geo["geoid_tract"] = lookup_geo.apply(
-            lambda row: row["county_fips"] + row["BoroCT2020"][1:]
+            lambda row: row["county_fips"] + row["bct2020"][1:]
         )
 
         return lookup_geo
@@ -33,8 +33,10 @@ class AggregatedGeography:
             Path(__file__).parent.parent / f"data/lookup_geo/2010_to_2020/ratio.csv",
             dtype="str",
         )
-        ratio.Ratio10CTpartTo20CT = ratio.Ratio10CTpartTo20CT.astype(float)
-        return ratio
+        ratio["ratio"] = ratio.Ratio10CTpartTo20CT.astype(float)
+        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"]
+        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"]
+        return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
 
     @staticmethod
     def create_output(df, colname):
@@ -63,6 +65,14 @@ class AggregatedGeography:
         this function will translate a dataframe from ct2010 to ct2020
         by multiplying a ratio on E/M
         """
+        df = df.merge(
+            self.ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]],
+            how="left",
+            right_on="geoid_ct2010",
+            left_on="census_geoid",
+        )
+        # df.e = df.e * df.ratio
+
         return df
 
     def tract_to_nta(self, df: pd.DataFrame) -> pd.DataFrame:
