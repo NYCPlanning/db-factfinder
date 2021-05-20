@@ -20,8 +20,9 @@ class AggregatedGeography:
             dtype="str",
         )
         # Create geoid_tract
-        lookup_geo["county_fips"] = lookup_geo.geoid20.apply(lambda x: str(x)[:5])
-        lookup_geo["geoid_tract"] = lookup_geo.geoid20.apply(lambda x: str(x)[:11])
+        lookup_geo["geoid_tract"] = lookup_geo.geoid2020.apply(lambda x: str(x)[:11])
+        lookup_geo["nta"] = lookup_geo["nta2020"]
+        lookup_geo["cdta"] = lookup_geo["cdta2020"]
 
         return lookup_geo
 
