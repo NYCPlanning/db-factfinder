@@ -20,8 +20,8 @@ class AggregatedGeography:
             dtype="str",
         )
         # Create geoid_tract
-        lookup_geo["county_fips"] = lookup_geo.geoid20.apply(lambda x: x[:5])
-        lookup_geo["geoid_tract"] = lookup_geo.geoid20.apply(lambda x: x[:11])
+        lookup_geo["county_fips"] = lookup_geo.geoid20.apply(lambda x: str(x)[:5])
+        lookup_geo["geoid_tract"] = lookup_geo.geoid20.apply(lambda x: str(x)[:11])
 
         return lookup_geo
 
@@ -32,8 +32,8 @@ class AggregatedGeography:
             dtype="str",
         )
         ratio["ratio"] = ratio.Ratio10CTpartTo20CT.astype(float)
-        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"]
-        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"]
+        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"].str.pad(width=8, fillchar='0')
+        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"].str.pad(width=8, fillchar='0')
         return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
 
     @staticmethod
@@ -86,10 +86,10 @@ class AggregatedGeography:
         df.m = df.apply(lambda row : self.convert_moe(row["e_2010"],
                      row["m_2010"], row["e"], row["ratio"]), axis = 1)
         
-        output = df.rename(columns={"geoid_ct2020": "census_geoid"})
+        output = df.rename(columns={"census_geoid":"input_geoid", "geoid_ct2020": "census_geoid"})
         output["geotype"] = "CT2020"
 
-        return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+        return output[["input_geoid","census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     def tract_to_nta(self, df: pd.DataFrame) -> pd.DataFrame:
         """
