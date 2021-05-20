@@ -1,4 +1,5 @@
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -163,3 +164,12 @@ def rounding(df: pd.DataFrame, digits: int) -> pd.DataFrame:
     df["p"] = df["p"].round(1)
     df["z"] = df["z"].round(1)
     return df
+
+
+def write_to_cache(df: pd.DataFrame, path: str):
+    """
+    this function will cache a dataframe to a given path
+    """
+    if not os.path.isfile(path):
+        df.to_pickle(path)
+    return None

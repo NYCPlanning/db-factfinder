@@ -10,16 +10,15 @@ import pandas as pd
 from .download import Download
 from .metadata import Metadata, Variable
 from .special import *
-from .utils import get_c, get_median, get_median_moe, get_p, get_z, rounding
-
-
-def write_to_cache(df: pd.DataFrame, path: str):
-    """
-    this function will cache a dataframe to a given path
-    """
-    if not os.path.isfile(path):
-        df.to_pickle(path)
-    return None
+from .utils import (
+    get_c,
+    get_median,
+    get_median_moe,
+    get_p,
+    get_z,
+    rounding,
+    write_to_cache,
+)
 
 
 class Calculate:
@@ -53,7 +52,7 @@ class Calculate:
         """
         Given pff_variable and geotype, download and calculate the variable
         """
-        cache_path = f".cache/year={self.year}/geography={self.geography}\
+        cache_path = f".cache/calculate/year={self.year}/geography={self.geography}\
             /geotype={geotype}/{pff_variable}.pkl"
 
         if os.path.isfile(cache_path):

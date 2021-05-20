@@ -1,12 +1,14 @@
 import importlib
+import os
 from functools import cached_property
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from census import Census
 
 from .metadata import Metadata, Variable
-from .utils import outliers
+from .utils import outliers, write_to_cache
 
 
 class Download:
@@ -142,21 +144,29 @@ class Download:
         return df
 
     def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
-        meta = Metadata(year=self.year, source=self.source)
-        AggregatedGeography = importlib.import_module(
-            f"factfinder.geography.{self.geography}"
-        ).AggregatedGeography
-        geography = AggregatedGeography()
-        v = meta.create_variable(pff_variable)
-        if (
-            pff_variable in meta.profile_only_variables
-            and geotype not in geography.aggregated_geography
-        ):
-            # For profile only variables we will get e, m, p, z
-            df = self.download_variable(self.download_e_m_p_z, geotype, v)
+        cache_path = f".cache/download/year={self.year}/geography={self.geography}\
+            /geotype={geotype}/{pff_variable}.pkl"
+        if os.path.isfile(cache_path):
+            df = pd.read_pickle(cache_path)
         else:
-            df = self.download_variable(self.download_e_m, geotype, v)
-        df = self.create_census_geoid(df, geotype)
-        df["geotype"] = geotype
-        df["pff_variable"] = pff_variable
+            meta = Metadata(year=self.year, source=self.source)
+            AggregatedGeography = importlib.import_module(
+                f"factfinder.geography.{self.geography}"
+            ).AggregatedGeography
+            geography = AggregatedGeography()
+
+            v = meta.create_variable(pff_variable)
+            if (
+                pff_variable in meta.profile_only_variables
+                and geotype not in geography.aggregated_geography
+            ):
+                # For profile only variables we will get e, m, p, z
+                df = self.download_variable(self.download_e_m_p_z, geotype, v)
+            else:
+                df = self.download_variable(self.download_e_m, geotype, v)
+            df = self.create_census_geoid(df, geotype)
+            df["geotype"] = geotype
+            df["pff_variable"] = pff_variable
+            os.makedirs(Path(cache_path).parent, exist_ok=True)
+            write_to_cache(df, cache_path)
         return df
