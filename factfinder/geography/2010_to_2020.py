@@ -86,10 +86,10 @@ class AggregatedGeography:
         df.m = df.apply(lambda row : self.convert_moe(row["e_2010"],
                      row["m_2010"], row["e"], row["ratio"]), axis = 1)
         
-        output = df.rename(columns={"census_geoid":"input_geoid", "geoid_ct2020": "census_geoid"})
-        output["geotype"] = "CT2020"
-
-        return output[["input_geoid","census_geoid", "pff_variable", "geotype", "e", "m"]]
+        output = AggregatedGeography.create_output(df, "geoid_ct2020")
+        output["pff_variable"] = df["pff_variable"].to_list()[0]
+        output["geotype"] = "CT20"
+        return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     def tract_to_nta(self, df: pd.DataFrame) -> pd.DataFrame:
         """
