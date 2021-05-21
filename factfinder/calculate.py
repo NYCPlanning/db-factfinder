@@ -52,8 +52,13 @@ class Calculate:
         """
         Given pff_variable and geotype, download and calculate the variable
         """
-        cache_path = f".cache/calculate/year={self.year}/geography={self.geography}\
-            /geotype={geotype}/{pff_variable}.pkl"
+        cache_path = (
+            ".cache/calculate"
+            f"/year={self.year}"
+            f"/geography={self.geography}"
+            f"/geotype={geotype}"
+            f"/{pff_variable}.pkl"
+        )
 
         if os.path.isfile(cache_path):
             df = pd.read_pickle(cache_path)

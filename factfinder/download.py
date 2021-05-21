@@ -144,8 +144,13 @@ class Download:
         return df
 
     def __call__(self, geotype: str, pff_variable: str) -> pd.DataFrame:
-        cache_path = f".cache/download/year={self.year}/geography={self.geography}\
-            /geotype={geotype}/{pff_variable}.pkl"
+        cache_path = (
+            ".cache/download"
+            f"/year={self.year}"
+            f"/geography={self.geography}"
+            f"/geotype={geotype}"
+            f"/{pff_variable}.pkl"
+        )
         if os.path.isfile(cache_path):
             df = pd.read_pickle(cache_path)
         else:

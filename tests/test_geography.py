@@ -44,7 +44,7 @@ def test_2010_to_2020_ct2010_to_ct2020():
     print(df)
     calculate = Calculate(api_key, 2019, "acs", "2010_to_2020")
     for var in ["pop_1", "mdage", "lgvielep1", "r550t599"]:
-        df = calculate(var, "CT2020")
+        df = calculate(var, "CT20")
         print(f"{var} CT2020\n", df.head())
     assert True
 
