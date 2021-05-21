@@ -34,7 +34,7 @@ def test_create_variable():
 
 def test_create_census_variables():
     v = meta.create_variable("pop_1")
-    E_variables, M_variables = meta.create_census_variables(v.census_variable)
+    E_variables, M_variables, PE_variables, PM_variables = v.census_variables
     assert type(E_variables) == list
     assert type(M_variables) == list
     assert len(E_variables) == len(M_variables)
