@@ -321,7 +321,7 @@
         "base_variable": "median",
         "domain": "demographic",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "mdpop65t66",
@@ -5711,7 +5711,7 @@
         "base_variable": "median",
         "domain": "housing",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "grpi35pl",
@@ -5864,7 +5864,7 @@
         "base_variable": "hovacrt",
         "domain": "housing",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "r500t549",
@@ -5926,7 +5926,7 @@
         "base_variable": "rntvacrt",
         "domain": "housing",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "mv10ltr",
@@ -7666,7 +7666,7 @@
         "base_variable": "mean",
         "domain": "economic",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "ern75t100",
