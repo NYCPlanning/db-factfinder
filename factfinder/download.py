@@ -93,7 +93,7 @@ class Download:
             variables = [i for i in v.census_variable if i[0] == source]
             client = self.client_options.get(source, self.c.acs5)
             # create_census_variables Will be deprecated eventually
-            E_variables, M_variables = v.create_census_variables(variables)
+            E_variables, M_variables, _, _ = v.census_variables(variables)
             frames.append(
                 pd.DataFrame(
                     client.get(

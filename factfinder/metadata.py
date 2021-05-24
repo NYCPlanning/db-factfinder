@@ -14,18 +14,19 @@ class Variable:
         self.meta = kwargs
 
     @cached_property
-    def census_variables(self):
+    def census_variables(self, vars = None):
         """
         Based on the census variables, spit out the
         M variables and E variables
         e.g. ["B01001_044"] -> ["B01001_044M"], ["B01001_044E"]
         """
-        E = [i + "E" for i in self.census_variable if i[0] != "P"]
+        census_variable_list = self.census_variable if vars is None else vars
+        E = [i + "E" for i in census_varible_list if i[0] != "P"]
         if len(E) == 0:  # Only decennial, pass raw variable name
-            E = self.census_variable
-        M = [i + "M" for i in self.census_variable if i[0] != "P"]
-        PE = [i + "PE" for i in self.census_variable if i[0] != "P"]
-        PM = [i + "PM" for i in self.census_variable if i[0] != "P"]
+            E = census_varible_list
+        M = [i + "M" for i in census_varible_list if i[0] != "P"]
+        PE = [i + "PE" for i in census_varible_list if i[0] != "P"]
+        PM = [i + "PM" for i in census_varible_list if i[0] != "P"]
         return E, M, PE, PM
 
 
