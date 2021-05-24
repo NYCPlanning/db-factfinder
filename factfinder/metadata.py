@@ -146,6 +146,22 @@ class Metadata:
         """
         return [i["pff_variable"] for i in self.special]
 
+    @cached_property
+    def normal_variables(self) -> list:
+        """
+        returns a list of special calculation variables in the format
+        of pff_variable
+        """
+        return [
+            i["pff_variable"]
+            for i in self.metadata
+            if (
+                i["pff_variable"] not in self.base_variables
+                and i["pff_variable"] not in self.median_variables
+                and i["pff_variable"] not in self.special_variables
+            )
+        ]
+    
     def create_variable(self, pff_variable: str) -> Variable:
         """
         given pff_variable name, return a Variable object
