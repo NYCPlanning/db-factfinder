@@ -32,8 +32,12 @@ class AggregatedGeography:
             dtype="str",
         )
         ratio["ratio"] = ratio.Ratio10CTpartTo20CT.astype(float)
-        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"].str.pad(width=8, fillchar='0')
-        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"].str.pad(width=8, fillchar='0')
+        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"].str.pad(
+            width=8, fillchar="0"
+        )
+        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"].str.pad(
+            width=8, fillchar="0"
+        )
         return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
 
     @staticmethod
@@ -62,12 +66,12 @@ class AggregatedGeography:
     def convert_moe(e_2010, m_2010, e_2020, ratio):
         if ratio == 1:
             return m_2010
-        elif e_2020 == 0:
+        elif e_2010 == 0:
             return None
-        elif (ratio**(0.56901))*7.96309 >= 1:
+        elif (ratio ** (0.56901)) * 7.96309 >= 1:
             return m_2010
         else:
-            return ((ratio**(0.56901))*7.96309) * m_2010
+            return ((ratio ** (0.56901)) * 7.96309) * m_2010
 
     def ct2010_to_ct2020(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -83,9 +87,13 @@ class AggregatedGeography:
         df["e_2010"] = df.e
         df["m_2010"] = df.m
         df.e = df.e * df.ratio
-        df.m = df.apply(lambda row : self.convert_moe(row["e_2010"],
-                     row["m_2010"], row["e"], row["ratio"]), axis = 1)
-        
+        df.m = df.apply(
+            lambda row: self.convert_moe(
+                row["e_2010"], row["m_2010"], row["e"], row["ratio"]
+            ),
+            axis=1,
+        )
+
         output = AggregatedGeography.create_output(df, "geoid_ct2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "CT20"
@@ -133,7 +141,13 @@ class AggregatedGeography:
         defined above
         """
         return {
-            "acs": {"tract": {"NTA": self.tract_to_nta, "CDTA": self.tract_to_cdta, "CT20":self.ct2010_to_ct2020}}
+            "acs": {
+                "tract": {
+                    "NTA": self.tract_to_nta,
+                    "CDTA": self.tract_to_cdta,
+                    "CT20": self.ct2010_to_ct2020,
+                }
+            }
         }
 
     @cached_property
