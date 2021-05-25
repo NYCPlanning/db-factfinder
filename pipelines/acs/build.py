@@ -34,7 +34,7 @@ if __name__ == "__main__":
     calculate = Calculate(api_key=os.environ["API_KEY"], year=year, source="acs", geography=geography)
 
     # Declare geography and variables involved in this caculation
-    geogs = calculate.geo.aggregated_geography.extend("tract", "block group")
+    geogs = calculate.geo.aggregated_geography.extend("tract")
     domains = ["demographic", "economic", "housing", "social"]
     variables = [
         (i["pff_variable"], i["domain"]) for i in calculate.meta.metadata if i["domain"] in domains
