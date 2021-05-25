@@ -20,7 +20,7 @@ except:
 # Function wrapper calculate for multiprocessing
 def calc(*args):
     (var, domain), geo = args[0]
-    return pff.calculate(var, geo).assign(domain=domain)
+    return calculate(var, geo).assign(domain=domain)
 
 if __name__ == "__main__":
     # Get ACS year
@@ -34,7 +34,8 @@ if __name__ == "__main__":
     calculate = Calculate(api_key=os.environ["API_KEY"], year=year, source="acs", geography=geography)
 
     # Declare geography and variables involved in this caculation
-    geogs = calculate.geo.aggregated_geography.extend("tract")
+    geogs = calculate.geo.aggregated_geography
+    geogs.extend("tract")
     domains = ["demographic", "economic", "housing", "social"]
     variables = [
         (i["pff_variable"], i["domain"]) for i in calculate.meta.metadata if i["domain"] in domains
