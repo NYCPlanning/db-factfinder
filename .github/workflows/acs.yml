@@ -47,8 +47,8 @@ jobs:
       - name: send to database
         run: |
           psql $EDM_DATA -c "
-          DROP TABLE IF EXISTS pff_acs.\"$DATA_YEAR-acs-$GEO_YEAR-geo\";
-          CREATE TABLE pff_acs.\"$DATA_YEAR-acs-$GEO_YEAR-geo\" (
+          DROP TABLE IF EXISTS pff_acs.\"test-:DATA_YEAR\";
+          CREATE TABLE pff_acs.\"test-:DATA_YEAR\" (
               census_geoid text,
               pff_variable text,
               geotype text,
@@ -61,5 +61,5 @@ jobs:
           );
           "
           cat pff_acs.csv | psql $EDM_DATA -c "
-            COPY pff_acs.\"$DATA_YEAR-acs-$GEO_YEAR-geo\" FROM STDIN DELIMITER ',' CSV HEADER;
+            COPY pff_acs.\"test-:DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
           "
