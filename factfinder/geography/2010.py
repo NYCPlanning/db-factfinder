@@ -214,20 +214,3 @@ class AggregatedGeography:
         list3d = [[list(k.keys()) for k in i.values()] for i in self.options.values()]
         list2d = itertools.chain.from_iterable(list3d)
         return list(set(itertools.chain.from_iterable(list2d)))
-
-    def assign_geotype(self, geoid):
-        # NTA
-        if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
-            return "NTA2010"
-        # Community District (PUMA)
-        elif geoid[:2] == "79":
-            return "PUMA2010"
-        # Census tract (CT2010)
-        elif geoid[:2] == "14":
-            return "CT2010"
-        # Boro
-        elif geoid[:2] == "05":
-            return "Boro2010"
-        # City
-        elif geoid[:2] == "16":
-            return "City2010"

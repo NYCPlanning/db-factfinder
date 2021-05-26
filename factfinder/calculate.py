@@ -17,6 +17,8 @@ from .utils import (
     get_p,
     get_z,
     rounding,
+    format_geoid, 
+    format_geotype,
     write_to_cache,
 )
 
@@ -347,6 +349,20 @@ class Calculate:
 
         return df
 
+    def labs_geoid(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Format geoid and geotype to match Planning Labs standards
+        """
+        df["labs_geoid"] = df.census_geoid.apply(format_geoid)
+        df["labs_geotype"] = df.geotype.apply(lambda x: format_geotype(x, self.geography))
+
+        return df[["census_geoid",
+                    "labs_geoid",
+                    "geotype",
+                    "labs_geotype",
+                    "pff_variable",
+                    "c", "e", "m", "p", "z"]]
+
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)
@@ -356,4 +372,6 @@ class Calculate:
         df = rounding(df, v.rounding)
         # 3. last round of data cleaning
         df = self.cleaning(df)
+        # 4. Assign Labs geoid and geotype
+        df = self.labs_geoid(df)
         return df

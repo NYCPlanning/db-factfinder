@@ -20,6 +20,16 @@ outliers = [
     -555555555,
 ]
 
+geotypes = {
+    "NTA":"NTA",
+    "CDTA":"CDTA",
+    "tract":"CT",
+    "CT20":"CT",
+    "borough":"Boro",
+    "city":"City",
+    "block":"CB",
+    "block group":"CBG",
+}
 
 def get_c(e, m):
     if e == 0:
@@ -50,23 +60,33 @@ def get_z(e, m, p, agg_e, agg_m):
 
 def format_geoid(geoid):
     fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
-    # NTA
+    # NTA or CDTA
     if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
         return geoid
-    # Community District (PUMA)
+    # PUMA
     elif geoid[:2] == "79":
         return geoid[-4:]
-    # Census tract (CT2010)
-    elif geoid[:2] == "14":
+    # Census tract
+    elif len(geoid) == 11:
         boro = fips_lookup.get(geoid[-8:-6])
         return boro + geoid[-6:]
     # Boro
-    elif geoid[:2] == "05":
+    elif len(geoid) == 5:
         return fips_lookup.get(geoid[-2:])
     # City
-    elif geoid[:2] == "16":
+    elif geoid == "3651000":
         return 0
 
+def format_geotype(geotype, geo_year):
+    if geo_year == "2010_to_2020":
+        if geotype == "tract":
+            return "CT2010"
+        else:
+            year = "2020"
+    else:
+        year = geo_year
+    
+    return geotypes.get(geotype) + str(year)
 
 def get_median(ranges, row):
     ordered = list(ranges.keys())
