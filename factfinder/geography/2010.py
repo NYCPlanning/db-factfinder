@@ -214,3 +214,35 @@ class AggregatedGeography:
         list3d = [[list(k.keys()) for k in i.values()] for i in self.options.values()]
         list2d = itertools.chain.from_iterable(list3d)
         return list(set(itertools.chain.from_iterable(list2d)))
+
+    def format_geoid(self, geoid):
+        fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
+        # NTA
+        if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
+            return geoid
+        # Community District (PUMA)
+        elif geoid[:2] == "79":
+            return geoid[-4:]
+        # Census tract
+        elif len(geoid) == 11:
+            boro = fips_lookup.get(geoid[-8:-6])
+            return boro + geoid[-6:]
+        # Boro
+        elif len(geoid) == 5:
+            return fips_lookup.get(geoid[-2:])
+        # City
+        elif geoid == "3651000":
+            return 0
+
+    def format_geotype(self, geotype):
+        geotypes = {
+            "NTA":"NTA",
+            "PUMA":"PUMA",
+            "tract":"CT",
+            "borough":"Boro",
+            "city":"City",
+            "block":"CB",
+            "block group":"CBG",
+        }
+        
+        return geotypes.get(geotype)+"2010"

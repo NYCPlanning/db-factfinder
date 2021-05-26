@@ -17,8 +17,6 @@ from .utils import (
     get_p,
     get_z,
     rounding,
-    format_geoid, 
-    format_geotype,
     write_to_cache,
 )
 
@@ -353,8 +351,8 @@ class Calculate:
         """
         Format geoid and geotype to match Planning Labs standards
         """
-        df["labs_geoid"] = df.census_geoid.apply(format_geoid)
-        df["labs_geotype"] = df.geotype.apply(lambda x: format_geotype(x, self.geography))
+        df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
+        df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
 
         return df[["census_geoid",
                     "labs_geoid",
