@@ -20,7 +20,6 @@ outliers = [
     -555555555,
 ]
 
-
 def get_c(e, m):
     if e == 0:
         return np.nan
@@ -46,27 +45,6 @@ def get_z(e, m, p, agg_e, agg_m):
         return math.sqrt(m ** 2 + (e * agg_m / agg_e) ** 2) / agg_e * 100
     else:
         return math.sqrt(m ** 2 - (e * agg_m / agg_e) ** 2) / agg_e * 100
-
-
-def format_geoid(geoid):
-    fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
-    # NTA
-    if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
-        return geoid
-    # Community District (PUMA)
-    elif geoid[:2] == "79":
-        return geoid[-4:]
-    # Census tract (CT2010)
-    elif geoid[:2] == "14":
-        boro = fips_lookup.get(geoid[-8:-6])
-        return boro + geoid[-6:]
-    # Boro
-    elif geoid[:2] == "05":
-        return fips_lookup.get(geoid[-2:])
-    # City
-    elif geoid[:2] == "16":
-        return 0
-
 
 def get_median(ranges, row):
     ordered = list(ranges.keys())
