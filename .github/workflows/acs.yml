@@ -1,15 +1,28 @@
-name: CI - ACS
+name: Build - ACS
 on:
   push:
-    branches: [ main ]
-    paths:
-      - '**.py'
+  workflow_dispatch:
+    inputs:
+      data_year:
+        description: 'Release year of ACS data. e.g. For 2015-2019 acs5 data, type "2019"'
+        required: true
+        default: '2019'
+      geo_year:
+        description: 'Year of geographic units. Options: "2010", "2020", or "2010_to_2020"'
+        required: true
+        default: '2010_to_2020'
 
-jobs:
+jobs: 
   build:
+    if: >- 
+      contains(github.event.head_commit.message, '[acs]') ||
+      github.event_name == 'workflow_dispatch'
+    name: Build ACS PFF outputs
     env:
       API_KEY: ${{ secrets.API_KEY }}
       EDM_DATA: ${{ secrets.EDM_DATA }}
+      DATA_YEAR: ${{ github.event.inputs.data_year }}
+      GEO_YEAR: ${{ github.event.inputs.geo_year }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,20 +37,20 @@ jobs:
           python3.9 -m pip install .
 
       - name: run pipelines/acs
-        run: python3.9 pipelines/acs/build.py
+        run: python3.9 pipelines/acs/build.py $DATA_YEAR $GEO_YEAR 
 
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: pff_acs.csv
+          name: acs-year-${{ github.event.inputs.data_year }}-geo-${{ github.event.inputs.geo_year }}
+          path: pff_output/
           retention-days: 2
 
       - name: send to database
         run: |
           psql $EDM_DATA -c "
-          DROP TABLE IF EXISTS pff_acs.\"2018-test\";
-          CREATE TABLE pff_acs.\"2018-test\" (
+          DROP TABLE IF EXISTS pff_acs.\"test-$DATA_YEAR\";
+          CREATE TABLE pff_acs.\"test-$DATA_YEAR\" (
               census_geoid text,
               pff_variable text,
               geotype text,
@@ -50,5 +63,5 @@ jobs:
           );
           "
           cat pff_acs.csv | psql $EDM_DATA -c "
-            COPY pff_acs.\"2018-test\" FROM STDIN DELIMITER ',' CSV HEADER;
+            COPY pff_acs.\"test-$DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
           "

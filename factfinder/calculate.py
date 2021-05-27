@@ -10,16 +10,15 @@ import pandas as pd
 from .download import Download
 from .metadata import Metadata, Variable
 from .special import *
-from .utils import get_c, get_median, get_median_moe, get_p, get_z, rounding
-
-
-def write_to_cache(df: pd.DataFrame, path: str):
-    """
-    this function will cache a dataframe to a given path
-    """
-    if not os.path.isfile(path):
-        df.to_pickle(path)
-    return None
+from .utils import (
+    get_c,
+    get_median,
+    get_median_moe,
+    get_p,
+    get_z,
+    rounding,
+    write_to_cache,
+)
 
 
 class Calculate:
@@ -53,8 +52,13 @@ class Calculate:
         """
         Given pff_variable and geotype, download and calculate the variable
         """
-        cache_path = f".cache/year={self.year}/geography={self.geography}\
-            /geotype={geotype}/{pff_variable}.pkl"
+        cache_path = (
+            ".cache/calculate"
+            f"/year={self.year}"
+            f"/geography={self.geography}"
+            f"/geotype={geotype}"
+            f"/{pff_variable}.pkl"
+        )
 
         if os.path.isfile(cache_path):
             df = pd.read_pickle(cache_path)
@@ -343,6 +347,20 @@ class Calculate:
 
         return df
 
+    def labs_geoid(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Format geoid and geotype to match Planning Labs standards
+        """
+        df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
+        df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
+
+        return df[["census_geoid",
+                    "labs_geoid",
+                    "geotype",
+                    "labs_geotype",
+                    "pff_variable",
+                    "c", "e", "m", "p", "z"]]
+
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)
@@ -352,4 +370,6 @@ class Calculate:
         df = rounding(df, v.rounding)
         # 3. last round of data cleaning
         df = self.cleaning(df)
+        # 4. Assign Labs geoid and geotype
+        df = self.labs_geoid(df)
         return df

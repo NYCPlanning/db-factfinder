@@ -2,12 +2,12 @@ from factfinder.calculate import Calculate
 
 from . import api_key
 
-calculate = Calculate(api_key=api_key, year=2019, source="acs", geography=2010)
+calculate = Calculate(api_key=api_key, year=2019, source="acs", geography="2010_to_2020")
 
 
 def test_calculate_e_m():
     pff_variable = "pop_1"
-    geography = ["NTA", "city"]
+    geography = ["NTA", "city", "CT20"]
     for g in geography:
         df = calculate.calculate_e_m(pff_variable, g)
         print("\n")
@@ -76,5 +76,17 @@ def test_calculate():
     print("\n")
     print(df.head())
     df = calculate("asn1rc", "tract")
+    print("\n")
+    print(df.head())
+    df = calculate("asn1rc", "CT20")
+    print("\n")
+    print(df.head())
+    df = calculate("asn1rc", "borough")
+    print("\n")
+    print(df.head())
+    df = calculate("asn1rc", "CDTA")
+    print("\n")
+    print(df.head())
+    df = calculate("asn1rc", "CT20")
     print("\n")
     print(df.head())
