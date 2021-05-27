@@ -4,11 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       data_year:
-        description: 'Release year of ACS data. For example, to process 2015-2019 5-year data, type "2019"'
+        description: 'Release year of ACS data. e.g. For 2015-2019 acs5 data, type "2019"'
         required: true
+        default: '2019'
       geo_year:
-        description: 'Year of geographic units. Current options are "2010", "2020", or "2010_to_2020"'
+        description: 'Year of geographic units. Options: "2010", "2020", or "2010_to_2020"'
         required: true
+        default: '2010_to_2020'
 
 jobs: 
   build:
@@ -40,15 +42,15 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: acs-year-${{ github.event.inputs.data_year }}-geo-${{ github.event.inputs.geo_year }}
           path: pff_output/
           retention-days: 2
 
       - name: send to database
         run: |
           psql $EDM_DATA -c "
-          DROP TABLE IF EXISTS pff_acs.\"test-:DATA_YEAR\";
-          CREATE TABLE pff_acs.\"test-:DATA_YEAR\" (
+          DROP TABLE IF EXISTS pff_acs.\"test-$DATA_YEAR\";
+          CREATE TABLE pff_acs.\"test-$DATA_YEAR\" (
               census_geoid text,
               pff_variable text,
               geotype text,
@@ -61,5 +63,5 @@ jobs:
           );
           "
           cat pff_acs.csv | psql $EDM_DATA -c "
-            COPY pff_acs.\"test-:DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
+            COPY pff_acs.\"test-$DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
           "
