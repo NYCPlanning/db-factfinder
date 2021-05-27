@@ -12,9 +12,9 @@ on:
         required: true
         default: '2010_to_2020'
 
-jobs: 
+jobs:
   build:
-    if: >- 
+    if: >-
       contains(github.event.head_commit.message, '[acs]') ||
       github.event_name == 'workflow_dispatch'
     name: Build ACS PFF outputs
@@ -37,13 +37,15 @@ jobs:
           python3.9 -m pip install .
 
       - name: run pipelines/acs
-        run: python3.9 pipelines/acs/build.py $DATA_YEAR $GEO_YEAR 
+        run: python3.9 pipelines/acs/build.py $DATA_YEAR $GEO_YEAR
 
+      - name: Compress File
+        run: zip pff_acs.zip pff_output/pff_acs.csv
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: acs-year-${{ github.event.inputs.data_year }}-geo-${{ github.event.inputs.geo_year }}
-          path: pff_output/
+          path: pff_acs.zip
           retention-days: 2
 
       - name: send to database
@@ -62,6 +64,6 @@ jobs:
               domain text
           );
           "
-          cat pff_acs.csv | psql $EDM_DATA -c "
+          cat pff_output/pff_acs.csv | psql $EDM_DATA -c "
             COPY pff_acs.\"test-$DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
           "
