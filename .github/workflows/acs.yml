@@ -39,15 +39,6 @@ jobs:
       - name: run pipelines/acs
         run: python3.9 pipelines/acs/build.py $DATA_YEAR $GEO_YEAR
 
-      - name: Compress File
-        run: zip pff_acs.zip pff_output/pff_acs.csv
-      - name: upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: acs-year-${{ github.event.inputs.data_year }}-geo-${{ github.event.inputs.geo_year }}
-          path: pff_acs.zip
-          retention-days: 2
-
       - name: send to database
         run: |
           psql $EDM_DATA -c "
