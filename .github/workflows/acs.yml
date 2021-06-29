@@ -45,8 +45,10 @@ jobs:
           DROP TABLE IF EXISTS pff_acs.\"test-$DATA_YEAR\";
           CREATE TABLE pff_acs.\"test-$DATA_YEAR\" (
               census_geoid text,
-              pff_variable text,
+              labs_geoid text,
               geotype text,
+              labs_geotype text,
+              pff_variable text,
               c double precision,
               e double precision,
               m double precision,
