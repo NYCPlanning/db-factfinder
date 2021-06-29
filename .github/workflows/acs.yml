@@ -55,6 +55,6 @@ jobs:
               domain text
           );
           "
-          cat pff_output/acs_$DATA_YEAR_$GEO_YEAR_geogs.csv | psql $EDM_DATA -c "
+          cat pff_output/acs_"$DATA_YEAR"_"$GEO_YEAR"_geogs.csv | psql $EDM_DATA -c "
             COPY pff_acs.\"test-$DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
           "
