@@ -90,3 +90,13 @@ def test_calculate():
     df = calculate("asn1rc", "CT20")
     print("\n")
     print(df.head())
+    df = calculate("wrkr16pl", "CT20")
+    print("\n")
+    print(df.head())
+    df = calculate("mdemftwrk", "CT20")
+    print("\n")
+    print(df.head())
+    df = calculate("prdtrnsmm", "CT20")
+    print("\n")
+    print(df.head())
+    
