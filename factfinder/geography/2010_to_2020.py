@@ -64,10 +64,10 @@ class AggregatedGeography:
             return m_2010
         elif e_2020 == 0:
             return None
-        elif (ratio**(0.56901))*7.96309 >= 1:
+        elif ((ratio*100)**(0.56901))*7.96309 >= 100:
             return m_2010
         else:
-            return ((ratio**(0.56901))*7.96309) * m_2010
+            return ((((ratio*100)**(0.56901))*7.96309)/100) * m_2010
 
     def ct2010_to_ct2020(self, df: pd.DataFrame) -> pd.DataFrame:
         """
