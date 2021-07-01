@@ -31,9 +31,9 @@ class AggregatedGeography:
             Path(__file__).parent.parent / f"data/lookup_geo/2010_to_2020/ratio.csv",
             dtype="str",
         )
-        ratio["ratio"] = ratio.Ratio10CTpartTo20CT.astype(float)
-        ratio["geoid_ct2010"] = "360" + ratio["BoroCT2010"].str.pad(width=8, fillchar='0')
-        ratio["geoid_ct2020"] = "360" + ratio["BoroCT2020"].str.pad(width=8, fillchar='0')
+        ratio["ratio"] = ratio.ratio.astype(float)
+        ratio["geoid_ct2010"] = "360" + ratio["boroct2010"].str.pad(width=8, fillchar='0')
+        ratio["geoid_ct2020"] = "360" + ratio["boroct2020"].str.pad(width=8, fillchar='0')
         return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
 
     @staticmethod
