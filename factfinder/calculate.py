@@ -341,9 +341,12 @@ class Calculate:
             "m",
         ] = 0
 
-        df.loc[df.pff_variable.isin(self.meta.base_variables), "p"] = 100
+        df.loc[
+            df.pff_variable.isin(self.meta.base_variables)
+            & ~df.pff_variable.isin(self.meta.median_variables), "p"] = 100
 
-        df.loc[df.pff_variable.isin(self.meta.base_variables), "z"] = np.nan
+        df.loc[df.pff_variable.isin(self.meta.base_variables)
+            & ~df.pff_variable.isin(self.meta.median_variables), "z"] = np.nan
 
         return df
 
