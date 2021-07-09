@@ -76,7 +76,7 @@ class AggregatedGeography:
         """
         df = df.merge(
             self.ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]],
-            how="left",
+            how="right",
             right_on="geoid_ct2010",
             left_on="census_geoid",
         )
