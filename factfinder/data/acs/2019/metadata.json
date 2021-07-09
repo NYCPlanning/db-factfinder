@@ -10231,7 +10231,7 @@
   },
   {
     "pff_variable": "lgarblep1",
-    "base_variable": "lgarblep1",
+    "base_variable": "lgarab1",
     "census_variable": [
       "C16001_035"
     ],
@@ -10271,7 +10271,7 @@
   },
   {
     "pff_variable": "lgchilep1",
-    "base_variable": "lgchilep1",
+    "base_variable": "lgchi1",
     "census_variable": [
       "C16001_023"
     ],
@@ -10451,7 +10451,7 @@
   },
   {
     "pff_variable": "lgoeng1",
-    "base_variable": "lgoeng1",
+    "base_variable": "pop5pl1",
     "census_variable": [
       "C16001_003",
       "C16001_006",
