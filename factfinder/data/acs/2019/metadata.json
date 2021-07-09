@@ -3252,7 +3252,8 @@
     "base_variable": "ochu3",
     "census_variable": [
       "DP04_0051",
-      "DP04_0052"
+      "DP04_0052",
+      "DP04_0053"
     ],
     "domain": "housing",
     "rounding": 0,
@@ -4363,7 +4364,7 @@
     "pff_variable": "mv90t99",
     "base_variable": "ochu3",
     "census_variable": [
-      "DP04_0054"
+      "DP04_0055"
     ],
     "domain": "housing",
     "rounding": 0,
@@ -4403,7 +4404,7 @@
     "pff_variable": "mv00t09",
     "base_variable": "ochu3",
     "census_variable": [
-      "DP04_0053"
+      "DP04_0054"
     ],
     "domain": "housing",
     "rounding": 0,
