@@ -23,6 +23,9 @@ jobs:
       EDM_DATA: ${{ secrets.EDM_DATA }}
       DATA_YEAR: ${{ github.event.inputs.data_year }}
       GEO_YEAR: ${{ github.event.inputs.geo_year }}
+      AWS_S3_ENDPOINT: ${{ secrets.DO_S3_ENDPOINT }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET_ACCESS_KEY }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,6 +33,13 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
+
+      - name: Install Minio CLI
+        run: |
+          curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          sudo mv ./mc /usr/bin
+          mc config host add spaces $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY --api S3v4
 
       - name: Install locally
         run: |
@@ -45,3 +55,8 @@ jobs:
           TABLE_NAME=staging-Y$DATA_YEAR-G$GEO_YEAR
           FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
           cat $FILE_PATH | psql $EDM_DATA -v TABLE_NAME=$TABLE_NAME -f pipelines/create_acs.sql
+
+      - name: upload to s3
+        run: |
+          FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
+          mc cp $FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/
