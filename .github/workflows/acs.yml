@@ -43,5 +43,5 @@ jobs:
       - name: send to database
         run: |
           TABLE_NAME=staging-Y$DATA_YEAR-G$GEO_YEAR
-          FILE_PATH=.output/acs/year=$DATA_YEAR/geo=$GEO_YEAR/acs.csv
+          FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
           cat $FILE_PATH | psql $EDM_DATA -v TABLE_NAME=$TABLE_NAME -f pipelines/create_acs.sql
