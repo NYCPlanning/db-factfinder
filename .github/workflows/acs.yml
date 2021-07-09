@@ -37,26 +37,11 @@ jobs:
           python3.9 -m pip install .
 
       - name: run pipelines/acs
-        run: python3.9 pipelines/acs/build.py $DATA_YEAR $GEO_YEAR
+        run: |
+          python3.9 -m pipelines.acs --year $DATA_YEAR --geography $GEO_YEAR
 
       - name: send to database
         run: |
-          psql $EDM_DATA -c "
-          DROP TABLE IF EXISTS pff_acs.\"test-$DATA_YEAR\";
-          CREATE TABLE pff_acs.\"test-$DATA_YEAR\" (
-              census_geoid text,
-              labs_geoid text,
-              geotype text,
-              labs_geotype text,
-              pff_variable text,
-              c double precision,
-              e double precision,
-              m double precision,
-              p double precision,
-              z double precision,
-              domain text
-          );
-          "
-          cat pff_output/acs_"$DATA_YEAR"_"$GEO_YEAR"_geogs.csv | psql $EDM_DATA -c "
-            COPY pff_acs.\"test-$DATA_YEAR\" FROM STDIN DELIMITER ',' CSV HEADER;
-          "
+          TABLE_NAME=staging-Y$DATA_YEAR-G$GEO_YEAR
+          FILE_PATH=.output/acs/year=$DATA_YEAR/geo=$GEO_YEAR/acs.csv
+          cat $FILE_PATH | psql $EDM_DATA -v TABLE_NAME=$TABLE_NAME -f pipelines/create_acs.sql
