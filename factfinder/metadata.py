@@ -117,6 +117,13 @@ class Metadata:
         """
         return list(self.median.keys())
 
+    @cached_property
+    def median_inputs(self) -> list:
+        """
+        returns a list of inputs to median variables
+        """
+        return [in_var for sublist in [list(self.median[var]['ranges'].keys()) for var in self.median] for in_var in sublist]
+
     def median_ranges(self, pff_variable) -> dict:
         """
         given median variable in the format of pff_variable
