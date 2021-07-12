@@ -348,6 +348,15 @@ class Calculate:
         df.loc[df.pff_variable.isin(self.meta.base_variables)
             & ~df.pff_variable.isin(self.meta.median_variables), "z"] = np.nan
 
+        df.loc[df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms") , "m"] = np.nan
+        df.loc[df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"), "p"] = np.nan
+        df.loc[df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"), "z"] = np.nan
+        df.loc[df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"), "c"] = np.nan
+
         return df
 
     def labs_geoid(self, df: pd.DataFrame) -> pd.DataFrame:
