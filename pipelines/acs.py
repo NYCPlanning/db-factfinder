@@ -1,23 +1,15 @@
+import argparse
 import itertools
 import os
 import sys
-from multiprocessing import Pool
-from pathlib import Path
+from typing import Tuple
 
 import pandas as pd
-from dotenv import load_dotenv
 from tqdm import tqdm
 
 from factfinder.calculate import Calculate
 
-# Load .env environmental variables for local runs
-try:
-    env_path = f"{Path(__file__).parent.parent.parent}/.env"
-    load_dotenv(dotenv_path=env_path)
-except:
-    print(".env file is missing ...")
-
-# Function wrapper calculate for multiprocessing
+from . import API_KEY
 
 
 def calc(*args):
@@ -25,21 +17,27 @@ def calc(*args):
     return calculate(var, geo).assign(domain=domain)
 
 
+def parse_args() -> Tuple[int, str]:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-y", "--year", type=int, help="The ACS5 year, e.g. 2019 (2014-2018)"
+    )
+    parser.add_argument(
+        "-g", "--geography", type=str, help="The geography year, e.g. 2010_to_2020"
+    )
+    args = parser.parse_args()
+    return args.year, args.geography
+
+
 if __name__ == "__main__":
     # Get ACS year
-    year = int(sys.argv[1])
-    geography = str(sys.argv[2])
-
-    if not os.path.exists("pff_output"):
-        os.makedirs("pff_output")
+    year, geography = parse_args()
 
     # Initialize pff instance
-    calculate = Calculate(
-        api_key=os.environ["API_KEY"], year=year, source="acs", geography=geography
-    )
+    calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
 
     # Declare geography and variables involved in this caculation
-    geogs = calculate.geo.aggregated_geography
+    geogs = calculate.geo.aggregated_geography + ["city", "borough"]
     if geography != "2010_to_2020":
         geogs.extend(["tract"])
     domains = ["demographic", "economic", "housing", "social"]
@@ -59,5 +57,7 @@ if __name__ == "__main__":
             print(args)
 
     # Concatenate dataframes and export to 1 large csv
+    output_folder = f".output/acs/year={year}/geography={geography}"
     df = pd.concat(dfs)
-    df.to_csv(f"pff_output/acs_{year}_{geography}_geogs.csv", index=False)
+    os.makedirs(output_folder)
+    df.to_csv(f"{output_folder}/acs.csv", index=False)
