@@ -8312,7 +8312,7 @@
     "census_variable": [
       "B01001_001"
     ],
-    "domain": "social",
+    "domain": "demographic",
     "rounding": 0,
     "source": ""
   },
@@ -8606,7 +8606,7 @@
     "census_variable": [
       "B03001_003"
     ],
-    "domain": "social",
+    "domain": "demographic",
     "rounding": 0,
     "source": ""
   },
@@ -8762,7 +8762,7 @@
     "census_variable": [
       "B03001_020"
     ],
-    "domain": "social",
+    "domain": "demographic",
     "rounding": 0,
     "source": ""
   },
