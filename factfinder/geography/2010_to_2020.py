@@ -30,7 +30,7 @@ class AggregatedGeography:
             Path(__file__).parent.parent / f"data/lookup_geo/2010_to_2020/ratio.csv",
             dtype="str",
         )
-        ratio["ratio"] = ratio.ratio.astype(float)
+        ratio["ratio"] = ratio.ratio.astype(float).round(18)
         ratio["geoid_ct2010"] = "360" + ratio["boroct2010"].str.pad(width=8, fillchar='0')
         ratio["geoid_ct2020"] = "360" + ratio["boroct2020"].str.pad(width=8, fillchar='0')
         return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
@@ -81,10 +81,13 @@ class AggregatedGeography:
         )
         df["e_2010"] = df.e
         df["m_2010"] = df.m
-        df.e = df.e * df.ratio
+        df.e = (df.e * df.ratio)
         df.m = df.apply(lambda row : self.convert_moe(row["e_2010"],
                      row["m_2010"], row["e"], row["ratio"]), axis = 1)
-        
+
+        df.e = df.e.round(16)
+        df.m = df.m.round(16)
+
         output = AggregatedGeography.create_output(df, "geoid_ct2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "CT20"
