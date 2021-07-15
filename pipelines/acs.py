@@ -45,6 +45,7 @@ if __name__ == "__main__":
         (i["pff_variable"], i["domain"])
         for i in calculate.meta.metadata
         if i["domain"] in domains
+        and i["pff_variable"] in calculate.meta.median_variables
     ]
 
     # Loop through calculations and collect dataframes in dfs

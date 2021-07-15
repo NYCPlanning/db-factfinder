@@ -52,7 +52,7 @@ def get_median(ranges, row):
     C = 0
     i = 0
     while C <= N / 2 and i <= len(ranges.keys()) - 1:
-        C += int(row[ordered[i]])
+        C += row[ordered[i]]
         i += 1
     i = i - 1
     if i == 0:
