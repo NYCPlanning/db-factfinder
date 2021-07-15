@@ -64,7 +64,7 @@ def get_median(ranges, row):
     else:
         C = C - row[ordered[i]]
         L = ranges[ordered[i]][0]
-        F = int(row[ordered[i]])
+        F = row[ordered[i]]
         W = ranges[ordered[i]][1] - ranges[ordered[i]][0]
         median = L + (N / 2 - C) * W / F
     return median
