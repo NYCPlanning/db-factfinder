@@ -2813,7 +2813,7 @@
         "base_variable": "mean",
         "domain": "social",
         "source": "",
-        "rounding": 0
+        "rounding": 2
     },
     {
         "pff_variable": "ntvprusab",
@@ -4499,7 +4499,7 @@
         "base_variable": "avgfmsz",
         "domain": "social",
         "source": "",
-        "rounding": 0
+        "rounding": 2
     },
     {
         "pff_variable": "sthrnafr",
@@ -5571,7 +5571,7 @@
         "base_variable": "avghhsooc",
         "domain": "housing",
         "source": "",
-        "rounding": 0
+        "rounding": 2
     },
     {
         "pff_variable": "btrvvetc",
@@ -5621,7 +5621,7 @@
         "base_variable": "avghhsroc",
         "domain": "housing",
         "source": "",
-        "rounding": 0
+        "rounding": 2
     },
     {
         "pff_variable": "r1p5t1999",
@@ -8156,7 +8156,7 @@
         "base_variable": "mdage",
         "domain": "economic",
         "source": "",
-        "rounding": 0
+        "rounding": 1
     },
     {
         "pff_variable": "fft5t7p5",
