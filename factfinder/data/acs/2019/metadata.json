@@ -3244,7 +3244,7 @@
       "DP04_0047"
     ],
     "domain": "housing",
-    "rounding": 0,
+    "rounding": 1,
     "source": ""
   },
   {
@@ -4086,7 +4086,7 @@
       "DP04_0046"
     ],
     "domain": "housing",
-    "rounding": 0,
+    "rounding": 2,
     "source": "profile"
   },
   {
@@ -4397,7 +4397,7 @@
       "B25008_003"
     ],
     "domain": "housing",
-    "rounding": 0,
+    "rounding": 2,
     "source": ""
   },
   {
@@ -8376,7 +8376,7 @@
       "B01001_040"
     ],
     "domain": "demographic",
-    "rounding": 0,
+    "rounding": 1,
     "source": ""
   },
   {
