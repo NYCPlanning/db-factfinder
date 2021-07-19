@@ -51,7 +51,7 @@ def get_median(ranges, row):
     N = row[ordered].sum()
     C = 0
     i = 0
-    while C <= N / 2 and i <= len(ranges.keys()) - 1:
+    while C < N / 2 and i <= len(ranges.keys()) - 1:
         # Calculate cumulative frequency until half of all units are accounted for
         C += row[ordered[i]]
         i += 1
