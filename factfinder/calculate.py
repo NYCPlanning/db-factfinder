@@ -247,7 +247,10 @@ class Calculate:
             # If pff_variable is not base_variable, then p,z
             # are calculated against the base variable e(agg_e), m(agg_m)
             if pff_variable not in self.meta.base_variables:
-                if pff_variable in ["pbwpv", "pu18bwpv", "p65plbwpv"]:
+                if (
+                    pff_variable in ["pbwpv", "pu18bwpv", "p65plbwpv"]
+                    and geotype not in self.geo.aggregated_geography
+                ):
                     # special case for poverty variables
                     df_pz = self.calculate_poverty_p_z(pff_variable, geotype)
                     df = df.merge(df_pz, on=["census_geoid", "geotype"])
