@@ -10242,7 +10242,7 @@
   },
   {
     "pff_variable": "lgarblep2",
-    "base_variable": "pop5pl2",
+    "base_variable": "lgoenlep2",
     "census_variable": [
       "C16001_035"
     ],
