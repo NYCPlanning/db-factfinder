@@ -17,6 +17,7 @@ python-dotenv = "0.15.0"
 typer = "0.3.2"
 tqdm = "^4.56.0"
 numpy = "^1.20.3"
+pathos = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.9.3"

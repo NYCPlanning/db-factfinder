@@ -1,11 +1,11 @@
 import importlib
 import os
 from functools import partial
-from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from pathos.pools import ProcessPool
 
 from .download import Download
 from .metadata import Metadata, Variable
@@ -34,6 +34,7 @@ class Calculate:
             f"factfinder.geography.{geography}"
         ).AggregatedGeography
         self.geo = AggregatedGeography()
+        self.pool = ProcessPool(nodes=4)
 
     def calculate_e_m_multiprocessing(
         self, pff_variables: list, geotype: str
@@ -43,10 +44,8 @@ class Calculate:
         variables e, m at the same time using multiprocessing
         """
         _calculate_e_m = partial(self.calculate_e_m, geotype=geotype)
-        with Pool(5) as download_pool:
-            dfs = download_pool.map(_calculate_e_m, pff_variables)
-        df = pd.concat(dfs)
-        return df
+        dfs = self.pool.map(_calculate_e_m, pff_variables)
+        return pd.concat(dfs)
 
     def calculate_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         """
@@ -343,19 +342,36 @@ class Calculate:
 
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables), "p"] = 100
+            & ~df.pff_variable.isin(self.meta.median_variables),
+            "p",
+        ] = 100
 
-        df.loc[df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables), "z"] = np.nan
+        df.loc[
+            df.pff_variable.isin(self.meta.base_variables)
+            & ~df.pff_variable.isin(self.meta.median_variables),
+            "z",
+        ] = np.nan
 
-        df.loc[df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms") , "m"] = np.nan
-        df.loc[df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"), "p"] = np.nan
-        df.loc[df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"), "z"] = np.nan
-        df.loc[df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"), "c"] = np.nan
+        df.loc[
+            df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"),
+            "m",
+        ] = np.nan
+        df.loc[
+            df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"),
+            "p",
+        ] = np.nan
+        df.loc[
+            df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"),
+            "z",
+        ] = np.nan
+        df.loc[
+            df.pff_variable.isin(self.meta.median_inputs)
+            & ~df.pff_variable.str.contains("rms"),
+            "c",
+        ] = np.nan
 
         return df
 
@@ -366,12 +382,20 @@ class Calculate:
         df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
         df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
 
-        return df[["census_geoid",
-                    "labs_geoid",
-                    "geotype",
-                    "labs_geotype",
-                    "pff_variable",
-                    "c", "e", "m", "p", "z"]]
+        return df[
+            [
+                "census_geoid",
+                "labs_geoid",
+                "geotype",
+                "labs_geotype",
+                "pff_variable",
+                "c",
+                "e",
+                "m",
+                "p",
+                "z",
+            ]
+        ]
 
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
