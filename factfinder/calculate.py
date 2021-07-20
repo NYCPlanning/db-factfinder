@@ -1,11 +1,9 @@
 import importlib
 import os
-from functools import partial
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from pathos.pools import ProcessPool
 from retry import retry
 
 from .download import Download
@@ -35,7 +33,6 @@ class Calculate:
             f"factfinder.geography.{geography}"
         ).AggregatedGeography
         self.geo = AggregatedGeography()
-        self.pool = ProcessPool(nodes=4)
 
     def calculate_e_m_multiprocessing(
         self, pff_variables: list, geotype: str
@@ -44,8 +41,9 @@ class Calculate:
         given a list of pff_variables, and geotype, calculate multiple
         variables e, m at the same time using multiprocessing
         """
-        _calculate_e_m = partial(self.calculate_e_m, geotype=geotype)
-        dfs = self.pool.map(_calculate_e_m, pff_variables)
+        dfs = []
+        for pff_variable in pff_variables:
+            dfs.append(self.calculate_e_m(pff_variable, geotype))
         return pd.concat(dfs)
 
     def calculate_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:

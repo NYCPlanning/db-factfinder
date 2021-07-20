@@ -13,16 +13,13 @@ from . import API_KEY
 
 def _calculate(args):
     var, domain, geo, calculate = args
-    df = calculate(var, geo).assign(domain=domain)
-    print(f"✅ SUCCESS:\t{var.ljust(15, ' ')}\t{geo}", file=sys.stdout)
-    return df
-    # try:
-    #     df = calculate(var, geo).assign(domain=domain)
-    #     print(f"✅ SUCCESS: {var}\t{geo}", file=sys.stdout)
-    #     return df
-    # except:
-    #     print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
-    #     return None
+    try:
+        df = calculate(var, geo).assign(domain=domain)
+        print(f"✅ SUCCESS: {var}\t{geo}", file=sys.stdout)
+        return df
+    except:
+        print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
+        return None
 
 
 def parse_args() -> Tuple[int, str]:
