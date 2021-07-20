@@ -1,12 +1,10 @@
 import argparse
-import itertools
 import os
 import sys
 from typing import Tuple
 
 import pandas as pd
-from pathos.pools import ProcessPool, ThreadPool
-from tqdm import tqdm
+from pathos.pools import ProcessPool
 
 from factfinder.calculate import Calculate
 
@@ -15,14 +13,16 @@ from . import API_KEY
 
 def _calculate(args):
     var, domain, geo, calculate = args
-    # return calculate(var, geo).assign(domain=domain)
-    try:
-        df = calculate(var, geo).assign(domain=domain)
-        print(f"✅ SUCCESS: {var} {geo}")
-        return df
-    except:
-        print(f"⛔️ FAILURE: {var} {geo}")
-        return None
+    df = calculate(var, geo).assign(domain=domain)
+    print(f"✅ SUCCESS:\t{var.ljust(15, ' ')}\t{geo}", file=sys.stdout)
+    return df
+    # try:
+    #     df = calculate(var, geo).assign(domain=domain)
+    #     print(f"✅ SUCCESS: {var}\t{geo}", file=sys.stdout)
+    #     return df
+    # except:
+    #     print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
+    #     return None
 
 
 def parse_args() -> Tuple[int, str]:

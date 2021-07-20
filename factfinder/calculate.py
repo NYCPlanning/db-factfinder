@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from pathos.pools import ProcessPool
+from retry import retry
 
 from .download import Download
 from .metadata import Metadata, Variable
@@ -397,6 +398,7 @@ class Calculate:
             ]
         ]
 
+    @retry(tries=3, delay=30)
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)
