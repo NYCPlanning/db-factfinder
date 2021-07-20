@@ -37,7 +37,7 @@ def parse_args() -> Tuple[int, str]:
 if __name__ == "__main__":
     # Get ACS year
     year, geography = parse_args()
-    pool = ProcessPool(nodes=4)
+    pool = ProcessPool(nodes=10)
 
     # Initialize pff instance
     calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
