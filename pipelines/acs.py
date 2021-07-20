@@ -19,7 +19,6 @@ def _calculate(args):
         return df
     except:
         print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
-        return None
 
 
 def parse_args() -> Tuple[int, str]:
@@ -59,6 +58,6 @@ if __name__ == "__main__":
 
     # Concatenate dataframes and export to 1 large csv
     output_folder = f".output/acs/year={year}/geography={geography}"
-    df = pd.concat([df for df in dfs if df])
-    os.makedirs(output_folder)
+    df = pd.concat(dfs)
+    os.makedirs(output_folder, exist_ok=True)
     df.to_csv(f"{output_folder}/acs.csv", index=False)
