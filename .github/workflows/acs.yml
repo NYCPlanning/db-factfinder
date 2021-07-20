@@ -42,6 +42,12 @@ jobs:
           python3.9 -m pip install --upgrade pip
           python3.9 -m pip install .
 
+       - name: cache-files-downloads
+        uses: actions/cache@v2
+        with:
+          path: .cache/download
+          key: Y${{ github.event.inputs.data_year }}-G${{ github.event.inputs.geo_year }}-${{ hashFiles('factfinder/download.py') }}
+
       - name: run pipelines/acs
         run: |
           python3.9 -m pipelines.acs --year $DATA_YEAR --geography $GEO_YEAR
