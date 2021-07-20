@@ -42,7 +42,7 @@ jobs:
           python3.9 -m pip install --upgrade pip
           python3.9 -m pip install .
 
-       - name: cache-files-downloads
+      - name: cache-files-downloads
         uses: actions/cache@v2
         with:
           path: .cache/download
