@@ -1,4 +1,4 @@
-name: Build - ACS
+name: "Build ACS - Year: ${{ github.event.inputs.data_year }} - Geography: ${{ github.event.inputs.geo_year }}"
 on:
   workflow_dispatch:
     inputs:
