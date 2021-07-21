@@ -250,6 +250,7 @@ class Calculate:
                 if (
                     pff_variable in ["pbwpv", "pu18bwpv", "p65plbwpv"]
                     and geotype not in self.geo.aggregated_geography
+                    and self.year != 2010
                 ):
                     # special case for poverty variables
                     df_pz = self.calculate_poverty_p_z(pff_variable, geotype)
