@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build ACS PFF outputs
+    name: "ACS Year: ${{ github.event.inputs.data_year }} Geography: ${{ github.event.inputs.geo_year }}"
     env:
       API_KEY: ${{ secrets.API_KEY }}
       EDM_DATA: ${{ secrets.EDM_DATA }}
