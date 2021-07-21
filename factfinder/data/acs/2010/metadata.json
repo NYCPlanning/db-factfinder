@@ -1794,7 +1794,7 @@
             "B17001_034",
             "B17001_035",
             "B17001_036",
-            "B17001_0037",
+            "B17001_037",
             "B17001_038",
             "B17001_047",
             "B17001_048",
@@ -2360,7 +2360,7 @@
         "census_variable": [
             "DP04_0123"
         ],
-        "base_variable": NaN,
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 0,
         "source": ""
@@ -2944,7 +2944,7 @@
         "census_variable": [
             "DP04_0141"
         ],
-        "base_variable": NaN,
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 0,
         "source": ""
@@ -3375,7 +3375,7 @@
         "census_variable": [
             "DP04_0114"
         ],
-        "base_variable": NaN,
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 0,
         "source": ""
@@ -4324,7 +4324,7 @@
     {
         "pff_variable": "mafr",
         "census_variable": [
-            "B05006_97"
+            "B05006_097"
         ],
         "base_variable": "fb2",
         "domain": "social",
@@ -4795,7 +4795,7 @@
     {
         "pff_variable": "norway",
         "census_variable": [
-            "B05006_0010"
+            "B05006_010"
         ],
         "base_variable": "fb2",
         "domain": "social",
@@ -5126,7 +5126,7 @@
     {
         "pff_variable": "cameroon",
         "census_variable": [
-            "B05006_98"
+            "B05006_098"
         ],
         "base_variable": "fb2",
         "domain": "social",
@@ -5757,7 +5757,7 @@
     {
         "pff_variable": "sweden",
         "census_variable": [
-            "B05006_0011"
+            "B05006_011"
         ],
         "base_variable": "fb2",
         "domain": "social",
@@ -6309,7 +6309,7 @@
     {
         "pff_variable": "omafr",
         "census_variable": [
-            "B05006_99"
+            "B05006_099"
         ],
         "base_variable": "fb2",
         "domain": "social",
