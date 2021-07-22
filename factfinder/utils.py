@@ -117,8 +117,9 @@ def get_median_moe(ranges, row, DF=1.1):
                     # Lower bound is within the top bin
                     return np.nan
                 else:
-                    if lower_bin == upper_bin:
-                        # Both bounds are within the same bin
+                    if lower_bin == upper_bin and lower_bin != first_non_zero_bin:
+                        # Both bounds are within the same bin and 
+                        # lower_bin not in the first non-zero bin
 
                         # Calculate smallest value within the bin
                         A1 = min(ranges[ordered[lower_bin]])
