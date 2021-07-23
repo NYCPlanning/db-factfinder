@@ -1,5 +1,135 @@
 [
     {
+        "pff_variable": "fam1",
+        "census_variable": [
+            "DP02_002"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "famchu18",
+        "census_variable": [
+            "DP02_003"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "mrdfam",
+        "census_variable": [
+            "DP02_004"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "mrdchu18",
+        "census_variable": [
+            "DP02_005"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "mhns",
+        "census_variable": [
+            "DP02_006"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "mhnschu18",
+        "census_variable": [
+            "DP02_007"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "fhns",
+        "census_variable": [
+            "DP02_008"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "fhnschu18",
+        "census_variable": [
+            "DP02_009"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "nfam1",
+        "census_variable": [
+            "DP02_010"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "nfama",
+        "census_variable": [
+            "DP02_011"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "nfama65pl",
+        "census_variable": [
+            "DP02_012"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "hh1plu18",
+        "census_variable": [
+            "DP02_0013"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
+        "pff_variable": "hh1pl65pl",
+        "census_variable": [
+            "DP02_0014"
+        ],
+        "base_variable": "hh1",
+        "domain": "social",
+        "rounding": 0,
+        "source": ""
+    },
+    {
         "pff_variable": "f16pl",
         "census_variable": [
             "DP03_0010"
@@ -4272,16 +4402,6 @@
         "source": ""
     },
     {
-        "pff_variable": "hh1pl65pl",
-        "census_variable": [
-            "DP02_0014"
-        ],
-        "base_variable": "hh1",
-        "domain": "social",
-        "rounding": 0,
-        "source": ""
-    },
-    {
         "pff_variable": "belgium",
         "census_variable": [
             "B05006_015"
@@ -5655,16 +5775,6 @@
         "source": ""
     },
     {
-        "pff_variable": "hh1plu18",
-        "census_variable": [
-            "DP02_0013"
-        ],
-        "base_variable": "hh1",
-        "domain": "social",
-        "rounding": 0,
-        "source": ""
-    },
-    {
         "pff_variable": "china",
         "census_variable": [
             "B05006_049"
@@ -6650,7 +6760,7 @@
     {
         "pff_variable": "fam3",
         "census_variable": [
-            "DP02_0004"
+            "DP02_0002"
         ],
         "base_variable": "avgfmsz",
         "domain": "social",
