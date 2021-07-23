@@ -20,6 +20,7 @@ outliers = [
     -555555555,
 ]
 
+
 def get_c(e, m):
     if e == 0:
         return np.nan
@@ -45,6 +46,7 @@ def get_z(e, m, p, agg_e, agg_m):
         return math.sqrt(m ** 2 + (e * agg_m / agg_e) ** 2) / agg_e * 100
     else:
         return math.sqrt(m ** 2 - (e * agg_m / agg_e) ** 2) / agg_e * 100
+
 
 def get_median(ranges, row):
     ordered = list(ranges.keys())
@@ -94,7 +96,9 @@ def get_median_moe(ranges, row, DF=1.1):
         else:
             # Calculate cumulative distribution (percents)
             cumm_dist = list(np.cumsum(row[ordered]) / B * 100)
-
+            first_non_zero_bin = next(
+                (cumm_dist.index(i) for i in cumm_dist if i != 0), None
+            )
             # Calculate SE of a 50% proportion
             se_50 = DF * (((93 / (7 * B)) * 2500)) ** 0.5
 
@@ -113,16 +117,17 @@ def get_median_moe(ranges, row, DF=1.1):
                     # Lower bound is within the top bin
                     return np.nan
                 else:
-                    if lower_bin == upper_bin:
-                        # Both bounds are within the same bin
+                    if lower_bin == upper_bin and lower_bin != first_non_zero_bin:
+                        # Both bounds are within the same bin and 
+                        # lower_bin not in the first non-zero bin
 
                         # Calculate smallest value within the bin
                         A1 = min(ranges[ordered[lower_bin]])
                         # Calculate largest value within the bin
                         A2 = min(ranges[ordered[lower_bin + 1]])
-                        # Cumulative percent of units less than smallest value 
+                        # Cumulative percent of units less than smallest value
                         C1 = cumm_dist[lower_bin - 1]
-                        # Cumulative percent of units less than largest value 
+                        # Cumulative percent of units less than largest value
                         C2 = cumm_dist[lower_bin]
 
                         # Calculate CI of median
@@ -144,14 +149,23 @@ def get_median_moe(ranges, row, DF=1.1):
                             # Cumulative percent of units less than lower bin largest value
                             C2_l = cumm_dist[lower_bin]
                         else:
-                            # Calculate smallest value in the lower bin
-                            A1_l = min(ranges[ordered[lower_bin]])
-                            # Calculate largest value in the lower bin
-                            A2_l = min(ranges[ordered[lower_bin + 1]])
-                            # Cumulative percent of units less than lower bin smallest value
-                            C1_l = cumm_dist[lower_bin - 1]
-                            # Cumulative percent of units less than lower bin largest value
-                            C2_l = cumm_dist[lower_bin]
+                            if lower_bin == first_non_zero_bin and lower_bin != 0:
+                                # If the distribution starts with a string of 0s and
+                                # p_lower falls in the first non-zero bin
+                                # Then we will assign p_lower to the **first bin** to maximize the MOE
+                                A1_l = 0
+                                A2_l = min(ranges[ordered[1]])
+                                C1_l = cumm_dist[lower_bin - 1]
+                                C2_l = cumm_dist[lower_bin]
+                            else:
+                                # Calculate smallest value in the lower bin
+                                A1_l = min(ranges[ordered[lower_bin]])
+                                # Calculate largest value in the lower bin
+                                A2_l = min(ranges[ordered[lower_bin + 1]])
+                                # Cumulative percent of units less than lower bin smallest value
+                                C1_l = cumm_dist[lower_bin - 1]
+                                # Cumulative percent of units less than lower bin largest value
+                                C2_l = cumm_dist[lower_bin]
                         if upper_bin + 1 > len(ordered) - 1:
                             # Upper bin is top bin
 
