@@ -2,7 +2,7 @@
     {
         "pff_variable": "fam1",
         "census_variable": [
-            "DP02_002"
+            "DP02_0002"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -12,7 +12,7 @@
     {
         "pff_variable": "famchu18",
         "census_variable": [
-            "DP02_003"
+            "DP02_0003"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -22,7 +22,7 @@
     {
         "pff_variable": "mrdfam",
         "census_variable": [
-            "DP02_004"
+            "DP02_0004"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -32,7 +32,7 @@
     {
         "pff_variable": "mrdchu18",
         "census_variable": [
-            "DP02_005"
+            "DP02_0005"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -42,7 +42,7 @@
     {
         "pff_variable": "mhns",
         "census_variable": [
-            "DP02_006"
+            "DP02_0006"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -52,7 +52,7 @@
     {
         "pff_variable": "mhnschu18",
         "census_variable": [
-            "DP02_007"
+            "DP02_0007"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -62,7 +62,7 @@
     {
         "pff_variable": "fhns",
         "census_variable": [
-            "DP02_008"
+            "DP02_0008"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -72,7 +72,7 @@
     {
         "pff_variable": "fhnschu18",
         "census_variable": [
-            "DP02_009"
+            "DP02_0009"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -82,7 +82,7 @@
     {
         "pff_variable": "nfam1",
         "census_variable": [
-            "DP02_010"
+            "DP02_0010"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -92,7 +92,7 @@
     {
         "pff_variable": "nfama",
         "census_variable": [
-            "DP02_011"
+            "DP02_0011"
         ],
         "base_variable": "hh1",
         "domain": "social",
@@ -102,7 +102,7 @@
     {
         "pff_variable": "nfama65pl",
         "census_variable": [
-            "DP02_012"
+            "DP02_0012"
         ],
         "base_variable": "hh1",
         "domain": "social",
