@@ -7345,7 +7345,7 @@
     {
         "pff_variable": "popu18f",
         "census_variable": [
-            "DP05_0023"
+            "B05003_014"
         ],
         "base_variable": "popu18_2",
         "domain": "demographic",
@@ -7549,7 +7549,7 @@
     {
         "pff_variable": "popu18m",
         "census_variable": [
-            "DP05_0022"
+            "B05003_003"
         ],
         "base_variable": "popu18_2",
         "domain": "demographic",
@@ -7791,7 +7791,8 @@
     {
         "pff_variable": "popu18_2",
         "census_variable": [
-            "DP05_0024"
+            "B05003_003",
+            "B05003_014"
         ],
         "base_variable": "popu18_2",
         "domain": "demographic",
