@@ -4304,6 +4304,7 @@
     {
         "pff_variable": "oeeur",
         "census_variable": [
+            "B05006_043",
             "B05006_045"
         ],
         "base_variable": "fb2",
