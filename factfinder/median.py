@@ -2,14 +2,9 @@ import logging
 
 import numpy as np
 
-from . import LOGLEVEL
 
-logging.basicConfig(level=LOGLEVEL)
-
-
-class MedianMoe:
+class Median:
     def __init__(self, ranges, row, DF=1.1):
-        self.md = row["e"]
         self.ordered = list(ranges.keys())
         self.ranges = ranges
         self.B = row[self.ordered].sum()
@@ -23,12 +18,52 @@ class MedianMoe:
         self.upper_bin = min(
             [self.cumm_dist.index(i) for i in self.cumm_dist if i > self.p_upper]
         )
+        self.row = row
+
+    @property
+    def median(self):
+        N = self.B
+        C = 0
+        i = 0
+        while C < N / 2 and i <= len(self.ranges.keys()) - 1:
+            # Calculate cumulative frequency until half of all units are accounted for
+            C += self.row[self.ordered[i]]
+            i += 1
+        i = i - 1
+        if i == 0:
+            logging.debug("N/2 is in bottom bin")
+            median = list(self.ranges.values())[0][1]
+        elif C == 0.0:
+            logging.debug("Cumulative frequency is 0")
+            median = 0.0
+        elif i == len(self.ranges.keys()) - 1:
+            logging.debug("N/2 is in top range")
+            median = list(self.ranges.values())[-1][0]
+        else:
+            logging.debug(f"N/2 is in range {list(self.ranges.values())[i]}")
+            C = C - self.row[self.ordered[i]]
+            L = self.ranges[self.ordered[i]][0]
+            F = self.row[self.ordered[i]]
+            W = self.ranges[self.ordered[i]][1] - self.ranges[self.ordered[i]][0]
+            logging.debug(
+                f"\nC_{i-1}: Cumulative frequency up to bin below N/2: {C}"
+                f"\nL_{i}: Lower boundary of median group: {L}"
+                f"\nF_{i}: Frequency within median group: {F}"
+                f"\nW_{i}: Width of median group: {W}"
+            )
+            median = L + (N / 2 - C) * W / F
+        logging.debug(
+            f"""
+            MEDIAN: {median}
+            """
+        )
+        return median
 
     @property
     def cumm_dist_given_bin(self):
-        return "\n\t".join(
+        return "\n".join(
             [
-                f"{_bin}: {dist}"
+                f"- {_bin}: {dist}"
                 for _bin, dist in zip(list(self.ranges.values()), self.cumm_dist)
             ]
         )
@@ -72,7 +107,7 @@ class MedianMoe:
             """
         )
 
-        return MedianMoe.get_bound(p=self.p_lower, A1=A1, A2=A2, C1=C1, C2=C2)
+        return Median.get_bound(p=self.p_lower, A1=A1, A2=A2, C1=C1, C2=C2)
 
     @property
     def upper_bound(self):
@@ -91,10 +126,11 @@ class MedianMoe:
             A1={A1}, A2={A2}, C1={C1}, C2={C2}
             """
         )
-        return MedianMoe.get_bound(p=self.p_upper, A1=A1, A2=A2, C1=C1, C2=C2)
+        return Median.get_bound(p=self.p_upper, A1=A1, A2=A2, C1=C1, C2=C2)
 
-    def __call__(self):
-        if self.md >= list(self.ranges.values())[-1][0]:
+    @property
+    def median_moe(self):
+        if self.median >= list(self.ranges.values())[-1][0]:
             moe = np.nan
         elif self.B == 0:
             moe = np.nan
@@ -106,25 +142,23 @@ class MedianMoe:
             moe = (self.upper_bound - self.lower_bound) * 1.645 / 2
 
         logging.debug(
-            f"""
-            =================================
-            STATS:
-            -----
-            Median = {self.md}
-            Median_MOE = {moe}
-            B = {self.B}
-            se_50 = {self.se_50}
-            p_lower = {self.p_lower}
-            p_upper = {self.p_upper}
-            lower_bin = {self.lower_bin}
-            upper_bin = {self.upper_bin}
-            first_non_zero_bin = {self.first_non_zero_bin}
-
-            DISTRIBUTION:
-            -----
-            {self.cumm_dist_given_bin}
-            =================================
-            """
+            "\n================================="
+            "\nMEDIAN STATS:"
+            "\n-----"
+            f"\nMedian = {self.median}"
+            f"\nMedian_MOE = {moe}"
+            f"\nB = {self.B}"
+            f"\nse_50 = {self.se_50}"
+            f"\np_lower = {self.p_lower}"
+            f"\np_upper = {self.p_upper}"
+            f"\nlower_bin = {self.lower_bin}"
+            f"\nupper_bin = {self.upper_bin}"
+            f"\nfirst_non_zero_bin = {self.first_non_zero_bin}"
+            "\n"
+            "\nDISTRIBUTION:"
+            "\n-----"
+            f"\n{self.cumm_dist_given_bin}"
+            f"\n================================="
         )
 
         return moe
