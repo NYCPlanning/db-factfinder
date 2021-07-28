@@ -46,17 +46,15 @@ class Median:
             F = self.row[self.ordered[i]]
             W = self.ranges[self.ordered[i]][1] - self.ranges[self.ordered[i]][0]
             logging.debug(
+                "\n================================="
                 f"\nC_{i-1}: Cumulative frequency up to bin below N/2: {C}"
                 f"\nL_{i}: Lower boundary of median group: {L}"
                 f"\nF_{i}: Frequency within median group: {F}"
                 f"\nW_{i}: Width of median group: {W}"
+                "\n================================="
             )
             median = L + (N / 2 - C) * W / F
-        logging.debug(
-            f"""
-            MEDIAN: {median}
-            """
-        )
+        logging.debug(f"\nMEDIAN: {median}\n")
         return median
 
     @property
