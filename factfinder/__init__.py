@@ -14,3 +14,4 @@ if not os.path.isdir(base_path):
         f.write("*")
 
 api_key = os.environ.get("API_KEY")
+LOGLEVEL = os.environ.get("LOGLEVEL", "DEBUG").upper()
