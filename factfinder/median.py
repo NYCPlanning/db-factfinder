@@ -8,16 +8,19 @@ class Median:
         self.ordered = list(ranges.keys())
         self.ranges = ranges
         self.B = row[self.ordered].sum()
-        self.se_50 = DF * (((93 / (7 * self.B)) * 2500)) ** 0.5
-        self.p_lower = 50 - self.se_50
-        self.p_upper = 50 + self.se_50
+        self.se_50 = DF * (((93 / (7 * self.B)) * 2500)
+                           ) ** 0.5 if self.B != 0 else np.nan
+        self.p_lower = 50 - self.se_50 if self.B != 0 else np.nan
+        self.p_upper = 50 + self.se_50 if self.B != 0 else np.nan
         self.cumm_dist = list(np.cumsum(row[self.ordered]) / self.B * 100)
         self.lower_bin = min(
-            [self.cumm_dist.index(i) for i in self.cumm_dist if i > self.p_lower]
-        )
+            [self.cumm_dist.index(i)
+             for i in self.cumm_dist if i > self.p_lower]
+        ) if self.B != 0 else np.nan
         self.upper_bin = min(
-            [self.cumm_dist.index(i) for i in self.cumm_dist if i > self.p_upper]
-        )
+            [self.cumm_dist.index(i)
+             for i in self.cumm_dist if i > self.p_upper]
+        ) if self.B != 0 else np.nan
         self.row = row
 
     @property
@@ -44,7 +47,8 @@ class Median:
             C = C - self.row[self.ordered[i]]
             L = self.ranges[self.ordered[i]][0]
             F = self.row[self.ordered[i]]
-            W = self.ranges[self.ordered[i]][1] - self.ranges[self.ordered[i]][0]
+            W = self.ranges[self.ordered[i]][1] - \
+                self.ranges[self.ordered[i]][0]
             logging.debug(
                 "\n================================="
                 f"\nC_{i-1}: Cumulative frequency up to bin below N/2: {C}"
@@ -93,7 +97,8 @@ class Median:
             C2 = self.cumm_dist[self.lower_bin]
 
         if self.lower_bin == self.first_non_zero_bin:
-            logging.debug("lower_bin not in bottom bin and is the first none-zero bin")
+            logging.debug(
+                "lower_bin not in bottom bin and is the first none-zero bin")
             A1 = 0
             A2 = min(self.ranges[self.ordered[1]])
 
