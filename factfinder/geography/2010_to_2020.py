@@ -31,8 +31,12 @@ class AggregatedGeography:
             dtype="str",
         )
         ratio["ratio"] = ratio.ratio.astype(float).round(18)
-        ratio["geoid_ct2010"] = "360" + ratio["boroct2010"].str.pad(width=8, fillchar='0')
-        ratio["geoid_ct2020"] = "360" + ratio["boroct2020"].str.pad(width=8, fillchar='0')
+        ratio["geoid_ct2010"] = "360" + ratio["boroct2010"].str.pad(
+            width=8, fillchar="0"
+        )
+        ratio["geoid_ct2020"] = "360" + ratio["boroct2020"].str.pad(
+            width=8, fillchar="0"
+        )
         return ratio[["geoid_ct2010", "geoid_ct2020", "ratio"]]
 
     @staticmethod
@@ -63,10 +67,10 @@ class AggregatedGeography:
             return m_2010
         elif e_2020 == 0:
             return None
-        elif ((ratio*100)**(0.56901))*7.96309 >= 100:
+        elif ((ratio * 100) ** (0.56901)) * 7.96309 >= 100:
             return m_2010
         else:
-            return ((((ratio*100)**(0.56901))*7.96309)/100) * m_2010
+            return ((((ratio * 100) ** (0.56901)) * 7.96309) / 100) * m_2010
 
     def ct2010_to_ct2020(self, df: pd.DataFrame) -> pd.DataFrame:
         """
@@ -81,9 +85,13 @@ class AggregatedGeography:
         )
         df["e_2010"] = df.e
         df["m_2010"] = df.m
-        df.e = (df.e * df.ratio)
-        df.m = df.apply(lambda row : self.convert_moe(row["e_2010"],
-                     row["m_2010"], row["e"], row["ratio"]), axis = 1)
+        df.e = df.e * df.ratio
+        df.m = df.apply(
+            lambda row: self.convert_moe(
+                row["e_2010"], row["m_2010"], row["e"], row["ratio"]
+            ),
+            axis=1,
+        )
 
         df.e = df.e.round(16)
         df.m = df.m.round(16)
@@ -135,7 +143,13 @@ class AggregatedGeography:
         defined above
         """
         return {
-            "acs": {"tract": {"NTA": self.tract_to_nta, "CDTA": self.tract_to_cdta, "CT20":self.ct2010_to_ct2020}}
+            "acs": {
+                "tract": {
+                    "NTA": self.tract_to_nta,
+                    "CDTA": self.tract_to_cdta,
+                    "CT20": self.ct2010_to_ct2020,
+                }
+            }
         }
 
     @cached_property
@@ -166,16 +180,42 @@ class AggregatedGeography:
 
     def format_geotype(self, geotype):
         geotypes = {
-            "NTA":"NTA",
-            "CDTA":"CDTA",
-            "tract":"CT",
-            "CT20":"CT",
-            "borough":"Boro",
-            "city":"City",
-            "block":"CB",
-            "block group":"CBG",
+            "NTA": "NTA",
+            "CDTA": "CDTA",
+            "tract": "CT",
+            "CT20": "CT",
+            "borough": "Boro",
+            "city": "City",
+            "block": "CB",
+            "block group": "CBG",
         }
         if geotype == "tract":
             return "CT2010"
         else:
-            return geotypes.get(geotype)+"2020"
+            return geotypes.get(geotype) + "2020"
+
+    @property
+    def support_geoids(self) -> pd.DataFrame:
+        df = self.lookup_geo
+        nta = (
+            df.loc[:, ["nta", "nta_name"]]
+            .drop_duplicates()
+            .rename(columns={"nta": "geoid", "nta_name": "geogname"})
+            .assign(geotype="NTA2020")
+        )
+        cdta = (
+            df.loc[:, ["cdta", "cdta_name"]]
+            .drop_duplicates()
+            .rename(columns={"cdta": "geoid", "cdta_name": "geogname"})
+            .assign(geotype="CDTA2020")
+        )
+        boro = (
+            df.loc[:, ["borocode", "boro"]]
+            .drop_duplicates()
+            .rename(columns={"borocode": "geoid", "boro": "geogname"})
+            .assign(geotype="Boro2020")
+        )
+        city = pd.DataFrame(
+            [{"geoid": "0", "geogname": "New York City", "geotype": "City2020"}]
+        )
+        return pd.concat([nta, cdta, boro, city])[["geoid", "geotype", "geogname"]]

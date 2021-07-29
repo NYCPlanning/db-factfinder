@@ -45,6 +45,7 @@ jobs:
       - name: run pipelines/acs
         run: |
           python3.9 -m pipelines.acs --year $DATA_YEAR --geography $GEO_YEAR
+          python3.9 -m pipelines.support_geoids --geography $GEO_YEAR
 
       - name: send to database
         run: |
@@ -54,5 +55,7 @@ jobs:
 
       - name: upload to s3
         run: |
-          FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
-          mc cp $FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/
+          ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
+          SUPPORT_GEOIDS_FILE_PATH=.output/support_geoids/geography=$GEO_YEAR/support_geoids.csv
+          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/
+          mc cp $SUPPORT_GEOIDS_FILE_PATH spaces/edm-publishing/db-factfinder/support_geoids/geography=$GEO_YEAR/
