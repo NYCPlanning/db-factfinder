@@ -8,11 +8,10 @@ from retry import retry
 
 from .download import Download
 from .metadata import Metadata, Variable
+from .median import Median
 from .special import *
 from .utils import (
     get_c,
-    get_median,
-    get_median_moe,
     get_p,
     get_z,
     rounding,
@@ -161,7 +160,7 @@ class Calculate:
             df_pivoted.e.loc[
                 df_pivoted.e.index == results.census_geoid, list(ranges.keys())
             ]
-            .apply(lambda row: get_median(ranges, row), axis=1)
+            .apply(lambda row: Median(ranges, row, design_factor).median, axis=1)
             .to_list()
         )
 
@@ -172,7 +171,7 @@ class Calculate:
         e["e"] = results.loc[e.index == results.census_geoid, "e"].to_list()
         results["m"] = (
             e.loc[e.index == results.census_geoid, list(ranges.keys()) + ["e"]]
-            .apply(lambda row: get_median_moe(ranges, row, design_factor), axis=1)
+            .apply(lambda row: Median(ranges, row, design_factor).median_moe, axis=1)
             .to_list()
         )
 
