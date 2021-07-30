@@ -20,7 +20,7 @@ class Median:
         self.upper_bin = min(
             [self.cumm_dist.index(i)
              for i in self.cumm_dist if i > self.p_upper]
-        ) if self.B != 0 else np.nan
+        ) if self.B != 0 and self.se_50 <= 50 else np.nan
         self.row = row
 
     @property
