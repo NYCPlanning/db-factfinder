@@ -81,7 +81,7 @@ class Median:
     def base_case(self, _bin):
         # and not equal to first_non_zero_bin
         A1 = min(self.ranges[self.ordered[_bin]], default=np.nan)
-        A2 = min(self.ranges[self.ordered[_bin + 1]], default=np.nan)
+        A2 = min(self.ranges[self.ordered[_bin + 1]], default=np.nan) if _bin + 1 <= len(self.ordered) - 1 else np.nan
         C1 = self.cumm_dist[_bin - 1]
         C2 = self.cumm_dist[_bin]
         return A1, A2, C1, C2
