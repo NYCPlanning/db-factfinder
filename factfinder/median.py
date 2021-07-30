@@ -76,7 +76,10 @@ class Median:
 
     @staticmethod
     def get_bound(p, A1, A2, C1, C2):
-        return (p - C1) * (A2 - A1) / (C2 - C1) + A1
+        if ((C2 - C1) + A1) != 0:
+            return (p - C1) * (A2 - A1) / (C2 - C1) + A1
+        else:
+            return np.nan
 
     def base_case(self, _bin):
         # and not equal to first_non_zero_bin
