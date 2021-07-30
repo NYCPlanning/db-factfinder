@@ -156,6 +156,8 @@ class Calculate:
                 m = md.median_moe
                 return pd.Series({'e': e, 'm': m})
             except:
+                print(f"pff_variable: {row.pff_variable}")
+                print(f"pff_variable: {row.census_geoid}")
                 print(f"ranges: {md.ranges}")
                 print(f"B: {md.B}")
                 print(f"se_50: {md.se_50}")
