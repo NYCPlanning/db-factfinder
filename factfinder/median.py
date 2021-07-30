@@ -17,15 +17,10 @@ class Median:
             [self.cumm_dist.index(i)
              for i in self.cumm_dist if i > self.p_lower]
         ) if self.B != 0 else np.nan
-        if self.B != 0 and self.se_50 <= 50:
-            self.upper_bin = min(
-                [self.cumm_dist.index(i)
-                    for i in self.cumm_dist if i > self.p_upper]
-            ) 
-        elif self.B != 0 and self.se_50 > 50:
-            self.upper_bin = len(list(self.ranges)) - 1
-        else:
-            self.upper_bin = np.nan
+        self.upper_bin = min(
+            [self.cumm_dist.index(i)
+             for i in self.cumm_dist if i > self.p_upper], default=np.nan
+        ) if self.B != 0 else np.nan
         self.row = row
 
     @property
@@ -85,8 +80,8 @@ class Median:
 
     def base_case(self, _bin):
         # and not equal to first_non_zero_bin
-        A1 = min(self.ranges[self.ordered[_bin]])
-        A2 = min(self.ranges[self.ordered[_bin + 1]])
+        A1 = min(self.ranges[self.ordered[_bin]], default=np.nan)
+        A2 = min(self.ranges[self.ordered[_bin + 1]], default=np.nan)
         C1 = self.cumm_dist[_bin - 1]
         C2 = self.cumm_dist[_bin]
         return A1, A2, C1, C2
@@ -124,13 +119,13 @@ class Median:
 
         if self.upper_bin + 1 > len(self.ordered) - 1:
             logging.debug("upper_bin is in top bin")
-            A1 = min(self.ranges[self.ordered[self.upper_bin]])
+            A1 = min(self.ranges[self.ordered[self.upper_bin]], default=np.nan)
             A2 = A1
 
         if self.upper_bin == self.lower_bin & self.upper_bin == self.first_non_zero_bin:
             logging.debug("upper_bin and lower_bin are in the first non-zero")
             A1 = 0
-            A2 = min(self.ranges[self.ordered[1]])
+            A2 = min(self.ranges[self.ordered[1]], default=np.nan)
 
         logging.debug(
             f"""
