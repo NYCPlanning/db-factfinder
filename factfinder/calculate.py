@@ -163,7 +163,8 @@ class Calculate:
                 m = md.median_moe
             except:
                 print("\n\n ======= MOE error =======")
-                print(f"\n\nranges: {md.ranges}")
+                print(f"Number of bins: {len(list(md.ranges))}")
+                print(f"ranges: {md.ranges}")
                 print(f"B: {md.B}")
                 print(f"se_50: {md.se_50}")
                 print(f"p_lower: {md.p_lower}")
