@@ -122,6 +122,11 @@ class Median:
             A1 = min(self.ranges[self.ordered[self.upper_bin]])
             A2 = A1
 
+        if self.upper_bin == self.lower_bin & self.upper_bin == self.first_non_zero_bin:
+            logging.debug("upper_bin and lower_bin are in the first non-zero")
+            A1 = 0
+            A2 = min(self.ranges[self.ordered[1]])
+
         logging.debug(
             f"""
             UPPER_BOUND:

@@ -12,8 +12,6 @@ from .metadata import Metadata, Variable
 from .special import *
 from .utils import (
     get_c,
-    get_median,
-    get_median_moe,
     get_p,
     get_z,
     rounding,
