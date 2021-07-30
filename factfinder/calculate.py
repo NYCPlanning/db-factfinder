@@ -151,28 +151,8 @@ class Calculate:
 
         def get_median_and_median_moe(ranges, row, DF):
             md = Median(ranges, row, DF)
-            try:
-                e = md.median
-            except:
-                print("\n\n ===== Estimate error =====")
-                print(f"ranges: {md.ranges}")
-                print(f"B: {md.B}")
-                print(f"cumm_dist: {md.cumm_dist}")
-                return None
-            try:
-                m = md.median_moe
-            except:
-                print("\n\n ======= MOE error =======")
-                print(f"Number of bins: {len(list(md.ranges))}")
-                print(f"ranges: {md.ranges}")
-                print(f"B: {md.B}")
-                print(f"se_50: {md.se_50}")
-                print(f"p_lower: {md.p_lower}")
-                print(f"p_upper: {md.p_upper}")
-                print(f"cumm_dist: {md.cumm_dist}")
-                print(f"lower_bin: {md.lower_bin}")
-                print(f"upper_bin: {md.upper_bin}")
-                return None
+            e = md.median
+            m = md.median_moe
             return pd.Series({'e': e, 'm': m})
 
         results = df_pivoted.e.apply(lambda x: get_median_and_median_moe(
