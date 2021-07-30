@@ -153,12 +153,17 @@ class Calculate:
             md = Median(ranges, row, DF)
             try:
                 e = md.median
-                m = md.median_moe
-                return pd.Series({'e': e, 'm': m})
             except:
-                print(f"pff_variable: {row.pff_variable}")
-                print(f"pff_variable: {row.census_geoid}")
+                print("\n\n ===== Estimate error =====")
                 print(f"ranges: {md.ranges}")
+                print(f"B: {md.B}")
+                print(f"cumm_dist: {md.cumm_dist}")
+                return None
+            try:
+                m = md.median_moe
+            except:
+                print("\n\n ======= MOE error =======")
+                print(f"\n\nranges: {md.ranges}")
                 print(f"B: {md.B}")
                 print(f"se_50: {md.se_50}")
                 print(f"p_lower: {md.p_lower}")
@@ -167,6 +172,7 @@ class Calculate:
                 print(f"lower_bin: {md.lower_bin}")
                 print(f"upper_bin: {md.upper_bin}")
                 return None
+            return pd.Series({'e': e, 'm': m})
 
         results = df_pivoted.e.apply(lambda x: get_median_and_median_moe(
             ranges, x, DF=design_factor), axis=1)
