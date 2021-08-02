@@ -158,6 +158,7 @@ class Calculate:
         results = df_pivoted.e.apply(lambda x: get_median_and_median_moe(
             ranges, x, DF=design_factor), axis=1)
         results["census_geoid"] = df_pivoted.index
+        results = results.reset_index(drop=True)
         results["pff_variable"] = pff_variable
         results["geotype"] = geotype
         return results[["census_geoid", "pff_variable", "geotype", "e", "m"]]
