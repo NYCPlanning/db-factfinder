@@ -1,3 +1,4 @@
+import logging
 import os
 
 from dotenv import load_dotenv
@@ -14,3 +15,4 @@ if not os.path.isdir(base_path):
         f.write("*")
 
 api_key = os.environ.get("API_KEY")
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "WARNING").upper())
