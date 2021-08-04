@@ -10,7 +10,7 @@ class Variable:
         self.domain = kwargs.get("domain")
         self.base_variable = kwargs.get("base_variable")
         self.rounding = kwargs.get("rounding")
-        self.source = kwargs.get("source")
+        self.category = kwargs.get("category")
         self.meta = kwargs
 
     @cached_property
@@ -157,5 +157,6 @@ class Metadata:
         """
         given pff_variable name, return a Variable object
         """
-        meta = next(filter(lambda x: x["pff_variable"] == pff_variable, self.metadata))
+        meta = next(
+            filter(lambda x: x["pff_variable"] == pff_variable, self.metadata))
         return Variable(meta)
