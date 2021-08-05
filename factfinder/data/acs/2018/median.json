@@ -574,7 +574,7 @@
     },
     "mdrms": {
         "design_factor": 1.5,
-        "top_coding": true,
+        "top_coding": false,
         "bottom_coding": false,
         "ranges": {
             "rms1": [
