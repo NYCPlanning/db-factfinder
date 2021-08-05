@@ -265,15 +265,8 @@ class Calculate:
                         lambda row: get_p(row["e"], row["agg_e"]), axis=1
                     )
 
-                    def _get_z(name, e, m, p, agg_e, agg_m):
-                        results = get_z(e, m, p, agg_e, agg_m)
-                        if name == "36085029105":
-                            print(results, e, m, p, agg_e, agg_m)
-
-                        return results
-
                     df["z"] = df.apply(
-                        lambda row: _get_z(
+                        lambda row: get_z(
                             row["census_geoid"],
                             row["e"],
                             row["m"],

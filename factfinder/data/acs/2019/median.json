@@ -1,7 +1,7 @@
 {
     "mdage": {
         "design_factor": 1.1,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "mdpop0t4": [
@@ -100,7 +100,7 @@
     },
     "mdhhinc": {
         "design_factor": 1.5,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "mdhhiu10": [
@@ -171,7 +171,7 @@
     },
     "mdfaminc": {
         "design_factor": 1.5,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "mdfamiu10": [
@@ -242,7 +242,7 @@
     },
     "mdnfinc": {
         "design_factor": 1.5,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "nfmiu10": [
@@ -313,7 +313,7 @@
     },
     "mdewrk": {
         "design_factor": 1.6,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "ernu2pt5k": [
@@ -400,7 +400,7 @@
     },
     "mdemftwrk": {
         "design_factor": 1.6,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "mftu2pt5k": [
@@ -487,7 +487,7 @@
     },
     "mdefftwrk": {
         "design_factor": 1.6,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": true,
         "ranges": {
             "fftu2pt5k": [
@@ -574,7 +574,7 @@
     },
     "mdrms": {
         "design_factor": 1.5,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": false,
         "ranges": {
             "rms1": [
@@ -617,7 +617,7 @@
     },
     "mdvl": {
         "design_factor": 1.4,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": false,
         "ranges": {
             "ovlu10": [
@@ -728,7 +728,7 @@
     },
     "mdgr": {
         "design_factor": 1.6,
-        "top_coding": false,
+        "top_coding": true,
         "bottom_coding": false,
         "ranges": {
             "ru100": [
