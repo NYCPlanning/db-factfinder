@@ -137,6 +137,12 @@ class Metadata:
         """
         return self.median[pff_variable]["ranges"]
 
+    def median_top_coding(self, pff_variable: str) -> bool:
+        return self.median[pff_variable]["top_coding"]
+
+    def median_bottom_coding(self, pff_variable: str) -> bool:
+        return self.median[pff_variable]["bottom_coding"]
+
     def median_design_factor(self, pff_variable) -> float:
         """
         given median variable in the form of pff_variable

@@ -10,13 +10,7 @@ from .download import Download
 from .median import Median
 from .metadata import Metadata, Variable
 from .special import *
-from .utils import (
-    get_c,
-    get_p,
-    get_z,
-    rounding,
-    write_to_cache,
-)
+from .utils import get_c, get_p, get_z, rounding, write_to_cache
 
 
 class Calculate:
@@ -103,7 +97,7 @@ class Calculate:
         df["e"] = df[E_variables].sum(axis=1)
         df["m"] = (
             (df[M_variables] ** 2).sum(axis=1) ** 0.5
-            if v.source != "decennial"
+            if self.source != "decennial"
             else np.nan
         )
         # Output
@@ -139,6 +133,8 @@ class Calculate:
         # 1. Initialize
         ranges = self.meta.median_ranges(pff_variable)
         design_factor = self.meta.median_design_factor(pff_variable)
+        top_coding = self.meta.median_top_coding(pff_variable)
+        bottom_coding = self.meta.median_bottom_coding(pff_variable)
 
         # 2. Calculate each variable that goes into median calculation
         df = self.calculate_e_m_multiprocessing(list(ranges.keys()), geotype)
@@ -149,14 +145,18 @@ class Calculate:
             index="census_geoid", columns="pff_variable", values=["e"]
         )
 
-        def get_median_and_median_moe(ranges, row, DF):
-            md = Median(ranges, row, DF)
+        def get_median_and_median_moe(ranges, row, DF, top_coding, bottom_coding):
+            md = Median(ranges, row, DF, top_coding, bottom_coding)
             e = md.median
             m = md.median_moe
-            return pd.Series({'e': e, 'm': m})
+            return pd.Series({"e": e, "m": m})
 
-        results = df_pivoted.e.apply(lambda x: get_median_and_median_moe(
-            ranges, x, DF=design_factor), axis=1)
+        results = df_pivoted.e.apply(
+            lambda x: get_median_and_median_moe(
+                ranges, x, design_factor, top_coding, bottom_coding
+            ),
+            axis=1,
+        )
         results["census_geoid"] = df_pivoted.index
         results = results.reset_index(drop=True)
         results["pff_variable"] = pff_variable
@@ -244,14 +244,12 @@ class Calculate:
                         v.base_variable in self.meta.special_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_special(
-                            v.base_variable, geotype)
+                        df_base = self.calculate_e_m_special(v.base_variable, geotype)
                     if (
                         v.base_variable in self.meta.median_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_median(
-                            v.base_variable, geotype)
+                        df_base = self.calculate_e_m_median(v.base_variable, geotype)
                     else:
                         df_base = self.calculate_e_m(v.base_variable, geotype)
 
@@ -266,9 +264,15 @@ class Calculate:
                     df["p"] = df.apply(
                         lambda row: get_p(row["e"], row["agg_e"]), axis=1
                     )
+
                     df["z"] = df.apply(
                         lambda row: get_z(
-                            row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
+                            row["census_geoid"],
+                            row["e"],
+                            row["m"],
+                            row["p"],
+                            row["agg_e"],
+                            row["agg_m"],
                         ),
                         axis=1,
                     )
@@ -309,8 +313,7 @@ class Calculate:
             df.e == 0 & ~df.pff_variable.isin(self.meta.base_variables), "m"
         ] = np.nan
         df.loc[
-            df.e == 0 & df.pff_variable.isin(
-                self.meta.base_variables) & df.m.isna(),
+            df.e == 0 & df.pff_variable.isin(self.meta.base_variables) & df.m.isna(),
             "m",
         ] = 0
         df.loc[df.e == 0, "p"] = np.nan
@@ -370,8 +373,7 @@ class Calculate:
         Format geoid and geotype to match Planning Labs standards
         """
         df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
-        df["labs_geotype"] = df.geotype.apply(
-            lambda x: self.geo.format_geotype(x))
+        df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
 
         return df[
             [
