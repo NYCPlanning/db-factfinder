@@ -139,6 +139,8 @@ class Calculate:
         # 1. Initialize
         ranges = self.meta.median_ranges(pff_variable)
         design_factor = self.meta.median_design_factor(pff_variable)
+        top_coding = self.meta.median_top_coding(pff_variable)
+        bottom_coding = self.meta.median_bottom_coding(pff_variable)
 
         # 2. Calculate each variable that goes into median calculation
         df = self.calculate_e_m_multiprocessing(list(ranges.keys()), geotype)
@@ -149,14 +151,14 @@ class Calculate:
             index="census_geoid", columns="pff_variable", values=["e"]
         )
 
-        def get_median_and_median_moe(ranges, row, DF):
-            md = Median(ranges, row, DF)
+        def get_median_and_median_moe(ranges, row, DF, top_coding, bottom_coding):
+            md = Median(ranges, row, DF, top_coding, bottom_coding)
             e = md.median
             m = md.median_moe
             return pd.Series({'e': e, 'm': m})
 
         results = df_pivoted.e.apply(lambda x: get_median_and_median_moe(
-            ranges, x, DF=design_factor), axis=1)
+            ranges, x, design_factor, top_coding, bottom_coding), axis=1)
         results["census_geoid"] = df_pivoted.index
         results = results.reset_index(drop=True)
         results["pff_variable"] = pff_variable
@@ -266,9 +268,17 @@ class Calculate:
                     df["p"] = df.apply(
                         lambda row: get_p(row["e"], row["agg_e"]), axis=1
                     )
+
+                    def _get_z(name, e, m, p, agg_e, agg_m):
+                        results = get_z(e, m, p, agg_e, agg_m)
+                        if name == '36085029105':
+                            print(results, e, m, p, agg_e, agg_m)
+
+                        return results
+
                     df["z"] = df.apply(
-                        lambda row: get_z(
-                            row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
+                        lambda row: _get_z(
+                            row['census_geoid'], row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
                         ),
                         axis=1,
                     )

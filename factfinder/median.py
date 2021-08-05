@@ -4,7 +4,7 @@ import numpy as np
 
 
 class Median:
-    def __init__(self, ranges, row, DF=1.1):
+    def __init__(self, ranges: dict, row, DF=1.1, top_coding: bool = True, bottom_coding: bool = True):
         self.ordered = list(ranges.keys())
         self.ranges = ranges
         self.B = row[self.ordered].sum()
@@ -22,6 +22,8 @@ class Median:
              for i in self.cumm_dist if i > self.p_upper], default=np.nan
         ) if self.B != 0 else np.nan
         self.row = row
+        self.top_coding = top_coding
+        self.bottom_coding = bottom_coding
 
     @property
     def median(self):
@@ -33,14 +35,14 @@ class Median:
             C += self.row[self.ordered[i]]
             i += 1
         i = i - 1
-        if i == 0:
-            logging.debug("N/2 is in bottom bin")
+        if i == 0 and self.bottom_coding:
+            logging.debug("N/2 is in bottom bin (with bottom coding)")
             median = list(self.ranges.values())[0][1]
         elif C == 0.0:
             logging.debug("Cumulative frequency is 0")
             median = 0.0
-        elif i == len(self.ranges.keys()) - 1:
-            logging.debug("N/2 is in top range")
+        elif i == len(self.ranges.keys()) - 1 and self.top_coding:
+            logging.debug("N/2 is in top range (with bottom coding)")
             median = list(self.ranges.values())[-1][0]
         else:
             logging.debug(f"N/2 is in range {list(self.ranges.values())[i]}")
@@ -84,7 +86,8 @@ class Median:
     def base_case(self, _bin):
         # and not equal to first_non_zero_bin
         A1 = min(self.ranges[self.ordered[_bin]], default=np.nan)
-        A2 = min(self.ranges[self.ordered[_bin + 1]], default=np.nan) if _bin + 1 <= len(self.ordered) - 1 else np.nan
+        A2 = min(self.ranges[self.ordered[_bin + 1]],
+                 default=np.nan) if _bin + 1 <= len(self.ordered) - 1 else np.nan
         C1 = self.cumm_dist[_bin - 1]
         C2 = self.cumm_dist[_bin]
         return A1, A2, C1, C2
