@@ -1,37 +1,41 @@
-# db-factfinder 
+# db-factfinder
 [![PyPI version](https://badge.fury.io/py/pff-factfinder.svg)](https://badge.fury.io/py/pff-factfinder)
 
 data ETL for population fact finder (decennial + acs)
 
 # Instructions
-1. initialize 
-```python 
-from factfinder.main import Pff
+1. initialize
+```python
+from factfinder.calculate import Calculate
 
-pff = Pff(
-    api_key='XXXXXXXXXXXXXXXXX', 
-    year = 2018
+calculate = Calculate(
+    api_key='XXXXXXXXXXXXXXX',
+    year=2019,
+    source="acs",
+    geography='2010_to_2020'
 )
 ```
 > or for decennial calculations:
-```python 
-decennial = Pff(
-    api_key='XXXXXXXXXXXXXXXXX', 
-    year = 2010
+```python
+
+calculate = Calculate(
+    api_key='XXXXXXXXXXXXXXX',
+    year=2010,
+    source="decennial",
+    geography='2010_to_2020'
 )
 ```
 2. Calculate
-> Calling `calculate` 
+> Calling `calculate`
 >    1. Downloads necessary census variables,
 >    2. Aggregates using appropriate technique (both vertically and horizontally)
 >    3. Calculates c, e, m, p, z fields
 >    4. Rounds calculated values based on standards in the metadata
 >    5. Cleans edge-cases of 0 and null values
 ```python
-df = pff.calculate('pop', 'tract')
-df = pff.calculate('pop', 'borough')
-df = pff.calculate('pop', 'city')
-df = pff.calculate('pop', 'NTA')
-df = pff.calculate('mdage', 'NTA')
+df = calculate('pop', 'tract')
+df = calculate('pop', 'borough')
+df = calculate('pop', 'city')
+df = calculate('pop', 'NTA')
+df = calculate('mdage', 'CDTA')
 ```
-
