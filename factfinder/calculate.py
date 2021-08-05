@@ -267,7 +267,6 @@ class Calculate:
 
                     df["z"] = df.apply(
                         lambda row: get_z(
-                            row["census_geoid"],
                             row["e"],
                             row["m"],
                             row["p"],
