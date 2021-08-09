@@ -36,7 +36,10 @@ class Calculate:
         """
         dfs = []
         for pff_variable in pff_variables:
-            dfs.append(self.calculate_e_m(pff_variable, geotype))
+            if pff_variable in self.meta.special_variables:
+                dfs.append(self.calculate_e_m_special(pff_variable, geotype))
+            else:
+                dfs.append(self.calculate_e_m(pff_variable, geotype))
         return pd.concat(dfs)
 
     def calculate_e_m(self, pff_variable: str, geotype: str) -> pd.DataFrame:
@@ -244,12 +247,14 @@ class Calculate:
                         v.base_variable in self.meta.special_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_special(v.base_variable, geotype)
+                        df_base = self.calculate_e_m_special(
+                            v.base_variable, geotype)
                     if (
                         v.base_variable in self.meta.median_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_median(v.base_variable, geotype)
+                        df_base = self.calculate_e_m_median(
+                            v.base_variable, geotype)
                     else:
                         df_base = self.calculate_e_m(v.base_variable, geotype)
 
@@ -312,7 +317,8 @@ class Calculate:
             df.e == 0 & ~df.pff_variable.isin(self.meta.base_variables), "m"
         ] = np.nan
         df.loc[
-            df.e == 0 & df.pff_variable.isin(self.meta.base_variables) & df.m.isna(),
+            df.e == 0 & df.pff_variable.isin(
+                self.meta.base_variables) & df.m.isna(),
             "m",
         ] = 0
         df.loc[df.e == 0, "p"] = np.nan
@@ -372,7 +378,8 @@ class Calculate:
         Format geoid and geotype to match Planning Labs standards
         """
         df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
-        df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
+        df["labs_geotype"] = df.geotype.apply(
+            lambda x: self.geo.format_geotype(x))
 
         return df[
             [
