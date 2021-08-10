@@ -3244,7 +3244,7 @@
             "DP04_0047"
         ],
         "domain": "housing",
-        "rounding": 1,
+        "rounding": 0,
         "category": "Housing- Special Variable"
     },
     {
@@ -4086,7 +4086,7 @@
             "DP04_0046"
         ],
         "domain": "housing",
-        "rounding": 2,
+        "rounding": 0,
         "category": "Housing- Special Variable"
     },
     {
@@ -4397,7 +4397,7 @@
             "B25008_003"
         ],
         "domain": "housing",
-        "rounding": 2,
+        "rounding": 0,
         "category": "Housing- Special Variable"
     },
     {
@@ -8376,7 +8376,7 @@
             "B01001_040"
         ],
         "domain": "demographic",
-        "rounding": 1,
+        "rounding": 0,
         "category": "Demographic- Special Variable"
     },
     {
