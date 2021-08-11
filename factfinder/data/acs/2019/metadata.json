@@ -504,7 +504,7 @@
     },
     {
         "pff_variable": "mntrvtm",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0025"
         ],
@@ -1843,7 +1843,7 @@
     },
     {
         "pff_variable": "mnhhinc",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0063"
         ],
@@ -2197,7 +2197,7 @@
     },
     {
         "pff_variable": "percapinc",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0088"
         ],
@@ -4071,7 +4071,7 @@
     },
     {
         "pff_variable": "avghhsroc",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP04_0049"
         ],
@@ -4352,7 +4352,7 @@
     },
     {
         "pff_variable": "avghhsooc",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP04_0048"
         ],
@@ -5045,7 +5045,7 @@
     },
     {
         "pff_variable": "avgfmsz",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP02_0017"
         ],
@@ -5625,7 +5625,7 @@
     },
     {
         "pff_variable": "avghhsz",
-        "base_variable": "mean",
+        "base_variable": "nan",
         "census_variable": [
             "DP02_0016"
         ],
