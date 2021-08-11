@@ -4,23 +4,36 @@ import numpy as np
 
 
 class Median:
-    def __init__(self, ranges: dict, row, DF=1.1, top_coding: bool = True, bottom_coding: bool = True):
+    def __init__(
+        self,
+        ranges: dict,
+        row,
+        DF=1.1,
+        top_coding: bool = True,
+        bottom_coding: bool = True,
+    ):
         self.ordered = list(ranges.keys())
         self.ranges = ranges
         self.B = row[self.ordered].sum()
-        self.se_50 = DF * (((93 / (7 * self.B)) * 2500)
-                           ) ** 0.5 if self.B != 0 else np.nan
+        self.se_50 = (
+            DF * (((93 / (7 * self.B)) * 2500)) ** 0.5 if self.B != 0 else np.nan
+        )
         self.p_lower = 50 - self.se_50 if self.B != 0 else np.nan
         self.p_upper = 50 + self.se_50 if self.B != 0 else np.nan
         self.cumm_dist = list(np.cumsum(row[self.ordered]) / self.B * 100)
-        self.lower_bin = min(
-            [self.cumm_dist.index(i)
-             for i in self.cumm_dist if i > self.p_lower]
-        ) if self.B != 0 else np.nan
-        self.upper_bin = min(
-            [self.cumm_dist.index(i)
-             for i in self.cumm_dist if i > self.p_upper], default=np.nan
-        ) if self.B != 0 else np.nan
+        self.lower_bin = (
+            min([self.cumm_dist.index(i) for i in self.cumm_dist if i > self.p_lower])
+            if self.B != 0
+            else np.nan
+        )
+        self.upper_bin = (
+            min(
+                [self.cumm_dist.index(i) for i in self.cumm_dist if i > self.p_upper],
+                default=np.nan,
+            )
+            if self.B != 0
+            else np.nan
+        )
         self.row = row
         self.top_coding = top_coding
         self.bottom_coding = bottom_coding
@@ -49,8 +62,7 @@ class Median:
             C = C - self.row[self.ordered[i]]
             L = self.ranges[self.ordered[i]][0]
             F = self.row[self.ordered[i]]
-            W = self.ranges[self.ordered[i]][1] - \
-                self.ranges[self.ordered[i]][0]
+            W = self.ranges[self.ordered[i]][1] - self.ranges[self.ordered[i]][0]
             logging.debug(
                 "\n================================="
                 f"\nC_{i-1}: Cumulative frequency up to bin below N/2: {C}"
@@ -86,8 +98,11 @@ class Median:
     def base_case(self, _bin):
         # and not equal to first_non_zero_bin
         A1 = min(self.ranges[self.ordered[_bin]], default=np.nan)
-        A2 = min(self.ranges[self.ordered[_bin + 1]],
-                 default=np.nan) if _bin + 1 <= len(self.ordered) - 1 else np.nan
+        A2 = (
+            min(self.ranges[self.ordered[_bin + 1]], default=np.nan)
+            if _bin + 1 <= len(self.ordered) - 1
+            else np.nan
+        )
         C1 = self.cumm_dist[_bin - 1]
         C2 = self.cumm_dist[_bin]
         return A1, A2, C1, C2
@@ -99,12 +114,16 @@ class Median:
 
         if self.lower_bin == 0:
             logging.debug("lower_bin in bottom bin")
-            C1 = 0.0
+            C1 = 0
             C2 = self.cumm_dist[self.lower_bin]
 
-        if self.lower_bin == self.first_non_zero_bin:
-            logging.debug(
-                "lower_bin not in bottom bin and is the first none-zero bin")
+        if (
+            self.upper_bin
+            != self.lower_bin & self.lower_bin
+            == self.first_non_zero_bin & self.first_non_zero_bin
+            != 0
+        ):
+            logging.debug("lower_bin not in bottom bin and is the first none-zero bin")
             A1 = 0
             A2 = min(self.ranges[self.ordered[1]])
 
@@ -127,11 +146,6 @@ class Median:
             logging.debug("upper_bin is in top bin")
             A1 = min(self.ranges[self.ordered[self.upper_bin]], default=np.nan)
             A2 = A1
-
-        if self.upper_bin == self.lower_bin & self.upper_bin == self.first_non_zero_bin:
-            logging.debug("upper_bin and lower_bin are in the first non-zero")
-            A1 = 0
-            A2 = min(self.ranges[self.ordered[1]], default=np.nan)
 
         logging.debug(
             f"""
@@ -167,6 +181,8 @@ class Median:
             f"\np_upper = {self.p_upper}"
             f"\nlower_bin = {self.lower_bin}"
             f"\nupper_bin = {self.upper_bin}"
+            f"\nlower_bound = {self.lower_bound}"
+            f"\nupper_bound = {self.upper_bound}"
             f"\nfirst_non_zero_bin = {self.first_non_zero_bin}"
             "\n"
             "\nDISTRIBUTION:"
