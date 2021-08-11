@@ -340,13 +340,15 @@ class Calculate:
 
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables),
+            & ~df.pff_variable.isin(self.meta.median_variables)
+            & ~df.pff_variable.isin(self.meta.special_variables),
             "p",
         ] = 100
 
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables),
+            & ~df.pff_variable.isin(self.meta.median_variables)
+            & ~df.pff_variable.isin(self.meta.special_variables),
             "z",
         ] = np.nan
 
