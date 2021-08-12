@@ -59,7 +59,7 @@ class AggregatedGeography:
 
     @staticmethod
     def agg_moe(x):
-        return math.sqrt(sum([i ** 2 for i in x]))
+        return math.sqrt(sum([i ** 2 for i in x if x or not np.isnan(x)]))
 
     @staticmethod
     def convert_moe(e_2010, m_2010, e_2020, ratio):
