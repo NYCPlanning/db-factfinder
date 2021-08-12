@@ -8,12 +8,14 @@ class Median:
         self,
         ranges: dict,
         row,
+        pff_variable,
         DF=1.1,
         top_coding: bool = True,
         bottom_coding: bool = True,
     ):
         self.ordered = list(ranges.keys())
         self.ranges = ranges
+        self.pff_variable = pff_variable
         self.B = row[self.ordered].sum()
         self.se_50 = (
             DF * (((93 / (7 * self.B)) * 2500)) ** 0.5 if self.B != 0 else np.nan
@@ -123,8 +125,11 @@ class Median:
             == self.first_non_zero_bin & self.first_non_zero_bin
             != 0
         ):
-            logging.debug("lower_bin not in bottom bin and is the first none-zero bin")
-            A1 = 0
+            logging.debug("lower_bin not in bottom bin and is the first non-zero bin")
+            if self.pff_variable == 'mdrms':
+                A1 = 0.5
+            else:
+                A1 = 0
             A2 = min(self.ranges[self.ordered[1]])
 
         logging.debug(
