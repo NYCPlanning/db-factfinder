@@ -148,7 +148,7 @@ class Calculate:
             index="census_geoid", columns="pff_variable", values=["e"]
         )
 
-        def get_median_and_median_moe(ranges, row, DF, top_coding, bottom_coding):
+        def get_median_and_median_moe(ranges, row, pff_variable, DF, top_coding, bottom_coding):
             md = Median(ranges, row, pff_variable, DF, top_coding, bottom_coding)
             e = md.median
             m = md.median_moe
@@ -156,7 +156,7 @@ class Calculate:
 
         results = df_pivoted.e.apply(
             lambda x: get_median_and_median_moe(
-                ranges, pff_variable, x, design_factor, top_coding, bottom_coding
+                ranges, x, pff_variable, design_factor, top_coding, bottom_coding
             ),
             axis=1,
         )
