@@ -439,7 +439,7 @@
         "census_variable": [
             "DP03_0025"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 1,
         "category": "Commute to Work"
@@ -1479,7 +1479,7 @@
         "census_variable": [
             "DP03_0063"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Income and Benefits"
@@ -1780,7 +1780,7 @@
         "census_variable": [
             "DP03_0088"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Income and Benefits"
@@ -3234,7 +3234,7 @@
         "census_variable": [
             "DP04_0048"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 2,
         "category": "Housing Tenure"
@@ -3455,7 +3455,7 @@
         "census_variable": [
             "DP04_0047"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 2,
         "category": "Housing Tenure"
@@ -4065,7 +4065,7 @@
         "census_variable": [
             "DP02_0016"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "social",
         "rounding": 2,
         "category": "Household Type"
@@ -4567,7 +4567,7 @@
         "census_variable": [
             "DP02_0015"
         ],
-        "base_variable": "mean",
+        "base_variable": "nan",
         "domain": "social",
         "rounding": 2,
         "category": "Household Type"
