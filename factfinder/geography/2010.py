@@ -37,7 +37,7 @@ class AggregatedGeography:
 
     @staticmethod
     def agg_moe(x):
-        return math.sqrt(sum([i ** 2 for i in x]))
+        return math.sqrt(sum([i ** 2 for i in x if x or not np.isnan(x)]))
 
     @staticmethod
     def create_output(df, colname):
@@ -236,13 +236,13 @@ class AggregatedGeography:
 
     def format_geotype(self, geotype):
         geotypes = {
-            "NTA":"NTA",
-            "PUMA":"PUMA",
-            "tract":"CT",
-            "borough":"Boro",
-            "city":"City",
-            "block":"CB",
-            "block group":"CBG",
+            "NTA": "NTA",
+            "PUMA": "PUMA",
+            "tract": "CT",
+            "borough": "Boro",
+            "city": "City",
+            "block": "CB",
+            "block group": "CBG",
         }
-        
-        return geotypes.get(geotype)+"2010"
+
+        return geotypes.get(geotype) + "2010"
