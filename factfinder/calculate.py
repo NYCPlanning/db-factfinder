@@ -340,15 +340,13 @@ class Calculate:
 
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables)
-            & ~df.pff_variable.isin(self.meta.special_variables),
+            & ~df.pff_variable.isin(self.meta.median_variables),
             "p",
         ] = 100
 
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables)
-            & ~df.pff_variable.isin(self.meta.special_variables),
+            & ~df.pff_variable.isin(self.meta.median_variables),
             "z",
         ] = np.nan
 
@@ -357,16 +355,29 @@ class Calculate:
             & ~df.pff_variable.str.contains("rms"),
             "m",
         ] = np.nan
+
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
             & ~df.pff_variable.str.contains("rms"),
             "p",
         ] = np.nan
+
+        df.loc[
+            df.pff_variable.isin(self.meta.special_variables),
+            "p"
+        ] = np.nan
+
+        df.loc[
+            df.pff_variable.isin(self.meta.special_variables),
+            "z"
+        ] = np.nan
+
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
             & ~df.pff_variable.str.contains("rms"),
             "z",
         ] = np.nan
+
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
             & ~df.pff_variable.str.contains("rms"),
