@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 from cached_property import cached_property
 
+from . import agg_moe
+
 
 class AggregatedGeography:
     def __init__(self):
@@ -36,10 +38,6 @@ class AggregatedGeography:
         return lookup_geo
 
     @staticmethod
-    def agg_moe(x):
-        return math.sqrt(sum([i ** 2 for i in x if x or not np.isnan(x)]))
-
-    @staticmethod
     def create_output(df, colname):
         """
         this function will calculate the aggregated e and m
@@ -49,10 +47,7 @@ class AggregatedGeography:
             df[[colname, "e"]]
             .groupby([colname])
             .sum()
-            .merge(
-                df[[colname, "m"]].groupby([colname]).agg(AggregatedGeography.agg_moe),
-                on=colname,
-            )
+            .merge(df[[colname, "m"]].groupby([colname]).agg(agg_moe), on=colname)
             .reset_index()
             .rename(columns={colname: "census_geoid"})
         )

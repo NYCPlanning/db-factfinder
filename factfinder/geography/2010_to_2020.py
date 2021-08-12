@@ -1,10 +1,12 @@
 import itertools
 import math
-from functools import cached_property, wraps
+from functools import cached_property
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from . import agg_moe
 
 
 class AggregatedGeography:
@@ -49,17 +51,14 @@ class AggregatedGeography:
             df[[colname, "e"]]
             .groupby([colname])
             .sum()
-            .merge(
-                df[[colname, "m"]].groupby([colname]).agg(AggregatedGeography.agg_moe),
-                on=colname,
-            )
+            .merge(df[[colname, "m"]].groupby([colname]).agg(agg_moe), on=colname)
             .reset_index()
             .rename(columns={colname: "census_geoid"})
         )
 
     @staticmethod
     def agg_moe(x):
-        return math.sqrt(sum([i ** 2 for i in x if x or not np.isnan(x)]))
+        return math.sqrt(sum([i ** 2 for i in x if i or not np.isnan(i)]))
 
     @staticmethod
     def convert_moe(e_2010, m_2010, e_2020, ratio):
