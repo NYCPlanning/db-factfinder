@@ -10,6 +10,10 @@ on:
         description: 'Year of geographic units. Options: "2010", "2020", or "2010_to_2020"'
         required: true
         default: '2010_to_2020'
+      cache: 
+        description: 'Would you like to use cached download data? (yes/no)'
+        required: true
+        default: yes
 
 jobs:
   build:
@@ -41,6 +45,13 @@ jobs:
         run: |
           python3.9 -m pip install --upgrade pip
           python3.9 -m pip install .
+
+      - name: Cache Download - so that we are less reliant on the API
+        if: github.event.inputs.cache == 'yes'
+        uses: actions/cache@v2
+        with:
+          path: .cache/download/year=${{ github.event.inputs.data_year }}/geography=${{ github.event.inputs.geo_year }}
+          key: ${{ hashFiles('factfinder/download.py') }}
 
       - name: run pipelines/acs
         run: |
