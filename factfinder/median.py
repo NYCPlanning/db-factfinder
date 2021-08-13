@@ -119,14 +119,9 @@ class Median:
             C1 = 0
             C2 = self.cumm_dist[self.lower_bin]
 
-        if (
-            self.upper_bin
-            != self.lower_bin & self.lower_bin
-            == self.first_non_zero_bin & self.first_non_zero_bin
-            != 0
-        ):
+        if self.lower_bin == self.first_non_zero_bin:
             logging.debug("lower_bin not in bottom bin and is the first non-zero bin")
-            if self.pff_variable == 'mdrms':
+            if self.pff_variable == "mdrms":
                 A1 = 0.5
             else:
                 A1 = 0
