@@ -181,8 +181,6 @@ class Median:
             f"\np_upper = {self.p_upper}"
             f"\nlower_bin = {self.lower_bin}"
             f"\nupper_bin = {self.upper_bin}"
-            f"\nlower_bound = {self.lower_bound}"
-            f"\nupper_bound = {self.upper_bound}"
             f"\nfirst_non_zero_bin = {self.first_non_zero_bin}"
             "\n"
             "\nDISTRIBUTION:"
