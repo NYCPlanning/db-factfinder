@@ -152,7 +152,7 @@
     },
     {
         "pff_variable": "mdefftwrk",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0094"
         ],
@@ -192,7 +192,7 @@
     },
     {
         "pff_variable": "mdemftwrk",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0093"
         ],
@@ -401,7 +401,7 @@
     },
     {
         "pff_variable": "mdnfinc",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0090"
         ],
@@ -1037,7 +1037,7 @@
     },
     {
         "pff_variable": "mdhhinc",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0062"
         ],
@@ -1141,7 +1141,7 @@
     },
     {
         "pff_variable": "mdfaminc",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0086"
         ],
@@ -2678,7 +2678,7 @@
     },
     {
         "pff_variable": "mdewrk",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP03_0092"
         ],
@@ -3024,7 +3024,7 @@
     },
     {
         "pff_variable": "mdrms",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP04_0037"
         ],
@@ -3441,7 +3441,7 @@
     },
     {
         "pff_variable": "mdgr",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP04_0134"
         ],
@@ -3941,7 +3941,7 @@
     },
     {
         "pff_variable": "mdvl",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP04_0089"
         ],
@@ -8622,7 +8622,7 @@
     },
     {
         "pff_variable": "mdage",
-        "base_variable": "median",
+        "base_variable": "nan",
         "census_variable": [
             "DP05_0018"
         ],
