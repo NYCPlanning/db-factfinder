@@ -149,7 +149,8 @@ class Calculate:
         )
 
         def get_median_and_median_moe(ranges, row, pff_variable, DF, top_coding, bottom_coding):
-            md = Median(ranges, row, pff_variable, DF, top_coding, bottom_coding)
+            md = Median(ranges, row, pff_variable,
+                        DF, top_coding, bottom_coding)
             e = md.median
             m = md.median_moe
             return pd.Series({"e": e, "m": m})
@@ -312,18 +313,6 @@ class Calculate:
         # If p = np.nan/, then z = np.nan
         df.loc[(df.p.isna()) | (df.p == 100), "z"] = np.nan
 
-        df.loc[df.e == 0, "c"] = np.nan
-        df.loc[
-            df.e == 0 & ~df.pff_variable.isin(self.meta.base_variables), "m"
-        ] = np.nan
-        df.loc[
-            df.e == 0 & df.pff_variable.isin(
-                self.meta.base_variables) & df.m.isna(),
-            "m",
-        ] = 0
-        df.loc[df.e == 0, "p"] = np.nan
-        df.loc[df.e == 0, "z"] = np.nan
-
         df.loc[
             df.geotype.isin(["borough", "city"])
             & df.pff_variable.isin(self.meta.base_variables)
@@ -383,6 +372,10 @@ class Calculate:
             & ~df.pff_variable.str.contains("rms"),
             "c",
         ] = np.nan
+
+        # If e == 0, then all other fields are np.nan
+        df.loc[df.e == 0, ["c", "m", "p", "z"]] = pd.Series(
+            {"c": np.nan, "m": np.nan, 'p': np.nan, 'z': np.nan})
 
         return df
 
