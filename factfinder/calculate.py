@@ -408,10 +408,10 @@ class Calculate:
         v = self.meta.create_variable(pff_variable)
         # 1. get calculated values (c,e,m,p,z)
         df = self.calculate_c_e_m_p_z(pff_variable, geotype)
-        # 2. rounding
-        df = rounding(df, v.rounding)
-        # 3. last round of data cleaning
+        # 2. last round of data cleaning
         df = self.cleaning(df)
+        # 3. rounding
+        df = rounding(df, v.rounding)
         # 4. Assign Labs geoid and geotype
         df = self.labs_geoid(df)
         return df
