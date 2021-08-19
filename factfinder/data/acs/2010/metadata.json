@@ -164,7 +164,7 @@
         "census_variable": [
             "DP03_0094"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Earnings"
@@ -204,7 +204,7 @@
         "census_variable": [
             "DP03_0093"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Earnings"
@@ -373,7 +373,7 @@
         "census_variable": [
             "DP03_0090"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Income and Benefits"
@@ -863,7 +863,7 @@
         "census_variable": [
             "DP03_0062"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Income and Benefits"
@@ -947,7 +947,7 @@
         "census_variable": [
             "DP03_0086"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Income and Benefits"
@@ -2144,7 +2144,7 @@
         "census_variable": [
             "DP03_0092"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "economic",
         "rounding": 0,
         "category": "Earnings"
@@ -2440,7 +2440,7 @@
         "census_variable": [
             "DP04_0036"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 1,
         "category": "Rooms"
@@ -2784,7 +2784,7 @@
         "census_variable": [
             "DP04_0132"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 0,
         "category": "Gross Rent"
@@ -3124,7 +3124,7 @@
         "census_variable": [
             "DP04_0088"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "housing",
         "rounding": 0,
         "category": "Value"
@@ -7172,7 +7172,7 @@
         "census_variable": [
             "DP05_0017"
         ],
-        "base_variable": "median",
+        "base_variable": "nan",
         "domain": "demographic",
         "rounding": 1,
         "category": "Sex and Age"
