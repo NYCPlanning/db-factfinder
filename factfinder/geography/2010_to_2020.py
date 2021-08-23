@@ -17,12 +17,11 @@ class AggregatedGeography:
     def lookup_geo(self):
         # find the current decennial year based on given year
         lookup_geo = pd.read_csv(
-            Path(__file__).parent.parent
-            / f"data/lookup_geo/2010_to_2020/lookup_geo.csv",
+            Path(__file__).parent.parent / f"data/lookup_geo/2020/lookup_geo.csv",
             dtype="str",
         )
         # Create geoid_tract
-        lookup_geo["geoid_tract"] = lookup_geo.geoid20.apply(lambda x: str(x)[:11])
+        lookup_geo["geoid_tract"] = lookup_geo.geoid.apply(lambda x: str(x)[:11])
 
         return lookup_geo
 
@@ -107,12 +106,12 @@ class AggregatedGeography:
         """
         df = self.ct2010_to_ct2020(df)
         df = df.merge(
-            self.lookup_geo[["geoid_tract", "nta"]].drop_duplicates(),
+            self.lookup_geo[["geoid_tract", "nta2020"]].drop_duplicates(),
             how="left",
             right_on="geoid_tract",
             left_on="census_geoid",
         )
-        output = AggregatedGeography.create_output(df, "nta")
+        output = AggregatedGeography.create_output(df, "nta2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "NTA"
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
@@ -124,12 +123,12 @@ class AggregatedGeography:
         """
         df = self.ct2010_to_ct2020(df)
         df = df.merge(
-            self.lookup_geo[["geoid_tract", "cdta"]].drop_duplicates(),
+            self.lookup_geo[["geoid_tract", "cdta2020"]].drop_duplicates(),
             how="left",
             right_on="geoid_tract",
             left_on="census_geoid",
         )
-        output = AggregatedGeography.create_output(df, "cdta")
+        output = AggregatedGeography.create_output(df, "cdta2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "CDTA"
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
@@ -197,13 +196,13 @@ class AggregatedGeography:
     def support_geoids(self) -> pd.DataFrame:
         df = self.lookup_geo
         nta = (
-            df.loc[:, ["nta", "nta_name"]]
+            df.loc[:, ["nta2020", "nta_name"]]
             .drop_duplicates()
             .rename(columns={"nta": "geoid", "nta_name": "geogname"})
             .assign(geotype="NTA2020")
         )
         cdta = (
-            df.loc[:, ["cdta", "cdta_name"]]
+            df.loc[:, ["cdta2020", "cdta_name"]]
             .drop_duplicates()
             .rename(columns={"cdta": "geoid", "cdta_name": "geogname"})
             .assign(geotype="CDTA2020")
