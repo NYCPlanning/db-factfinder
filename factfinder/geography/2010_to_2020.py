@@ -17,13 +17,21 @@ class AggregatedGeography:
     def lookup_geo(self):
         # find the current decennial year based on given year
         lookup_geo = pd.read_csv(
-            Path(__file__).parent.parent
-            / f"data/lookup_geo/2010_to_2020/lookup_geo.csv",
+            Path(__file__).parent.parent / f"data/lookup_geo/2020/lookup_geo.csv",
             dtype="str",
         )
         # Create geoid_tract
-        lookup_geo["geoid_tract"] = lookup_geo.geoid20.apply(lambda x: str(x)[:11])
-
+        lookup_geo["geoid_tract"] = lookup_geo.geoid.apply(lambda x: str(x)[:11])
+        lookup_geo["geoid_block_group"] = lookup_geo.geoid.apply(lambda x: x[0:12])
+        lookup_geo["cdta_fp_500"] = lookup_geo.apply(
+            lambda row: row["cdta2020"] if int(row["fp_500"]) else np.nan, axis=1
+        )
+        lookup_geo["cdta_fp_100"] = lookup_geo.apply(
+            lambda row: row["cdta2020"] if int(row["fp_100"]) else np.nan, axis=1
+        )
+        lookup_geo["cdta_park_access"] = lookup_geo.apply(
+            lambda row: row["cdta2020"] if int(row["park_access"]) else np.nan, axis=1
+        )
         return lookup_geo
 
     @cached_property
@@ -107,12 +115,12 @@ class AggregatedGeography:
         """
         df = self.ct2010_to_ct2020(df)
         df = df.merge(
-            self.lookup_geo[["geoid_tract", "nta"]].drop_duplicates(),
+            self.lookup_geo[["geoid_tract", "nta2020"]].drop_duplicates(),
             how="left",
             right_on="geoid_tract",
             left_on="census_geoid",
         )
-        output = AggregatedGeography.create_output(df, "nta")
+        output = AggregatedGeography.create_output(df, "nta2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "NTA"
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
@@ -124,14 +132,68 @@ class AggregatedGeography:
         """
         df = self.ct2010_to_ct2020(df)
         df = df.merge(
-            self.lookup_geo[["geoid_tract", "cdta"]].drop_duplicates(),
+            self.lookup_geo[["geoid_tract", "cdta2020"]].drop_duplicates(),
             how="left",
             right_on="geoid_tract",
             left_on="census_geoid",
         )
-        output = AggregatedGeography.create_output(df, "cdta")
+        output = AggregatedGeography.create_output(df, "cdta2020")
         output["pff_variable"] = df["pff_variable"].to_list()[0]
         output["geotype"] = "CDTA"
+        return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
+    def block_group_to_cdta_fp500(self, df):
+        """
+        500 yr flood plain aggregation for block group data (ACS)
+        """
+        df = df.merge(
+            self.lookup_geo.loc[
+                ~self.lookup_geo.cdta_fp_500.isna(),
+                ["geoid_block_group", "cdta_fp_500"],
+            ].drop_duplicates(),
+            how="right",
+            right_on="geoid_block_group",
+            left_on="census_geoid",
+        )
+        output = AggregatedGeography.create_output(df, "cdta_fp_500")
+        output["pff_variable"] = df["pff_variable"].to_list()[0]
+        output["geotype"] = "cdta_fp_500"
+        return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
+    def block_group_to_cdta_fp100(self, df):
+        """
+        100 yr flood plain aggregation for block group data (ACS)
+        """
+        df = df.merge(
+            self.lookup_geo.loc[
+                ~self.lookup_geo.cdta_fp_100.isna(),
+                ["geoid_block_group", "cdta_fp_100"],
+            ].drop_duplicates(),
+            how="right",
+            right_on="geoid_block_group",
+            left_on="census_geoid",
+        )
+        output = AggregatedGeography.create_output(df, "cdta_fp_100")
+        output["pff_variable"] = df["pff_variable"].to_list()[0]
+        output["geotype"] = "cdta_fp_100"
+        return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
+
+    def block_group_to_cdta_park_access(self, df):
+        """
+        walk-to-park access zone aggregation for block group data (acs)
+        """
+        df = df.merge(
+            self.lookup_geo.loc[
+                ~self.lookup_geo.cdta_park_access.isna(),
+                ["geoid_block_group", "cdta_park_access"],
+            ].drop_duplicates(),
+            how="right",
+            right_on="geoid_block_group",
+            left_on="census_geoid",
+        )
+        output = AggregatedGeography.create_output(df, "cdta_park_access")
+        output["pff_variable"] = df["pff_variable"].to_list()[0]
+        output["geotype"] = "cdta_park_access"
         return output[["census_geoid", "pff_variable", "geotype", "e", "m"]]
 
     @cached_property
@@ -147,7 +209,12 @@ class AggregatedGeography:
                     "NTA": self.tract_to_nta,
                     "CDTA": self.tract_to_cdta,
                     "CT20": self.ct2010_to_ct2020,
-                }
+                },
+                "block group": {
+                    "cdta_fp_500": self.block_group_to_cdta_fp500,
+                    "cdta_fp_100": self.block_group_to_cdta_fp100,
+                    "cdta_park_access": self.block_group_to_cdta_park_access,
+                },
             }
         }
 
@@ -162,6 +229,7 @@ class AggregatedGeography:
         return list(set(itertools.chain.from_iterable(list2d)))
 
     def format_geoid(self, geoid):
+        geoid = str(geoid)
         fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
         # NTA or CDTA
         if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
@@ -190,28 +258,30 @@ class AggregatedGeography:
         }
         if geotype == "tract":
             return "CT2010"
-        else:
+        elif geotype in list(geotypes.keys()):
             return geotypes.get(geotype) + "2020"
+        else:
+            return geotype
 
     @property
     def support_geoids(self) -> pd.DataFrame:
         df = self.lookup_geo
         nta = (
-            df.loc[:, ["nta", "nta_name"]]
+            df.loc[:, ["nta2020", "ntaname"]]
             .drop_duplicates()
-            .rename(columns={"nta": "geoid", "nta_name": "geogname"})
+            .rename(columns={"nta2020": "geoid", "ntaname": "geogname"})
             .assign(geotype="NTA2020")
         )
         cdta = (
-            df.loc[:, ["cdta", "cdta_name"]]
+            df.loc[:, ["cdta2020", "cdtaname"]]
             .drop_duplicates()
-            .rename(columns={"cdta": "geoid", "cdta_name": "geogname"})
+            .rename(columns={"cdta2020": "geoid", "cdtaname": "geogname"})
             .assign(geotype="CDTA2020")
         )
         boro = (
-            df.loc[:, ["borocode", "boro"]]
+            df.loc[:, ["borocode", "boroname"]]
             .drop_duplicates()
-            .rename(columns={"borocode": "geoid", "boro": "geogname"})
+            .rename(columns={"borocode": "geoid", "boroname": "geogname"})
             .assign(geotype="Boro2020")
         )
         city = pd.DataFrame(

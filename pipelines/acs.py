@@ -42,7 +42,7 @@ if __name__ == "__main__":
     calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
 
     # Declare geography and variables involved in this caculation
-    geogs = calculate.geo.aggregated_geography + ["city", "borough"]
+    geogs = ["NTA", "CDTA", "CT20", "city", "borough"]
     if geography != "2010_to_2020":
         geogs.extend(["tract"])
     domains = ["demographic", "economic", "housing", "social"]
