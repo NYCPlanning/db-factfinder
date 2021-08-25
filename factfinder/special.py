@@ -118,6 +118,7 @@ def hovacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
         ),
         axis=1,
     )
+    df.loc[df.e == 0, "e"] = np.nan
     return df
 
 
@@ -130,6 +131,7 @@ def rntvacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
         ),
         axis=1,
     )
+    df.loc[df.e == 0, "e"] = np.nan
     return df
 
 

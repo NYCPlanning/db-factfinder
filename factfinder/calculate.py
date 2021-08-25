@@ -148,9 +148,10 @@ class Calculate:
             index="census_geoid", columns="pff_variable", values=["e"]
         )
 
-        def get_median_and_median_moe(ranges, row, pff_variable, DF, top_coding, bottom_coding):
-            md = Median(ranges, row, pff_variable,
-                        DF, top_coding, bottom_coding)
+        def get_median_and_median_moe(
+            ranges, row, pff_variable, DF, top_coding, bottom_coding
+        ):
+            md = Median(ranges, row, pff_variable, DF, top_coding, bottom_coding)
             e = md.median
             m = md.median_moe
             return pd.Series({"e": e, "m": m})
@@ -248,14 +249,12 @@ class Calculate:
                         v.base_variable in self.meta.special_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_special(
-                            v.base_variable, geotype)
+                        df_base = self.calculate_e_m_special(v.base_variable, geotype)
                     if (
                         v.base_variable in self.meta.median_variables
                         and geotype in self.geo.aggregated_geography
                     ):
-                        df_base = self.calculate_e_m_median(
-                            v.base_variable, geotype)
+                        df_base = self.calculate_e_m_median(v.base_variable, geotype)
                     else:
                         df_base = self.calculate_e_m(v.base_variable, geotype)
 
@@ -273,11 +272,7 @@ class Calculate:
 
                     df["z"] = df.apply(
                         lambda row: get_z(
-                            row["e"],
-                            row["m"],
-                            row["p"],
-                            row["agg_e"],
-                            row["agg_m"],
+                            row["e"], row["m"], row["p"], row["agg_e"], row["agg_m"]
                         ),
                         axis=1,
                     )
@@ -309,9 +304,10 @@ class Calculate:
 
         # p has to be less or equal to 100
         df.loc[df.p > 100, "p"] = np.nan
-
-        # If p = np.nan/, then z = np.nan
-        df.loc[(df.p.isna()) | (df.p == 100), "z"] = np.nan
+        # If p = np.nan, then z = np.nan
+        df.loc[df.p.isna(), "z"] = np.nan
+        # If p = 100, then z = 0
+        df.loc[df.p == 100, "z"] = 0
 
         df.loc[
             df.geotype.isin(["borough", "city"])
@@ -330,52 +326,23 @@ class Calculate:
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
             & ~df.pff_variable.isin(self.meta.median_variables),
-            "p",
-        ] = 100
-
-        df.loc[
-            df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables),
-            "z",
-        ] = np.nan
+            ["p", "z"],
+        ] = pd.Series({"p": 100, "z": 0})
 
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
             & ~df.pff_variable.str.contains("rms"),
-            "m",
-        ] = np.nan
+            ["c", "m", "p", "z"],
+        ] = pd.Series({"c": np.nan, "m": np.nan, "p": np.nan, "z": np.nan})
 
         df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "p",
-        ] = np.nan
+            df.pff_variable.isin(self.meta.special_variables), ["p", "z"]
+        ] = pd.Series({"p": np.nan, "z": np.nan})
 
-        df.loc[
-            df.pff_variable.isin(self.meta.special_variables),
-            "p"
-        ] = np.nan
-
-        df.loc[
-            df.pff_variable.isin(self.meta.special_variables),
-            "z"
-        ] = np.nan
-
-        df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "z",
-        ] = np.nan
-
-        df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "c",
-        ] = np.nan
-
-        # If e == 0, then all other fields are np.nan
-        df.loc[df.e == 0, ["c", "m", "p", "z"]] = pd.Series(
-            {"c": np.nan, "m": np.nan, 'p': np.nan, 'z': np.nan})
+        # If e == 0/np.nan, then all other fields are np.nan
+        df.loc[(df.e == 0) | (df.e.isna()), ["c", "m", "p", "z"]] = pd.Series(
+            {"c": np.nan, "m": np.nan, "p": np.nan, "z": np.nan}
+        )
 
         return df
 
@@ -384,8 +351,7 @@ class Calculate:
         Format geoid and geotype to match Planning Labs standards
         """
         df["labs_geoid"] = df.census_geoid.apply(self.geo.format_geoid)
-        df["labs_geotype"] = df.geotype.apply(
-            lambda x: self.geo.format_geotype(x))
+        df["labs_geotype"] = df.geotype.apply(lambda x: self.geo.format_geotype(x))
 
         return df[
             [
@@ -402,7 +368,7 @@ class Calculate:
             ]
         ]
 
-    @retry(tries=3, delay=30)
+    # @retry(tries=3, delay=30)
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)

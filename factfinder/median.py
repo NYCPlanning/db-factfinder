@@ -55,7 +55,7 @@ class Median:
             median = list(self.ranges.values())[0][1]
         elif C == 0.0:
             logging.debug("Cumulative frequency is 0")
-            median = 0.0
+            median = np.nan
         elif i == len(self.ranges.keys()) - 1 and self.top_coding:
             logging.debug("N/2 is in top range (with bottom coding)")
             median = list(self.ranges.values())[-1][0]
@@ -146,7 +146,7 @@ class Median:
             logging.debug("upper_bin is in top bin")
             A1 = min(self.ranges[self.ordered[self.upper_bin]], default=np.nan)
             A2 = A1
-        
+
         if self.upper_bin == self.lower_bin & self.upper_bin == self.first_non_zero_bin:
             logging.debug("upper_bin and lower_bin are in the first non-zero")
             A1 = 0
