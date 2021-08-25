@@ -326,7 +326,7 @@ class Calculate:
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
             & ~df.pff_variable.isin(self.meta.median_variables),
-            "p",
+            ["p", "z"],
         ] = pd.Series({"p": 100, "z": 0})
 
         df.loc[
@@ -368,7 +368,7 @@ class Calculate:
             ]
         ]
 
-    @retry(tries=3, delay=30)
+    # @retry(tries=3, delay=30)
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)
