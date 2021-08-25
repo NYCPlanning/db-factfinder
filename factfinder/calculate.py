@@ -304,7 +304,6 @@ class Calculate:
 
         # p has to be less or equal to 100
         df.loc[df.p > 100, "p"] = np.nan
-
         # If p = np.nan, then z = np.nan
         df.loc[df.p.isna(), "z"] = np.nan
         # If p = 100, then z = 0
@@ -328,41 +327,17 @@ class Calculate:
             df.pff_variable.isin(self.meta.base_variables)
             & ~df.pff_variable.isin(self.meta.median_variables),
             "p",
-        ] = 100
-
-        df.loc[
-            df.pff_variable.isin(self.meta.base_variables)
-            & ~df.pff_variable.isin(self.meta.median_variables),
-            "z",
-        ] = np.nan
+        ] = pd.Series({"p": 100, "z": 0})
 
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
             & ~df.pff_variable.str.contains("rms"),
-            "m",
-        ] = np.nan
+            ["c", "m", "p", "z"],
+        ] = pd.Series({"c": np.nan, "m": np.nan, "p": np.nan, "z": np.nan})
 
         df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "p",
-        ] = np.nan
-
-        df.loc[df.pff_variable.isin(self.meta.special_variables), "p"] = np.nan
-
-        df.loc[df.pff_variable.isin(self.meta.special_variables), "z"] = np.nan
-
-        df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "z",
-        ] = np.nan
-
-        df.loc[
-            df.pff_variable.isin(self.meta.median_inputs)
-            & ~df.pff_variable.str.contains("rms"),
-            "c",
-        ] = np.nan
+            df.pff_variable.isin(self.meta.special_variables), ["p", "z"]
+        ] = pd.Series({"p": np.nan, "z": np.nan})
 
         # If e == 0/np.nan, then all other fields are np.nan
         df.loc[(df.e == 0) | (df.e.isna()), ["c", "m", "p", "z"]] = pd.Series(
