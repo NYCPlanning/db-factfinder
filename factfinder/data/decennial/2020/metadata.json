@@ -7,7 +7,7 @@
         ],
         "domain": "community_profiles",
         "rounding": 0,
-        "category": "decennial"
+        "source": "decennial"
     },
     {
         "pff_variable": "pop1",
