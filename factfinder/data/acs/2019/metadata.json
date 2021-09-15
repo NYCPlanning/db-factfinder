@@ -1,7 +1,7 @@
 [
     {
         "pff_variable": "lgoenlep1",
-        "base_variable": "lgbase",
+        "base_variable": "pop5pl1",
         "census_variable": [
             "C16001_005",
             "C16001_008",
@@ -16,19 +16,9 @@
             "C16001_035",
             "C16001_038"
         ],
-        "domain": "community_profiles",
+        "domain": "social",
         "rounding": 0,
         "category": "Language Spoken at Home"
-    },
-    {
-        "pff_variable": "lgbase",
-        "base_variable": "lgbase",
-        "census_variable": [
-            "C16001_001"
-        ],
-        "domain": "community_profiles",
-        "rounding": 0,
-        "category": ""
     },
     {
         "pff_variable": "ownerocc",
