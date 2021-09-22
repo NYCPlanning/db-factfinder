@@ -9257,7 +9257,7 @@
         "census_variable": [
             "DP05_0077"
         ],
-        "domain": "demographiic",
+        "domain": "demographic",
         "rounding": 0,
         "category": "Mutually Exclusive Race/Hispanic Origin"
     },
