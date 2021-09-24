@@ -285,7 +285,7 @@ class Calculate:
             # p = 100 for city and borough level, np.nan otherwise
             # z = np.nan for all levels of geography
             else:
-                df["p"] = 100 if geotype in ["city", "borough"] else np.nan
+                df["p"] = 100
                 df["z"] = np.nan
 
         df["c"] = df.apply(lambda row: get_c(row["e"], row["m"]), axis=1)
