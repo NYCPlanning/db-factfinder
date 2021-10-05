@@ -282,8 +282,7 @@ class Calculate:
                     df["p"] = np.nan
                     df["z"] = np.nan
             # If pff_variable is a base variable, then
-            # p = 100 for city and borough level, np.nan otherwise
-            # z = np.nan for all levels of geography
+            # p = 100 z = np.nan for all levels of geography
             else:
                 df["p"] = 100
                 df["z"] = np.nan
@@ -326,8 +325,14 @@ class Calculate:
         df.loc[
             df.pff_variable.isin(self.meta.base_variables)
             & ~df.pff_variable.isin(self.meta.median_variables),
-            ["p", "z"],
-        ] = pd.Series({"p": 100, "z": 0})
+            "p",
+        ] = 100
+
+        df.loc[
+            df.pff_variable.isin(self.meta.base_variables)
+            & ~df.pff_variable.isin(self.meta.median_variables),
+            "z",
+        ] = 0
 
         df.loc[
             df.pff_variable.isin(self.meta.median_inputs)
