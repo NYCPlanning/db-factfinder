@@ -54,10 +54,12 @@ class Download:
         geoqueries = self.geoqueries.get(geotype)
         dfs = []
         for geoquery in geoqueries:
-            dfs.append(download_function(geoquery, v))
+            dfs.append(download_function(geotype, geoquery, v))
         return pd.concat(dfs)
 
-    def download_e_m_p_z(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+    def download_e_m_p_z(
+        self, geotype: str, geoquery: dict, v: Variable
+    ) -> pd.DataFrame:
         """
         This function is for downloading non-aggregated-geotype and data profile only
         variables. It will return e, m, p, z variables for a single pff variable.
@@ -75,11 +77,16 @@ class Download:
             df[var] = df[var].astype("float64")
         df.loc[df[E_variables].isin(outliers), M_variables] = np.nan
         df.loc[df[E_variables] == 0, M_variables] = 0
+        # 555555555 indicates controled value,
+        # for city and borough, we will set it to 0
+        if geotype in ("city", "borough"):
+            df.loc[df[M_variables].isin([-555555555, 555555555]), M_variables] = 0
+            df.loc[df[PM_variables].isin([-555555555, 555555555]), PM_variables] = 0
         # Replace all outliers as Nan
         df = df.replace(outliers, np.nan)
         return df
 
-    def download_e_m(self, geoquery: dict, v: Variable) -> pd.DataFrame:
+    def download_e_m(self, geotype: str, geoquery: dict, v: Variable) -> pd.DataFrame:
         """
         this function works in conjunction with download_variable,
         and is only created to facilitate multiprocessing, this function
@@ -124,6 +131,10 @@ class Download:
                 df.loc[df[f"{i}E"].isin(outliers), f"{i}M"] = np.nan
             else:
                 df[i] = df[i].astype("float64")
+        # 555555555 indicates controled value,
+        # for city and borough, we will set it to 0
+        if geotype in ("city", "borough"):
+            df.loc[df[M_variables].isin([-555555555, 555555555]), M_variables] = 0
         # Replace all outliers as Nan
         df = df.replace(outliers, np.nan)
         return df
