@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import sys
 from typing import Tuple
@@ -15,10 +16,11 @@ def _calculate(args):
     var, domain, geo, calculate = args
     try:
         df = calculate(var, geo).assign(domain=domain)
-        print(f"✅ SUCCESS: {var}\t{geo}", file=sys.stdout)
+        logging.info(f"✅ SUCCESS: {var}\t{geo}")
         return df
     except:
-        print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
+        e = sys.exc_info()[0]
+        logging.ERROR(f"\n\n⛔️ FAILURE: {var}\t{geo}\n{e}\n\n")
 
 
 def parse_args() -> Tuple[int, str]:
@@ -38,6 +40,13 @@ if __name__ == "__main__":
     year, geography = parse_args()
     pool = ProcessPool(nodes=10)
 
+    output_folder = f".output/acs/year={year}/geography={geography}"
+    os.makedirs(output_folder, exist_ok=True)
+    logging.basicConfig(
+        filename=f".output/acs/year={year}/geography={geography}/error.log",
+        encoding="utf-8",
+        level=logging.ERROR,
+    )
     # Initialize pff instance
     calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
 
@@ -55,9 +64,5 @@ if __name__ == "__main__":
 
     # Loop through calculations and collect dataframes in dfs
     dfs = pool.map(_calculate, variables)
-
-    # Concatenate dataframes and export to 1 large csv
-    output_folder = f".output/acs/year={year}/geography={geography}"
     df = pd.concat(dfs)
-    os.makedirs(output_folder, exist_ok=True)
     df.to_csv(f"{output_folder}/acs.csv", index=False)
