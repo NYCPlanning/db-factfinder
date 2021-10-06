@@ -373,7 +373,7 @@ class Calculate:
             ]
         ]
 
-    # @retry(tries=3, delay=30)
+    @retry(tries=3, delay=5)
     def __call__(self, pff_variable: str, geotype: str) -> pd.DataFrame:
         # 0. Initialize Variable class instance
         v = self.meta.create_variable(pff_variable)
