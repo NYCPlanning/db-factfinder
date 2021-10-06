@@ -131,10 +131,11 @@ class Download:
                 df.loc[df[f"{i}E"].isin(outliers), f"{i}M"] = np.nan
             else:
                 df[i] = df[i].astype("float64")
-        # 555555555 indicates controled value,
-        # for city and borough, we will set it to 0
-        if geotype in ("city", "borough"):
-            df.loc[df[M_variables].isin([-555555555, 555555555]), M_variables] = 0
+            # 555555555 indicates controled value,
+            # for city and borough, we will set it to 0
+            if geotype in ("city", "borough"):
+                df.loc[df[f"{i}M"].isin([-555555555, 555555555]), f"{i}M"] = 0
+
         # Replace all outliers as Nan
         df = df.replace(outliers, np.nan)
         return df
