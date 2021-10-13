@@ -53,8 +53,6 @@ if __name__ == "__main__":
         lambda left, right: pd.merge(left, right, on=["census_geoid"], how="outer"), dfs
     )
     # Concatenate dataframes and export to 1 large csv
-    output_folder = (
-        f".output/acs_community_profiles_output/year={year}/geography={geography}"
-    )
+    output_folder = f".output/acs_community_profiles/year={year}/geography={geography}"
     os.makedirs(output_folder, exist_ok=True)
-    df.to_csv(f"{output_folder}/acs_community_profiles_output.csv", index=False)
+    df.to_csv(f"{output_folder}/acs_community_profiles.csv", index=False)
