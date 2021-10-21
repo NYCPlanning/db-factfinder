@@ -39,7 +39,13 @@ if __name__ == "__main__":
     pool = ProcessPool(nodes=10)
 
     # Initialize pff instance
-    calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
+    calculate = Calculate(
+        api_key=API_KEY,
+        year=year,
+        source="acs",
+        geography=geography,
+        top_bottom_coding=False,
+    )
 
     # Declare geography and variables involved in this caculation
     geogs = ["NTA", "CDTA", "CT20", "city", "borough"]

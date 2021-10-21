@@ -14,7 +14,14 @@ from .utils import get_c, get_p, get_z, rounding, write_to_cache
 
 
 class Calculate:
-    def __init__(self, api_key, year, source, geography):
+    def __init__(
+        self,
+        api_key: str,
+        year: int,
+        source: str,
+        geography: str,
+        top_bottom_coding: bool = True,
+    ):
         self.year = year
         self.source = source
         self.geography = geography
@@ -26,6 +33,7 @@ class Calculate:
             f"factfinder.geography.{geography}"
         ).AggregatedGeography
         self.geo = AggregatedGeography()
+        self.top_bottom_coding = top_bottom_coding
 
     def calculate_e_m_multiprocessing(
         self, pff_variables: list, geotype: str
@@ -149,9 +157,17 @@ class Calculate:
         )
 
         def get_median_and_median_moe(
-            ranges, row, pff_variable, DF, top_coding, bottom_coding
+            ranges, row, pff_variable, DF, top_bottom_coding, top_coding, bottom_coding
         ):
-            md = Median(ranges, row, pff_variable, DF, top_coding, bottom_coding)
+            md = Median(
+                ranges,
+                row,
+                pff_variable,
+                DF,
+                self.top_bottom_coding,
+                top_coding,
+                bottom_coding,
+            )
             e = md.median
             m = md.median_moe
             return pd.Series({"e": e, "m": m})

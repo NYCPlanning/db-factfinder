@@ -10,6 +10,7 @@ class Median:
         row,
         pff_variable,
         DF=1.1,
+        top_bottom_coding: bool = True,
         top_coding: bool = True,
         bottom_coding: bool = True,
     ):
@@ -37,6 +38,7 @@ class Median:
             else np.nan
         )
         self.row = row
+        self.top_bottom_coding = top_bottom_coding
         self.top_coding = top_coding
         self.bottom_coding = bottom_coding
 
@@ -50,13 +52,17 @@ class Median:
             C += self.row[self.ordered[i]]
             i += 1
         i = i - 1
-        if i == 0 and self.bottom_coding:
+        if i == 0 and self.top_bottom_coding and self.bottom_coding:
             logging.debug("N/2 is in bottom bin (with bottom coding)")
             median = list(self.ranges.values())[0][1]
         elif C == 0.0:
             logging.debug("Cumulative frequency is 0")
             median = np.nan
-        elif i == len(self.ranges.keys()) - 1 and self.top_coding:
+        elif (
+            i == len(self.ranges.keys()) - 1
+            and self.top_bottom_coding
+            and self.top_coding
+        ):
             logging.debug("N/2 is in top range (with bottom coding)")
             median = list(self.ranges.values())[-1][0]
         else:
