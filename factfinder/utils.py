@@ -1,4 +1,5 @@
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -47,39 +48,22 @@ def get_z(e, m, p, agg_e, agg_m):
         return math.sqrt(m ** 2 - (e * agg_m / agg_e) ** 2) / agg_e * 100
 
 
-def format_geoid(geoid):
-    fips_lookup = {"05": "2", "47": "3", "61": "1", "81": "4", "85": "5"}
-    # NTA
-    if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
-        return geoid
-    # Community District (PUMA)
-    elif geoid[:2] == "79":
-        return geoid[-4:]
-    # Census tract (CT2010)
-    elif geoid[:2] == "14":
-        boro = fips_lookup.get(geoid[-8:-6])
-        return boro + geoid[-6:]
-    # Boro
-    elif geoid[:2] == "05":
-        return fips_lookup.get(geoid[-2:])
-    # City
-    elif geoid[:2] == "16":
-        return 0
+def rounding(df: pd.DataFrame, digits: int) -> pd.DataFrame:
+    """
+    Round c, e, m, p, z fields based on rounding digits from metadata
+    """
+    df["c"] = df["c"].round(1)
+    df["e"] = df["e"].round(digits)
+    df["m"] = df["m"].round(digits)
+    df["p"] = df["p"].round(1)
+    df["z"] = df["z"].round(1)
+    return df
 
 
-def assign_geotype(geoid):
-    # NTA
-    if geoid[:2] in ["MN", "QN", "BX", "BK", "SI"]:
-        return "NTA2010"
-    # Community District (PUMA)
-    elif geoid[:2] == "79":
-        return "PUMA2010"
-    # Census tract (CT2010)
-    elif geoid[:2] == "14":
-        return "CT2010"
-    # Boro
-    elif geoid[:2] == "05":
-        return "Boro2010"
-    # City
-    elif geoid[:2] == "16":
-        return "City2010"
+def write_to_cache(df: pd.DataFrame, path: str):
+    """
+    this function will cache a dataframe to a given path
+    """
+    if not os.path.isfile(path):
+        df.to_pickle(path)
+    return None

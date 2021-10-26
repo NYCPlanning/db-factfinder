@@ -1,6 +1,8 @@
 {
     "mdage": {
         "design_factor": 1.1,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "mdpop0t4": [
                 0,
@@ -98,6 +100,8 @@
     },
     "mdhhinc": {
         "design_factor": 1.5,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "mdhhiu10": [
                 0,
@@ -167,6 +171,8 @@
     },
     "mdfaminc": {
         "design_factor": 1.5,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "mdfamiu10": [
                 0,
@@ -236,6 +242,8 @@
     },
     "mdnfinc": {
         "design_factor": 1.5,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "nfmiu10": [
                 0,
@@ -305,6 +313,8 @@
     },
     "mdewrk": {
         "design_factor": 1.6,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "ernu2pt5k": [
                 0,
@@ -390,6 +400,8 @@
     },
     "mdemftwrk": {
         "design_factor": 1.6,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "mftu2pt5k": [
                 0,
@@ -475,6 +487,8 @@
     },
     "mdefftwrk": {
         "design_factor": 1.6,
+        "top_coding": true,
+        "bottom_coding": true,
         "ranges": {
             "fftu2pt5k": [
                 0,
@@ -560,6 +574,8 @@
     },
     "mdrms": {
         "design_factor": 1.5,
+        "top_coding": false,
+        "bottom_coding": false,
         "ranges": {
             "rms1": [
                 0,
@@ -601,6 +617,8 @@
     },
     "mdvl": {
         "design_factor": 1.4,
+        "top_coding": true,
+        "bottom_coding": false,
         "ranges": {
             "ovlu10": [
                 0,
@@ -710,6 +728,8 @@
     },
     "mdgr": {
         "design_factor": 1.6,
+        "top_coding": true,
+        "bottom_coding": false,
         "ranges": {
             "ru100": [
                 0,

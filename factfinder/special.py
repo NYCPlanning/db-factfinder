@@ -118,6 +118,7 @@ def hovacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
         ),
         axis=1,
     )
+    df.loc[df.e == 0, "e"] = np.nan
     return df
 
 
@@ -130,6 +131,7 @@ def rntvacrt(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
         ),
         axis=1,
     )
+    df.loc[df.e == 0, "e"] = np.nan
     return df
 
 
@@ -138,17 +140,3 @@ def wrkrnothm(df: pd.DataFrame, base_variables: list) -> pd.DataFrame:
     df["e"] = df["wrkr16ple"] - df["cw_wrkdhme"]
     df["m"] = (df["wrkr16plm"] ** 2 + df["cw_wrkdhmm"] ** 2) ** 0.5
     return df
-
-
-special_variable_options = {
-    "percapinc": percapinc,
-    "mntrvtm": mntrvtm,
-    "mnhhinc": mnhhinc,
-    "avghhsooc": avghhsooc,
-    "avghhsroc": avghhsroc,
-    "avghhsz": avghhsz,
-    "avgfmsz": avgfmsz,
-    "hovacrt": hovacrt,
-    "rntvacrt": rntvacrt,
-    "wrkrnothm": wrkrnothm,
-}
