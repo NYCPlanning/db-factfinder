@@ -3060,6 +3060,26 @@
         "category": "Rooms"
     },
     {
+        "pff_variable": "ochuprnt1",
+        "base_variable": "ochuprnt1",
+        "census_variable": [
+            "DP04_0124"
+        ],
+        "domain": "housing",
+        "rounding": 0,
+        "category": "Gross Rent"
+    },
+     {
+        "pff_variable": "grnorntpd",
+        "base_variable": "nan",
+        "census_variable": [
+            "DP04_0133"
+        ],
+        "domain": "housing",
+        "rounding": 0,
+        "category": "Gross Rent"
+    },
+    {
         "pff_variable": "ochuprnt2",
         "census_variable": [
             "DP04_0134"
