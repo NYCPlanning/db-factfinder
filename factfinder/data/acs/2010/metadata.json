@@ -2599,9 +2599,7 @@
     },
     {
         "pff_variable": "grpi30pl",
-        "census_variable": [
-            "DP04_0139"
-        ],
+        "census_variable": [],
         "base_variable": "ochuprnt2",
         "domain": "housing",
         "rounding": 0,

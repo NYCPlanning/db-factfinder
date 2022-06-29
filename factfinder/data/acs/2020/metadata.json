@@ -3208,9 +3208,7 @@
     {
         "pff_variable": "grpi30pl",
         "base_variable": "ochuprnt2",
-        "census_variable": [
-            "DP04_0141"
-        ],
+        "census_variable": [],
         "domain": "housing",
         "rounding": 0,
         "category": "Gross Rent as a Percentage of Household Income (GRAPI)"
@@ -7632,10 +7630,7 @@
     {
         "pff_variable": "fb2010ltr",
         "base_variable": "fb4",
-        "census_variable": [
-            "B05005_004",
-            "B05005_009"
-        ],
+        "census_variable": [],
         "domain": "social",
         "rounding": 0,
         "category": "Year of Entry"
