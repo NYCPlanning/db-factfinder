@@ -1,10 +1,11 @@
 import argparse
 import os
-import sys
 from typing import Tuple
 
 import pandas as pd
 import re
+
+
 
 def parse_args() -> Tuple[str, str]:
     parser = argparse.ArgumentParser()
@@ -39,8 +40,7 @@ if __name__ == "__main__":
     # Get ACS year
     input_file, year = parse_args()
 
-    excel_file = pd.ExcelFile(input_file)
-    data_frames = pd.read_excel(excel_file, sheet_name=[0, 1, 2, 3])
+    data_frames = pd.read_excel(input_file, sheet_name=[0, 1, 2, 3], engine='openpyxl')
     domains = ['demographic', 'social', 'economic', 'housing']
 
     export_df = pd.DataFrame()
