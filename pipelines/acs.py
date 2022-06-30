@@ -1,61 +1,63 @@
 import argparse
 import os
+import sys
 from typing import Tuple
 
 import pandas as pd
-import re
+from pathos.pools import ProcessPool
 
-def parse_args() -> Tuple[str, str]:
+from factfinder.calculate import Calculate
+
+from . import API_KEY
+
+
+def _calculate(args):
+    var, domain, geo, calculate = args
+    try:
+        df = calculate(var, geo).assign(domain=domain)
+        print(f"✅ SUCCESS: {var}\t{geo}", file=sys.stdout)
+        return df
+    except:
+        print(f"⛔️ FAILURE: {var}\t{geo}", file=sys.stdout)
+
+
+def parse_args() -> Tuple[int, str]:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=str, help="Location of input ACS file")
     parser.add_argument(
-        "-y", "--year", type=str, help="The ACS5 year, e.g. 2019 (2014-2018)"
+        "-y", "--year", type=int, help="The ACS5 year, e.g. 2019 (2014-2018)"
     )
     parser.add_argument(
         "-g", "--geography", type=str, help="The geography year, e.g. 2010_to_2020"
     )
     args = parser.parse_args()
-    return args.input, args.year
+    return args.year, args.geography
 
-def transform_dataframe(df, domain):
-    pff_field_names = extract_field_names(df)
-    output_df = pd.DataFrame()
-
-    for field_name in pff_field_names:
-        new_df = split_by_field_name(df, field_name)
-        new_df = new_df.rename(columns=lambda x: re.sub(f"^{ field_name }(E|M|C|P|Z)$",r"\1",x).lower())
-        new_df['pff_variable'] = field_name.lower()
-        new_df['domain'] = domain
-        
-        if output_df.empty:
-            output_df = new_df
-        else:
-            output_df = pd.concat([output_df, new_df], ignore_index=True)
-
-    return output_df
-
-def extract_field_names(df):
-    return df.columns[2:].str[:-1].drop_duplicates()
-     
-def split_by_field_name(df, pff_field_name):
-    return df.filter(regex=f"^(GeoType|GeoID|{ pff_field_name }(E|M|C|P|Z))$")
 
 if __name__ == "__main__":
     # Get ACS year
-    input_file, year = parse_args()
+    year, geography = parse_args()
+    pool = ProcessPool(nodes=10)
 
-    data_frames = pd.read_excel(input_file, sheet_name=[0, 1, 2, 3], engine='openpyxl')
-    domains = ['demographic', 'social', 'economic', 'housing']
-    export_df = pd.DataFrame()
+    # Initialize pff instance
+    calculate = Calculate(api_key=API_KEY, year=year, source="acs", geography=geography)
 
-    for idx, domain in enumerate(domains):
-        export_df = pd.concat([export_df, transform_dataframe(data_frames[idx], domain)])
+    # Declare geography and variables involved in this caculation
+    geogs = ["NTA", "CDTA", "CT20", "city", "borough"]
+    if geography != "2010_to_2020":
+        geogs.extend(["tract"])
+    domains = ["demographic", "economic", "housing", "social"]
+    variables = [
+        (i["pff_variable"], i["domain"], j, calculate)
+        for i in calculate.meta.metadata
+        for j in geogs
+        if i["domain"] in domains
+    ]
 
-    export_df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
-    export_df = export_df[['labs_geotype', 'labs_geoid', 'pff_variable', 'e', 'm', 'c', 'p', 'z', 'domain']]
+    # Loop through calculations and collect dataframes in dfs
+    dfs = pool.map(_calculate, variables)
 
+    # Concatenate dataframes and export to 1 large csv
     output_folder = f".output/acs/year={year}/geography={geography}"
-
+    df = pd.concat(dfs)
     os.makedirs(output_folder, exist_ok=True)
-    export_df.to_csv(f"{output_folder}/acs.csv", index=False)
-
+    df.to_csv(f"{output_folder}/acs.csv", index=False)
