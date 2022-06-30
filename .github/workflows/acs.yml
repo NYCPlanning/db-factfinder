@@ -10,7 +10,7 @@ on:
         description: 'Year of geographic units. Options: "2010", "2020", or "2010_to_2020"'
         required: true
         default: '2010_to_2020'
-      cache: 
+      cache:
         description: 'Would you like to use cached download data? (yes/no)'
         required: true
         default: 'yes'
