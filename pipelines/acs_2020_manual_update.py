@@ -18,13 +18,13 @@ def parse_args() -> Tuple[str, str, str]:
     return args.input, args.year, args.geography
 
 def transform_dataframe(df, domain):
-    pff_field_names = extract_field_names(df)
+    base_field_names = extract_field_names(df)
     output_df = pd.DataFrame()
 
-    for field_name in pff_field_names:
+    for field_name in base_field_names:
         new_df = split_by_field_name(df, field_name)
         new_df = new_df.rename(columns=lambda x: re.sub(f"^{ field_name }(E|M|C|P|Z)$",r"\1",x).lower())
-        new_df['pff_variable'] = field_name.lower()
+        new_df['base_variable'] = field_name.lower()
         new_df['domain'] = domain
         
         if output_df.empty:
@@ -37,8 +37,8 @@ def transform_dataframe(df, domain):
 def extract_field_names(df):
     return df.columns[2:].str[:-1].drop_duplicates()
      
-def split_by_field_name(df, pff_field_name):
-    return df.filter(regex=f"^(GeoType|GeoID|{ pff_field_name }(E|M|C|P|Z))$")
+def split_by_field_name(df, base_field_name):
+    return df.filter(regex=f"^(GeoType|GeoID|{ base_field_name }(E|M|C|P|Z))$")
 
 if __name__ == "__main__":
     # Get ACS year
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         export_df = pd.concat([export_df, transform_dataframe(data_frames[idx], domain)])
 
     export_df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
-    export_df = export_df[['labs_geotype', 'labs_geoid', 'pff_variable', 'e', 'm', 'c', 'p', 'z', 'domain']]
+    export_df = export_df[['labs_geotype', 'labs_geoid', 'base_variable', 'e', 'm', 'c', 'p', 'z', 'domain']]
 
     output_folder = f".output/acs/year={year}/geography={geography}"
 
