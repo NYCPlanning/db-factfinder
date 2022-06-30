@@ -65,7 +65,6 @@ jobs:
           cat $FILE_PATH | psql $EDM_DATA -v TABLE_NAME=$TABLE_NAME -f pipelines/create_acs.sql
 
       - name: upload to s3
-        if: github.ref == 'refs/heads/dev'
         run: |
           ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
           SUPPORT_GEOIDS_FILE_PATH=.output/support_geoids/geography=$GEO_YEAR/support_geoids.csv
