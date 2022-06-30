@@ -5,14 +5,17 @@ from typing import Tuple
 import pandas as pd
 import re
 
-def parse_args() -> Tuple[str, str]:
+def parse_args() -> Tuple[str, str, str]:
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", type=str, help="Location of input ACS file")
     parser.add_argument(
         "-y", "--year", type=str, help="The ACS5 year, e.g. 2019 (2014-2018)"
     )
+    parser.add_argument(
+        "-g", "--geography", type=str, help="The geography year, e.g. 2010_to_2020"
+    )
     args = parser.parse_args()
-    return args.input, args.year
+    return args.input, args.year, args.geography
 
 def transform_dataframe(df, domain):
     pff_field_names = extract_field_names(df)
@@ -39,7 +42,7 @@ def split_by_field_name(df, pff_field_name):
 
 if __name__ == "__main__":
     # Get ACS year
-    input_file, year = parse_args()
+    input_file, year, geography = parse_args()
 
     data_frames = pd.read_excel(input_file, sheet_name=[0, 1, 2, 3], engine='openpyxl')
     domains = ['demographic', 'social', 'economic', 'housing']
@@ -51,7 +54,8 @@ if __name__ == "__main__":
     export_df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
     export_df = export_df[['labs_geotype', 'labs_geoid', 'pff_variable', 'e', 'm', 'c', 'p', 'z', 'domain']]
 
-    output_folder = f"factfinder/data/acs_2020_manual_update/{ year }"
+    output_folder = f".output/acs/year={year}/geography={geography}"
+
     os.makedirs(output_folder, exist_ok=True)
-    export_df.to_csv(f"{output_folder}/acs_step_one.csv", index=False)
+    export_df.to_csv(f"{output_folder}/acs_manual_update.csv", index=False)
 
