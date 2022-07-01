@@ -51,7 +51,7 @@ if __name__ == "__main__":
     for idx, domain in enumerate(domains):
         export_df = pd.concat([export_df, transform_dataframe(data_frames[idx], domain)])
 
-    acs_variable_mapping = pd.read_json(f"factfinder/data/acs/{geography}/metadata.json")[['base_variable', 'pff_variable']]
+    acs_variable_mapping = pd.read_json(f"factfinder/data/acs/{year}/metadata.json")[['base_variable', 'pff_variable']]
     export_df = export_df.merge(acs_variable_mapping, how='left', on='pff_variable')
 
     export_df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
