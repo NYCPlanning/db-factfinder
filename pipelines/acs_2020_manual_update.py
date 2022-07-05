@@ -5,6 +5,8 @@ from typing import Tuple
 import pandas as pd
 import re
 
+OUTPUT_SCHEMA_COLUMNS = ['labs_geotype', 'labs_geoid', 'pff_variable', 'base_variable', 'e', 'm', 'c', 'p', 'z', 'domain']
+
 def parse_args() -> Tuple[str, str]:
     parser = argparse.ArgumentParser()
 
@@ -26,21 +28,6 @@ def pivot_field_name(df, field_name, domain):
 
     return field_name_df
 
-def transform_dataframe(df, domain):
-    df = strip_unnamed_columns(df)
-    pff_field_names = extract_field_names(df)
-    output_df = pd.DataFrame()
-
-    for field_name in pff_field_names:
-
-        new_df = pivot_field_name(df, field_name, domain)
-
-        if output_df.empty:
-            output_df = new_df
-        else:
-            output_df = pd.concat([output_df, new_df], ignore_index=True)
-    return output_df
-
 def extract_field_names(df):
     return df.columns[2:].str[:-1].drop_duplicates()
      
@@ -50,15 +37,13 @@ def split_by_field_name(df, pff_field_name):
 def strip_unnamed_columns(df):
     return df.loc[:,~df.columns.str.match("Unnamed")]
 
-def transform_all_dataframes(year):
+def sheet_names(year):
     if year == '2010':
         sheet_name_suffix = '0610'
         inflated = "_Inflated"
     if year == '2020':
         sheet_name_suffix = '1620'
         inflated = ""
-
-    input_file = f"factfinder/data/acs_1620_update/{year}/acs_{year}.xlsx"
 
     domains_sheets = [
         {
@@ -78,6 +63,26 @@ def transform_all_dataframes(year):
             'sheet_name': f'Housing{sheet_name_suffix}{inflated}'
         }
     ]
+    return domains_sheets
+
+def transform_dataframe(df, domain):
+    df = strip_unnamed_columns(df)
+    pff_field_names = extract_field_names(df)
+    output_df = pd.DataFrame()
+
+    for field_name in pff_field_names:
+
+        new_df = pivot_field_name(df, field_name, domain)
+
+        if output_df.empty:
+            output_df = new_df
+        else:
+            output_df = pd.concat([output_df, new_df], ignore_index=True)
+    return output_df
+
+def transform_all_dataframes(year):
+    domains_sheets = sheet_names(year)
+    input_file = f"factfinder/data/acs_1620_update/{year}/acs_{year}.xlsx"
     
     dfs = pd.read_excel(input_file, sheet_name=None, engine='openpyxl')
     combined_df = pd.DataFrame()
@@ -95,6 +100,9 @@ def attach_base_variable(df, year):
 
     return df.merge(acs_variable_mapping, how='left', on='pff_variable')
 
+def rename_columns(df):
+    df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
+    return df[OUTPUT_SCHEMA_COLUMNS]
 
 if __name__ == "__main__":
     # Get ACS year
@@ -102,9 +110,7 @@ if __name__ == "__main__":
 
     export_df = transform_all_dataframes(year)
     export_df = attach_base_variable(export_df, year)
-
-    export_df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
-    export_df = export_df[['labs_geotype', 'labs_geoid', 'pff_variable', 'base_variable', 'e', 'm', 'c', 'p', 'z', 'domain']]
+    export_df = rename_columns(export_df)
 
     output_folder = f".output/acs/year={year}/geography={geography}"
 
