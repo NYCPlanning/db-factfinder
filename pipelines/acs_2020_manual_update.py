@@ -11,7 +11,7 @@ def parse_args() -> Tuple[str, str]:
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "-y", "--year", type=str, help="The ACS5 year, e.g. 2019 (2014-2018)"
+        "-y", "--year", type=str, help="The ACS5 year, e.g. 2019 (2014-2018)", choices=['2010', '2020']
     )
     parser.add_argument(
         "-g", "--geography", type=str, help="The geography year, e.g. 2010_to_2020"
@@ -29,7 +29,7 @@ def pivot_field_name(df, field_name, domain):
     return field_name_df
 
 def extract_field_names(df):
-    return df.columns[2:].str[:-1].drop_duplicates()
+    return df.columns.drop(['GeoType', 'GeoID']).str[:-1].drop_duplicates()
      
 def split_by_field_name(df, pff_field_name):
     return df.filter(regex=f"^(GeoType|GeoID|{ pff_field_name }(E|M|C|P|Z))$")
