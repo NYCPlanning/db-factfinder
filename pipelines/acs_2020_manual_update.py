@@ -19,6 +19,7 @@ def parse_args() -> Tuple[str, str]:
 
 def pivot_field_name(df, field_name, domain):
     field_name_df = split_by_field_name(df, field_name)
+
     field_name_df.rename(columns=lambda column_name: re.sub(f"^{ field_name }(E|M|C|P|Z)$",r"\1", column_name).lower(), inplace=True)
     field_name_df['pff_variable'] = field_name.lower()
     field_name_df['domain'] = domain
@@ -26,17 +27,18 @@ def pivot_field_name(df, field_name, domain):
     return field_name_df
 
 def transform_dataframe(df, domain):
+    df = strip_unnamed_columns(df)
     pff_field_names = extract_field_names(df)
     output_df = pd.DataFrame()
 
     for field_name in pff_field_names:
+
         new_df = pivot_field_name(df, field_name, domain)
 
         if output_df.empty:
             output_df = new_df
         else:
             output_df = pd.concat([output_df, new_df], ignore_index=True)
-
     return output_df
 
 def extract_field_names(df):
@@ -44,6 +46,9 @@ def extract_field_names(df):
      
 def split_by_field_name(df, pff_field_name):
     return df.filter(regex=f"^(GeoType|GeoID|{ pff_field_name }(E|M|C|P|Z))$")
+
+def strip_unnamed_columns(df):
+    return df.loc[:,~df.columns.str.match("Unnamed")]
 
 def transform_all_dataframes(year):
     if year == '2010':
@@ -79,6 +84,8 @@ def transform_all_dataframes(year):
 
     for domain_sheet in domains_sheets:
         combined_df = pd.concat([combined_df, transform_dataframe(dfs[domain_sheet['sheet_name']], domain_sheet['domain'])])
+
+    combined_df.dropna(subset=['geotype'], inplace=True)
 
     return combined_df
 
