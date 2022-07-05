@@ -17,6 +17,7 @@ jobs:
   build:
     name: "ACS Manual Update Year: ${{ github.event.inputs.data_year }} Geography: ${{ github.event.inputs.geo_year }}"
     env:
+      API_KEY: ${{ secrets.API_KEY }}
       EDM_DATA: ${{ secrets.EDM_DATA }}
       DATA_YEAR: ${{ github.event.inputs.data_year }}
       GEO_YEAR: ${{ github.event.inputs.geo_year }}
@@ -49,5 +50,5 @@ jobs:
 
       - name: upload to s3
         run: |
-          ACS_FILE_PATH=.output/acs/$DATA_YEAR/$GEO_YEAR/acs_manual_update.csv
-          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/
+          ACS_FILE_PATH=.output/acs/2020/2020/acs_manual_update.csv
+          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=2020/geography=2020/
