@@ -11,7 +11,7 @@ def parse_args() -> Tuple[str, str]:
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "-y", "--year", type=str, help="The ACS5 year, e.g. 2019 (2014-2018)", choices=['2010', '2020']
+        "-y", "--year", type=str, help="The ACS5 year, e.g. 2020 (2016-2020)", choices=['2010', '2020']
     )
     parser.add_argument(
         "-g", "--geography", type=str, help="The geography year, e.g. 2010_to_2020"
