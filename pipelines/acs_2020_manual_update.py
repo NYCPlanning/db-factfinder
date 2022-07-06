@@ -5,7 +5,7 @@ from typing import Tuple
 import pandas as pd
 import re
 
-OUTPUT_SCHEMA_COLUMNS = ['labs_geotype', 'labs_geoid', 'pff_variable', 'base_variable', 'e', 'm', 'c', 'p', 'z', 'domain']
+OUTPUT_SCHEMA_COLUMNS = ['census_geoid', 'labs_geoid', 'geotype', 'labs_geotype', 'pff_variable', 'base_variable', 'c', 'e', 'm', 'p', 'z', 'domain']
 
 def parse_args() -> Tuple[str, str]:
     parser = argparse.ArgumentParser()
@@ -102,7 +102,7 @@ def attach_base_variable(df, year):
 
 def rename_columns(df):
     df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
-    return df[OUTPUT_SCHEMA_COLUMNS]
+    return df.reindex(columns=OUTPUT_SCHEMA_COLUMNS)
 
 if __name__ == "__main__":
     # Get ACS year
