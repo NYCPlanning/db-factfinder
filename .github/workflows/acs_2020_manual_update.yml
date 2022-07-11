@@ -49,4 +49,4 @@ jobs:
       - name: upload to s3
         run: |
           ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs_manual_update.csv
-          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/
+          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
