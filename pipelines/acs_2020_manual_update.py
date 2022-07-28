@@ -123,7 +123,7 @@ def transform_all_dataframes(year):
 def attach_base_variable(df, year):
     metadata_file = f"factfinder/data/acs/{year}/metadata.json"
     acs_variable_mapping = pd.read_json(metadata_file)[
-        ["base_variable", "pff_variable"]
+        ["pff_variable"]
     ]
 
     return df.merge(acs_variable_mapping, how="inner", on="pff_variable")
