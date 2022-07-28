@@ -120,7 +120,7 @@ def transform_all_dataframes(year):
     return combined_df
 
 
-def attach_base_variable(df, year):
+def filter_by_metadata(df, year):
     metadata_file = f"factfinder/data/acs/{year}/metadata.json"
     acs_variable_mapping = pd.read_json(metadata_file)[
         ["pff_variable"]
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     year, geography = parse_args()
 
     export_df = transform_all_dataframes(year)
-    export_df = attach_base_variable(export_df, year)
+    export_df = filter_by_metadata(export_df, year)
     export_df = rename_columns(export_df)
 
     output_folder = f".output/acs/year={year}/geography={geography}"
