@@ -11,7 +11,6 @@ OUTPUT_SCHEMA_COLUMNS = [
     "geotype",
     "labs_geotype",
     "pff_variable",
-    "base_variable",
     "c",
     "e",
     "m",
@@ -127,11 +126,12 @@ def attach_base_variable(df, year):
         ["base_variable", "pff_variable"]
     ]
 
-    return df.merge(acs_variable_mapping, how="left", on="pff_variable")
+    return df.merge(acs_variable_mapping, how="inner", on="pff_variable")
 
 
 def rename_columns(df):
-    df.rename(columns={"geotype": "labs_geotype", "geoid": "labs_geoid"}, inplace=True)
+    df.rename(columns={"geotype": "labs_geotype",
+              "geoid": "labs_geoid"}, inplace=True)
     return df.reindex(columns=OUTPUT_SCHEMA_COLUMNS)
 
 
