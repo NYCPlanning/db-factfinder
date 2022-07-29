@@ -3819,7 +3819,7 @@
     },
     {
         "pff_variable": "grpi20t24",
-        "base_variable": "",
+        "base_variable": "ochuprnt2",
         "census_variable": [
             "DP04_0139"
         ],
