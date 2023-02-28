@@ -28,7 +28,7 @@ def parse_args() -> Tuple[str, str]:
         "--year",
         type=str,
         help="The ACS5 year, e.g. 2020 (2016-2020)",
-        choices=["2010", "2020"],
+        choices=["2010", "2020", "2021"],
     )
     parser.add_argument(
         "-g",
@@ -71,9 +71,14 @@ def sheet_names(year):
     if year == "2010":
         sheet_name_suffix = "0610"
         inflated = "_NotInflated"
-    if year == "2020":
+    elif year == "2020":
         sheet_name_suffix = "1620"
         inflated = ""
+    elif year == "2021":
+        sheet_name_suffix = "1721"
+        inflated = ""
+    else:
+        raise ValueError("Unknown year '{year}'. Unable to determine sheet name suffic")
 
     domains_sheets = [
         {"domain": "demographic", "sheet_name": f"Dem{sheet_name_suffix}"},
@@ -102,7 +107,7 @@ def transform_dataframe(df, domain):
 
 def transform_all_dataframes(year):
     domains_sheets = sheet_names(year)
-    input_file = f"factfinder/data/acs_1620_update/{year}/acs_{year}.xlsx"
+    input_file = f"factfinder/data/acs_manual_updates/{year}/acs_{year}.xlsx"
 
     dfs = pd.read_excel(input_file, sheet_name=None, engine="openpyxl")
     combined_df = pd.DataFrame()
