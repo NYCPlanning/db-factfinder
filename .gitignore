@@ -129,5 +129,8 @@ dmypy.json
 .pyre/
 .library
 
-# Chached data
+# Local input data
+.input/
+
+# Cached output data
 .output/
