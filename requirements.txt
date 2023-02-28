@@ -22,6 +22,8 @@ dill==0.3.6
     # via
     #   multiprocess
     #   pathos
+et-xmlfile==1.1.0
+    # via openpyxl
 future==0.18.3
     # via census
 idna==3.4
@@ -32,6 +34,8 @@ numpy==1.20.3
     # via
     #   -r requirements.in
     #   pandas
+openpyxl==3.0.10
+    # via -r requirements.in
 pandas==1.1.4
     # via -r requirements.in
 pathos==0.2.8
