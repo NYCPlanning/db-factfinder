@@ -11,8 +11,8 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/l
 
 USER vscode
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+# RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
 
-ENV PATH="~/.poetry/bin:$PATH"
+# ENV PATH="~/.poetry/bin:$PATH"
 
-ENV PATH="~/.local/bin:$PATH"
+# ENV PATH="~/.local/bin:$PATH"
