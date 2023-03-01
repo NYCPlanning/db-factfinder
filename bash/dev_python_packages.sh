@@ -2,11 +2,11 @@
 # A dev script used to compile and install python packages
 # to be used in a virtual environment or dev container
 
-# # UNCOMMENT TO RECOMPILE requirements.txt
-# # Install and update build requirements
-# python3 -m pip install --upgrade pip
-# python3 -m pip install --upgrade pip-tools wheel
+# Install and update build requirements
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip-tools wheel
 
+# # UNCOMMENT TO RECOMPILE requirements.txt
 # # Delete exisitng requirements file
 # rm requirements.txt
 # # Compile requirements
