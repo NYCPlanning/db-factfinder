@@ -1,7 +1,6 @@
 name: Build - ACS Manual Update
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       data_year:
