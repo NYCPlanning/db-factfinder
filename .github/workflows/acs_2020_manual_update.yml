@@ -1,6 +1,7 @@
 name: Build - ACS 2020 Manual Update
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       data_year:
@@ -42,11 +43,11 @@ jobs:
           python3.9 -m pip install --upgrade pip
           python3.9 -m pip install .
 
-      - name: run pipelines/acs
-        run: |
-          python3.9 -m pipelines.acs_2020_manual_update --year $DATA_YEAR --geography $GEO_YEAR
+      # - name: run pipelines/acs
+      #   run: |
+      #     python3.9 -m pipelines.acs_2020_manual_update --year $DATA_YEAR --geography $GEO_YEAR
 
-      - name: upload to s3
-        run: |
-          ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs_manual_update.csv
-          mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
+      # - name: upload to s3
+      #   run: |
+      #     ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs_manual_update.csv
+      #     mc cp $ACS_FILE_PATH spaces/edm-publishing/db-factfinder/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
