@@ -10,7 +10,7 @@ on:
         description: 'Year of geographic units. Options: "2010", "2020", or "2010_to_2020"'
         required: true
         default: '2010_to_2020'
-      cache: 
+      cache:
         description: 'Would you like to use cached download data? (yes/no)'
         required: true
         default: 'yes'
@@ -65,6 +65,7 @@ jobs:
           cat $FILE_PATH | psql $EDM_DATA -v TABLE_NAME=$TABLE_NAME -f pipelines/create_acs.sql
 
       - name: upload to s3
+        if: github.ref == 'refs/heads/main'
         run: |
           ACS_FILE_PATH=.output/acs/year=$DATA_YEAR/geography=$GEO_YEAR/acs.csv
           SUPPORT_GEOIDS_FILE_PATH=.output/support_geoids/geography=$GEO_YEAR/support_geoids.csv
