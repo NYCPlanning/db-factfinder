@@ -70,7 +70,7 @@ def strip_unnamed_columns(df):
 def sheet_names(year):
     if year == "2010":
         sheet_name_suffix = "0610"
-        inflated = "_NotInflated"
+        inflated = "_Inflated"
     elif year == "2020":
         sheet_name_suffix = "1620"
         inflated = ""
@@ -78,7 +78,7 @@ def sheet_names(year):
         sheet_name_suffix = "1721"
         inflated = ""
     else:
-        raise ValueError("Unknown year '{year}'. Unable to determine sheet name suffic")
+        raise ValueError("Unknown year '{year}'. Unable to determine sheet name suffix")
 
     domains_sheets = [
         {"domain": "demographic", "sheet_name": f"Dem{sheet_name_suffix}"},
@@ -95,7 +95,6 @@ def transform_dataframe(df, domain):
     output_df = pd.DataFrame()
 
     for field_name in pff_field_names:
-
         new_df = pivot_field_name(df, field_name, domain)
 
         if output_df.empty:
