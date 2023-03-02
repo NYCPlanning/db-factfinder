@@ -68,6 +68,9 @@ def strip_unnamed_columns(df):
 
 
 def sheet_names(year):
+    # NOTE: inflated sheet choices depend on which year's dollars the app should represent
+    # Sheet name inflation suffixes are either "_Inflated" or "_NotInflated"
+    # e.g. When building for the app in 2022 we want to use inflated 2010 data
     if year == "2010":
         sheet_name_suffix = "0610"
         inflated = "_Inflated"
