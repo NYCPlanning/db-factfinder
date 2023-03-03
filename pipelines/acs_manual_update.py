@@ -1,3 +1,4 @@
+# This script transforms and uploads ACS data provided by the NYCDCP Population team
 import argparse
 import os
 from typing import Tuple
