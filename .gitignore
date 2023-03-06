@@ -128,3 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .library
+
+# Local input data
+.input/
+
+# Cached output data
+.output/
