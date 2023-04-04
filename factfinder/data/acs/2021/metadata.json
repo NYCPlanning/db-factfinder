@@ -12159,7 +12159,7 @@
     },
     {
         "pff_variable": "engonly1",
-        "base_variable": "Pop5pl1",
+        "base_variable": "pop5pl1",
         "census_variable": [
             "C16001_002"
         ],
@@ -12171,7 +12171,7 @@
     },
     {
         "pff_variable": "engonly2",
-        "base_variable": "Pop5pl2",
+        "base_variable": "pop5pl2",
         "census_variable": [
             "C16001_002"
         ],
@@ -12495,7 +12495,7 @@
     },
     {
         "pff_variable": "lgoeng1",
-        "base_variable": "Pop5pl1",
+        "base_variable": "pop5pl1",
         "census_variable": [
             "C16001_003",
             "C16001_006",
