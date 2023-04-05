@@ -12091,7 +12091,7 @@
         "census_variable": [
             "S1810_C03_047"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12103,7 +12103,7 @@
         "census_variable": [
             "S1810_C03_039"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12115,7 +12115,7 @@
         "census_variable": [
             "S1810_C03_019"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12127,7 +12127,7 @@
         "census_variable": [
             "S1810_C03_063"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12139,7 +12139,7 @@
         "census_variable": [
             "S1810_C03_055"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12151,7 +12151,7 @@
         "census_variable": [
             "S1810_C03_029"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "subject",
         "Notes": "",
@@ -12163,7 +12163,7 @@
         "census_variable": [
             "C16001_002"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "",
         "Notes": "",
@@ -12175,7 +12175,7 @@
         "census_variable": [
             "C16001_002"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "",
         "Notes": "",
@@ -12187,7 +12187,7 @@
         "census_variable": [
             "B11003_015"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "",
         "Notes": "",
@@ -12199,7 +12199,7 @@
         "census_variable": [
             "B11003_016"
         ],
-        "domain": "Social",
+        "domain": "social",
         "rounding": "0",
         "source": "",
         "Notes": "",
