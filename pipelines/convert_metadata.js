@@ -1,8 +1,8 @@
 // Script to be run in Excel to convert a metadata table to JSON
 function main(workbook: ExcelScript.Workbook): TableData[] {
-    // Get the first table in the "meta2017-2021" worksheet.
+    // Get the first table in the worksheet.
     // If you know the table name, use `workbook.getTable('TableName')` instead.
-    const table = workbook.getWorksheet('meta2017-2021').getTables()[0];
+    const table = workbook.getWorksheet('temp').getTables()[0];
 
     // Get all the values from the table as text.
     const texts = table.getRange().getTexts();
@@ -41,13 +41,8 @@ function returnObjectFromValues(values: string[][]): TableData[] {
 }
 
 interface TableData {
-    "Event ID": string
     pff_variable: string
     base_variable: string
-    census_variable: string
     domain: string
-    rounding: number
     category: string
-    source: string
-    Notes: string
 }
